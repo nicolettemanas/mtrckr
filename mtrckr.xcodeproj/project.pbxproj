@@ -7,12 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B8DBDF76F6F3E52F4DEE9DA /* Pods_Tests_mtrckrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */; };
+		CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */; };
+		CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */; };
+		CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFE1E95E54400E5DBA6 /* User.swift */; };
 		CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB229E1E94FC2100867CDA /* AppDelegate.swift */; };
 		CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22A01E94FC2100867CDA /* ViewController.swift */; };
 		CEFB22A41E94FC2100867CDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFB22A21E94FC2100867CDA /* Main.storyboard */; };
 		CEFB22A61E94FC2100867CDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFB22A51E94FC2100867CDA /* Assets.xcassets */; };
 		CEFB22A91E94FC2100867CDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFB22A71E94FC2100867CDA /* LaunchScreen.storyboard */; };
 		CEFB22B41E94FC2100867CDA /* mtrckrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22B31E94FC2100867CDA /* mtrckrTests.swift */; };
+		CEFB22C41E94FD8B00867CDA /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22C01E94FD8B00867CDA /* AccountType.swift */; };
+		CEFB22C51E94FD8B00867CDA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22C11E94FD8B00867CDA /* Currency.swift */; };
+		CEFB22C71E94FD8B00867CDA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22C31E94FD8B00867CDA /* Category.swift */; };
+		CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22C81E94FD9F00867CDA /* Account.swift */; };
+		CEFB22D21E95087600867CDA /* AccountTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22D11E95087600867CDA /* AccountTypeTests.swift */; };
+		CEFB22DA1E95419200867CDA /* CurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22D91E95419200867CDA /* CurrencyTests.swift */; };
+		F0AFE4DB9F9686E90E30B44B /* Pods_mtrckr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D471B1511513CA1AB286D1E0 /* Pods_mtrckr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +37,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		64CD9E5AF4ED7260FCAB52DD /* Pods-Tests-mtrckrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_mtrckrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B482AB359D6C323EF27CB17C /* Pods-mtrckr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mtrckr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr.debug.xcconfig"; sourceTree = "<group>"; };
+		CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryTests.swift; path = CategoryTests/CategoryTests.swift; sourceTree = "<group>"; };
+		CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountTests.swift; path = AccountTests/AccountTests.swift; sourceTree = "<group>"; };
+		CE652FFE1E95E54400E5DBA6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		CEFB229B1E94FC2100867CDA /* mtrckr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mtrckr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFB229E1E94FC2100867CDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEFB22A01E94FC2100867CDA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +53,15 @@
 		CEFB22AF1E94FC2100867CDA /* mtrckrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mtrckrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFB22B31E94FC2100867CDA /* mtrckrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mtrckrTests.swift; sourceTree = "<group>"; };
 		CEFB22B51E94FC2100867CDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEFB22C01E94FD8B00867CDA /* AccountType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
+		CEFB22C11E94FD8B00867CDA /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		CEFB22C31E94FD8B00867CDA /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		CEFB22C81E94FD9F00867CDA /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		CEFB22D11E95087600867CDA /* AccountTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountTypeTests.swift; path = AccountTypeTests/AccountTypeTests.swift; sourceTree = "<group>"; };
+		CEFB22D91E95419200867CDA /* CurrencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrencyTests.swift; path = CurrencyTests/CurrencyTests.swift; sourceTree = "<group>"; };
+		D471B1511513CA1AB286D1E0 /* Pods_mtrckr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mtrckr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC8AC50703F81BF568E86F58 /* Pods-mtrckr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mtrckr.release.xcconfig"; path = "Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr.release.xcconfig"; sourceTree = "<group>"; };
+		E3D12754D195FAC6D0B9EE06 /* Pods-Tests-mtrckrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0AFE4DB9F9686E90E30B44B /* Pods_mtrckr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,18 +77,57 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B8DBDF76F6F3E52F4DEE9DA /* Pods_Tests_mtrckrTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E39DD52BFE18175AE606AE3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				64CD9E5AF4ED7260FCAB52DD /* Pods-Tests-mtrckrTests.debug.xcconfig */,
+				E3D12754D195FAC6D0B9EE06 /* Pods-Tests-mtrckrTests.release.xcconfig */,
+				B482AB359D6C323EF27CB17C /* Pods-mtrckr.debug.xcconfig */,
+				DC8AC50703F81BF568E86F58 /* Pods-mtrckr.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BDF282DBB1A97C0D67DAB101 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */,
+				D471B1511513CA1AB286D1E0 /* Pods_mtrckr.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE652FF81E95D91700E5DBA6 /* CategoryTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */,
+			);
+			name = CategoryTests;
+			sourceTree = "<group>";
+		};
+		CE652FFB1E95E2A200E5DBA6 /* AccountTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */,
+			);
+			name = AccountTests;
+			sourceTree = "<group>";
+		};
 		CEFB22921E94FC2100867CDA = {
 			isa = PBXGroup;
 			children = (
 				CEFB229D1E94FC2100867CDA /* mtrckr */,
 				CEFB22B21E94FC2100867CDA /* mtrckrTests */,
 				CEFB229C1E94FC2100867CDA /* Products */,
+				0E39DD52BFE18175AE606AE3 /* Pods */,
+				BDF282DBB1A97C0D67DAB101 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +143,7 @@
 		CEFB229D1E94FC2100867CDA /* mtrckr */ = {
 			isa = PBXGroup;
 			children = (
+				CEFB22BE1E94FD7700867CDA /* Models */,
 				CEFB229E1E94FC2100867CDA /* AppDelegate.swift */,
 				CEFB22A01E94FC2100867CDA /* ViewController.swift */,
 				CEFB22A21E94FC2100867CDA /* Main.storyboard */,
@@ -90,10 +157,50 @@
 		CEFB22B21E94FC2100867CDA /* mtrckrTests */ = {
 			isa = PBXGroup;
 			children = (
+				CE652FFB1E95E2A200E5DBA6 /* AccountTests */,
+				CE652FF81E95D91700E5DBA6 /* CategoryTests */,
+				CEFB22D81E9540FD00867CDA /* CurrencyTests */,
+				CEFB22CE1E9505FF00867CDA /* AccountTypeTests */,
 				CEFB22B31E94FC2100867CDA /* mtrckrTests.swift */,
 				CEFB22B51E94FC2100867CDA /* Info.plist */,
 			);
 			path = mtrckrTests;
+			sourceTree = "<group>";
+		};
+		CEFB22BE1E94FD7700867CDA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEFB22C81E94FD9F00867CDA /* Account.swift */,
+				CE652FFE1E95E54400E5DBA6 /* User.swift */,
+				CEFB22BF1E94FD8B00867CDA /* Lookups */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		CEFB22BF1E94FD8B00867CDA /* Lookups */ = {
+			isa = PBXGroup;
+			children = (
+				CEFB22C01E94FD8B00867CDA /* AccountType.swift */,
+				CEFB22C11E94FD8B00867CDA /* Currency.swift */,
+				CEFB22C31E94FD8B00867CDA /* Category.swift */,
+			);
+			path = Lookups;
+			sourceTree = "<group>";
+		};
+		CEFB22CE1E9505FF00867CDA /* AccountTypeTests */ = {
+			isa = PBXGroup;
+			children = (
+				CEFB22D11E95087600867CDA /* AccountTypeTests.swift */,
+			);
+			name = AccountTypeTests;
+			sourceTree = "<group>";
+		};
+		CEFB22D81E9540FD00867CDA /* CurrencyTests */ = {
+			isa = PBXGroup;
+			children = (
+				CEFB22D91E95419200867CDA /* CurrencyTests.swift */,
+			);
+			name = CurrencyTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,9 +210,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEFB22B81E94FC2100867CDA /* Build configuration list for PBXNativeTarget "mtrckr" */;
 			buildPhases = (
+				2D294E7A53A868288BE68BC5 /* [CP] Check Pods Manifest.lock */,
 				CEFB22971E94FC2100867CDA /* Sources */,
 				CEFB22981E94FC2100867CDA /* Frameworks */,
 				CEFB22991E94FC2100867CDA /* Resources */,
+				CDF4CB801F3BAD398C24BE17 /* [CP] Embed Pods Frameworks */,
+				0071015CA709DC5D9DFB2181 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -120,9 +230,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEFB22BB1E94FC2100867CDA /* Build configuration list for PBXNativeTarget "mtrckrTests" */;
 			buildPhases = (
+				AED2D0600E2B0F37855B5CDF /* [CP] Check Pods Manifest.lock */,
 				CEFB22AB1E94FC2100867CDA /* Sources */,
 				CEFB22AC1E94FC2100867CDA /* Frameworks */,
 				CEFB22AD1E94FC2100867CDA /* Resources */,
+				A839BFEA6D69A71D98708969 /* [CP] Embed Pods Frameworks */,
+				9F02FE75CC2A8DE97C691000 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,13 +308,111 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0071015CA709DC5D9DFB2181 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D294E7A53A868288BE68BC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9F02FE75CC2A8DE97C691000 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A839BFEA6D69A71D98708969 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AED2D0600E2B0F37855B5CDF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CDF4CB801F3BAD398C24BE17 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CEFB22971E94FC2100867CDA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEFB22C51E94FD8B00867CDA /* Currency.swift in Sources */,
 				CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */,
+				CEFB22C71E94FD8B00867CDA /* Category.swift in Sources */,
+				CEFB22C41E94FD8B00867CDA /* AccountType.swift in Sources */,
+				CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */,
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
+				CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +421,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEFB22B41E94FC2100867CDA /* mtrckrTests.swift in Sources */,
+				CEFB22DA1E95419200867CDA /* CurrencyTests.swift in Sources */,
+				CEFB22D21E95087600867CDA /* AccountTypeTests.swift in Sources */,
+				CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */,
+				CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +551,7 @@
 		};
 		CEFB22B91E94FC2100867CDA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B482AB359D6C323EF27CB17C /* Pods-mtrckr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S86Z46T95A;
@@ -349,6 +565,7 @@
 		};
 		CEFB22BA1E94FC2100867CDA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC8AC50703F81BF568E86F58 /* Pods-mtrckr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S86Z46T95A;
@@ -362,6 +579,7 @@
 		};
 		CEFB22BC1E94FC2100867CDA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64CD9E5AF4ED7260FCAB52DD /* Pods-Tests-mtrckrTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -377,6 +595,7 @@
 		};
 		CEFB22BD1E94FC2100867CDA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3D12754D195FAC6D0B9EE06 /* Pods-Tests-mtrckrTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -409,6 +628,7 @@
 				CEFB22BA1E94FC2100867CDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CEFB22BB1E94FC2100867CDA /* Build configuration list for PBXNativeTarget "mtrckrTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +637,7 @@
 				CEFB22BD1E94FC2100867CDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
