@@ -16,22 +16,30 @@ enum CategoryType: String {
 
 class Category: Object {
     
-    dynamic var id: Int = 0
+    dynamic var id: String = ""
     dynamic var type: String = "expense"
     dynamic var name: String = ""
     dynamic var icon: String = "decault.jpg"
-    
-//    dynamic var user: User?
+    dynamic var user: User?
     
 //    let transactions = LinkingObjects(fromType: Transaction.self, property: "transactionCategory")
 //    let budgetsAffected = LinkingObjects(fromType: Budget.self, property: "forCategories")
-//    let bills = LinkingObjects(fromType: Bill.self, property: "category")
+    let bills = LinkingObjects(fromType: Bill.self, property: "category")
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
-    convenience init(id: Int, type: CategoryType, name: String, icon: String) {
+    convenience init(type: CategoryType, name: String, icon: String, user: User) {
+        self.init()
+        self.id = UUID().uuidString
+        self.type = type.rawValue
+        self.name = name
+        self.icon = icon
+        self.user = user
+    }
+    
+    convenience init(id: String, type: CategoryType, name: String, icon: String) {
         self.init()
         self.id = id
         self.type = type.rawValue
@@ -78,6 +86,7 @@ class Category: Object {
     func delete(in realm: Realm) {
         do {
             try realm.write {
+                realm.delete(self.bills)
                 realm.delete(self)
             }
         } catch let error as NSError {
@@ -85,8 +94,14 @@ class Category: Object {
         }
     }
     
-    static func with(key: Int, inRealm realm: Realm) -> Category? {
+    static func with(key: String, inRealm realm: Realm) -> Category? {
         return realm.object(ofType: Category.self, forPrimaryKey: key) as Category?
+    }
+    
+    static func all(in realm: Realm, of user: User) -> [Category] {
+        guard let customCategories = User.with(key: user.id, inRealm: realm)?.customCategories
+        else { return [] }
+        return Array(customCategories)
     }
     
     static func all(in realm: Realm) -> Results<Category> {

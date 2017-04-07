@@ -20,8 +20,8 @@ class User: Object {
     
     var accounts = LinkingObjects(fromType: Account.self, property: "user")
     let bills = LinkingObjects(fromType: Bill.self, property: "user")
+    let customCategories = LinkingObjects(fromType: Category.self, property: "user")
     
-//    let customTransactionCategories = LinkingObjects(fromType: TransactionCategory.self, property: "user")
 //    let budgets = LinkingObjects(fromType: Budget.self, property: "user")
 //    let transactions = LinkingObjects(fromType: Transaction.self, property: "user")
     
@@ -77,6 +77,9 @@ class User: Object {
     func delete(in realm: Realm) {
         do {
             try realm.write {
+                realm.delete(self.customCategories)
+                realm.delete(self.bills)
+                realm.delete(self.accounts)
                 realm.delete(self)
             }
         } catch let error as NSError {

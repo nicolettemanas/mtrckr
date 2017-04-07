@@ -38,7 +38,6 @@ class UserTests: QuickSpec {
         describe("Model User") {
             describe("initializa with id, name, email, image, currency", {
                 it("initializes and assign properties correctly ", closure: {
-                    
                     expect(user.id) == "user0"
                     expect(user.name) == "Jean"
                     expect(user.email) == "email@sample.com"
@@ -107,21 +106,34 @@ class UserTests: QuickSpec {
                 })
                 
                 it("deletes accounts under user") {
-                    let accountsOfUser = Account.all(in: self.testRealm, ofUser: user)
-                    expect(accountsOfUser.count) == 0
+                    let accnt0 = Account.with(key: "accnt0", inRealm: self.testRealm)
+                    let accnt1 = Account.with(key: "accnt1", inRealm: self.testRealm)
+                    let accnt2 = Account.with(key: "accnt2", inRealm: self.testRealm)
+                    
+                    expect(accnt0).to(beNil())
+                    expect(accnt1).toNot(beNil())
+                    expect(accnt2).toNot(beNil())
                 }
                 
                 it("deletes the deleted user's custom categories") {
-                    
+                    let categories = mtrckr.Category.all(in: self.testRealm)
+                    expect(categories.count) == 2
+                    expect(categories[0].name) == "Category 1"
+                    expect(categories[1].name) == "Category 2"
                 }
                 
-                it("deletes budgets under user") {
-                    
-                }
+//                it("deletes budgets under user") {
+//                    
+//                }
                 
                 it("deletes bills under user") {
-                    let bills = Bill.all(in: self.testRealm, ofUser: user)
-                    expect(bills.count) == 0
+                    let bill0 = Bill.with(key: "bill0", inRealm: self.testRealm)
+                    let bill1 = Bill.with(key: "bill1", inRealm: self.testRealm)
+                    let bill2 = Bill.with(key: "bill2", inRealm: self.testRealm)
+                    
+                    expect(bill0).to(beNil())
+                    expect(bill1).toNot(beNil())
+                    expect(bill2).toNot(beNil())
                 }
             })
         }
@@ -132,9 +144,9 @@ class UserTests: QuickSpec {
         let newCurrency = Currency(isoCode: "USD", symbol: "$", state: "USA")
         
         for i in 0..<n {
-            let category = mtrckr.Category(id: 100+i, type: .expense, name: "Category \(i)", icon: "default\(i).jpg")
             let user = User(id: "user\(i)", name: "User \(i)", email: "email\(i)1@sample.com",
                 image: "/img\(i).jpg", currency: newCurrency)
+            let category = mtrckr.Category(type: .expense, name: "Category \(i)", icon: "", user: user)
             let account = Account(value: ["id": "accnt\(i)",
                 "name": "Account \(i)",
                 "type": cashAccountType,

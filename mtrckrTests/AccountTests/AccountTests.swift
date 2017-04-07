@@ -93,7 +93,6 @@ class AccountTests: QuickSpec {
                 }
                 
                 it("saves object to database correctly", closure: {
-                    
                     let accountFromDatabase = self.testRealm.objects(Account.self).last
                     expect(accountFromDatabase?.id) == "accnt1"
                     expect(accountFromDatabase?.name) == "My Cash"

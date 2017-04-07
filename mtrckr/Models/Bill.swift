@@ -90,6 +90,10 @@ class Bill: Object {
         return realm.object(ofType: Bill.self, forPrimaryKey: key) as Bill?
     }
     
+    static func all(in realm: Realm, underCategory category: Category, ofUser user: User) -> Results<Bill> {
+        return realm.objects(Bill.self).filter("user.id == %@ AND category.id == %@", user.id, category.id).sorted(byKeyPath: "name")
+    }
+    
     static func all(in realm: Realm, ofUser user: User) -> Results<Bill> {
         return realm.objects(Bill.self).filter("user.id == %@", user.id).sorted(byKeyPath: "name")
     }
