@@ -31,26 +31,6 @@ class Account: Object {
         return "id"
     }
     
-//    convenience init(accountId: String, name: String, type: Account, initialAmount: ) {
-//        self.init()
-//        self.typeId = typeId
-//        self.name = name
-//        self.icon = icon
-//    }
-    
-    // MARK: Required methods
-    required init() {
-        super.init()
-    }
-    
-    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-        super.init(realm: realm, schema: schema)
-    }
-    
-    required init(value: Any, schema: RLMSchema) {
-        super.init(value: value, schema: schema)
-    }
-    
     // MARK: CRUD operations
     func save(toRealm realm: Realm) {
         do {
@@ -62,14 +42,30 @@ class Account: Object {
         }
     }
     
+    func update(to account: Account, in realm: Realm) {
+        guard self.id == account.id else { return }
+        
+        do {
+            try realm.write {
+                realm.add(account, update: true)
+            }
+        } catch let error as NSError {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
     func update(name: String, type: AccountType, initialAmount: Double, color: String, dateOpened: Date, in realm: Realm) {
+        guard let _ = Account.with(key: self.id, inRealm: realm) else { return }
         do {
             try realm.write {
                 self.name = name
                 self.type = type
-                self.initialAmount = initialAmount
                 self.color = color
                 self.dateOpened = dateOpened
+                
+                self.currentAmount = self.currentAmount - self.initialAmount + initialAmount
+                self.initialAmount = initialAmount
+                
                 realm.add(self, update: true)
             }
         } catch let error as NSError {
@@ -92,6 +88,6 @@ class Account: Object {
     }
     
     static func all(in realm: Realm, ofUser user: User) -> Results<Account> {
-        return realm.objects(Account.self).filter("id == %@", user.id)
+        return realm.objects(Account.self).filter("user.id == %@", user.id).sorted(byKeyPath: "name")
     }
 }

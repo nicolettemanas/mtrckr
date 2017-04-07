@@ -19,7 +19,7 @@ class CurrencyTests: QuickSpec {
     override func spec() {
         
         beforeSuite {
-            Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "AccountTypeTests Database"
+            Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "CurrencyTests Database"
         }
         
         beforeEach {
