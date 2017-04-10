@@ -208,7 +208,8 @@ class BillEntryTests: QuickSpec {
                     })
                     
                     it("generates corresponding transaction", closure: { 
-                        
+                        let transactionForBill = Transaction.all(in: self.testRealm, underBill: bill)
+                        expect(transactionForBill.count) == 1
                     })
                 }
                 
@@ -263,7 +264,8 @@ class BillEntryTests: QuickSpec {
                 
                 context("bill is paid", closure: {
                     it("deletes transaction generated", closure: { 
-                        
+                        let transactionFromBill = Transaction.all(in: self.testRealm, underBill: bill)
+                        expect(transactionFromBill.count) == 0
                     })
                 })
             })

@@ -28,6 +28,7 @@ class Transaction: Object {
     dynamic var toAccount: Account?
     dynamic var category: Category?
     dynamic var user: User?
+    dynamic var billEntry: BillEntry?
     
     override static func primaryKey() -> String? {
         return "id"
@@ -76,14 +77,14 @@ class Transaction: Object {
     }
     
     func update(type: TransactionType, name: String, image: String?, description: String?, amount: Double,
-                category: Category, from fromAccount: Account, to toAccount: Account, date: Date, inRealm realm: Realm) {
+                category: Category?, from fromAccount: Account, to toAccount: Account, date: Date, inRealm realm: Realm) {
         guard let _ = Transaction.with(key: self.id, inRealm: realm) else { return }
         
         do {
             try realm.write {
                 let newTransaction = Transaction(type: type, name: name, image: image, description: description, amount: amount,
                                                  category: category, from: fromAccount, to: toAccount, date: date)
-                self.willDelete()
+                self.willDelete(inRealm: realm)
                 realm.delete(self)
                 
                 newTransaction.willSave()
@@ -97,7 +98,7 @@ class Transaction: Object {
     func delete(in realm: Realm) {
         do {
             try realm.write {
-                self.willDelete()
+                self.willDelete(inRealm: realm)
                 realm.delete(self)
             }
         } catch let error as NSError {
@@ -113,8 +114,16 @@ class Transaction: Object {
         return realm.objects(Transaction.self).filter("fromAccount.id == %@", account.id).sorted(byKeyPath: "transactionDate")
     }
     
+    static func all(in realm: Realm, underCategory category: Category) -> Results<Transaction> {
+        return realm.objects(Transaction.self).filter("category.id == %@", category.id).sorted(byKeyPath: "transactionDate")
+    }
+    
+    static func all(in realm: Realm, underBill bill: Bill) -> Results<Transaction> {
+        return realm.objects(Transaction.self).filter("billEntry.bill.id == %@", bill.id).sorted(byKeyPath: "transactionDate")
+    }
+    
     //MARK: - associated account methods
-    func willDelete() {
+    func willDelete(inRealm realm: Realm) {
         if self.type == TransactionType.expense.rawValue {
             self.toAccount?.currentAmount += self.amount
             self.toAccount?.totalExpenses -= self.amount
@@ -125,6 +134,11 @@ class Transaction: Object {
             self.fromAccount?.currentAmount += self.amount
             self.toAccount?.currentAmount -= self.amount
         }
+        
+        guard let entry = self.billEntry else { return }
+        let entryCopy = BillEntry(dueDate: entry.dueDate, for: entry.bill!)
+        realm.delete(entry)
+        realm.add(entryCopy)
     }
     
     func willSave() {

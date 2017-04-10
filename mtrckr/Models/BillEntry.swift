@@ -22,7 +22,6 @@ class BillEntry: Object {
     dynamic var dueDate: Date = Date()
     dynamic var status: String = ""
     dynamic var bill: Bill?
-//    dynamic var transaction: Transaction?
     
     override static func primaryKey() -> String? {
         return "id"
@@ -50,6 +49,7 @@ class BillEntry: Object {
     }
     
     func update(amount: Double, inRealm realm: Realm) {
+        assert(self.status != BillEntryStatus.paid.rawValue)
         guard let _ = BillEntry.with(key: self.id, inRealm: realm) else { return }
         
         do {
@@ -62,12 +62,18 @@ class BillEntry: Object {
         }
     }
     
-    func pay(amount: Double, description: String, fromAccount: Account, datePaid: Date, inRealm realm: Realm) {
+    func unpay(inRealm realm: Realm) {
+        let entry = BillEntry(dueDate: self.dueDate, for: self.bill!)
+        self.delete(in: realm)
+        entry.save(toRealm: realm)
+    }
+    
+    func pay(amount: Double, description: String, fromAccount account: Account, datePaid: Date, inRealm realm: Realm) {
         guard let _ = BillEntry.with(key: self.id, inRealm: realm) else { return }
+        self.generateTransaction(amount: amount, description: description, account: account, datePaid: datePaid, inRealm: realm)
+        
         do {
             try realm.write {
-                
-                //TODO: Make a transaction and save
                 self.amount = amount
                 self.datePaid = datePaid
                 self.status = BillEntryStatus.paid.rawValue
@@ -82,8 +88,6 @@ class BillEntry: Object {
         guard let _ = BillEntry.with(key: self.id, inRealm: realm) else { return }
         do {
             try realm.write {
-                
-                //TODO: Make a transaction and save
                 self.status = BillEntryStatus.skipped.rawValue
                 realm.add(self, update: true)
             }
@@ -110,4 +114,12 @@ class BillEntry: Object {
         return realm.objects(BillEntry.self).filter("bill.id == %@", bill.id).sorted(byKeyPath: "dueDate")
     }
 
+    // MARK: - private methods
+    func generateTransaction(amount: Double, description: String, account: Account, datePaid: Date, inRealm realm: Realm) {
+        let transaction = Transaction(type: .expense, name: self.bill!.name, image: nil,
+                                      description: description, amount: amount, category: self.bill?.category,
+                                      from: account, to: account, date: datePaid)
+        transaction.billEntry = self
+        transaction.save(toRealm: realm)
+    }
 }

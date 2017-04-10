@@ -22,7 +22,7 @@ class Category: Object {
     dynamic var icon: String = "decault.jpg"
     dynamic var user: User?
     
-//    let transactions = LinkingObjects(fromType: Transaction.self, property: "transactionCategory")
+    let transactions = LinkingObjects(fromType: Transaction.self, property: "category")
 //    let budgetsAffected = LinkingObjects(fromType: Budget.self, property: "forCategories")
     let bills = LinkingObjects(fromType: Bill.self, property: "category")
     
@@ -84,9 +84,11 @@ class Category: Object {
     }
     
     func delete(in realm: Realm) {
+        for t in self.transactions { t.delete(in: realm) }
+        for b in self.bills { b.delete(in: realm) }
+        
         do {
             try realm.write {
-                realm.delete(self.bills)
                 realm.delete(self)
             }
         } catch let error as NSError {

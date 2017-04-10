@@ -76,6 +76,8 @@ class Account: Object {
     func delete(in realm: Realm) {
         do {
             try realm.write {
+                realm.delete(self.transactionsToSelf)
+                realm.delete(self.transactionsFromSelf)
                 realm.delete(self)
             }
         } catch let error as NSError {

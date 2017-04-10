@@ -237,8 +237,12 @@ class AccountTests: QuickSpec {
                     expect(accounts[1].id) == "accnt2"
                 })
                 
-                it("deletes transactions under deleted account", closure: { 
-                    
+                it("deletes transactions under deleted account", closure: {
+                    let category = mtrckr.Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
+                    let transactions = Transaction.all(in: self.testRealm, underCategory: category)
+                    expect(transactions.count) == 2
+                    expect(transactions[0].name) == "trans 1"
+                    expect(transactions[1].name) == "trans 2"
                 })
                 
                 it("should be deleted from the user it belongs to", closure: {
@@ -257,8 +261,9 @@ class AccountTests: QuickSpec {
     
     func createAccounts(n: Int, for user: User) {
         let cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
+        let category = mtrckr.Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
         for i in 0..<n {
-            Account(value: ["id": "accnt\(i)",
+            let acc = Account(value: ["id": "accnt\(i)",
                             "name": "Account \(i)",
                             "type": cashAccountType,
                             "initialAmount": 0.0,
@@ -267,7 +272,9 @@ class AccountTests: QuickSpec {
                             "totalIncome": 0.0,
                             "color": "",
                             "dateOpened": Date(),
-                            "user": user]).save(toRealm: self.testRealm)
+                            "user": user])
+            acc.save(toRealm: self.testRealm)
+            Transaction(type: .expense, name: "trans \(i)", image: nil, description: nil, amount: 100, category: category, from: acc, to: acc, date: Date()).save(toRealm: self.testRealm)
         }
     }
     

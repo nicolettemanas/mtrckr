@@ -158,6 +158,7 @@ class CategoryTests: QuickSpec {
                 context("normal category", {
                     
                     var categoryToDelete: mtrckr.Category!
+                    var account: Account!
                     
                     beforeEach {
                         self.createExpenses(n: 3)
@@ -171,8 +172,23 @@ class CategoryTests: QuickSpec {
                                                 "startDate": Date(),
                                                 "user": user,
                                                 "category": categoryToDelete])
+                        let cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
+                        account = Account(value: ["id": "accnt1",
+                                                  "name": "My Cash",
+                                                  "type": cashAccountType,
+                                                  "initialAmount": 10.0,
+                                                  "currentAmount": 20.0,
+                                                  "totalExpenses": 100.0,
+                                                  "totalIncome": 30.0,
+                                                  "color": "#AAAAAA",
+                                                  "dateOpened": Date(),
+                                                  "user": user ])
                         
                         bill.save(toRealm: self.testRealm)
+                        cashAccountType.save(toRealm: self.testRealm)
+                        account.save(toRealm: self.testRealm)
+                        let transaction = Transaction(type: .expense, name: "Breakfast", image: nil, description: "Subway: Spicy Italian", amount: 99.0, category: categoryToDelete, from: account, to: account, date: Date())
+                        transaction.save(toRealm: self.testRealm)
                         categoryToDelete?.delete(in: self.testRealm)
                     }
                     
@@ -189,7 +205,8 @@ class CategoryTests: QuickSpec {
                     })
                     
                     it("deletes associated transactions", closure: {
-                        
+                        let transactions = Transaction.all(in: self.testRealm, fromAccount: account)
+                        expect(transactions.count) == 0
                     })
                 })
                 
