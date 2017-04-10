@@ -30,7 +30,7 @@ class Bill: Object {
     dynamic var user: User?
     dynamic var category: Category?
     
-//    let entries = LinkingObjects(fromType: BillEntry.self, property: "bill")
+    let entries = LinkingObjects(fromType: BillEntry.self, property: "bill")
     
     override static func primaryKey() -> String? {
         return "id"
@@ -79,6 +79,7 @@ class Bill: Object {
     func delete(in realm: Realm) {
         do {
             try realm.write {
+                realm.delete(self.entries)
                 realm.delete(self)
             }
         } catch let error as NSError {

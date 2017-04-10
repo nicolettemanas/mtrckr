@@ -248,9 +248,9 @@ class AccountTests: QuickSpec {
                     expect(user?.accounts[1].id) == "accnt2"
                 })
                 
-                it("remove account from affected budgets; delete if necessary", closure: {
-                
-                })
+//                it("remove account from affected budgets; delete if necessary", closure: {
+//                
+//                })
             })
         }
     }

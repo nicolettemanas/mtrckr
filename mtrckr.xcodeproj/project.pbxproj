@@ -11,9 +11,11 @@
 		CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89B71E96797A00EBE809 /* UserTests.swift */; };
 		CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BA1E967F0800EBE809 /* BillTests.swift */; };
 		CE3A89BD1E972BB600EBE809 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BC1E972BB600EBE809 /* Bill.swift */; };
+		CE3A89BF1E97ED8900EBE809 /* BillEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */; };
 		CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */; };
 		CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */; };
 		CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFE1E95E54400E5DBA6 /* User.swift */; };
+		CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */; };
 		CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB229E1E94FC2100867CDA /* AppDelegate.swift */; };
 		CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22A01E94FC2100867CDA /* ViewController.swift */; };
 		CEFB22A41E94FC2100867CDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFB22A21E94FC2100867CDA /* Main.storyboard */; };
@@ -46,9 +48,11 @@
 		CE3A89B71E96797A00EBE809 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTests.swift; path = UserTests/UserTests.swift; sourceTree = "<group>"; };
 		CE3A89BA1E967F0800EBE809 /* BillTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillTests.swift; path = BillTests/BillTests.swift; sourceTree = "<group>"; };
 		CE3A89BC1E972BB600EBE809 /* Bill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bill.swift; path = Models/Bill.swift; sourceTree = "<group>"; };
+		CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntryTests.swift; path = BillTests/BillEntryTests.swift; sourceTree = "<group>"; };
 		CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryTests.swift; path = CategoryTests/CategoryTests.swift; sourceTree = "<group>"; };
 		CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountTests.swift; path = AccountTests/AccountTests.swift; sourceTree = "<group>"; };
 		CE652FFE1E95E54400E5DBA6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
+		CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntry.swift; path = Models/BillEntry.swift; sourceTree = "<group>"; };
 		CEFB229B1E94FC2100867CDA /* mtrckr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mtrckr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFB229E1E94FC2100867CDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEFB22A01E94FC2100867CDA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +114,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE1F31021E9B21FD0022CA57 /* TransactionTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TransactionTests;
+			sourceTree = "<group>";
+		};
 		CE3A89B61E96794900EBE809 /* UserTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				CE3A89BA1E967F0800EBE809 /* BillTests.swift */,
+				CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */,
 			);
 			name = BillTests;
 			sourceTree = "<group>";
@@ -179,6 +191,7 @@
 		CEFB22B21E94FC2100867CDA /* mtrckrTests */ = {
 			isa = PBXGroup;
 			children = (
+				CE1F31021E9B21FD0022CA57 /* TransactionTests */,
 				CE3A89B91E967EF300EBE809 /* BillTests */,
 				CE3A89B61E96794900EBE809 /* UserTests */,
 				CE652FFB1E95E2A200E5DBA6 /* AccountTests */,
@@ -196,8 +209,9 @@
 			children = (
 				CEFB22C81E94FD9F00867CDA /* Account.swift */,
 				CE652FFE1E95E54400E5DBA6 /* User.swift */,
-				CEFB22BF1E94FD8B00867CDA /* Lookups */,
 				CE3A89BC1E972BB600EBE809 /* Bill.swift */,
+				CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */,
+				CEFB22BF1E94FD8B00867CDA /* Lookups */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -439,6 +453,7 @@
 				CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */,
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
 				CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */,
+				CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +468,7 @@
 				CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */,
 				CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */,
 				CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */,
+				CE3A89BF1E97ED8900EBE809 /* BillEntryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

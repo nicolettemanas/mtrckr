@@ -31,6 +31,7 @@ class BillTests: QuickSpec {
         
         describe("Model Bill") {
             describe("initialize with values", {
+                
                 it("initializes and assign properties correctly", closure: {
                     let currency = Currency(isoCode: "USD", symbol: "$", state: "USA")
                     let user = User(id: "user1", name: "", email: "", image: "", currency: currency)
@@ -60,13 +61,6 @@ class BillTests: QuickSpec {
                 })
             })
             
-            it("reflects from associated category", closure: { 
-                
-            })
-            
-            it("reflects from associated user", closure: {
-                
-            })
         }
         
         describe("CRUD operations") {
@@ -127,9 +121,9 @@ class BillTests: QuickSpec {
                     expect(category?.bills[0].id) == "bill0"
                 })
                 
-                it("creates billEntries from startDate to currentDate") {
-                
-                }
+//                it("creates billEntries from startDate to currentDate") {
+//                    
+//                }
             })
             
             describe("update()", {
@@ -244,6 +238,7 @@ class BillTests: QuickSpec {
                 beforeEach {
                     self.createBills(n: 3, for: user)
                     let firstBill = Bill.with(key: "bill0", inRealm: self.testRealm)
+                    self.createBillEntries(n: 3, for: firstBill!)
                     firstBill?.delete(in: self.testRealm)
                 }
                 
@@ -255,6 +250,8 @@ class BillTests: QuickSpec {
                 })
                 
                 it("deletes bill entries under deleted Bill", closure: {
+                    let entries = self.testRealm.objects(BillEntry.self)
+                    expect(entries.count) == 0
                     
                 })
                 
@@ -283,6 +280,12 @@ class BillTests: QuickSpec {
                 "user": user,
                 "category": category
                 ]).save(toRealm: self.testRealm)
+        }
+    }
+    
+    func createBillEntries(n: Int, for bill: Bill) {
+        for _ in 0..<n {
+            BillEntry(dueDate: Date(), for: bill).save(toRealm: self.testRealm)
         }
     }
     
