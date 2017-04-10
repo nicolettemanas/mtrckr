@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3B8DBDF76F6F3E52F4DEE9DA /* Pods_Tests_mtrckrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */; };
+		CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */; };
+		CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31051E9B2AAB0022CA57 /* Transaction.swift */; };
 		CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89B71E96797A00EBE809 /* UserTests.swift */; };
 		CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BA1E967F0800EBE809 /* BillTests.swift */; };
 		CE3A89BD1E972BB600EBE809 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BC1E972BB600EBE809 /* Bill.swift */; };
@@ -45,6 +47,8 @@
 		64CD9E5AF4ED7260FCAB52DD /* Pods-Tests-mtrckrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_mtrckrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B482AB359D6C323EF27CB17C /* Pods-mtrckr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mtrckr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr.debug.xcconfig"; sourceTree = "<group>"; };
+		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; };
+		CE1F31051E9B2AAB0022CA57 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Models/Transaction.swift; sourceTree = "<group>"; };
 		CE3A89B71E96797A00EBE809 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTests.swift; path = UserTests/UserTests.swift; sourceTree = "<group>"; };
 		CE3A89BA1E967F0800EBE809 /* BillTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillTests.swift; path = BillTests/BillTests.swift; sourceTree = "<group>"; };
 		CE3A89BC1E972BB600EBE809 /* Bill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bill.swift; path = Models/Bill.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 		CE1F31021E9B21FD0022CA57 /* TransactionTests */ = {
 			isa = PBXGroup;
 			children = (
+				CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */,
 			);
 			name = TransactionTests;
 			sourceTree = "<group>";
@@ -208,9 +213,10 @@
 			isa = PBXGroup;
 			children = (
 				CEFB22C81E94FD9F00867CDA /* Account.swift */,
-				CE652FFE1E95E54400E5DBA6 /* User.swift */,
 				CE3A89BC1E972BB600EBE809 /* Bill.swift */,
 				CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */,
+				CE1F31051E9B2AAB0022CA57 /* Transaction.swift */,
+				CE652FFE1E95E54400E5DBA6 /* User.swift */,
 				CEFB22BF1E94FD8B00867CDA /* Lookups */,
 			);
 			name = Models;
@@ -449,6 +455,7 @@
 				CEFB22C51E94FD8B00867CDA /* Currency.swift in Sources */,
 				CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */,
 				CEFB22C71E94FD8B00867CDA /* Category.swift in Sources */,
+				CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */,
 				CEFB22C41E94FD8B00867CDA /* AccountType.swift in Sources */,
 				CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */,
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
@@ -462,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */,
+				CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */,
 				CEFB22B41E94FC2100867CDA /* mtrckrTests.swift in Sources */,
 				CEFB22DA1E95419200867CDA /* CurrencyTests.swift in Sources */,
 				CEFB22D21E95087600867CDA /* AccountTypeTests.swift in Sources */,

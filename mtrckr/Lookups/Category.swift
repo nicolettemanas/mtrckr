@@ -32,7 +32,7 @@ class Category: Object {
     
     convenience init(type: CategoryType, name: String, icon: String, user: User) {
         self.init()
-        self.id = UUID().uuidString
+        self.id = "CAT-\(UUID().uuidString)"
         self.type = type.rawValue
         self.name = name
         self.icon = icon

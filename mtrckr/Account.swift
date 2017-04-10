@@ -23,8 +23,8 @@ class Account: Object {
     dynamic var dateOpened: Date = Date()
     dynamic var user: User?
     
-//    var transactionsToSelf = LinkingObjects(fromType: Transaction.self, property: "toAccnt")
-//    var transactionsFromSelf = LinkingObjects(fromType: Transaction.self, property: "fromAccnt")
+    var transactionsToSelf = LinkingObjects(fromType: Transaction.self, property: "toAccount")
+    var transactionsFromSelf = LinkingObjects(fromType: Transaction.self, property: "fromAccount")
 //    var budgetsAffected = LinkingObjects(fromType: Budget.self, property: "forAccounts")
     
     override static func primaryKey() -> String? {
