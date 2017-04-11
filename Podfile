@@ -9,6 +9,7 @@ def commonPods
     pod 'Swinject', '~> 2.0.0'
 #    pod 'ObjectMapper', '~> 2.2.5'
     pod 'RealmSwift', '~> 2.5.1'
+    pod 'SwiftLint', '~> 0.18.1'
 
 #    pod 'SwinjectStoryboard', '~> 1.0.0'
 end

@@ -22,11 +22,11 @@ class BillEntry: Object {
     dynamic var dueDate: Date = Date()
     dynamic var status: String = ""
     dynamic var bill: Bill?
-    
+
     override static func primaryKey() -> String? {
         return "id"
     }
-    
+
     convenience init(dueDate: Date, for bill: Bill) {
         self.init()
         self.id = "\(bill.id)-\(NSUUID().uuidString)"
@@ -36,7 +36,7 @@ class BillEntry: Object {
         self.status = BillEntryStatus.unpaid.rawValue
         self.bill = bill
     }
-    
+
     // MARK: CRUD operations
     func save(toRealm realm: Realm) {
         do {
@@ -47,11 +47,11 @@ class BillEntry: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     func update(amount: Double, inRealm realm: Realm) {
         assert(self.status != BillEntryStatus.paid.rawValue)
         guard let _ = BillEntry.with(key: self.id, inRealm: realm) else { return }
-        
+
         do {
             try realm.write {
                 self.amount = amount
@@ -61,17 +61,18 @@ class BillEntry: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     func unpay(inRealm realm: Realm) {
         let entry = BillEntry(dueDate: self.dueDate, for: self.bill!)
         self.delete(in: realm)
         entry.save(toRealm: realm)
     }
-    
+
     func pay(amount: Double, description: String, fromAccount account: Account, datePaid: Date, inRealm realm: Realm) {
         guard let _ = BillEntry.with(key: self.id, inRealm: realm) else { return }
-        self.generateTransaction(amount: amount, description: description, account: account, datePaid: datePaid, inRealm: realm)
-        
+        self.generateTransaction(amount: amount, description: description,
+                                 account: account, datePaid: datePaid, inRealm: realm)
+
         do {
             try realm.write {
                 self.amount = amount
@@ -83,7 +84,7 @@ class BillEntry: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     func skip(inRealm realm: Realm) {
         guard let _ = BillEntry.with(key: self.id, inRealm: realm) else { return }
         do {
@@ -95,7 +96,7 @@ class BillEntry: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     func delete(in realm: Realm) {
         do {
             try realm.write {
@@ -105,17 +106,18 @@ class BillEntry: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     static func with(key: String, inRealm realm: Realm) -> BillEntry? {
         return realm.object(ofType: BillEntry.self, forPrimaryKey: key) as BillEntry?
     }
-    
+
     static func all(in realm: Realm, for bill: Bill) -> Results<BillEntry> {
         return realm.objects(BillEntry.self).filter("bill.id == %@", bill.id).sorted(byKeyPath: "dueDate")
     }
 
     // MARK: - private methods
-    func generateTransaction(amount: Double, description: String, account: Account, datePaid: Date, inRealm realm: Realm) {
+    func generateTransaction(amount: Double, description: String,
+                             account: Account, datePaid: Date, inRealm realm: Realm) {
         let transaction = Transaction(type: .expense, name: self.bill!.name, image: nil,
                                       description: description, amount: amount, category: self.bill?.category,
                                       from: account, to: account, date: datePaid)

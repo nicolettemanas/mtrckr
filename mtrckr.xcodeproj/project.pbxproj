@@ -23,7 +23,6 @@
 		CEFB22A41E94FC2100867CDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFB22A21E94FC2100867CDA /* Main.storyboard */; };
 		CEFB22A61E94FC2100867CDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFB22A51E94FC2100867CDA /* Assets.xcassets */; };
 		CEFB22A91E94FC2100867CDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFB22A71E94FC2100867CDA /* LaunchScreen.storyboard */; };
-		CEFB22B41E94FC2100867CDA /* mtrckrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22B31E94FC2100867CDA /* mtrckrTests.swift */; };
 		CEFB22C41E94FD8B00867CDA /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22C01E94FD8B00867CDA /* AccountType.swift */; };
 		CEFB22C51E94FD8B00867CDA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22C11E94FD8B00867CDA /* Currency.swift */; };
 		CEFB22C71E94FD8B00867CDA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22C31E94FD8B00867CDA /* Category.swift */; };
@@ -65,7 +64,6 @@
 		CEFB22A81E94FC2100867CDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEFB22AA1E94FC2100867CDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEFB22AF1E94FC2100867CDA /* mtrckrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mtrckrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEFB22B31E94FC2100867CDA /* mtrckrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mtrckrTests.swift; sourceTree = "<group>"; };
 		CEFB22B51E94FC2100867CDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEFB22C01E94FD8B00867CDA /* AccountType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
 		CEFB22C11E94FD8B00867CDA /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 				CE652FF81E95D91700E5DBA6 /* CategoryTests */,
 				CEFB22D81E9540FD00867CDA /* CurrencyTests */,
 				CEFB22CE1E9505FF00867CDA /* AccountTypeTests */,
-				CEFB22B31E94FC2100867CDA /* mtrckrTests.swift */,
 				CEFB22B51E94FC2100867CDA /* Info.plist */,
 			);
 			path = mtrckrTests;
@@ -261,6 +258,7 @@
 				CEFB22991E94FC2100867CDA /* Resources */,
 				CDF4CB801F3BAD398C24BE17 /* [CP] Embed Pods Frameworks */,
 				0071015CA709DC5D9DFB2181 /* [CP] Copy Pods Resources */,
+				CE1B84431E9C5B2B00A644EA /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -299,7 +297,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				TargetAttributes = {
 					CEFB229A1E94FC2100867CDA = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -444,6 +442,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CE1B84431E9C5B2B00A644EA /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -470,7 +482,6 @@
 			files = (
 				CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */,
 				CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */,
-				CEFB22B41E94FC2100867CDA /* mtrckrTests.swift in Sources */,
 				CEFB22DA1E95419200867CDA /* CurrencyTests.swift in Sources */,
 				CEFB22D21E95087600867CDA /* AccountTypeTests.swift in Sources */,
 				CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */,
@@ -605,6 +616,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B482AB359D6C323EF27CB17C /* Pods-mtrckr.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S86Z46T95A;
 				INFOPLIST_FILE = mtrckr/Info.plist;
@@ -619,6 +631,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC8AC50703F81BF568E86F58 /* Pods-mtrckr.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S86Z46T95A;
 				INFOPLIST_FILE = mtrckr/Info.plist;

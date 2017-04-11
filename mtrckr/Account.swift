@@ -22,15 +22,15 @@ class Account: Object {
     dynamic var color: String = ""
     dynamic var dateOpened: Date = Date()
     dynamic var user: User?
-    
+
     var transactionsToSelf = LinkingObjects(fromType: Transaction.self, property: "toAccount")
     var transactionsFromSelf = LinkingObjects(fromType: Transaction.self, property: "fromAccount")
 //    var budgetsAffected = LinkingObjects(fromType: Budget.self, property: "forAccounts")
-    
+
     override static func primaryKey() -> String? {
         return "id"
     }
-    
+
     // MARK: CRUD operations
     func save(toRealm realm: Realm) {
         do {
@@ -41,10 +41,10 @@ class Account: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     func update(to account: Account, in realm: Realm) {
         guard self.id == account.id else { return }
-        
+
         do {
             try realm.write {
                 realm.add(account, update: true)
@@ -53,8 +53,9 @@ class Account: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
-    func update(name: String, type: AccountType, initialAmount: Double, color: String, dateOpened: Date, in realm: Realm) {
+
+    func update(name: String, type: AccountType, initialAmount: Double,
+                color: String, dateOpened: Date, in realm: Realm) {
         guard let _ = Account.with(key: self.id, inRealm: realm) else { return }
         do {
             try realm.write {
@@ -62,17 +63,17 @@ class Account: Object {
                 self.type = type //TODO: Changing the type also changes the icon. Add that to tests.
                 self.color = color
                 self.dateOpened = dateOpened
-                
-                self.currentAmount = self.currentAmount - self.initialAmount + initialAmount
+
+                self.currentAmount -= self.initialAmount + initialAmount
                 self.initialAmount = initialAmount
-                
+
                 realm.add(self, update: true)
             }
         } catch let error as NSError {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     func delete(in realm: Realm) {
         do {
             try realm.write {
@@ -84,11 +85,11 @@ class Account: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     static func with(key: String, inRealm realm: Realm) -> Account? {
         return realm.object(ofType: Account.self, forPrimaryKey: key) as Account?
     }
-    
+
     static func all(in realm: Realm, ofUser user: User) -> Results<Account> {
         return realm.objects(Account.self).filter("user.id == %@", user.id).sorted(byKeyPath: "name")
     }

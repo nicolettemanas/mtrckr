@@ -19,7 +19,7 @@ enum BillRepeatSchedule: String {
 }
 
 class Bill: Object {
-    
+
     dynamic var id: String = ""
     dynamic var amount: Double = 0.0
     dynamic var name: String = ""
@@ -29,13 +29,13 @@ class Bill: Object {
     dynamic var startDate: Date = Date()
     dynamic var user: User?
     dynamic var category: Category?
-    
+
     let entries = LinkingObjects(fromType: BillEntry.self, property: "bill")
-    
+
     override static func primaryKey() -> String? {
         return "id"
     }
-    
+
     // MARK: CRUD operations
     func save(toRealm realm: Realm) {
         do {
@@ -46,10 +46,10 @@ class Bill: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     func update(to bill: Bill, in realm: Realm) {
         guard self.id == bill.id else { return }
-        
+
         do {
             try realm.write {
                 realm.add(bill, update: true)
@@ -58,7 +58,7 @@ class Bill: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     func update(amount: Double, name: String, postDueReminder: BillDueReminder,
                 preDueReminder: BillDueReminder, category: Category, in realm: Realm) {
         guard let _ = Bill.with(key: self.id, inRealm: realm) else { return }
@@ -75,7 +75,7 @@ class Bill: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     func delete(in realm: Realm) {
         do {
             try realm.write {
@@ -86,17 +86,21 @@ class Bill: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     static func with(key: String, inRealm realm: Realm) -> Bill? {
         return realm.object(ofType: Bill.self, forPrimaryKey: key) as Bill?
     }
-    
+
     static func all(in realm: Realm, underCategory category: Category, ofUser user: User) -> Results<Bill> {
-        return realm.objects(Bill.self).filter("user.id == %@ AND category.id == %@", user.id, category.id).sorted(byKeyPath: "name")
+        return realm.objects(Bill.self)
+            .filter("user.id == %@ AND category.id == %@", user.id, category.id)
+            .sorted(byKeyPath: "name")
     }
-    
+
     static func all(in realm: Realm, ofUser user: User) -> Results<Bill> {
-        return realm.objects(Bill.self).filter("user.id == %@", user.id).sorted(byKeyPath: "name")
+        return realm.objects(Bill.self)
+            .filter("user.id == %@", user.id)
+            .sorted(byKeyPath: "name")
     }
 
 }
