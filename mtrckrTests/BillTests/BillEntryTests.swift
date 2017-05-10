@@ -223,6 +223,9 @@ class BillEntryTests: QuickSpec {
                         expect(entries[0].status) == BillEntryStatus.skipped.rawValue
                     })
                 })
+                
+                //TODO: update from skipped to unpaid
+                //TODO: update from paid to unpaid
             })
 
             describe("all() of bill", {

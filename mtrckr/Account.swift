@@ -60,7 +60,7 @@ class Account: Object {
         do {
             try realm.write {
                 self.name = name
-                self.type = type //TODO: Changing the type also changes the icon. Add that to tests.
+                self.type = type
                 self.color = color
                 self.dateOpened = dateOpened
 

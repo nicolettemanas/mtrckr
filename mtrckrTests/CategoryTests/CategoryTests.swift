@@ -100,6 +100,8 @@ class CategoryTests: QuickSpec {
                     expect(categories[0].type) == CategoryType.income.rawValue
                     expect(categories[0].name) == "Salary"
                     expect(categories[0].icon) == "salary.jpg"
+                    
+                    // TODO: update accounts and transactions affected
                 })
             })
 
