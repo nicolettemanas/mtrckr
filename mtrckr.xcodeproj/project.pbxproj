@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3B8DBDF76F6F3E52F4DEE9DA /* Pods_Tests_mtrckrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */; };
+		CE03C22B1EC3652A009A6AB0 /* MTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03C22A1EC3652A009A6AB0 /* MTButton.swift */; };
+		CE03C22D1EC36539009A6AB0 /* MTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03C22C1EC36539009A6AB0 /* MTView.swift */; };
+		CE03C22F1EC365F3009A6AB0 /* MTTextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03C22E1EC365F3009A6AB0 /* MTTextInputTableViewCell.swift */; };
+		CE03C2321EC36686009A6AB0 /* MTFormModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03C2311EC36686009A6AB0 /* MTFormModalView.swift */; };
+		CE03C2341EC36711009A6AB0 /* MTTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03C2331EC36711009A6AB0 /* MTTableViewCell.swift */; };
+		CE03C2361EC3672F009A6AB0 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE03C2351EC3672F009A6AB0 /* View.xib */; };
 		CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */; };
 		CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31051E9B2AAB0022CA57 /* Transaction.swift */; };
 		CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89B71E96797A00EBE809 /* UserTests.swift */; };
@@ -46,6 +52,12 @@
 		64CD9E5AF4ED7260FCAB52DD /* Pods-Tests-mtrckrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_mtrckrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B482AB359D6C323EF27CB17C /* Pods-mtrckr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mtrckr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr.debug.xcconfig"; sourceTree = "<group>"; };
+		CE03C22A1EC3652A009A6AB0 /* MTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTButton.swift; path = Views/Class/MTButton.swift; sourceTree = "<group>"; };
+		CE03C22C1EC36539009A6AB0 /* MTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTView.swift; path = Views/Class/MTView.swift; sourceTree = "<group>"; };
+		CE03C22E1EC365F3009A6AB0 /* MTTextInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTextInputTableViewCell.swift; path = Views/Class/MTTextInputTableViewCell.swift; sourceTree = "<group>"; };
+		CE03C2311EC36686009A6AB0 /* MTFormModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTFormModalView.swift; path = Views/Class/MTFormModalView.swift; sourceTree = "<group>"; };
+		CE03C2331EC36711009A6AB0 /* MTTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTableViewCell.swift; path = Views/Class/MTTableViewCell.swift; sourceTree = "<group>"; };
+		CE03C2351EC3672F009A6AB0 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = View.xib; path = Views/XIBs/View.xib; sourceTree = "<group>"; };
 		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; };
 		CE1F31051E9B2AAB0022CA57 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Models/Transaction.swift; sourceTree = "<group>"; };
 		CE3A89B71E96797A00EBE809 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTests.swift; path = UserTests/UserTests.swift; sourceTree = "<group>"; };
@@ -116,6 +128,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE03C2261EC364E2009A6AB0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE03C2301EC36635009A6AB0 /* XIBs */,
+				CE03C2271EC364EC009A6AB0 /* Class */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		CE03C2271EC364EC009A6AB0 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				CE03C22A1EC3652A009A6AB0 /* MTButton.swift */,
+				CE03C22C1EC36539009A6AB0 /* MTView.swift */,
+				CE03C22E1EC365F3009A6AB0 /* MTTextInputTableViewCell.swift */,
+				CE03C2311EC36686009A6AB0 /* MTFormModalView.swift */,
+				CE03C2331EC36711009A6AB0 /* MTTableViewCell.swift */,
+			);
+			name = Class;
+			sourceTree = "<group>";
+		};
+		CE03C2301EC36635009A6AB0 /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				CE03C2351EC3672F009A6AB0 /* View.xib */,
+			);
+			name = XIBs;
+			sourceTree = "<group>";
+		};
 		CE1F31021E9B21FD0022CA57 /* TransactionTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +221,7 @@
 		CEFB229D1E94FC2100867CDA /* mtrckr */ = {
 			isa = PBXGroup;
 			children = (
+				CE03C2261EC364E2009A6AB0 /* Views */,
 				CEFB22BE1E94FD7700867CDA /* Models */,
 				CEFB229E1E94FC2100867CDA /* AppDelegate.swift */,
 				CEFB22A01E94FC2100867CDA /* ViewController.swift */,
@@ -336,6 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE03C2361EC3672F009A6AB0 /* View.xib in Resources */,
 				CEFB22A91E94FC2100867CDA /* LaunchScreen.storyboard in Resources */,
 				CEFB22A61E94FC2100867CDA /* Assets.xcassets in Resources */,
 				CEFB22A41E94FC2100867CDA /* Main.storyboard in Resources */,
@@ -467,12 +510,17 @@
 				CEFB22C51E94FD8B00867CDA /* Currency.swift in Sources */,
 				CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */,
 				CEFB22C71E94FD8B00867CDA /* Category.swift in Sources */,
+				CE03C22F1EC365F3009A6AB0 /* MTTextInputTableViewCell.swift in Sources */,
+				CE03C2341EC36711009A6AB0 /* MTTableViewCell.swift in Sources */,
 				CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */,
 				CEFB22C41E94FD8B00867CDA /* AccountType.swift in Sources */,
 				CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */,
+				CE03C22B1EC3652A009A6AB0 /* MTButton.swift in Sources */,
+				CE03C2321EC36686009A6AB0 /* MTFormModalView.swift in Sources */,
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
 				CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */,
 				CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */,
+				CE03C22D1EC36539009A6AB0 /* MTView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
