@@ -79,7 +79,8 @@ class Transaction: Object {
     func update(type: TransactionType, name: String, image: String?, description: String?,
                 amount: Double, category: Category?, from fromAccount: Account, to toAccount: Account,
                 date: Date, inRealm realm: Realm) {
-        guard let _ = Transaction.with(key: self.id, inRealm: realm) else { return }
+
+        if Transaction.with(key: self.id, inRealm: realm) == nil { return }
 
         do {
             try realm.write {

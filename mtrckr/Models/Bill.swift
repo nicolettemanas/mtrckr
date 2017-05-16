@@ -61,7 +61,7 @@ class Bill: Object {
 
     func update(amount: Double, name: String, postDueReminder: BillDueReminder,
                 preDueReminder: BillDueReminder, category: Category, in realm: Realm) {
-        guard let _ = Bill.with(key: self.id, inRealm: realm) else { return }
+        guard (Bill.with(key: self.id, inRealm: realm) != nil) else { return }
         do {
             try realm.write {
                 self.amount = amount

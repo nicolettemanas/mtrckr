@@ -50,7 +50,7 @@ class BillEntry: Object {
 
     func update(amount: Double, inRealm realm: Realm) {
         assert(self.status != BillEntryStatus.paid.rawValue)
-        guard let _ = BillEntry.with(key: self.id, inRealm: realm) else { return }
+        guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
 
         do {
             try realm.write {
@@ -69,7 +69,7 @@ class BillEntry: Object {
     }
 
     func pay(amount: Double, description: String, fromAccount account: Account, datePaid: Date, inRealm realm: Realm) {
-        guard let _ = BillEntry.with(key: self.id, inRealm: realm) else { return }
+        guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
         self.generateTransaction(amount: amount, description: description,
                                  account: account, datePaid: datePaid, inRealm: realm)
 
@@ -86,7 +86,7 @@ class BillEntry: Object {
     }
 
     func skip(inRealm realm: Realm) {
-        guard let _ = BillEntry.with(key: self.id, inRealm: realm) else { return }
+        guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
         do {
             try realm.write {
                 self.status = BillEntryStatus.skipped.rawValue

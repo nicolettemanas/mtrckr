@@ -1,0 +1,20 @@
+identifier_name:
+  min_length: 2
+
+type_body_length:
+  - 200 # warning
+  - 300 # error
+
+line_length:
+  - 150
+  - 200
+
+function_parameter_count:
+  - 11
+  - 15
+
+disabled_rules:
+ - force_try
+ - function_body_length
+ - type_body_length
+ - file_length

@@ -56,7 +56,7 @@ class Account: Object {
 
     func update(name: String, type: AccountType, initialAmount: Double,
                 color: String, dateOpened: Date, in realm: Realm) {
-        guard let _ = Account.with(key: self.id, inRealm: realm) else { return }
+        guard (Account.with(key: self.id, inRealm: realm) != nil) else { return }
         do {
             try realm.write {
                 self.name = name
