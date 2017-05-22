@@ -22,7 +22,7 @@ class RealmAuthPresenter: RealmAuthInteractorOutput {
     }
 
     func didFailRegistration(withError error: Error?) {
-        print(":: did fail registration \(error)")
+        print(":: did fail registration \(String(describing: error))")
     }
 
     func didRegister(user: RLMSyncUser) {

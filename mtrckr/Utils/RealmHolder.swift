@@ -13,8 +13,8 @@ import RealmSwift
 class RealmHolder {
     static let sharedInstance = RealmHolder(config: RealmAuthConfig())
 
-    var config: AuthConfigProtocol
-    var userNotificationToken: NotificationToken!
+    private var config: AuthConfigProtocol
+    private var userNotificationToken: NotificationToken!
 
     var userRealm: Realm? {
         guard SyncUser.current != nil else {

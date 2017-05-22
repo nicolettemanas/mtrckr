@@ -8,16 +8,26 @@
 
 import Foundation
 
+let buildConfig = "dev"
+
 protocol AuthConfigProtocol {
+    var domainHost: String { get }
     var serverURL: URL { get }
-//    var globalPath: URL { get }
+    var realmDomainURL: URL { get }
     var userRealmPath: URL { get }
     var timeout: TimeInterval { get }
 }
 
 struct RealmAuthConfig: AuthConfigProtocol {
-    var serverURL: URL = URL(string: "http://localhost:9080/")!
-    var userRealmPath = URL(string: "realm://localhost:9080/~/mtrckr-dev")!
-//    var globalPath: URL = URL(string: "realm://localhost:9080/shared-dev")!
+    var domainHost: String = "192.168.2.27:9080"
+    var serverURL: URL
+    var realmDomainURL: URL
+    var userRealmPath: URL
     var timeout = TimeInterval(30)
+    
+    init() {
+        self.serverURL = URL(string: "http://\(domainHost)/")!
+        self.realmDomainURL = URL(string: "realm://\(domainHost)")!
+        self.userRealmPath = URL(string: "\(self.realmDomainURL)/~/mtrckr-\(buildConfig)")!
+    }
 }
