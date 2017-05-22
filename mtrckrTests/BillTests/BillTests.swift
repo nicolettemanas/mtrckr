@@ -33,7 +33,7 @@ class BillTests: QuickSpec {
             describe("initialize with values", {
 
                 it("initializes and assign properties correctly", closure: {
-                    let currency = Currency(isoCode: "USD", symbol: "$", state: "USA")
+                    let currency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
                     let user = User(id: "user1", name: "", email: "", image: "", currency: currency)
                     let category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
                     let startDate = Date()
@@ -73,7 +73,7 @@ class BillTests: QuickSpec {
             var bill: Bill!
 
             beforeEach {
-                currency = Currency(isoCode: "USD", symbol: "$", state: "USA")
+                currency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
                 category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
                 user = User(id: "user0", name: "", email: "", image: "", currency: currency)
                 startDate = Date()

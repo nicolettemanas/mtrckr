@@ -10,6 +10,7 @@
 		3B8DBDF76F6F3E52F4DEE9DA /* Pods_Tests_mtrckrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */; };
 		CE005F531ECAE4DC00536C1A /* RealmAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE005F521ECAE4DC00536C1A /* RealmAuthInteractor.swift */; };
 		CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */; };
+		CE07838F1ED325330007AD15 /* mtrckr-dev.realm in Resources */ = {isa = PBXBuildFile; fileRef = CE07838E1ED325330007AD15 /* mtrckr-dev.realm */; };
 		CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */; };
 		CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31051E9B2AAB0022CA57 /* Transaction.swift */; };
 		CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89B71E96797A00EBE809 /* UserTests.swift */; };
@@ -52,14 +53,15 @@
 		B482AB359D6C323EF27CB17C /* Pods-mtrckr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mtrckr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr.debug.xcconfig"; sourceTree = "<group>"; };
 		CE005F521ECAE4DC00536C1A /* RealmAuthInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthInteractor.swift; path = Interactors/RealmSyncing/RealmAuthInteractor.swift; sourceTree = "<group>"; };
 		CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthPresenter.swift; path = Presenters/RealmSyncing/RealmAuthPresenter.swift; sourceTree = "<group>"; };
-		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; };
+		CE07838E1ED325330007AD15 /* mtrckr-dev.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "mtrckr-dev.realm"; sourceTree = "<group>"; };
+		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE1F31051E9B2AAB0022CA57 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Models/Transaction.swift; sourceTree = "<group>"; };
-		CE3A89B71E96797A00EBE809 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTests.swift; path = UserTests/UserTests.swift; sourceTree = "<group>"; };
-		CE3A89BA1E967F0800EBE809 /* BillTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillTests.swift; path = BillTests/BillTests.swift; sourceTree = "<group>"; };
+		CE3A89B71E96797A00EBE809 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = UserTests.swift; path = UserTests/UserTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CE3A89BA1E967F0800EBE809 /* BillTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillTests.swift; path = BillTests/BillTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE3A89BC1E972BB600EBE809 /* Bill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bill.swift; path = Models/Bill.swift; sourceTree = "<group>"; };
-		CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntryTests.swift; path = BillTests/BillEntryTests.swift; sourceTree = "<group>"; };
-		CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryTests.swift; path = CategoryTests/CategoryTests.swift; sourceTree = "<group>"; };
-		CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountTests.swift; path = AccountTests/AccountTests.swift; sourceTree = "<group>"; };
+		CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillEntryTests.swift; path = BillTests/BillEntryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CategoryTests.swift; path = CategoryTests/CategoryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AccountTests.swift; path = AccountTests/AccountTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFE1E95E54400E5DBA6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntry.swift; path = Models/BillEntry.swift; sourceTree = "<group>"; };
 		CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthConfig.swift; path = Configs/RealmAuthConfig.swift; sourceTree = "<group>"; };
@@ -78,7 +80,7 @@
 		CEFB22C31E94FD8B00867CDA /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		CEFB22C81E94FD9F00867CDA /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		CEFB22D11E95087600867CDA /* AccountTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountTypeTests.swift; path = AccountTypeTests/AccountTypeTests.swift; sourceTree = "<group>"; };
-		CEFB22D91E95419200867CDA /* CurrencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrencyTests.swift; path = CurrencyTests/CurrencyTests.swift; sourceTree = "<group>"; };
+		CEFB22D91E95419200867CDA /* CurrencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CurrencyTests.swift; path = CurrencyTests/CurrencyTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D471B1511513CA1AB286D1E0 /* Pods_mtrckr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mtrckr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC8AC50703F81BF568E86F58 /* Pods-mtrckr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mtrckr.release.xcconfig"; path = "Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr.release.xcconfig"; sourceTree = "<group>"; };
 		E3D12754D195FAC6D0B9EE06 /* Pods-Tests-mtrckrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +148,22 @@
 				CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */,
 			);
 			name = Presenters;
+			sourceTree = "<group>";
+		};
+		CE07838C1ED325120007AD15 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CE07838D1ED325170007AD15 /* InitialDatabase */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		CE07838D1ED325170007AD15 /* InitialDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				CE07838E1ED325330007AD15 /* mtrckr-dev.realm */,
+			);
+			name = InitialDatabase;
 			sourceTree = "<group>";
 		};
 		CE1F31021E9B21FD0022CA57 /* TransactionTests */ = {
@@ -228,6 +246,7 @@
 		CEFB229D1E94FC2100867CDA /* mtrckr */ = {
 			isa = PBXGroup;
 			children = (
+				CE07838C1ED325120007AD15 /* Sources */,
 				CEB1A8E01ECF004D000F786B /* Utils */,
 				CEB1A8DC1ECEEC59000F786B /* Configs */,
 				CE005F511ECAE49500536C1A /* Presenters */,
@@ -390,6 +409,7 @@
 			files = (
 				CEFB22A91E94FC2100867CDA /* LaunchScreen.storyboard in Resources */,
 				CEFB22A61E94FC2100867CDA /* Assets.xcassets in Resources */,
+				CE07838F1ED325330007AD15 /* mtrckr-dev.realm in Resources */,
 				CEFB22A41E94FC2100867CDA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

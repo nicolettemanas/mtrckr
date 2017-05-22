@@ -31,7 +31,7 @@ class CategoryTests: QuickSpec {
                 self.testRealm.deleteAll()
             }
 
-            currency = Currency(isoCode: "PHP", symbol: "P", state: "Philippines")
+            currency = Currency(id: "Curr1", isoCode: "PHP", symbol: "P", state: "Philippines")
             user = User(id: "user0", name: "Jean", email: "email@sample.com", image: "img.jpg", currency: currency)
             user.save(toRealm: self.testRealm)
         }

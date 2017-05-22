@@ -39,7 +39,7 @@ class TransactionTests: QuickSpec {
             var cashAccountType: AccountType!
 
             beforeEach {
-                currency = Currency(isoCode: "USD", symbol: "`$", state: "USA")
+                currency = Currency(id: "Curr1", isoCode: "USD", symbol: "`$", state: "USA")
                 user = User(id: "user1", name: "", email: "", image: "", currency: currency)
                 category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
                 cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
@@ -88,7 +88,7 @@ class TransactionTests: QuickSpec {
             var cashAccountType: AccountType!
 
             beforeEach {
-                currency = Currency(isoCode: "USD", symbol: "`$", state: "USA")
+                currency = Currency(id: "Curr1", isoCode: "USD", symbol: "`$", state: "USA")
                 user = User(id: "user1", name: "", email: "", image: "", currency: currency)
                 category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
                 cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")

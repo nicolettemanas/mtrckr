@@ -103,9 +103,9 @@ class RealmAuthInteractor: RealmAuthInteractorProtocol {
         let currency = userRealm.objects(Currency.self)
         print(currency)
         
-        defaultCurrency = Currency.with(key: "PHP", inRealm: userRealm)
+        defaultCurrency = Currency.with(isoCode: "PHP", inRealm: userRealm)
         if defaultCurrency == nil {
-            defaultCurrency = Currency(isoCode: "PHP", symbol: "P", state: "Philippines")
+            defaultCurrency = Currency(id: NSUUID().uuidString, isoCode: "PHP", symbol: "P", state: "Philippine Peso")
             defaultCurrency?.save(toRealm: userRealm)
         }
         

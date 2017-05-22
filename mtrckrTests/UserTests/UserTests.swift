@@ -31,7 +31,7 @@ class UserTests: QuickSpec {
                 self.testRealm.deleteAll()
             }
 
-            currency = Currency(isoCode: "PHP", symbol: "P", state: "Philippines")
+            currency = Currency(id: "curr1", isoCode: "PHP", symbol: "P", state: "Philippines")
             user = User(id: "user0", name: "Jean", email: "email@sample.com", image: "img.jpg", currency: currency)
         }
 
@@ -64,7 +64,7 @@ class UserTests: QuickSpec {
             describe("update()", {
                 it("updates values if object already exists", closure: {
                     user.save(toRealm: self.testRealm)
-                    let newCurrency = Currency(isoCode: "USD", symbol: "$", state: "USA")
+                    let newCurrency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
                     let userFromDatabase = self.testRealm.objects(User.self).last
                     let updatedUser = User(id: "user0", name: "Jean Manas", email: "email1@sample.com", image: "/img.jpg", currency: newCurrency)
 
@@ -141,7 +141,7 @@ class UserTests: QuickSpec {
 
     func createUsers(n: Int) {
         let cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
-        let newCurrency = Currency(isoCode: "USD", symbol: "$", state: "USA")
+        let newCurrency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
 
         for i in 0..<n {
             let user = User(id: "user\(i)", name: "User \(i)", email: "email\(i)1@sample.com",

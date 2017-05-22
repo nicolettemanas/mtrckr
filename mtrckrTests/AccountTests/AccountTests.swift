@@ -32,7 +32,7 @@ class AccountTests: QuickSpec {
         describe("Model Account") {
             describe("initialize with values", {
                 it("initializes and assign properties correctly", closure: {
-                    let currency = Currency(isoCode: "USD", symbol: "$", state: "USA")
+                    let currency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
                     let cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
                     let user = User(id: "user1", name: "", email: "", image: "", currency: currency)
                     let dateOpened = Date()
@@ -71,7 +71,7 @@ class AccountTests: QuickSpec {
             var account: Account!
 
             beforeEach {
-                let currency = Currency(isoCode: "USD", symbol: "$", state: "USA")
+                let currency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
                 cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
                 user = User(id: "user0", name: "", email: "", image: "", currency: currency)
                 dateOpened = Date()

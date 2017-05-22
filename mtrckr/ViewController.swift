@@ -21,8 +21,13 @@ class ViewController: UIViewController {
         if SyncUser.current != nil {
             interactor.logout()
         }
-        interactor.login(withEmail: "user1@gmail.com",
-                         withPassword: "user1")
+        
+        print(RealmHolder.sharedInstance.userRealm?.objects(Currency.self) ?? "No currencies")
+        print(RealmHolder.sharedInstance.userRealm?.objects(AccountType.self) ?? "No currencies")
+        print(RealmHolder.sharedInstance.userRealm?.objects(Category.self) ?? "No currencies")
+        
+        interactor.login(withEmail: "user9@gmail.com",
+                         withPassword: "user9")
 
 //        interactor.register(withEmail: "user10@gmail.com", withPassword: "user10", withName: "User10")
     }
