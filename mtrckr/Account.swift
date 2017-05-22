@@ -64,7 +64,8 @@ class Account: Object {
                 self.color = color
                 self.dateOpened = dateOpened
 
-                self.currentAmount -= self.initialAmount + initialAmount
+                let prevCurrentAmount = self.currentAmount
+                self.currentAmount = prevCurrentAmount - self.initialAmount + initialAmount
                 self.initialAmount = initialAmount
 
                 realm.add(self, update: true)

@@ -7,16 +7,24 @@
 //
 
 import UIKit
+import Realm
+import RealmSwift
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         let output = RealmAuthPresenter()
-        let interactor = RealmAuthInteractor(output: output)
-        interactor.login(withEmail: "nicolettemanas@gmail.com",
-                         withPassword: "crixalis",
-                         toServer: URL(string: "http://localhost:9080/")!)
+        let interactor = RealmAuthInteractor(output: output, config: RealmAuthConfig())
+
+        if SyncUser.current != nil {
+            interactor.logout()
+        }
+        interactor.login(withEmail: "user1@gmail.com",
+                         withPassword: "user1")
+
+//        interactor.register(withEmail: "user10@gmail.com", withPassword: "user10", withName: "User10")
     }
 
     override func didReceiveMemoryWarning() {

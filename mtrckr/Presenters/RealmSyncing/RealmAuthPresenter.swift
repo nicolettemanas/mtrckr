@@ -14,29 +14,22 @@ class RealmAuthPresenter: RealmAuthInteractorOutput {
 
     // MARK: RealmAuthInteractorOutput
     func didLogin(user: RLMSyncUser) {
-        DispatchQueue.main.async {
-            print("did login \(user)")
-
-            let transactions = try! Realm().objects(Currency.self)
-            print(transactions)
-        }
-        
+        print(":: did login \(user)")
     }
 
     func didFailLogin(withError error: Error?) {
-        print("did fail login \(String(describing: error))")
+        print(":: did fail login \(String(describing: error))")
     }
 
     func didFailRegistration(withError error: Error?) {
-
+        print(":: did fail registration \(error)")
     }
-    
+
     func didRegister(user: RLMSyncUser) {
-
-    }
-    
-    func didLogout(user: User) {
-
+        print(":: did register user \(String(describing: user.identity))")
     }
 
+    func didLogout() {
+        print(":: did log out")
+    }
 }
