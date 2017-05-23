@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.4.0)
+  - CryptoSwift (0.6.9)
   - DateToolsSwift (2.0.3)
   - Mockingjay (2.0.0):
     - Mockingjay/Core (= 2.0.0)
@@ -21,7 +21,7 @@ PODS:
   - URITemplate (2.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.4.0)
+  - CryptoSwift (~> 0.6.9)
   - DateToolsSwift (~> 2.0.3)
   - Mockingjay (~> 2.0.0)
   - Nimble (= 5.0.0)
@@ -32,7 +32,7 @@ DEPENDENCIES:
   - Swinject (~> 2.0.0)
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
@@ -44,6 +44,6 @@ SPEC CHECKSUMS:
   Swinject: 2e964a80d70ab09b3949c99032711f89147bfd60
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: 539fa43b3c933278f1f4a7abfe58165d93864fab
+PODFILE CHECKSUM: 8c0edb727b44dba6673863b5968842df80a9b72b
 
 COCOAPODS: 1.1.1

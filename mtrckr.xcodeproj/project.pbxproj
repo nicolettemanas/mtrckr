@@ -11,6 +11,7 @@
 		CE005F531ECAE4DC00536C1A /* RealmAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE005F521ECAE4DC00536C1A /* RealmAuthInteractor.swift */; };
 		CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */; };
 		CE07838F1ED325330007AD15 /* mtrckr-dev.realm in Resources */ = {isa = PBXBuildFile; fileRef = CE07838E1ED325330007AD15 /* mtrckr-dev.realm */; };
+		CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */; };
 		CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */; };
 		CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31051E9B2AAB0022CA57 /* Transaction.swift */; };
 		CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89B71E96797A00EBE809 /* UserTests.swift */; };
@@ -54,6 +55,7 @@
 		CE005F521ECAE4DC00536C1A /* RealmAuthInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthInteractor.swift; path = Interactors/RealmSyncing/RealmAuthInteractor.swift; sourceTree = "<group>"; };
 		CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthPresenter.swift; path = Presenters/RealmSyncing/RealmAuthPresenter.swift; sourceTree = "<group>"; };
 		CE07838E1ED325330007AD15 /* mtrckr-dev.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "mtrckr-dev.realm"; sourceTree = "<group>"; };
+		CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptionInteractor.swift; path = Interactors/Encryption/EncryptionInteractor.swift; sourceTree = "<group>"; };
 		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE1F31051E9B2AAB0022CA57 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Models/Transaction.swift; sourceTree = "<group>"; };
 		CE3A89B71E96797A00EBE809 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = UserTests.swift; path = UserTests/UserTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -129,6 +131,7 @@
 		CE005F4F1ECAE47800536C1A /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				CE0783931ED3D6000007AD15 /* Encryption */,
 				CE005F501ECAE48700536C1A /* RealmSyncing */,
 			);
 			name = Interactors;
@@ -164,6 +167,14 @@
 				CE07838E1ED325330007AD15 /* mtrckr-dev.realm */,
 			);
 			name = InitialDatabase;
+			sourceTree = "<group>";
+		};
+		CE0783931ED3D6000007AD15 /* Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */,
+			);
+			name = Encryption;
 			sourceTree = "<group>";
 		};
 		CE1F31021E9B21FD0022CA57 /* TransactionTests */ = {
@@ -547,6 +558,7 @@
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
 				CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */,
 				CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */,
+				CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */,
 				CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */,
 				CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */,
 			);

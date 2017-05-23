@@ -10,13 +10,16 @@ import UIKit
 import Realm
 import RealmSwift
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, RealmAuthPresenterOutput {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let output = RealmAuthPresenter()
-        let interactor = RealmAuthInteractor(output: output, config: RealmAuthConfig())
+        let interactor = RealmAuthInteractor(config: RealmAuthConfig())
+        let presenter = RealmAuthPresenter(interactor: interactor,
+                                        encrypter: EncryptionInteractor(),
+                                        output: self)
+        interactor.output = presenter
 
         if SyncUser.current != nil {
             interactor.logout()
@@ -26,15 +29,28 @@ class ViewController: UIViewController {
         print(RealmHolder.sharedInstance.userRealm?.objects(AccountType.self) ?? "No currencies")
         print(RealmHolder.sharedInstance.userRealm?.objects(Category.self) ?? "No currencies")
         
-        interactor.login(withEmail: "user9@gmail.com",
-                         withPassword: "user9")
-
-//        interactor.register(withEmail: "user10@gmail.com", withPassword: "user10", withName: "User10")
+        presenter.login(withEmail: "user9@gmail.com", withPassword: "user9")
+//        presenter.register(withEmail: "user10@gmail.com", withPassword: "user10", withName: "User10")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - RealmAuthPresenterOutput methods
+    func showSuccessfulLogin(ofUser user: RLMSyncUser) {
+        
+    }
+    
+    func showSuccessfulRegistration(ofUser user: RLMSyncUser) {
+    
+    }
+    
+    func showSuccesfulLogout() {
+        
     }
 
+    func showFailedAuth(withAlert alert: UIAlertController?) {
+        
+    }
 }

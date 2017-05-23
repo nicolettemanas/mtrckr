@@ -19,46 +19,43 @@ protocol RealmAuthInteractorOutput {
 }
 
 protocol RealmAuthInteractorProtocol {
-    func login(withEmail email: String, withPassword password: String)
-    func register(withEmail email: String, withPassword password: String, withName name: String)
+    func login(withEmail email: String, withEncryptedPassword password: String)
+    func register(withEmail email: String, withEncryptedPassword password: String, withName name: String)
     func logout()
 }
 class RealmAuthInteractor: RealmAuthInteractorProtocol {
 
     var config: AuthConfigProtocol
-    var output: RealmAuthInteractorOutput
+    var output: RealmAuthInteractorOutput?
 
-    init(output: RealmAuthInteractorOutput, config: AuthConfigProtocol) {
-        self.output = output
+    init(config: AuthConfigProtocol) {
         self.config = config
     }
 
     // MARK: RealmAuthInteractorProtocol methods
-    func login(withEmail email: String, withPassword password: String) {
+    func login(withEmail email: String, withEncryptedPassword password: String) {
         let credentials = SyncCredentials.usernamePassword(username: email, password: password)
-
         SyncUser.logIn(with: credentials, server: config.serverURL, timeout: config.timeout) { (user, error) in
             if let user = user {
                 self.setDefaultRealm(ofUser: user)
                 RealmHolder.sharedInstance.setupNotificationToken()
-                self.output.didLogin(user: user)
+                self.output?.didLogin(user: user)
             } else {
-                self.output.didFailLogin(withError: error)
+                self.output?.didFailLogin(withError: error)
             }
         }
     }
 
-    func register(withEmail email: String, withPassword password: String, withName name: String) {
+    func register(withEmail email: String, withEncryptedPassword password: String, withName name: String) {
         let credentials = SyncCredentials.usernamePassword(username: email, password: password, register: true)
-
         SyncUser.logIn(with: credentials, server: config.serverURL, timeout: config.timeout) { (user, error) in
             if let user = user {
                 self.setDefaultRealm(ofUser: user)
                 RealmHolder.sharedInstance.setupNotificationToken()
                 self.saveUserDetails(ofUser: user, withEmail: email, withName: name)
-                self.output.didRegister(user: user)
+                self.output?.didRegister(user: user)
             } else {
-                self.output.didFailRegistration(withError: error)
+                self.output?.didFailRegistration(withError: error)
             }
         }
     }
@@ -67,7 +64,7 @@ class RealmAuthInteractor: RealmAuthInteractorProtocol {
         if SyncUser.current != nil {
             print("logging out user \(String(describing: SyncUser.current?.identity))")
             SyncUser.current?.logOut()
-            self.output.didLogout()
+            self.output?.didLogout()
         }
     }
 
