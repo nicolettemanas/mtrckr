@@ -51,8 +51,7 @@ class TransactionTests: QuickSpec {
                                           "totalExpenses": 100.0,
                                           "totalIncome": 30.0,
                                           "color": "#AAAAAA",
-                                          "dateOpened": Date(),
-                                          "user": user ])
+                                          "dateOpened": Date()])
                 transDate = Date()
             }
 
@@ -100,8 +99,7 @@ class TransactionTests: QuickSpec {
                                           "totalExpenses": 0.0,
                                           "totalIncome": 0.0,
                                           "color": "#AAAAAA",
-                                          "dateOpened": Date(),
-                                          "user": user ])
+                                          "dateOpened": Date()])
                 transDate = Date()
 
                 currency.save(toRealm: self.testRealm)
@@ -179,8 +177,7 @@ class TransactionTests: QuickSpec {
                                                   "totalExpenses": 0.0,
                                                   "totalIncome": 0.0,
                                                   "color": "#AAAAAA",
-                                                  "dateOpened": Date(),
-                                                  "user": user ])
+                                                  "dateOpened": Date()])
                         toAccount.save(toRealm: self.testRealm)
 
                         transaction = Transaction(type: .transfer, name: "Allowance", image: nil, description: "Cash allowance", amount: 500,
@@ -212,8 +209,7 @@ class TransactionTests: QuickSpec {
                                                      "totalExpenses": 0.0,
                                                      "totalIncome": 0.0,
                                                      "color": "#AAAAAA",
-                                                     "dateOpened": Date(),
-                                                     "user": user ])
+                                                     "dateOpened": Date()])
                     newCategory = Category(id: "cat1", type: .income, name: "Income", icon: "income.jpg")
                     transDate = Date()
                 }
@@ -405,8 +401,7 @@ class TransactionTests: QuickSpec {
                                                  "totalExpenses": 0.0,
                                                  "totalIncome": 0.0,
                                                  "color": "#AAAAAA",
-                                                 "dateOpened": Date(),
-                                                 "user": user ])
+                                                 "dateOpened": Date()])
 
                     let incomeCategory = Category(id: "cat1", type: .income, name: "Salary", icon: "salary.jpg")
 
@@ -459,7 +454,6 @@ class TransactionTests: QuickSpec {
                                                 "preDueReminder": "oneDay",
                                                 "repeatSchedule": "monthly",
                                                 "startDate": Date(),
-                                                "user": user,
                                                 "category": category])
 
                             var entry = BillEntry(dueDate: Date(), for: bill)

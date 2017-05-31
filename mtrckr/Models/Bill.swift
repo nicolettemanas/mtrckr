@@ -27,7 +27,7 @@ class Bill: Object {
     dynamic var preDueReminder: String = ""
     dynamic var repeatSchedule: String = ""
     dynamic var startDate: Date = Date()
-    dynamic var user: User?
+//    dynamic var user: User?
     dynamic var category: Category?
 
     let entries = LinkingObjects(fromType: BillEntry.self, property: "bill")
@@ -91,15 +91,14 @@ class Bill: Object {
         return realm.object(ofType: Bill.self, forPrimaryKey: key) as Bill?
     }
 
-    static func all(in realm: Realm, underCategory category: Category, ofUser user: User) -> Results<Bill> {
+    static func all(in realm: Realm, underCategory category: Category) -> Results<Bill> {
         return realm.objects(Bill.self)
-            .filter("user.id == %@ AND category.id == %@", user.id, category.id)
+            .filter("category.id == %@", category.id)
             .sorted(byKeyPath: "name")
     }
 
-    static func all(in realm: Realm, ofUser user: User) -> Results<Bill> {
+    static func all(in realm: Realm) -> Results<Bill> {
         return realm.objects(Bill.self)
-            .filter("user.id == %@", user.id)
             .sorted(byKeyPath: "name")
     }
 

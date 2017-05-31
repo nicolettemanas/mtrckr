@@ -21,7 +21,7 @@ class Account: Object {
     dynamic var totalIncome: Double = 0.0
     dynamic var color: String = ""
     dynamic var dateOpened: Date = Date()
-    dynamic var user: User?
+//    dynamic var user: User?
 
     var transactionsToSelf = LinkingObjects(fromType: Transaction.self, property: "toAccount")
     var transactionsFromSelf = LinkingObjects(fromType: Transaction.self, property: "fromAccount")
@@ -91,7 +91,7 @@ class Account: Object {
         return realm.object(ofType: Account.self, forPrimaryKey: key) as Account?
     }
 
-    static func all(in realm: Realm, ofUser user: User) -> Results<Account> {
-        return realm.objects(Account.self).filter("user.id == %@", user.id).sorted(byKeyPath: "name")
+    static func all(in realm: Realm) -> Results<Account> {
+        return realm.objects(Account.self).sorted(byKeyPath: "name")
     }
 }

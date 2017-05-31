@@ -17,7 +17,7 @@ class Currency: Object/*, Mappable, Equatable*/ {
     dynamic var symbol: String! = ""
     dynamic var state: String! = ""
 
-    let users = LinkingObjects(fromType: User.self, property: "currency")
+//    let users = LinkingObjects(fromType: User.self, property: "currency")
 
     override static func primaryKey() -> String? {
         return "id"

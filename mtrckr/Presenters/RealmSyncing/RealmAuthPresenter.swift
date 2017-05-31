@@ -10,8 +10,12 @@ import UIKit
 import Realm
 import RealmSwift
 
+enum LoginSyncOption {
+    case useRemote, append
+}
+
 protocol RealmAuthPresenterProtocol {
-    func login(withEmail email: String, withPassword password: String)
+    func login(withEmail email: String, withPassword password: String, loginSyncOption option: LoginSyncOption)
     func register(withEmail email: String, withPassword password: String, withName name: String)
     func logout()
 }
@@ -36,9 +40,9 @@ class RealmAuthPresenter: RealmAuthPresenterProtocol, RealmAuthInteractorOutput 
     }
     
     // RealmAuthPresenterProtocol methods
-    func login(withEmail email: String, withPassword password: String) {
+    func login(withEmail email: String, withPassword password: String, loginSyncOption option: LoginSyncOption) {
         let encryptedPw = self.encrypter.encrypt(str: password)
-        self.interactor.login(withEmail: email, withEncryptedPassword: encryptedPw)
+        self.interactor.login(withEmail: email, withEncryptedPassword: encryptedPw, loginOption: option)
     }
     
     func register(withEmail email: String, withPassword password: String, withName name: String) {

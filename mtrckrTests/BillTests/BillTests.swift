@@ -45,7 +45,6 @@ class BillTests: QuickSpec {
                                             "preDueReminder": "oneDay",
                                             "repeatSchedule": "monthly",
                                             "startDate": startDate,
-                                            "user": user,
                                             "category": category
                                             ])
 
@@ -56,7 +55,7 @@ class BillTests: QuickSpec {
                     expect(bill.preDueReminder) == "oneDay"
                     expect(bill.repeatSchedule) == "monthly"
                     expect(bill.startDate) == startDate
-                    expect(bill.user) == user
+//                    expect(bill.user) == user
                     expect(bill.category) == category
                 })
             })
@@ -85,7 +84,6 @@ class BillTests: QuickSpec {
                                     "preDueReminder": "oneDay",
                                     "repeatSchedule": "monthly",
                                     "startDate": startDate,
-                                    "user": user,
                                     "category": category
                     ])
             }
@@ -105,15 +103,15 @@ class BillTests: QuickSpec {
                     expect(billFromDatabase.preDueReminder) == "oneDay"
                     expect(billFromDatabase.repeatSchedule) == "monthly"
                     expect(billFromDatabase.startDate) == startDate
-                    expect(billFromDatabase.user) == user
+//                    expect(billFromDatabase.user) == user
                     expect(billFromDatabase.category) == category
                 })
 
-                it("reflects as Bill under user", closure: {
-                    let user = User.with(key: user.id, inRealm: self.testRealm)
-                    expect(user?.bills.count) == 1
-                    expect(user?.bills[0].id) == "bill0"
-                })
+//                it("reflects as Bill under user", closure: {
+//                    let user = User.with(key: user.id, inRealm: self.testRealm)
+//                    expect(user?.bills.count) == 1
+//                    expect(user?.bills[0].id) == "bill0"
+//                })
 
                 it("reflects in bills under category", closure: {
                     let category = mtrckr.Category.with(key: category.id, inRealm: self.testRealm)
@@ -139,7 +137,6 @@ class BillTests: QuickSpec {
                                                        "preDueReminder": "never",
                                                        "repeatSchedule": "weekly",
                                                        "startDate": startDate,
-                                                       "user": user,
                                                        "category": category
                             ])
 
@@ -155,7 +152,7 @@ class BillTests: QuickSpec {
                         expect(updatedBills[0].preDueReminder) == "never"
                         expect(updatedBills[0].repeatSchedule) == "weekly"
                         expect(updatedBills[0].startDate) == startDate
-                        expect(updatedBills[0].user) == user
+//                        expect(updatedBills[0].user) == user
                         expect(updatedBills[0].category) == category
                     })
                 })
@@ -175,7 +172,7 @@ class BillTests: QuickSpec {
                     }
 
                     it("updates values if object already exists", closure: {
-                        let updatedBills = Bill.all(in: self.testRealm, ofUser: user)
+                        let updatedBills = Bill.all(in: self.testRealm)
 
                         expect(updatedBills.count) == 1
                         expect(updatedBills[0].id) == "bill0"
@@ -183,7 +180,7 @@ class BillTests: QuickSpec {
                         expect(updatedBills[0].name) == "Postpaid bill2"
                         expect(updatedBills[0].postDueReminder) == "threeDays"
                         expect(updatedBills[0].preDueReminder) == "never"
-                        expect(updatedBills[0].user) == user
+//                        expect(updatedBills[0].user) == user
                         expect(updatedBills[0].category) == anotherCategory
                     })
                 })
@@ -199,13 +196,12 @@ class BillTests: QuickSpec {
                                                        "preDueReminder": "never",
                                                        "repeatSchedule": "weekly",
                                                        "startDate": startDate,
-                                                       "user": user,
                                                        "category": category ])
 
                         anotherBill.update(amount: 2000, name: "Postpaid bill2", postDueReminder: .threeDays,
                                            preDueReminder: .never, category: category, in: self.testRealm)
 
-                        let bills = Bill.all(in: self.testRealm, ofUser: user)
+                        let bills = Bill.all(in: self.testRealm)
                         expect(bills.count) == 1
 
                         let bill = bills[0]
@@ -216,7 +212,7 @@ class BillTests: QuickSpec {
                         expect(bill.preDueReminder) == "oneDay"
                         expect(bill.repeatSchedule) == "monthly"
                         expect(bill.startDate) == startDate
-                        expect(bill.user) == user
+//                        expect(bill.user) == user
                         expect(bill.category) == category
                     })
                 }
@@ -226,7 +222,7 @@ class BillTests: QuickSpec {
                 it("returns all Bills of given user sorted by name", closure: {
                     self.createBills(n: 3, for: user)
 
-                    let bills = Bill.all(in: self.testRealm, ofUser: user)
+                    let bills = Bill.all(in: self.testRealm)
                     expect(bills.count) == 3
                     expect(bills[0].id) == "bill0"
                     expect(bills[1].id) == "bill1"
@@ -243,7 +239,7 @@ class BillTests: QuickSpec {
                 }
 
                 it("deletes Bill from database", closure: {
-                    let bills = Bill.all(in: self.testRealm, ofUser: user)
+                    let bills = Bill.all(in: self.testRealm)
                     expect(bills.count) == 2
                     expect(bills[0].id) == "bill1"
                     expect(bills[1].id) == "bill2"
@@ -255,12 +251,12 @@ class BillTests: QuickSpec {
 
                 })
 
-                it("should be deleted from the user it belongs to", closure: {
-                    let user = User.with(key: user.id, inRealm: self.testRealm)
-                    expect(user?.bills.count) == 2
-                    expect(user?.bills[0].id) == "bill1"
-                    expect(user?.bills[1].id) == "bill2"
-                })
+//                it("should be deleted from the user it belongs to", closure: {
+//                    let user = User.with(key: user.id, inRealm: self.testRealm)
+//                    expect(user?.bills.count) == 2
+//                    expect(user?.bills[0].id) == "bill1"
+//                    expect(user?.bills[1].id) == "bill2"
+//                })
             })
         }
     }
@@ -277,7 +273,6 @@ class BillTests: QuickSpec {
                 "preDueReminder": "never",
                 "repeatSchedule": "weekly",
                 "startDate": Date(),
-                "user": user,
                 "category": category
                 ]).save(toRealm: self.testRealm)
         }

@@ -1,0 +1,47 @@
+[
+{
+    "typeId": 218,
+    "name": "Savings",
+    "icon": "atype-savings.png"
+},
+{
+    "typeId": 200,
+    "name": "Credit Card",
+    "icon": "atype-ccard.png"
+},
+{
+    "typeId": 139,
+    "name": "Cash",
+    "icon": "atype-cash.png"
+},
+{
+    "typeId": 85,
+    "name": "Checking",
+    "icon": "atype-checking.png"
+},
+{
+    "typeId": 119,
+    "name": "Debit Card",
+    "icon": "atype-dcard.png"
+},
+{
+    "typeId": 165,
+    "name": "Investment",
+    "icon": "atype-investment.png"
+},
+{
+    "typeId": 175,
+    "name": "Loan",
+    "icon": "atype-loan.png"
+},
+{
+    "typeId": 32,
+    "name": "Business",
+    "icon": "atype-business.png"
+},
+{
+    "typeId": 158,
+    "name": "Others",
+    "icon": "atype-others.png"
+}
+]

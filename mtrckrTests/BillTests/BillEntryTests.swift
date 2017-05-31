@@ -47,7 +47,6 @@ class BillEntryTests: QuickSpec {
                                     "preDueReminder": "oneDay",
                                     "repeatSchedule": "monthly",
                                     "startDate": Date(),
-                                    "user": user,
                                     "category": category])
             }
 
@@ -124,7 +123,6 @@ class BillEntryTests: QuickSpec {
                                     "preDueReminder": "oneDay",
                                     "repeatSchedule": "monthly",
                                     "startDate": Date(),
-                                    "user": user,
                                     "category": category])
 
                 currency.save(toRealm: self.testRealm)
@@ -188,8 +186,7 @@ class BillEntryTests: QuickSpec {
                                                       "totalExpenses": 100.0,
                                                       "totalIncome": 30.0,
                                                       "color": "#AAAAAA",
-                                                      "dateOpened": Date(),
-                                                      "user": user
+                                                      "dateOpened": Date()
                             ])
 
                         cashAccountType.save(toRealm: self.testRealm)

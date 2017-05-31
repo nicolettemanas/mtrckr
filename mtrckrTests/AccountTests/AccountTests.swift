@@ -45,8 +45,7 @@ class AccountTests: QuickSpec {
                                                     "totalExpenses": 100.0,
                                                     "totalIncome": 30.0,
                                                     "color": "#AAAAAA",
-                                                    "dateOpened": dateOpened,
-                                                    "user": user
+                                                    "dateOpened": dateOpened
                                                   ])
 
                     expect(account.id) == "accnt1"
@@ -58,7 +57,7 @@ class AccountTests: QuickSpec {
                     expect(account.totalIncome) == 30.0
                     expect(account.color) == "#AAAAAA"
                     expect(account.dateOpened) == dateOpened
-                    expect(account.user) == user
+//                    expect(account.user) == user
                 })
             })
         }
@@ -83,8 +82,7 @@ class AccountTests: QuickSpec {
                                           "totalExpenses": 100.0,
                                           "totalIncome": 30.0,
                                           "color": "#AAAAAA",
-                                          "dateOpened": dateOpened,
-                                          "user": user ])
+                                          "dateOpened": dateOpened])
             }
 
             describe("save()", {
@@ -103,14 +101,14 @@ class AccountTests: QuickSpec {
                     expect(accountFromDatabase?.totalIncome) == 30.0
                     expect(accountFromDatabase?.color) == "#AAAAAA"
                     expect(accountFromDatabase?.dateOpened) == dateOpened
-                    expect(accountFromDatabase?.user) == user
+//                    expect(accountFromDatabase?.user) == user
                 })
 
-                it("reflects as account under user", closure: {
-                    let user = User.with(key: user.id, inRealm: self.testRealm)
-                    expect(user?.accounts.count) == 1
-                    expect(user?.accounts[0].id) == "accnt1"
-                })
+//                it("reflects as account under user", closure: {
+//                    let user = User.with(key: user.id, inRealm: self.testRealm)
+//                    expect(user?.accounts.count) == 1
+//                    expect(user?.accounts[0].id) == "accnt1"
+//                })
             })
 
             describe("update()", {
@@ -127,11 +125,10 @@ class AccountTests: QuickSpec {
                                                       "totalExpenses": 0.0,
                                                       "totalIncome": 10000,
                                                       "color": "#BBBBBB",
-                                                      "dateOpened": dateOpened,
-                                                      "user": user])
+                                                      "dateOpened": dateOpened])
                         accountFromDatabase!.update(to: updatedAccount, in: self.testRealm)
 
-                        let accounts = Account.all(in: self.testRealm, ofUser: user)
+                        let accounts = Account.all(in: self.testRealm)
                         expect(accounts.count) == 1
                         expect(accounts[0].name) == "My Bank Account"
                         expect(accounts[0].type) == cashAccountType
@@ -141,7 +138,7 @@ class AccountTests: QuickSpec {
                         expect(accounts[0].totalIncome) == 10000
                         expect(accounts[0].color) == "#BBBBBB"
                         expect(accounts[0].dateOpened) == dateOpened
-                        expect(accounts[0].user) == user
+//                        expect(accounts[0].user) == user
                     })
                 })
                 context("user can only update name, type, initial amount, color and date opened", {
@@ -159,7 +156,7 @@ class AccountTests: QuickSpec {
                     }
 
                     it("updates values if object already exists", closure: {
-                        let accounts = Account.all(in: self.testRealm, ofUser: user)
+                        let accounts = Account.all(in: self.testRealm)
                         expect(accounts.count) == 1
                         expect(accounts[0].name) == "My Bank Account"
                         expect(accounts[0].type) == bankAccountType
@@ -188,8 +185,7 @@ class AccountTests: QuickSpec {
                                                              "totalExpenses": 0.0,
                                                              "totalIncome": 10000,
                                                              "color": "#BBBBBB",
-                                                             "dateOpened": dateOpened,
-                                                             "user": user])
+                                                             "dateOpened": dateOpened])
 
                         anotherAccount.update(name: "Some account",
                                               type: cashAccountType,
@@ -197,7 +193,7 @@ class AccountTests: QuickSpec {
                                               color: "#aaaaaa",
                                               dateOpened: dateOpened, in: self.testRealm)
 
-                        let accounts = Account.all(in: self.testRealm, ofUser: user)
+                        let accounts = Account.all(in: self.testRealm)
                         expect(accounts.count) == 1
                         expect(accounts[0].name) == "My Cash"
                         expect(accounts[0].type) == cashAccountType
@@ -207,7 +203,7 @@ class AccountTests: QuickSpec {
                         expect(accounts[0].totalIncome) == 30
                         expect(accounts[0].color) == "#AAAAAA"
                         expect(accounts[0].dateOpened) == dateOpened
-                        expect(accounts[0].user) == user
+//                        expect(accounts[0].user) == user
                     })
                 }
             })
@@ -215,7 +211,7 @@ class AccountTests: QuickSpec {
             describe("all() of user", {
                 it("returns all Accounts of given user sorted by name", closure: {
                     self.createAccounts(n: 3, for: user)
-                    let Accounts = Account.all(in: self.testRealm, ofUser: user)
+                    let Accounts = Account.all(in: self.testRealm)
                     expect(Accounts.count) == 3
                     expect(Accounts[0].id) == "accnt0"
                     expect(Accounts[1].id) == "accnt1"
@@ -231,7 +227,7 @@ class AccountTests: QuickSpec {
                 }
 
                 it("deletes account from database", closure: {
-                    let accounts = Account.all(in: self.testRealm, ofUser: user)
+                    let accounts = Account.all(in: self.testRealm)
                     expect(accounts.count) == 2
                     expect(accounts[0].id) == "accnt1"
                     expect(accounts[1].id) == "accnt2"
@@ -245,12 +241,12 @@ class AccountTests: QuickSpec {
                     expect(transactions[1].name) == "trans 2"
                 })
 
-                it("should be deleted from the user it belongs to", closure: {
-                    let user = User.with(key: user.id, inRealm: self.testRealm)
-                    expect(user?.accounts.count) == 2
-                    expect(user?.accounts[0].id) == "accnt1"
-                    expect(user?.accounts[1].id) == "accnt2"
-                })
+//                it("should be deleted from the user it belongs to", closure: {
+//                    let user = User.with(key: user.id, inRealm: self.testRealm)
+//                    expect(user?.accounts.count) == 2
+//                    expect(user?.accounts[0].id) == "accnt1"
+//                    expect(user?.accounts[1].id) == "accnt2"
+//                })
 
 //                it("remove account from affected budgets; delete if necessary", closure: {
 //                
@@ -271,8 +267,7 @@ class AccountTests: QuickSpec {
                             "totalExpenses": 0.0,
                             "totalIncome": 0.0,
                             "color": "",
-                            "dateOpened": Date(),
-                            "user": user])
+                            "dateOpened": Date()])
             acc.save(toRealm: self.testRealm)
             Transaction(type: .expense, name: "trans \(i)", image: nil,
                         description: nil, amount: 100, category: category,

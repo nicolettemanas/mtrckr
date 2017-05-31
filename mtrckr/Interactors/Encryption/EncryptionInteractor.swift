@@ -12,7 +12,6 @@ import CryptoSwift
 let key = "1234567890123456"
 let iv = "0987654321098765"
 
-
 protocol EncryptionInteractorProtocol {
     func encrypt(str: String) -> String
 }

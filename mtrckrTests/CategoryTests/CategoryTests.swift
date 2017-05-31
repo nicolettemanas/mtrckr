@@ -67,7 +67,7 @@ class CategoryTests: QuickSpec {
                 context("custom category", {
 
                     beforeEach {
-                        let cat = Category(type: .expense, name: "Personal", icon: "person.jpg", user: user)
+                        let cat = Category(type: .expense, name: "Personal", icon: "person.jpg")
                         cat.save(toRealm: self.testRealm)
                     }
 
@@ -76,13 +76,14 @@ class CategoryTests: QuickSpec {
                         expect(catFromDatabase?.type) == CategoryType.expense.rawValue
                         expect(catFromDatabase?.name) == "Personal"
                         expect(catFromDatabase?.icon) == "person.jpg"
+                        expect(catFromDatabase?.isCustomized) == true
                     })
 
-                    it("reflects under user's category", closure: {
-                        let catsOfUser = User.with(key: user.id, inRealm: self.testRealm)?.customCategories
-                        expect(catsOfUser?.count) == 1
-                        expect(catsOfUser?[0].name) == "Personal"
-                    })
+//                    it("reflects under user's category", closure: {
+//                        let catsOfUser = User.with(key: user.id, inRealm: self.testRealm)?.customCategories
+//                        expect(catsOfUser?.count) == 1
+//                        expect(catsOfUser?[0].name) == "Personal"
+//                    })
                 })
             })
 
@@ -133,7 +134,7 @@ class CategoryTests: QuickSpec {
                 context("of user", {
                     it("returns all custom categories of given user", closure: {
                         let categories = self.createCustomCategories(n: 3, for: user)
-                        let customCategories = Category.all(in: self.testRealm, of: user)
+                        let customCategories = Category.all(in: self.testRealm, customized: true)
                         expect(customCategories[0]) == categories[0]
                         expect(customCategories[1]) == categories[1]
                         expect(customCategories[2]) == categories[2]
@@ -172,7 +173,6 @@ class CategoryTests: QuickSpec {
                                                 "preDueReminder": "never",
                                                 "repeatSchedule": "weekly",
                                                 "startDate": Date(),
-                                                "user": user,
                                                 "category": categoryToDelete])
                         let cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
                         account = Account(value: ["id": "accnt1",
@@ -183,8 +183,7 @@ class CategoryTests: QuickSpec {
                                                   "totalExpenses": 100.0,
                                                   "totalIncome": 30.0,
                                                   "color": "#AAAAAA",
-                                                  "dateOpened": Date(),
-                                                  "user": user ])
+                                                  "dateOpened": Date()])
 
                         bill.save(toRealm: self.testRealm)
                         cashAccountType.save(toRealm: self.testRealm)
@@ -221,7 +220,7 @@ class CategoryTests: QuickSpec {
                     }
 
                     it("deletes category from user", closure: {
-                        let categories = Category.all(in: self.testRealm, of: user)
+                        let categories = Category.all(in: self.testRealm, customized: true)
                         expect(categories.count) == 2
                         expect(categories[0].name) == "Custom category 31"
                         expect(categories[1].name) == "Custom category 32"
@@ -246,7 +245,7 @@ class CategoryTests: QuickSpec {
     func createCustomCategories(n: Int, for user: User) -> [mtrckr.Category] {
         var cat: [mtrckr.Category] = []
         for i in 30..<n+30 {
-            let c = mtrckr.Category(type: .expense, name: "Custom category \(i)", icon: "custom\(i).jpg", user: user)
+            let c = mtrckr.Category(type: .expense, name: "Custom category \(i)", icon: "custom\(i).jpg")
             c.save(toRealm: self.testRealm)
             cat.append(c)
         }

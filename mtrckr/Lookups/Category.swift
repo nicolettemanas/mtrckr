@@ -20,7 +20,7 @@ class Category: Object {
     dynamic var type: String = "expense"
     dynamic var name: String = ""
     dynamic var icon: String = "decault.jpg"
-    dynamic var user: User?
+    dynamic var isCustomized: Bool = false
 
     let transactions = LinkingObjects(fromType: Transaction.self, property: "category")
 //    let budgetsAffected = LinkingObjects(fromType: Budget.self, property: "forCategories")
@@ -30,13 +30,13 @@ class Category: Object {
         return "id"
     }
 
-    convenience init(type: CategoryType, name: String, icon: String, user: User) {
+    convenience init(type: CategoryType, name: String, icon: String) {
         self.init()
         self.id = "CAT-\(UUID().uuidString)"
         self.type = type.rawValue
         self.name = name
         self.icon = icon
-        self.user = user
+        self.isCustomized = true
     }
 
     convenience init(id: String, type: CategoryType, name: String, icon: String) {
@@ -100,10 +100,10 @@ class Category: Object {
         return realm.object(ofType: Category.self, forPrimaryKey: key) as Category?
     }
 
-    static func all(in realm: Realm, of user: User) -> [Category] {
-        guard let customCategories = User.with(key: user.id, inRealm: realm)?.customCategories
-        else { return [] }
-        return Array(customCategories)
+    static func all(in realm: Realm, customized: Bool) -> Results<Category> {
+        return realm.objects(Category.self)
+            .filter(NSPredicate(format: "isCustomized == \(customized)"))
+            .sorted(byKeyPath: "name", ascending: true)
     }
 
     static func all(in realm: Realm) -> Results<Category> {

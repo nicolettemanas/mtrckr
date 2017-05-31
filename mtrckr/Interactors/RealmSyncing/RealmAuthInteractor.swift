@@ -19,7 +19,7 @@ protocol RealmAuthInteractorOutput {
 }
 
 protocol RealmAuthInteractorProtocol {
-    func login(withEmail email: String, withEncryptedPassword password: String)
+    func login(withEmail email: String, withEncryptedPassword password: String, loginOption option: LoginSyncOption)
     func register(withEmail email: String, withEncryptedPassword password: String, withName name: String)
     func logout()
 }
@@ -33,11 +33,12 @@ class RealmAuthInteractor: RealmAuthInteractorProtocol {
     }
 
     // MARK: RealmAuthInteractorProtocol methods
-    func login(withEmail email: String, withEncryptedPassword password: String) {
+    func login(withEmail email: String, withEncryptedPassword password: String, loginOption option: LoginSyncOption) {
         let credentials = SyncCredentials.usernamePassword(username: email, password: password)
         SyncUser.logIn(with: credentials, server: config.serverURL, timeout: config.timeout) { (user, error) in
             if let user = user {
                 self.setDefaultRealm(ofUser: user)
+                RealmHolder.sharedInstance.shouldSync = (option == .append)
                 RealmHolder.sharedInstance.setupNotificationToken()
                 self.output?.didLogin(user: user)
             } else {
@@ -51,6 +52,7 @@ class RealmAuthInteractor: RealmAuthInteractorProtocol {
         SyncUser.logIn(with: credentials, server: config.serverURL, timeout: config.timeout) { (user, error) in
             if let user = user {
                 self.setDefaultRealm(ofUser: user)
+                RealmHolder.sharedInstance.shouldSync = true
                 RealmHolder.sharedInstance.setupNotificationToken()
                 self.saveUserDetails(ofUser: user, withEmail: email, withName: name)
                 self.output?.didRegister(user: user)
@@ -64,6 +66,16 @@ class RealmAuthInteractor: RealmAuthInteractorProtocol {
         if SyncUser.current != nil {
             print("logging out user \(String(describing: SyncUser.current?.identity))")
             SyncUser.current?.logOut()
+            
+            guard let realm = RealmHolder.sharedInstance.userRealm else {
+                self.output?.didLogout()
+                return
+            }
+            
+            try? realm.write {
+                realm.deleteAll()
+            }
+            
             self.output?.didLogout()
         }
     }
@@ -81,31 +93,12 @@ class RealmAuthInteractor: RealmAuthInteractorProtocol {
             guard let userRealm = RealmHolder.sharedInstance.userRealm
             else { return }
             
-            let newUser = User(id: user.identity!, name: name, email: email, image: "", currency: self.getOrSaveDefaultCurrency())
+            let newUser = User(id: user.identity!, name: name, email: email, image: "",
+                               currency: Currency.with(isoCode: "PHP", inRealm: userRealm)!)
+
             newUser.save(toRealm: userRealm)
-            
             let userDetails = RealmHolder.sharedInstance.userRealm!.objects(User.self)
             print(userDetails)
         }
-    }
-
-    func getOrSaveDefaultCurrency() -> Currency {
-        
-        guard let userRealm = RealmHolder.sharedInstance.userRealm
-        else {
-            fatalError("Cannot setup user realm")
-        }
-        
-        var defaultCurrency: Currency? = nil
-        let currency = userRealm.objects(Currency.self)
-        print(currency)
-        
-        defaultCurrency = Currency.with(isoCode: "PHP", inRealm: userRealm)
-        if defaultCurrency == nil {
-            defaultCurrency = Currency(id: NSUUID().uuidString, isoCode: "PHP", symbol: "P", state: "Philippine Peso")
-            defaultCurrency?.save(toRealm: userRealm)
-        }
-        
-        return defaultCurrency!
     }
 }
