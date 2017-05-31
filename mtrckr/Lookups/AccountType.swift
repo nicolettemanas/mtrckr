@@ -15,7 +15,7 @@ class AccountType: Object {
     dynamic var typeId: Int = 0
     dynamic var name: String = ""
     dynamic var icon: String = ""
-    let accounts = LinkingObjects(fromType: Account.self, property: "type")
+//    let accounts = LinkingObjects(fromType: Account.self, property: "type")
 
     override static func primaryKey() -> String? {
         return "typeId"

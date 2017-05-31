@@ -14,6 +14,9 @@
 		CE03C2321EC36686009A6AB0 /* MTFormModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03C2311EC36686009A6AB0 /* MTFormModalView.swift */; };
 		CE03C2341EC36711009A6AB0 /* MTTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03C2331EC36711009A6AB0 /* MTTableViewCell.swift */; };
 		CE03C2361EC3672F009A6AB0 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE03C2351EC3672F009A6AB0 /* View.xib */; };
+		CE005F531ECAE4DC00536C1A /* RealmAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE005F521ECAE4DC00536C1A /* RealmAuthInteractor.swift */; };
+		CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */; };
+		CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */; };
 		CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */; };
 		CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31051E9B2AAB0022CA57 /* Transaction.swift */; };
 		CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89B71E96797A00EBE809 /* UserTests.swift */; };
@@ -24,6 +27,12 @@
 		CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */; };
 		CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFE1E95E54400E5DBA6 /* User.swift */; };
 		CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */; };
+		CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */; };
+		CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8E11ECF008D000F786B /* RealmHolder.swift */; };
+		CEF044B01EDDD46500486EAC /* InitialRealmGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */; };
+		CEF044B31EDEABC400486EAC /* Currency.json in Resources */ = {isa = PBXBuildFile; fileRef = CEF044B21EDEABC400486EAC /* Currency.json */; };
+		CEF044B51EDEACD700486EAC /* AccountType.json in Resources */ = {isa = PBXBuildFile; fileRef = CEF044B41EDEACD700486EAC /* AccountType.json */; };
+		CEF044B91EDEADE800486EAC /* Category.json in Resources */ = {isa = PBXBuildFile; fileRef = CEF044B81EDEADE800486EAC /* Category.json */; };
 		CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB229E1E94FC2100867CDA /* AppDelegate.swift */; };
 		CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22A01E94FC2100867CDA /* ViewController.swift */; };
 		CEFB22A41E94FC2100867CDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFB22A21E94FC2100867CDA /* Main.storyboard */; };
@@ -59,15 +68,25 @@
 		CE03C2331EC36711009A6AB0 /* MTTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTableViewCell.swift; path = Views/Class/MTTableViewCell.swift; sourceTree = "<group>"; };
 		CE03C2351EC3672F009A6AB0 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = View.xib; path = Views/XIBs/View.xib; sourceTree = "<group>"; };
 		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; };
+		CE005F521ECAE4DC00536C1A /* RealmAuthInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthInteractor.swift; path = Interactors/RealmSyncing/RealmAuthInteractor.swift; sourceTree = "<group>"; };
+		CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthPresenter.swift; path = Presenters/RealmSyncing/RealmAuthPresenter.swift; sourceTree = "<group>"; };
+		CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptionInteractor.swift; path = Interactors/Encryption/EncryptionInteractor.swift; sourceTree = "<group>"; };
+		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE1F31051E9B2AAB0022CA57 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Models/Transaction.swift; sourceTree = "<group>"; };
-		CE3A89B71E96797A00EBE809 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTests.swift; path = UserTests/UserTests.swift; sourceTree = "<group>"; };
-		CE3A89BA1E967F0800EBE809 /* BillTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillTests.swift; path = BillTests/BillTests.swift; sourceTree = "<group>"; };
+		CE3A89B71E96797A00EBE809 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = UserTests.swift; path = UserTests/UserTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CE3A89BA1E967F0800EBE809 /* BillTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillTests.swift; path = BillTests/BillTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE3A89BC1E972BB600EBE809 /* Bill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bill.swift; path = Models/Bill.swift; sourceTree = "<group>"; };
-		CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntryTests.swift; path = BillTests/BillEntryTests.swift; sourceTree = "<group>"; };
-		CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryTests.swift; path = CategoryTests/CategoryTests.swift; sourceTree = "<group>"; };
-		CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountTests.swift; path = AccountTests/AccountTests.swift; sourceTree = "<group>"; };
+		CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillEntryTests.swift; path = BillTests/BillEntryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CategoryTests.swift; path = CategoryTests/CategoryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AccountTests.swift; path = AccountTests/AccountTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFE1E95E54400E5DBA6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntry.swift; path = Models/BillEntry.swift; sourceTree = "<group>"; };
+		CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthConfig.swift; path = Configs/RealmAuthConfig.swift; sourceTree = "<group>"; };
+		CEB1A8E11ECF008D000F786B /* RealmHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmHolder.swift; path = Utils/RealmHolder.swift; sourceTree = "<group>"; };
+		CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialRealmGenerator.swift; path = Utils/InitialRealmGenerator.swift; sourceTree = "<group>"; };
+		CEF044B21EDEABC400486EAC /* Currency.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Currency.json; path = initModelValues/Currency.json; sourceTree = "<group>"; };
+		CEF044B41EDEACD700486EAC /* AccountType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AccountType.json; path = initModelValues/AccountType.json; sourceTree = "<group>"; };
+		CEF044B81EDEADE800486EAC /* Category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Category.json; path = initModelValues/Category.json; sourceTree = "<group>"; };
 		CEFB229B1E94FC2100867CDA /* mtrckr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mtrckr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFB229E1E94FC2100867CDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEFB22A01E94FC2100867CDA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +101,7 @@
 		CEFB22C31E94FD8B00867CDA /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		CEFB22C81E94FD9F00867CDA /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		CEFB22D11E95087600867CDA /* AccountTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountTypeTests.swift; path = AccountTypeTests/AccountTypeTests.swift; sourceTree = "<group>"; };
-		CEFB22D91E95419200867CDA /* CurrencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrencyTests.swift; path = CurrencyTests/CurrencyTests.swift; sourceTree = "<group>"; };
+		CEFB22D91E95419200867CDA /* CurrencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CurrencyTests.swift; path = CurrencyTests/CurrencyTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D471B1511513CA1AB286D1E0 /* Pods_mtrckr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mtrckr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC8AC50703F81BF568E86F58 /* Pods-mtrckr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mtrckr.release.xcconfig"; path = "Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr.release.xcconfig"; sourceTree = "<group>"; };
 		E3D12754D195FAC6D0B9EE06 /* Pods-Tests-mtrckrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -157,6 +176,47 @@
 			name = XIBs;
 			sourceTree = "<group>";
 		};
+		CE005F4F1ECAE47800536C1A /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				CE0783931ED3D6000007AD15 /* Encryption */,
+				CE005F501ECAE48700536C1A /* RealmSyncing */,
+			);
+			name = Interactors;
+			sourceTree = "<group>";
+		};
+		CE005F501ECAE48700536C1A /* RealmSyncing */ = {
+			isa = PBXGroup;
+			children = (
+				CE005F521ECAE4DC00536C1A /* RealmAuthInteractor.swift */,
+			);
+			name = RealmSyncing;
+			sourceTree = "<group>";
+		};
+		CE005F511ECAE49500536C1A /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */,
+			);
+			name = Presenters;
+			sourceTree = "<group>";
+		};
+		CE07838C1ED325120007AD15 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CEF044B11EDEAB8500486EAC /* initModelValues */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		CE0783931ED3D6000007AD15 /* Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */,
+			);
+			name = Encryption;
+			sourceTree = "<group>";
+		};
 		CE1F31021E9B21FD0022CA57 /* TransactionTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +258,33 @@
 			name = AccountTests;
 			sourceTree = "<group>";
 		};
+		CEB1A8DC1ECEEC59000F786B /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */,
+			);
+			name = Configs;
+			sourceTree = "<group>";
+		};
+		CEB1A8E01ECF004D000F786B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CEB1A8E11ECF008D000F786B /* RealmHolder.swift */,
+				CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		CEF044B11EDEAB8500486EAC /* initModelValues */ = {
+			isa = PBXGroup;
+			children = (
+				CEF044B21EDEABC400486EAC /* Currency.json */,
+				CEF044B41EDEACD700486EAC /* AccountType.json */,
+				CEF044B81EDEADE800486EAC /* Category.json */,
+			);
+			name = initModelValues;
+			sourceTree = "<group>";
+		};
 		CEFB22921E94FC2100867CDA = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +309,11 @@
 			isa = PBXGroup;
 			children = (
 				CE03C2261EC364E2009A6AB0 /* Views */,
+				CE07838C1ED325120007AD15 /* Sources */,
+				CEB1A8E01ECF004D000F786B /* Utils */,
+				CEB1A8DC1ECEEC59000F786B /* Configs */,
+				CE005F511ECAE49500536C1A /* Presenters */,
+				CE005F4F1ECAE47800536C1A /* Interactors */,
 				CEFB22BE1E94FD7700867CDA /* Models */,
 				CEFB229E1E94FC2100867CDA /* AppDelegate.swift */,
 				CEFB22A01E94FC2100867CDA /* ViewController.swift */,
@@ -343,7 +435,7 @@
 				TargetAttributes = {
 					CEFB229A1E94FC2100867CDA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = S86Z46T95A;
+						DevelopmentTeam = DXH96DDY7G;
 						ProvisioningStyle = Automatic;
 					};
 					CEFB22AE1E94FC2100867CDA = {
@@ -379,9 +471,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE03C2361EC3672F009A6AB0 /* View.xib in Resources */,
+				CEF044B31EDEABC400486EAC /* Currency.json in Resources */,
 				CEFB22A91E94FC2100867CDA /* LaunchScreen.storyboard in Resources */,
+				CEF044B91EDEADE800486EAC /* Category.json in Resources */,
 				CEFB22A61E94FC2100867CDA /* Assets.xcassets in Resources */,
 				CEFB22A41E94FC2100867CDA /* Main.storyboard in Resources */,
+				CEF044B51EDEACD700486EAC /* AccountType.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */,
 				CE3A89BD1E972BB600EBE809 /* Bill.swift in Sources */,
 				CEFB22C51E94FD8B00867CDA /* Currency.swift in Sources */,
 				CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */,
@@ -514,13 +610,18 @@
 				CE03C2341EC36711009A6AB0 /* MTTableViewCell.swift in Sources */,
 				CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */,
 				CEFB22C41E94FD8B00867CDA /* AccountType.swift in Sources */,
+				CE005F531ECAE4DC00536C1A /* RealmAuthInteractor.swift in Sources */,
+				CEF044B01EDDD46500486EAC /* InitialRealmGenerator.swift in Sources */,
 				CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */,
 				CE03C22B1EC3652A009A6AB0 /* MTButton.swift in Sources */,
 				CE03C2321EC36686009A6AB0 /* MTFormModalView.swift in Sources */,
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
 				CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */,
+				CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */,
+				CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */,
 				CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */,
 				CE03C22D1EC36539009A6AB0 /* MTView.swift in Sources */,
+				CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,9 +691,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: nicolettemanas@gmail.com (KGTKE6P9VV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: nicolettemanas@gmail.com (KGTKE6P9VV)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DXH96DDY7G;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -609,7 +712,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -639,9 +742,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: nicolettemanas@gmail.com (KGTKE6P9VV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: nicolettemanas@gmail.com (KGTKE6P9VV)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DXH96DDY7G;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -652,7 +757,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -666,11 +771,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = S86Z46T95A;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DXH96DDY7G;
 				INFOPLIST_FILE = mtrckr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.mtrckr;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.app.mtrckr-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -681,11 +788,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = S86Z46T95A;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DXH96DDY7G;
 				INFOPLIST_FILE = mtrckr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.mtrckr;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.app.mtrckr-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

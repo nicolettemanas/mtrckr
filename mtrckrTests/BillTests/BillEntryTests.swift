@@ -35,7 +35,7 @@ class BillEntryTests: QuickSpec {
             var billEntry: BillEntry!
 
             beforeEach {
-                let currency = Currency(isoCode: "USD", symbol: "`$", state: "USA")
+                let currency = Currency(id: "Curr1", isoCode: "USD", symbol: "`$", state: "USA")
                 let user = User(id: "user1", name: "", email: "", image: "", currency: currency)
                 let category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
 
@@ -47,7 +47,6 @@ class BillEntryTests: QuickSpec {
                                     "preDueReminder": "oneDay",
                                     "repeatSchedule": "monthly",
                                     "startDate": Date(),
-                                    "user": user,
                                     "category": category])
             }
 
@@ -113,7 +112,7 @@ class BillEntryTests: QuickSpec {
             var billEntry: BillEntry!
 
             beforeEach {
-                currency = Currency(isoCode: "USD", symbol: "$", state: "USA")
+                currency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
                 category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
                 user = User(id: "user0", name: "", email: "", image: "", currency: currency)
                 dueDate = Date()
@@ -124,7 +123,6 @@ class BillEntryTests: QuickSpec {
                                     "preDueReminder": "oneDay",
                                     "repeatSchedule": "monthly",
                                     "startDate": Date(),
-                                    "user": user,
                                     "category": category])
 
                 currency.save(toRealm: self.testRealm)
@@ -188,8 +186,7 @@ class BillEntryTests: QuickSpec {
                                                       "totalExpenses": 100.0,
                                                       "totalIncome": 30.0,
                                                       "color": "#AAAAAA",
-                                                      "dateOpened": Date(),
-                                                      "user": user
+                                                      "dateOpened": Date()
                             ])
 
                         cashAccountType.save(toRealm: self.testRealm)
@@ -223,7 +220,7 @@ class BillEntryTests: QuickSpec {
                         expect(entries[0].status) == BillEntryStatus.skipped.rawValue
                     })
                 })
-                
+
                 //TODO: update from skipped to unpaid
                 //TODO: update from paid to unpaid
             })

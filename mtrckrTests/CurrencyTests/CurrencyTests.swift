@@ -32,7 +32,7 @@ class CurrencyTests: QuickSpec {
         describe("Model Currency") {
             describe("initializa with isoCode, symbol and state", {
                 it("initializes and assign properties correctly ", closure: {
-                    let currency = Currency(isoCode: "USD", symbol: "$", state: "USA")
+                    let currency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
                     expect(currency.isoCode) == "USD"
                     expect(currency.symbol) == "$"
                     expect(currency.state) == "USA"
@@ -43,7 +43,7 @@ class CurrencyTests: QuickSpec {
         describe("CRUD operations") {
             describe("save()", {
                 it("saves object to database correctly", closure: {
-                    let currency = Currency(isoCode: "USD", symbol: "$", state: "USA")
+                    let currency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
                     currency.save(toRealm: self.testRealm)
 
                     let currencyFromDatabase = self.testRealm.objects(Currency.self).last
@@ -55,11 +55,11 @@ class CurrencyTests: QuickSpec {
 
             describe("update()", {
                 it("updates values if object already exists", closure: {
-                    let currency = Currency(isoCode: "USD", symbol: "$", state: "USA")
+                    let currency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
                     currency.save(toRealm: self.testRealm)
 
                     let currencyFromDatabase = self.testRealm.objects(Currency.self).last
-                    let updatedCurrency = Currency(isoCode: "USD", symbol: "US $", state: "United States of America")
+                    let updatedCurrency = Currency(id: "Curr1", isoCode: "USD", symbol: "US $", state: "United States of America")
                     currencyFromDatabase?.update(to: updatedCurrency, in: self.testRealm)
 
                     let currencies = Currency.all(in: self.testRealm)
@@ -83,7 +83,7 @@ class CurrencyTests: QuickSpec {
             describe("delete()", {
                 it("deletes object from database", closure: {
                     self.createCurrencies(n: 3)
-                    let firstCurrency = Currency.with(key: "code0", inRealm: self.testRealm)
+                    let firstCurrency = Currency.with(key: "Curr0", inRealm: self.testRealm)
                     firstCurrency?.delete(in: self.testRealm)
 
                     let currencies = Currency.all(in: self.testRealm)
@@ -97,7 +97,7 @@ class CurrencyTests: QuickSpec {
 
     func createCurrencies(n: Int) {
         for i in 0..<n {
-            Currency(isoCode: "code\(i)", symbol: "\(i)", state: "state \(i)").save(toRealm: testRealm)
+            Currency(id: "Curr\(i)", isoCode: "code\(i)", symbol: "\(i)", state: "state \(i)").save(toRealm: testRealm)
         }
     }
 

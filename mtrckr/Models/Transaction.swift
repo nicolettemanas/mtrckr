@@ -27,7 +27,7 @@ class Transaction: Object {
     dynamic var fromAccount: Account?
     dynamic var toAccount: Account?
     dynamic var category: Category?
-    dynamic var user: User?
+//    dynamic var user: User?
     dynamic var billEntry: BillEntry?
 
     override static func primaryKey() -> String? {
@@ -38,7 +38,7 @@ class Transaction: Object {
          category: Category?, from fromAccount: Account, to toAccount: Account, date: Date) {
 
         super.init()
-        self.id = "TRANS-\(fromAccount.user!.id)-\(UUID().uuidString)"
+        self.id = "TRANS-\(UUID().uuidString)"
         self.type = type.rawValue
         self.name = name
         self.image = image
@@ -48,7 +48,7 @@ class Transaction: Object {
         self.fromAccount = fromAccount
         self.toAccount = toAccount
         self.transactionDate = date
-        self.user = fromAccount.user
+//        self.user = fromAccount.user
     }
 
     // MARK: Required methods
@@ -79,7 +79,8 @@ class Transaction: Object {
     func update(type: TransactionType, name: String, image: String?, description: String?,
                 amount: Double, category: Category?, from fromAccount: Account, to toAccount: Account,
                 date: Date, inRealm realm: Realm) {
-        guard let _ = Transaction.with(key: self.id, inRealm: realm) else { return }
+
+        if Transaction.with(key: self.id, inRealm: realm) == nil { return }
 
         do {
             try realm.write {

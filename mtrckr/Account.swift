@@ -21,7 +21,7 @@ class Account: Object {
     dynamic var totalIncome: Double = 0.0
     dynamic var color: String = ""
     dynamic var dateOpened: Date = Date()
-    dynamic var user: User?
+//    dynamic var user: User?
 
     var transactionsToSelf = LinkingObjects(fromType: Transaction.self, property: "toAccount")
     var transactionsFromSelf = LinkingObjects(fromType: Transaction.self, property: "fromAccount")
@@ -56,7 +56,7 @@ class Account: Object {
 
     func update(name: String, type: AccountType, initialAmount: Double,
                 color: String, dateOpened: Date, in realm: Realm) {
-        guard let _ = Account.with(key: self.id, inRealm: realm) else { return }
+        guard (Account.with(key: self.id, inRealm: realm) != nil) else { return }
         do {
             try realm.write {
                 self.name = name
@@ -64,7 +64,8 @@ class Account: Object {
                 self.color = color
                 self.dateOpened = dateOpened
 
-                self.currentAmount -= self.initialAmount + initialAmount
+                let prevCurrentAmount = self.currentAmount
+                self.currentAmount = prevCurrentAmount - self.initialAmount + initialAmount
                 self.initialAmount = initialAmount
 
                 realm.add(self, update: true)
@@ -90,7 +91,7 @@ class Account: Object {
         return realm.object(ofType: Account.self, forPrimaryKey: key) as Account?
     }
 
-    static func all(in realm: Realm, ofUser user: User) -> Results<Account> {
-        return realm.objects(Account.self).filter("user.id == %@", user.id).sorted(byKeyPath: "name")
+    static func all(in realm: Realm) -> Results<Account> {
+        return realm.objects(Account.self).sorted(byKeyPath: "name")
     }
 }

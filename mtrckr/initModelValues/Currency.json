@@ -1,0 +1,56 @@
+[
+{
+    "isoCode": "PHP",
+    "symbol": "₱",
+    "state": "Philippine Peso",
+    "id": "869955BC-E2F5-4FA0-8B66-687E1287AF20"
+},
+{
+    "isoCode": "USD",
+    "symbol": "$",
+    "state": "United States Dollar",
+    "id": "73FCF781-FDB9-417B-9985-38B3B85666C6"
+},
+{
+    "isoCode": "EUR",
+    "symbol": "€",
+    "state": "Euro",
+    "id": "254D1960-5A67-409B-9951-D67EEDA7A997"
+},
+{
+    "isoCode": "AUD",
+    "symbol": "$",
+    "state": "Australian Dollar",
+    "id": "0A9F5786-3A29-4B55-B5FE-26A40A60447B"
+},
+{
+    "isoCode": "GBP",
+    "symbol": "£",
+    "state": "British Pound",
+    "id": "48724AAF-0437-41CB-96F9-9B533D503D7A"
+},
+{
+    "isoCode": "GGP",
+    "symbol": "£",
+    "state": "Guernsey Pound",
+    "id": "ECAFBC49-2D45-4EE5-A68D-09C201A94024"
+},
+{
+    "isoCode": "SGD",
+    "symbol": "$",
+    "state": "Singapore Dollar",
+    "id": "9CEB306E-9236-43B4-A493-F90AE69C7C14"
+},
+{
+    "isoCode": "INR",
+    "symbol": "₹",
+    "state": "Indian Rupee",
+    "id": "E77C8C83-DF0C-4AB4-88E5-4602997A71A4"
+},
+{
+    "isoCode": "JPY",
+    "symbol": "¥",
+    "state": "Japanese Yen",
+    "id": "9F82C64E-8434-41A7-9A5D-5A3144704A80"
+}
+]

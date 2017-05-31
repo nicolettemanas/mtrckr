@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Alamofire.xcscheme</key>
+		<key>CryptoSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,7 +67,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>11D6CBA0E2D61CF18A372C2BF449F8AB</key>
+		<key>0458C336A3BF8D1A0BAED1D05F3D040C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>12CAF7937CD05344178B59C5451824C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>136EEC7A9A976F193ECC68D2E6DB6E52</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1839D02074B8E7CB85E5140C4BBC3E11</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3C681E86E8A25E5D1EC2AA7FC1A7E610</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>56C088D403DAD2B30336B4694FB69A3D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +107,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>63BF9BD55006EDF8654390212D0E3245</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6775C6E8A7427DCD639FB127137AD572</key>
+		<key>6BB1C1403B2419F911818DA8413FDA07</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,27 +117,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>881455BA9F5A90E2CA4A004E8F898B11</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AC64C75211D4BBFB9A89384AF6921678</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DD3ED47342ED66B126001015977A2340</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E844970FD054A691A34AF5B5DFCAC6E2</key>
+		<key>898382600BE49850D4B8E6DDEB30FA86</key>
 		<dict>
 			<key>primary</key>
 			<true/>

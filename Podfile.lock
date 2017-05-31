@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.4.0)
+  - CryptoSwift (0.6.9)
   - DateToolsSwift (2.0.3)
   - Mockingjay (2.0.0):
     - Mockingjay/Core (= 2.0.0)
@@ -10,40 +10,40 @@ PODS:
     - Mockingjay/Core
   - Nimble (5.0.0)
   - Quick (1.0.0)
-  - Realm (2.5.1):
-    - Realm/Headers (= 2.5.1)
-  - Realm/Headers (2.5.1)
-  - RealmSwift (2.5.1):
-    - Realm (= 2.5.1)
+  - Realm (2.7.0):
+    - Realm/Headers (= 2.7.0)
+  - Realm/Headers (2.7.0)
+  - RealmSwift (2.7.0):
+    - Realm (= 2.7.0)
   - SwiftLint (0.18.1)
   - SwiftyJSON (3.1.4)
   - Swinject (2.0.0)
   - URITemplate (2.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.4.0)
+  - CryptoSwift (~> 0.6.9)
   - DateToolsSwift (~> 2.0.3)
   - Mockingjay (~> 2.0.0)
   - Nimble (= 5.0.0)
   - Quick (= 1.0.0)
-  - RealmSwift (~> 2.5.1)
+  - RealmSwift (~> 2.7.0)
   - SwiftLint (~> 0.18.1)
   - SwiftyJSON (~> 3.1.4)
   - Swinject (~> 2.0.0)
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
-  Realm: 32f86104d37c8521f864d4274050b38ba6190733
-  RealmSwift: f719e7511c902b8908593e8f143f59e47931bdb6
+  Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
+  RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
   SwiftLint: b467d08f5b25dc3b3cfed243d8e1b74b91714c67
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Swinject: 2e964a80d70ab09b3949c99032711f89147bfd60
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: f212c2d6c9a09493cf55b4b765e1dc4e1c9defee
+PODFILE CHECKSUM: 8c0edb727b44dba6673863b5968842df80a9b72b
 
 COCOAPODS: 1.1.1

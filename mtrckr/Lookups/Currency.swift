@@ -12,6 +12,7 @@ import Realm
 
 class Currency: Object/*, Mappable, Equatable*/ {
 
+    dynamic var id: String! = ""
     dynamic var isoCode: String! = ""
     dynamic var symbol: String! = ""
     dynamic var state: String! = ""
@@ -19,11 +20,12 @@ class Currency: Object/*, Mappable, Equatable*/ {
 //    let users = LinkingObjects(fromType: User.self, property: "currency")
 
     override static func primaryKey() -> String? {
-        return "isoCode"
+        return "id"
     }
 
-    convenience init(isoCode: String, symbol: String, state: String) {
+    convenience init(id: String, isoCode: String, symbol: String, state: String) {
         self.init()
+        self.id = id
         self.isoCode = isoCode
         self.symbol = symbol
         self.state = state
@@ -54,7 +56,7 @@ class Currency: Object/*, Mappable, Equatable*/ {
     }
 
     func update(to updatedCurrency: Currency, in realm: Realm) {
-        guard self.isoCode == updatedCurrency.isoCode else { return }
+        guard self.id == updatedCurrency.id else { return }
 
         do {
             try realm.write {
@@ -75,6 +77,12 @@ class Currency: Object/*, Mappable, Equatable*/ {
         }
     }
 
+    static func with(isoCode: String, inRealm realm: Realm) -> Currency? {
+        return realm.objects(Currency.self)
+            .filter("isoCode == %@", isoCode)
+            .first as Currency?
+    }
+    
     static func with(key: String, inRealm realm: Realm) -> Currency? {
         return realm.object(ofType: Currency.self, forPrimaryKey: key) as Currency?
     }
