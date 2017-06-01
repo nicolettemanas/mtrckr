@@ -1,14 +1,18 @@
 //
-//  MTTableViewCell.swift
+//  MTSettingsTableViewCell.swift
 //  mtrckr
 //
-//  Created by User on 5/10/17.
+//  Created by User on 6/1/17.
 //
 //
 
 import UIKit
 
-class MTTableViewCell: UITableViewCell {
+class MTSettingsTableViewCell: MTTableViewCell {
+
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var detail: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
