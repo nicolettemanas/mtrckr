@@ -9,6 +9,7 @@ PODS:
   - Mockingjay/XCTest (2.0.0):
     - Mockingjay/Core
   - Nimble (5.0.0)
+  - Presentr (1.2.3)
   - Quick (1.0.0)
   - Realm (2.7.0):
     - Realm/Headers (= 2.7.0)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - DateToolsSwift (~> 2.0.3)
   - Mockingjay (~> 2.0.0)
   - Nimble (= 5.0.0)
+  - Presentr (~> 1.2.0)
   - Quick (= 1.0.0)
   - RealmSwift (~> 2.7.0)
   - SwiftLint (~> 0.18.1)
@@ -36,6 +38,7 @@ SPEC CHECKSUMS:
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
+  Presentr: a21c7bbb3532c8ff60320e235c0a4869e72f8885
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
   Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
   RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
@@ -44,6 +47,6 @@ SPEC CHECKSUMS:
   Swinject: 2e964a80d70ab09b3949c99032711f89147bfd60
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: 8c0edb727b44dba6673863b5968842df80a9b72b
+PODFILE CHECKSUM: 8e4afd063d47e5553e1cd7fdd0a342c2926747bf
 
 COCOAPODS: 1.1.1

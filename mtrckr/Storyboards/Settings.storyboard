@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" id="twe-OG-Ji6" customClass="MTSettingsTableViewCell" customModule="mtrckr" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="twe-OG-Ji6" customClass="MTSettingsTableViewCell" customModule="mtrckr" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="twe-OG-Ji6" id="svv-pa-fk7">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IjL-BB-R3V">
@@ -33,13 +33,13 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="226-Zg-XHI">
-                                            <rect key="frame" x="52" y="11.5" width="64" height="21"/>
+                                            <rect key="frame" x="52" y="12" width="141" height="21"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <color key="textColor" red="0.22563147668393779" green="0.22563147668393779" blue="0.22563147668393779" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAf-vu-VJh">
-                                            <rect key="frame" x="278" y="11.5" width="64" height="21"/>
+                                            <rect key="frame" x="201" y="12" width="141" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.46785945595854928" green="0.46785945595854928" blue="0.46785945595854928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                                         <constraint firstItem="UAf-vu-VJh" firstAttribute="height" secondItem="226-Zg-XHI" secondAttribute="height" id="XcA-SA-1wn"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="IjL-BB-R3V" secondAttribute="leading" id="e6I-6H-fb8"/>
                                         <constraint firstItem="IjL-BB-R3V" firstAttribute="centerY" secondItem="svv-pa-fk7" secondAttribute="centerY" id="sTt-4U-Y3D"/>
-                                        <constraint firstItem="UAf-vu-VJh" firstAttribute="leading" secondItem="226-Zg-XHI" secondAttribute="trailing" constant="162" id="yNS-yF-b5Z"/>
+                                        <constraint firstItem="UAf-vu-VJh" firstAttribute="leading" secondItem="226-Zg-XHI" secondAttribute="trailing" constant="8" id="yNS-yF-b5Z"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <constraints>
@@ -95,37 +95,43 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Xo-8S-JYj" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="imi-qS-phL">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="imi-qS-phL" customClass="MTTextField" customModule="mtrckr" customModuleProvider="target">
                                                 <rect key="frame" x="30" y="218.5" width="315" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ti-5n-lAJ">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ti-5n-lAJ" customClass="MTTextField" customModule="mtrckr" customModuleProvider="target">
                                                 <rect key="frame" x="30" y="256.5" width="315" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Confirm password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ijp-CI-q5t">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ijp-CI-q5t" customClass="MTTextField" customModule="mtrckr" customModuleProvider="target">
                                                 <rect key="frame" x="30" y="294.5" width="315" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muy-qo-b1z">
-                                                <rect key="frame" x="29.5" y="336.5" width="315" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muy-qo-b1z" customClass="MTButton" customModule="mtrckr" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="336.5" width="315" height="30"/>
                                                 <state key="normal" title="Create account"/>
+                                                <connections>
+                                                    <action selector="createAccountBtnPressed:" destination="ByD-YI-qRZ" eventType="touchUpInside" id="wMH-yt-xoz"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already registered?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQq-ZA-gc5">
-                                                <rect key="frame" x="29.5" y="374.5" width="315" height="30"/>
+                                                <rect key="frame" x="30" y="374.5" width="315" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJx-S4-3cQ">
-                                                <rect key="frame" x="29.5" y="412.5" width="315" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJx-S4-3cQ" customClass="MTButton" customModule="mtrckr" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="412.5" width="315" height="30"/>
                                                 <state key="normal" title="Log in"/>
+                                                <connections>
+                                                    <action selector="loginBtnPressed:" destination="ByD-YI-qRZ" eventType="touchUpInside" id="oan-YT-4QE"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,6 +180,11 @@
                             <constraint firstItem="jIn-NU-dzu" firstAttribute="leading" secondItem="hBl-RI-E9D" secondAttribute="leading" id="yps-PM-niD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="confirmPasswordTxtField" destination="ijp-CI-q5t" id="M2u-xv-3XG"/>
+                        <outlet property="emailTxtField" destination="imi-qS-phL" id="p3Z-IL-7AE"/>
+                        <outlet property="passwordTxtField" destination="4ti-5n-lAJ" id="AO3-Wl-qaP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHD-rf-2ek" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -183,7 +194,7 @@
         <scene sceneID="Qbb-w7-N5N">
             <objects>
                 <navigationController storyboardIdentifier="SettingsNavigationController" title="Settings" id="ep4-Zp-Llu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lCy-5f-We3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lCy-5f-We3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -213,31 +224,37 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPl-PX-M5Q" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="60x-AH-qEt">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="60x-AH-qEt" customClass="MTTextField" customModule="mtrckr" customModuleProvider="target">
                                                 <rect key="frame" x="30" y="218.5" width="315" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UH3-cm-Vqm">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UH3-cm-Vqm" customClass="MTTextField" customModule="mtrckr" customModuleProvider="target">
                                                 <rect key="frame" x="30" y="256.5" width="315" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ot-NK-dTZ">
-                                                <rect key="frame" x="29.5" y="294.5" width="315" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ot-NK-dTZ" customClass="MTButton" customModule="mtrckr" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="294.5" width="315" height="30"/>
                                                 <state key="normal" title="Log in"/>
+                                                <connections>
+                                                    <action selector="loginBtnPressed:" destination="HQQ-oL-WBp" eventType="touchUpInside" id="TZb-jn-zUX"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KT-aO-K9o">
-                                                <rect key="frame" x="29.5" y="332.5" width="315" height="30"/>
+                                                <rect key="frame" x="30" y="332.5" width="315" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVa-To-X2M">
-                                                <rect key="frame" x="29.5" y="370.5" width="315" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVa-To-X2M" customClass="MTButton" customModule="mtrckr" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="370.5" width="315" height="30"/>
                                                 <state key="normal" title="Create an account"/>
+                                                <connections>
+                                                    <action selector="createBtnPressed:" destination="HQQ-oL-WBp" eventType="touchUpInside" id="wnI-XZ-Hoy"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -282,6 +299,10 @@
                             <constraint firstItem="x6R-8E-P5E" firstAttribute="top" secondItem="pqF-bA-Ep0" secondAttribute="bottom" id="tK6-Yo-GCu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTxtField" destination="60x-AH-qEt" id="zUf-WB-U4K"/>
+                        <outlet property="passwordTxtField" destination="UH3-cm-Vqm" id="pFK-8U-Cbt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0OW-UW-LFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

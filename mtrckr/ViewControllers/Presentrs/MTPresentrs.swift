@@ -9,9 +9,20 @@
 import UIKit
 import Presentr
 
-class AuthenticationPresentr {
+class MTPresentrs {
     
-    init() {
+    static var authPresentr: Presentr {
+        let presentr = Presentr(presentationType: .popup)
         
+        let customTransitionType = CoverVerticalAnimation(options: .spring(duration: 0.5, delay: 0,
+                                                                        damping: 0.8, velocity: 0.2))
+        
+        presentr.transitionType = .custom(customTransitionType)
+        presentr.roundCorners = true
+        presentr.cornerRadius = 15
+        presentr.dismissOnSwipe = true
+        presentr.backgroundOpacity = 0.5
+        presentr.keyboardTranslationType = .compress
+        return presentr
     }
 }

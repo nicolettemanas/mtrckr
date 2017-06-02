@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Presentr
 
 class MTSettingsTableViewController: MTTableViewController {
 
     let settingsCellIdentifier = "SettingsCell"
-    let settingsItems = [["Profile", "Currency", "Custom categories"], ["Log out"]]
-    let settingsDetails = [["", "$", "12"], [""]]
+    let settingsItems = [["Sync account", "Currency >", "Custom categories >"], ["Log out"]]
+    let settingsDetails = [["None", "$", "12"], [""]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,29 +47,35 @@ class MTSettingsTableViewController: MTTableViewController {
                 fatalError("Cannot dequeue cell with identifier: \(settingsCellIdentifier)")
             }
         
-        cell.title.text = settingsItems[indexPath.section][indexPath.row]
+        cell.title.text = settingsItems[indexPath.section][indexPath.row].replacingOccurrences(of: " >", with: "")
         cell.detail.text = settingsDetails[indexPath.section][indexPath.row]
         
-        cell.selectionStyle = .none
+        cell.selectionStyle = .gray
+        
+        if (settingsItems[indexPath.section][indexPath.row]).hasSuffix(">") {
+            cell.accessoryType = .disclosureIndicator
+        }
         
         return cell
-        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item: String = settingsItems[indexPath.section][indexPath.row]
         switch item {
-            case "Profile":
+            case settingsItems[0][0]:
                 guard let regViewController = self.storyboard?
                     .instantiateViewController(withIdentifier: "RegistrationViewController")
                     as? RegistrationViewController else { break }
                 
-                self.navigationController?.present(regViewController, animated: true, completion: nil)
-            case "Currency": break
-            case "Custom categories": break
-            case "Log out": break
+                let presenter = MTPresentrs.authPresentr
+                customPresentViewController(presenter, viewController: regViewController, animated: true, completion: nil)
+            case settingsItems[0][1]: break
+            case settingsItems[0][2]: break
+            case settingsItems[1][0]: break
             default: break
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }
