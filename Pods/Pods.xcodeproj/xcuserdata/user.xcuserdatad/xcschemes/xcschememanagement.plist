@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Hero.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Mockingjay.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,17 +77,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>085699C828AAB04758D33465214404FD</key>
+		<key>1993108D4F8C0D192DD91B9D83CF4F52</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0B4443F34591EA9BEDA341F7091B2B4E</key>
+		<key>3C2ED3FB0F7805FA61763F65C3C7BFE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>28B40AB9ECBFB75E7BC0F281AACF8226</key>
+		<key>4A3E211676B243619B026D147D272253</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,17 +122,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A69C513B1D10692033CFD35EBC666BB8</key>
+		<key>8F54FF935B86924260779DC6C90945C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ABA0AA64811689EA468A8CCFFCB27B3B</key>
+		<key>9B6CC700FF455CA7CFCE616FFC6D25D9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C74A04ADB24E018A2C9109EBFCDCB077</key>
+		<key>A3DFDE1B0B2047DEDD3AE32307F1DA28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC59FB9A1E93D51FBBFE3DF5941F6F2C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

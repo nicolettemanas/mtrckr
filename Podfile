@@ -14,6 +14,7 @@ target "mtrckr" do
 #    pod 'Alamofire', '~> 4.4.0'
     pod 'CryptoSwift', '~> 0.6.9'
     pod 'Presentr', '~> 1.2.0'
+    pod 'Hero', '~> 0.3.6'
     commonPods
  
  abstract_target 'Tests' do

@@ -1,6 +1,7 @@
 PODS:
   - CryptoSwift (0.6.9)
   - DateToolsSwift (2.0.3)
+  - Hero (0.3.6)
   - Mockingjay (2.0.0):
     - Mockingjay/Core (= 2.0.0)
     - Mockingjay/XCTest (= 2.0.0)
@@ -24,6 +25,7 @@ PODS:
 DEPENDENCIES:
   - CryptoSwift (~> 0.6.9)
   - DateToolsSwift (~> 2.0.3)
+  - Hero (~> 0.3.6)
   - Mockingjay (~> 2.0.0)
   - Nimble (= 5.0.0)
   - Presentr (~> 1.2.0)
@@ -36,6 +38,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
+  Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
   Presentr: a21c7bbb3532c8ff60320e235c0a4869e72f8885
@@ -47,6 +50,6 @@ SPEC CHECKSUMS:
   Swinject: 2e964a80d70ab09b3949c99032711f89147bfd60
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: 8e4afd063d47e5553e1cd7fdd0a342c2926747bf
+PODFILE CHECKSUM: c3b77f9c208b6a502eb06e41651759576fbdb51e
 
 COCOAPODS: 1.1.1

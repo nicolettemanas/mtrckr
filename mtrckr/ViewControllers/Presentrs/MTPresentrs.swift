@@ -18,11 +18,20 @@ class MTPresentrs {
                                                                         damping: 0.8, velocity: 0.2))
         
         presentr.transitionType = .custom(customTransitionType)
-        presentr.roundCorners = true
-        presentr.cornerRadius = 15
+        presentr.roundCorners = false
         presentr.dismissOnSwipe = true
         presentr.backgroundOpacity = 0.5
         presentr.keyboardTranslationType = .compress
         return presentr
     }
+    
+//    static var authPresentr: Presentr {
+//        let presentr = Presentr(presentationType: .fullScreen)
+//        presentr.transitionType = TransitionType.coverVertical
+//        presentr.roundCorners = false
+//        presentr.dismissOnSwipe = true
+//        presentr.backgroundOpacity = 0.5
+//        presentr.keyboardTranslationType = .compress
+//        return presentr
+//    }
 }

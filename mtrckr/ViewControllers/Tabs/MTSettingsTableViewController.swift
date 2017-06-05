@@ -38,7 +38,7 @@ class MTSettingsTableViewController: MTTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 60
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,8 +67,13 @@ class MTSettingsTableViewController: MTTableViewController {
                     .instantiateViewController(withIdentifier: "RegistrationViewController")
                     as? RegistrationViewController else { break }
                 
-                let presenter = MTPresentrs.authPresentr
-                customPresentViewController(presenter, viewController: regViewController, animated: true, completion: nil)
+                let authConfig: AuthConfigProtocol = RealmAuthConfig()
+                let authInteractor: RealmAuthInteractorProtocol = RealmAuthInteractor(config: authConfig)
+                let authEncryption: EncryptionInteractorProtocol = EncryptionInteractor()
+                let authPresenter: RealmAuthPresenter = RealmAuthPresenter(interactor: authInteractor, encrypter: authEncryption, output: regViewController)
+                regViewController.presenter = authPresenter
+                
+                navigationController?.present(regViewController, animated: true, completion: nil)
             case settingsItems[0][1]: break
             case settingsItems[0][2]: break
             case settingsItems[1][0]: break
