@@ -10,6 +10,7 @@ PODS:
   - Mockingjay/XCTest (2.0.0):
     - Mockingjay/Core
   - Nimble (5.0.0)
+  - NVActivityIndicatorView (3.6.1)
   - Presentr (1.2.3)
   - Quick (1.0.0)
   - Realm (2.7.0):
@@ -17,6 +18,7 @@ PODS:
   - Realm/Headers (2.7.0)
   - RealmSwift (2.7.0):
     - Realm (= 2.7.0)
+  - SkyFloatingLabelTextField (3.1.0)
   - SwiftLint (0.18.1)
   - SwiftyJSON (3.1.4)
   - Swinject (2.0.0)
@@ -28,9 +30,11 @@ DEPENDENCIES:
   - Hero (~> 0.3.6)
   - Mockingjay (~> 2.0.0)
   - Nimble (= 5.0.0)
+  - NVActivityIndicatorView (~> 3.6.1)
   - Presentr (~> 1.2.0)
   - Quick (= 1.0.0)
   - RealmSwift (~> 2.7.0)
+  - SkyFloatingLabelTextField (~> 3.1.0)
   - SwiftLint (~> 0.18.1)
   - SwiftyJSON (~> 3.1.4)
   - Swinject (~> 2.0.0)
@@ -41,15 +45,17 @@ SPEC CHECKSUMS:
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
+  NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
   Presentr: a21c7bbb3532c8ff60320e235c0a4869e72f8885
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
   Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
   RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
+  SkyFloatingLabelTextField: 26a92ad407044dd5a7c3e4e348738ff0991514fe
   SwiftLint: b467d08f5b25dc3b3cfed243d8e1b74b91714c67
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Swinject: 2e964a80d70ab09b3949c99032711f89147bfd60
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: c3b77f9c208b6a502eb06e41651759576fbdb51e
+PODFILE CHECKSUM: 4659450fdad8be6a349162f89917fd60a6bd2f42
 
 COCOAPODS: 1.1.1

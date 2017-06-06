@@ -15,17 +15,17 @@ class ViewController: UIViewController, RealmAuthPresenterOutput {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        InitialRealmGenerator.generateInitRealm { (_) in
-            let interactor = RealmAuthInteractor(config: RealmAuthConfig())
-            let presenter = RealmAuthPresenter(interactor: interactor,
-                                               encrypter: EncryptionInteractor(),
-                                               output: self)
-            interactor.output = presenter
-            
-            if SyncUser.current != nil {
-                interactor.logout()
-            }
-            
+//        InitialRealmGenerator.generateInitRealm { (_) in
+//            let interactor = RealmAuthInteractor(config: RealmAuthConfig())
+//            let presenter = RealmAuthPresenter(interactor: interactor,
+//                                               encrypter: EncryptionInteractor(),
+//                                               output: self)
+//            interactor.output = presenter
+//            
+//            if SyncUser.current != nil {
+//                interactor.logout()
+//            }
+        
             // #####
             // Offline first, register to sync
             // #####
@@ -76,7 +76,7 @@ class ViewController: UIViewController, RealmAuthPresenterOutput {
 //                                              "dateOpened": Date()])
 //                account.save(toRealm: realm!)
 //                presenter.login(withEmail: "user1", withPassword: "user1", loginSyncOption: .append)
-        }
+//        }
         
     }
 

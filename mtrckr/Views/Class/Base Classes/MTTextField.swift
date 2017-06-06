@@ -7,15 +7,28 @@
 //
 
 import UIKit
+import SkyFloatingLabelTextField
 
-class MTTextField: UITextField {
+class MTTextField: SkyFloatingLabelTextField {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUpSkyFloatingLabelProperties()
     }
-    */
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setUpSkyFloatingLabelProperties()
+    }
 
+    func setUpSkyFloatingLabelProperties() {
+        self.titleFadeInDuration = 0.2
+        self.titleFadeOutDuration = 0.2
+        self.lineColor = .lightGray
+        self.titleColor = .lightGray
+        self.errorColor = .red
+        self.selectedTitleColor = .darkGray
+        self.selectedLineColor = .darkGray
+        self.lineHeight = 2.0
+    }
 }

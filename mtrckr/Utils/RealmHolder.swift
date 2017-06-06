@@ -35,19 +35,18 @@ class RealmHolder {
                 fatalError("Cannot initialize offline user realm with error: \(error)")
             }
         } else {
-            do {
-                let userRealm = try Realm()
-                if didSync == false && shouldSync == true {
-                    let offlineRealm = getOfflineRealm()
-                    migrate(objects: config.objects, fromRealm: offlineRealm, toRealm: userRealm)
-                    didSync = true
-                }
-                
-                print("sync realm: \(String(describing: userRealm.configuration.syncConfiguration?.realmURL))")
-                return userRealm
-            } catch let error as NSError {
-                fatalError("Cannot initialize user realm with error: \(error)")
+            guard let userRealm = try? Realm() else {
+                fatalError("Cannot initialize user realm")
             }
+            
+            if didSync == false && shouldSync == true {
+                let offlineRealm = getOfflineRealm()
+                migrate(objects: config.objects, fromRealm: offlineRealm, toRealm: userRealm)
+                didSync = true
+            }
+            
+            print("sync realm: \(String(describing: userRealm.configuration.syncConfiguration?.realmURL))")
+            return userRealm
         }
     }
     
@@ -68,7 +67,7 @@ class RealmHolder {
         do {
             var offlineConfig = Realm.Configuration()
             offlineConfig.fileURL = offlineConfig.fileURL!.deletingLastPathComponent()
-                                    .appendingPathComponent("/initRealm/\(config.offlineRealmFileName).realm")
+                                    .appendingPathComponent("initRealm/\(config.offlineRealmFileName).realm")
             let offlineRealm = try Realm(configuration: offlineConfig)
             return offlineRealm
         } catch let error as NSError {
@@ -79,7 +78,8 @@ class RealmHolder {
     // MARK: - Migrating between realms
     private func migrate(objects: [String], fromRealm source: Realm, toRealm destination: Realm) {
         do {
-            print("Migrating contents of \(String(describing: source.configuration.fileURL?.lastPathComponent)) to \(String(describing: destination.configuration.fileURL?.lastPathComponent))")
+            print("Migrating contents of \(String(describing: source.configuration.fileURL?.lastPathComponent)) to " +
+                "\(String(describing: destination.configuration.fileURL?.lastPathComponent))")
             try destination.write({
                 for object in objects {
                     let localObjects = source.dynamicObjects(object)

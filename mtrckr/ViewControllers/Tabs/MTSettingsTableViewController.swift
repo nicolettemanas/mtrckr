@@ -7,26 +7,59 @@
 //
 
 import UIKit
-import Presentr
+import RealmSwift
 
-class MTSettingsTableViewController: MTTableViewController {
+protocol AuthViewControllerDelegate: class {
+    func didDismiss()
+}
 
-    let settingsCellIdentifier = "SettingsCell"
+class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDelegate, RealmAuthPresenterOutput {
+
+    private var syncedUserToken: NotificationToken?
+    private var authPresenter: RealmAuthPresenter?
+    
+    var realm: Realm?
+    var settingsDetails: [[String]] = [["None", "Not set", "0"], [""]]
     let settingsItems = [["Sync account", "Currency >", "Custom categories >"], ["Log out"]]
-    let settingsDetails = [["None", "$", "12"], [""]]
+    
+    let settingsCellIdentifier = "SettingsCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupUserData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK - UITableViewDelegate and UITableViewDatasource Methods
+    // MARK: - User data methods
+    func setupUserData() {
+        realm = RealmHolder.sharedInstance.userRealm
+        guard realm != nil else {
+            fatalError("No realm provided")
+        }
+        
+        let user = realm?.objects(User.self).first
+        if SyncUser.current == nil {
+            settingsDetails[0][0] = "None"
+        } else {
+            settingsDetails[0][0] = realm?.objects(User.self).first?.name ?? ""
+        }
+        
+        settingsDetails[0][1] = user?.currency?.isoCode ?? "Not set"
+        settingsDetails[0][2] = "\(Category.all(in: realm!, customized: true).count)"
+    }
+    
+    // MARK: AuthViewControllerDelegate methods
+    func didDismiss() {
+        setupUserData()
+        tableView.reloadData()
+    }
+    
+    // MARK: - UITableViewDelegate and UITableViewDatasource Methods
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return SyncUser.current == nil ? 1 : 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,27 +93,83 @@ class MTSettingsTableViewController: MTTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let item: String = settingsItems[indexPath.section][indexPath.row]
         switch item {
             case settingsItems[0][0]:
-                guard let regViewController = self.storyboard?
-                    .instantiateViewController(withIdentifier: "RegistrationViewController")
-                    as? RegistrationViewController else { break }
-                
-                let authConfig: AuthConfigProtocol = RealmAuthConfig()
-                let authInteractor: RealmAuthInteractorProtocol = RealmAuthInteractor(config: authConfig)
-                let authEncryption: EncryptionInteractorProtocol = EncryptionInteractor()
-                let authPresenter: RealmAuthPresenter = RealmAuthPresenter(interactor: authInteractor, encrypter: authEncryption, output: regViewController)
-                regViewController.presenter = authPresenter
-                
-                navigationController?.present(regViewController, animated: true, completion: nil)
+                if SyncUser.current != nil {
+                    return
+                }
+                goToRegistration()
             case settingsItems[0][1]: break
             case settingsItems[0][2]: break
-            case settingsItems[1][0]: break
+            case settingsItems[1][0]:
+                displayLogoutSheet()
+                break
             default: break
         }
+    }
+    
+    // MARK: - RealmAuthPresenterOutput methods
+    func showSuccesfulLogout() {
+        setupUserData()
+        tableView.reloadData()
+    }
+    
+    // MARK: - UX Flow methods
+    func goToRegistration() {
+        guard let regViewController = self.storyboard?
+            .instantiateViewController(withIdentifier: "RegistrationViewController")
+            as? RegistrationViewController
+        else {
+            fatalError("Cannot find view controller with identifier RegistrationViewController")
+        }
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        // TODO: Use Swinject for these
+        let authConfig = RealmAuthConfig()
+        let authEncryption = EncryptionInteractor()
+        let regInteractor = RealmRegInteractor(config: authConfig)
+        let authPresenter = RealmAuthPresenter(regInteractor: regInteractor,
+                                               loginInteractor: nil,
+                                               logoutInteractor: nil,
+                                               encrypter: authEncryption,
+                                               output: regViewController)
+        regInteractor.output = authPresenter
+        regViewController.delegate = self
+        regViewController.presenter = authPresenter
+        
+        navigationController?.present(regViewController, animated: true, completion: nil)
+    }
+    
+    func displayLogoutSheet() {
+        let logoutOptions = UIAlertController(title: nil,
+                                             message: "Are you sure you want to log out? Transactions saved when logged out will not be syned in your account.",
+                                             preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            logoutOptions.dismiss(animated: true, completion: nil)
+        }
+        
+        let logoutAction = UIAlertAction(title: "Log out", style: .destructive) { _ in
+            self.performLogout()
+        }
+        
+        logoutOptions.addAction(cancelAction)
+        logoutOptions.addAction(logoutAction)
+        
+        present(logoutOptions, animated: true, completion: nil)
+    }
+    
+    func performLogout() {
+        // TODO: Use Swinject for these
+        let logoutInteractor = RealmLogoutInteractor()
+        authPresenter = RealmAuthPresenter(regInteractor: nil,
+                                           loginInteractor: nil,
+                                           logoutInteractor: logoutInteractor,
+                                           encrypter: nil,
+                                           output: self)
+        logoutInteractor.output = authPresenter
+        authPresenter?.logout()
     }
 
 }

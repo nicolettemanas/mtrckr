@@ -15,6 +15,8 @@ target "mtrckr" do
     pod 'CryptoSwift', '~> 0.6.9'
     pod 'Presentr', '~> 1.2.0'
     pod 'Hero', '~> 0.3.6'
+    pod 'SkyFloatingLabelTextField', '~> 3.1.0'
+    pod 'NVActivityIndicatorView', '~> 3.6.1'
     commonPods
  
  abstract_target 'Tests' do

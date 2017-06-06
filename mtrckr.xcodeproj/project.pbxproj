@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B8DBDF76F6F3E52F4DEE9DA /* Pods_Tests_mtrckrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */; };
-		CE005F531ECAE4DC00536C1A /* RealmAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE005F521ECAE4DC00536C1A /* RealmAuthInteractor.swift */; };
+		CE005F531ECAE4DC00536C1A /* RealmRegInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE005F521ECAE4DC00536C1A /* RealmRegInteractor.swift */; };
 		CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */; };
 		CE03C22B1EC3652A009A6AB0 /* MTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03C22A1EC3652A009A6AB0 /* MTButton.swift */; };
 		CE03C22D1EC36539009A6AB0 /* MTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03C22C1EC36539009A6AB0 /* MTView.swift */; };
@@ -22,6 +22,8 @@
 		CE130B4D1EE1300B007C6979 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE130B4C1EE1300B007C6979 /* RegistrationView.swift */; };
 		CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */; };
 		CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31051E9B2AAB0022CA57 /* Transaction.swift */; };
+		CE2C7DFB1EE567A2002AB5DC /* RealmLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C7DFA1EE567A2002AB5DC /* RealmLoginInteractor.swift */; };
+		CE2C7DFD1EE56B61002AB5DC /* RealmLogoutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C7DFC1EE56B61002AB5DC /* RealmLogoutInteractor.swift */; };
 		CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89B71E96797A00EBE809 /* UserTests.swift */; };
 		CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BA1E967F0800EBE809 /* BillTests.swift */; };
 		CE3A89BD1E972BB600EBE809 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BC1E972BB600EBE809 /* Bill.swift */; };
@@ -76,7 +78,7 @@
 		64CD9E5AF4ED7260FCAB52DD /* Pods-Tests-mtrckrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_mtrckrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B482AB359D6C323EF27CB17C /* Pods-mtrckr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mtrckr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr.debug.xcconfig"; sourceTree = "<group>"; };
-		CE005F521ECAE4DC00536C1A /* RealmAuthInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthInteractor.swift; path = Interactors/RealmSyncing/RealmAuthInteractor.swift; sourceTree = "<group>"; };
+		CE005F521ECAE4DC00536C1A /* RealmRegInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmRegInteractor.swift; path = Interactors/RealmSyncing/RealmRegInteractor.swift; sourceTree = "<group>"; };
 		CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthPresenter.swift; path = Presenters/RealmSyncing/RealmAuthPresenter.swift; sourceTree = "<group>"; };
 		CE03C22A1EC3652A009A6AB0 /* MTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTButton.swift; path = Views/Class/MTButton.swift; sourceTree = "<group>"; };
 		CE03C22C1EC36539009A6AB0 /* MTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTView.swift; path = Views/Class/MTView.swift; sourceTree = "<group>"; };
@@ -90,6 +92,8 @@
 		CE130B4C1EE1300B007C6979 /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationView.swift; path = Views/Class/Authentication/RegistrationView.swift; sourceTree = "<group>"; };
 		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE1F31051E9B2AAB0022CA57 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Models/Transaction.swift; sourceTree = "<group>"; };
+		CE2C7DFA1EE567A2002AB5DC /* RealmLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmLoginInteractor.swift; path = Interactors/Authentication/RealmLoginInteractor.swift; sourceTree = "<group>"; };
+		CE2C7DFC1EE56B61002AB5DC /* RealmLogoutInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmLogoutInteractor.swift; path = Interactors/Authentication/RealmLogoutInteractor.swift; sourceTree = "<group>"; };
 		CE3A89B71E96797A00EBE809 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = UserTests.swift; path = UserTests/UserTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE3A89BA1E967F0800EBE809 /* BillTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillTests.swift; path = BillTests/BillTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE3A89BC1E972BB600EBE809 /* Bill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bill.swift; path = Models/Bill.swift; sourceTree = "<group>"; };
@@ -180,17 +184,19 @@
 			isa = PBXGroup;
 			children = (
 				CE0783931ED3D6000007AD15 /* Encryption */,
-				CE005F501ECAE48700536C1A /* RealmSyncing */,
+				CE005F501ECAE48700536C1A /* Authentication */,
 			);
 			name = Interactors;
 			sourceTree = "<group>";
 		};
-		CE005F501ECAE48700536C1A /* RealmSyncing */ = {
+		CE005F501ECAE48700536C1A /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				CE005F521ECAE4DC00536C1A /* RealmAuthInteractor.swift */,
+				CE005F521ECAE4DC00536C1A /* RealmRegInteractor.swift */,
+				CE2C7DFA1EE567A2002AB5DC /* RealmLoginInteractor.swift */,
+				CE2C7DFC1EE56B61002AB5DC /* RealmLogoutInteractor.swift */,
 			);
-			name = RealmSyncing;
+			name = Authentication;
 			sourceTree = "<group>";
 		};
 		CE005F511ECAE49500536C1A /* Presenters */ = {
@@ -723,6 +729,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */,
+				CE2C7DFD1EE56B61002AB5DC /* RealmLogoutInteractor.swift in Sources */,
 				CE3A89BD1E972BB600EBE809 /* Bill.swift in Sources */,
 				CEFB22C51E94FD8B00867CDA /* Currency.swift in Sources */,
 				CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */,
@@ -733,7 +740,7 @@
 				CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */,
 				CEFB22C41E94FD8B00867CDA /* AccountType.swift in Sources */,
 				CE130B481EE12F68007C6979 /* RegistrationViewController.swift in Sources */,
-				CE005F531ECAE4DC00536C1A /* RealmAuthInteractor.swift in Sources */,
+				CE005F531ECAE4DC00536C1A /* RealmRegInteractor.swift in Sources */,
 				CEF044B01EDDD46500486EAC /* InitialRealmGenerator.swift in Sources */,
 				CEA05C151EE0F4640091414F /* MTPresentrs.swift in Sources */,
 				CEF044CF1EDFF67700486EAC /* MTTableViewController.swift in Sources */,
@@ -748,6 +755,7 @@
 				CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */,
 				CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */,
 				CEF044DC1EE0211500486EAC /* LoginViewController.swift in Sources */,
+				CE2C7DFB1EE567A2002AB5DC /* RealmLoginInteractor.swift in Sources */,
 				CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */,
 				CE130B4D1EE1300B007C6979 /* RegistrationView.swift in Sources */,
 				CE03C22D1EC36539009A6AB0 /* MTView.swift in Sources */,

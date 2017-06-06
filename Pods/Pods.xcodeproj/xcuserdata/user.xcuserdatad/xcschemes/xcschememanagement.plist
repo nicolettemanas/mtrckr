@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NVActivityIndicatorView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Nimble.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -59,6 +64,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SkyFloatingLabelTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,12 +87,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1993108D4F8C0D192DD91B9D83CF4F52</key>
+		<key>0A881ADEDFBC1AF0C8326EA9B11B58F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3C2ED3FB0F7805FA61763F65C3C7BFE0</key>
+		<key>0FDBE26AA0FB70F21F95364042A3B8CD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3BCEDDA0D61DFDD9276ED919A4CC90D1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,6 +122,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>636E61B3DFD8C425A485D173E3343C14</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6775C6E8A7427DCD639FB127137AD572</key>
 		<dict>
 			<key>primary</key>
@@ -112,7 +137,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>724E8834168A077697E64E515134B133</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>83809A38136027B4284EC111C802F7B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>87EBF858803BFBC476FA8019C5511A8E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,27 +157,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8F54FF935B86924260779DC6C90945C7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9B6CC700FF455CA7CFCE616FFC6D25D9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A3DFDE1B0B2047DEDD3AE32307F1DA28</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DC59FB9A1E93D51FBBFE3DF5941F6F2C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>E89CFD99B895BCC6E8EDC2F95A03500C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F62C4C3A5E662DFDEB43978ED50E4CDA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

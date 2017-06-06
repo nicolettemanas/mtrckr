@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // **************
+        // TODO: Remove this when auth process is finished
+        // logout every run
+        InitialRealmGenerator.generateInitRealm { (_) in
+            if SyncUser.current != nil {
+                RealmLogoutInteractor().logout()
+            }
+            _ = RealmHolder.sharedInstance.userRealm
+        }
+        
+        // **************
+        
         return true
     }
 

@@ -1,4 +1,3 @@
-
 //
 //  InitialRealmGenerator.swift
 //  mtrckr
@@ -54,7 +53,7 @@ class InitialRealmGenerator {
         onComplete(initialRealm.configuration.fileURL)
     }
     
-    static private func makeInitDir() {
+    static func makeInitDir() {
         let fileManager = FileManager.default
         let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         let realmDir = URL(fileURLWithPath: docsDir, isDirectory: true).appendingPathComponent("initRealm")
