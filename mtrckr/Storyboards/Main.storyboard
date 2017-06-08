@@ -12,39 +12,43 @@
         <scene sceneID="ZAT-WN-A3f">
             <objects>
                 <tabBarController id="RcO-Nt-8c8" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="jAG-Y2-baC">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="jAG-Y2-baC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.65490196078431373" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.16078431372549018" green="0.16470588235294117" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.0" green="0.65490196079999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="I48-bK-8Xs" kind="relationship" relationship="viewControllers" id="Cn8-fo-N2l"/>
-                        <segue destination="pU8-bq-ycy" kind="relationship" relationship="viewControllers" id="5uH-Sg-OHR"/>
-                        <segue destination="ch3-9Z-a7k" kind="relationship" relationship="viewControllers" id="Kjn-k6-orO"/>
-                        <segue destination="geE-dR-2Hq" kind="relationship" relationship="viewControllers" id="7WZ-na-tc7"/>
-                        <segue destination="Dsl-sI-G6I" kind="relationship" relationship="viewControllers" id="ngN-R9-kHD"/>
+                        <segue destination="pU8-bq-ycy" kind="relationship" relationship="viewControllers" id="zrP-qH-luP"/>
+                        <segue destination="ch3-9Z-a7k" kind="relationship" relationship="viewControllers" id="JOU-dV-33W"/>
+                        <segue destination="geE-dR-2Hq" kind="relationship" relationship="viewControllers" id="pqb-3X-JMj"/>
+                        <segue destination="Dsl-sI-G6I" kind="relationship" relationship="viewControllers" id="5iy-YZ-424"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="me3-tq-a3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-257" y="-1939"/>
+            <point key="canvasLocation" x="-106" y="-1955"/>
         </scene>
         <!--AccountsNavigationController-->
         <scene sceneID="IdJ-wx-PDK">
             <objects>
                 <viewControllerPlaceholder storyboardName="Accounts" referencedIdentifier="AccountsNavigationController" id="I48-bK-8Xs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="DEj-1P-yxv"/>
+                    <tabBarItem key="tabBarItem" title="" image="account-dark" selectedImage="account-dark" id="DEj-1P-yxv"/>
                     <navigationItem key="navigationItem" id="yl6-0h-xaz"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l5w-W3-bWL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="542" y="-2037"/>
+            <point key="canvasLocation" x="566" y="-2018"/>
         </scene>
         <!--BillsNavigationController-->
         <scene sceneID="sGP-3F-ulN">
             <objects>
                 <viewControllerPlaceholder storyboardName="Bills" referencedIdentifier="BillsNavigationController" id="pU8-bq-ycy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="qdx-Y3-Qfl"/>
+                    <tabBarItem key="tabBarItem" title="" image="bill-dark" selectedImage="bill-dark" id="qdx-Y3-Qfl"/>
                     <navigationItem key="navigationItem" id="Bnm-E5-Q0l"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bpJ-WK-sm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -55,34 +59,41 @@
         <scene sceneID="u9B-0A-ouw">
             <objects>
                 <viewControllerPlaceholder storyboardName="Summary" referencedIdentifier="SummaryNavigationController" id="geE-dR-2Hq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="GJs-rX-tVe"/>
+                    <tabBarItem key="tabBarItem" title="" image="report-dark" selectedImage="report-dark" id="GJs-rX-tVe"/>
                     <navigationItem key="navigationItem" id="vvD-YK-ePR"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zmt-8D-fXH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="542" y="-1888"/>
+            <point key="canvasLocation" x="566" y="-1921"/>
         </scene>
         <!--SettingsNavigationController-->
         <scene sceneID="tVw-vd-YSb">
             <objects>
                 <viewControllerPlaceholder storyboardName="Settings" referencedIdentifier="SettingsNavigationController" id="Dsl-sI-G6I" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="XTZ-gT-lLx"/>
+                    <tabBarItem key="tabBarItem" title="" image="settings-dark" selectedImage="settings-dark" id="XTZ-gT-lLx"/>
                     <navigationItem key="navigationItem" id="cRq-wg-izz"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJz-MO-4OW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="542" y="-1837"/>
+            <point key="canvasLocation" x="559" y="-1885"/>
         </scene>
         <!--TodayNavigationController-->
         <scene sceneID="Ry1-tT-ERm">
             <objects>
                 <viewControllerPlaceholder storyboardName="Today" referencedIdentifier="TodayNavigationController" id="ch3-9Z-a7k" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="kWc-U5-aR7"/>
+                    <tabBarItem key="tabBarItem" title="" image="calendar-dark" selectedImage="calendar-dark" id="kWc-U5-aR7"/>
                     <navigationItem key="navigationItem" id="0uu-BY-Qoc"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUl-XG-2Bi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="542" y="-1939"/>
+            <point key="canvasLocation" x="549" y="-1956"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="account-dark" width="25" height="25"/>
+        <image name="bill-dark" width="37" height="37"/>
+        <image name="calendar-dark" width="25" height="25"/>
+        <image name="report-dark" width="25" height="25"/>
+        <image name="settings-dark" width="25" height="25"/>
+    </resources>
 </document>

@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i9O-Jo-l06" id="rMQ-kN-P83">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -41,6 +41,10 @@
         <scene sceneID="qgc-Sc-1zf">
             <objects>
                 <navigationController storyboardIdentifier="BillsNavigationController" title="Bills" id="Vrv-ka-Y60" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="bill-dark" selectedImage="bill-dark" id="whI-2t-r9C">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lAN-Fr-iMX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -54,4 +58,7 @@
             <point key="canvasLocation" x="-350" y="139"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bill-dark" width="37" height="37"/>
+    </resources>
 </document>

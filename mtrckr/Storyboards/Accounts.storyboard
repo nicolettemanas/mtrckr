@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6by-sg-iS9" id="diS-50-Frb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -41,6 +41,10 @@
         <scene sceneID="Te1-cP-z1B">
             <objects>
                 <navigationController storyboardIdentifier="AccountsNavigationController" title="Accounts" id="Zni-BH-bNB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="account-dark" selectedImage="account-dark" id="NBh-nk-Ouz">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yea-Gm-aJS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -54,4 +58,7 @@
             <point key="canvasLocation" x="-313" y="44"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="account-dark" width="25" height="25"/>
+    </resources>
 </document>

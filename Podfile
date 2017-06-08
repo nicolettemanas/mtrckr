@@ -3,7 +3,6 @@
 use_frameworks!
 
 def commonPods
-    pod 'SwiftyJSON', '~> 3.1.4'
     pod 'DateToolsSwift', '~> 2.0.3'
     pod 'Swinject', '~> 2.0.0'
     pod 'RealmSwift', '~> 2.7.0'
@@ -11,9 +10,7 @@ def commonPods
 end
 
 target "mtrckr" do
-#    pod 'Alamofire', '~> 4.4.0'
     pod 'CryptoSwift', '~> 0.6.9'
-    pod 'Presentr', '~> 1.2.0'
     pod 'Hero', '~> 0.3.6'
     pod 'SkyFloatingLabelTextField', '~> 3.1.0'
     pod 'NVActivityIndicatorView', '~> 3.6.1'

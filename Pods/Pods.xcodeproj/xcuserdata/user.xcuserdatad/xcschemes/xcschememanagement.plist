@@ -44,11 +44,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Presentr.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Quick.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -69,11 +64,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwiftyJSON.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Swinject.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,21 +77,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0A881ADEDFBC1AF0C8326EA9B11B58F8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0FDBE26AA0FB70F21F95364042A3B8CD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3BCEDDA0D61DFDD9276ED919A4CC90D1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
 		<dict>
 			<key>primary</key>
@@ -122,12 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>636E61B3DFD8C425A485D173E3343C14</key>
+		<key>641580D96E8EEA8CD167D615AAD7B180</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6775C6E8A7427DCD639FB127137AD572</key>
+		<key>6B14503623272475FB334272FCDCBAF0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,22 +112,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>724E8834168A077697E64E515134B133</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>83809A38136027B4284EC111C802F7B0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>87EBF858803BFBC476FA8019C5511A8E</key>
+		<key>87B6A3F2C1827A927B8C5BEB0D0B43F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>881455BA9F5A90E2CA4A004E8F898B11</key>
+		<key>A6F3A47BE3BF5574BBB96B4580B407ED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D15A9CC9689956B99A02EE67205EAB53</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E5EB976D9344AD2E89AC0CB2D08D52EF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,7 +142,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F62C4C3A5E662DFDEB43978ED50E4CDA</key>
+		<key>FDB4D9443249B47BDCB6C2489A64B3EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

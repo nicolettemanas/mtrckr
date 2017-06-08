@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kym-Gu-GWf" id="STQ-NC-Jtq">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -41,6 +41,10 @@
         <scene sceneID="1Gf-b6-old">
             <objects>
                 <navigationController storyboardIdentifier="TodayNavigationController" title="Today" id="nSs-Wg-Rlk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="calendar-dark" selectedImage="calendar-dark" id="ILO-xd-KWL">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CZG-9q-9vZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -54,4 +58,7 @@
             <point key="canvasLocation" x="-375" y="144"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="calendar-dark" width="25" height="25"/>
+    </resources>
 </document>

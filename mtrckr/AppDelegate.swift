@@ -14,10 +14,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    override init() {
+        super.init()
+        UIFont.overrideInitialize()
+    }
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        UINavigationBar.appearance().backgroundColor = UIColor(hexString: MTColors.barBg)
+        UINavigationBar.appearance().tintColor = UIColor(hexString: MTColors.barBg)
+        UINavigationBar.appearance().isOpaque = true
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor(hexString: MTColors.mainText)!]
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().barTintColor = UIColor(hexString: MTColors.barBg)
+
         // **************
         // TODO: Remove this when auth process is finished
         // logout every run

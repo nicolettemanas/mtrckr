@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6td-fB-2aW" id="7Gv-RK-ywq">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -41,6 +41,10 @@
         <scene sceneID="OEV-yg-VVy">
             <objects>
                 <navigationController storyboardIdentifier="SummaryNavigationController" title="Summary" id="6hW-IL-M7o" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="report-dark" selectedImage="report-dark" id="681-0x-NKn">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0ff-U5-JUF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -54,4 +58,7 @@
             <point key="canvasLocation" x="-724" y="-185"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="report-dark" width="25" height="25"/>
+    </resources>
 </document>

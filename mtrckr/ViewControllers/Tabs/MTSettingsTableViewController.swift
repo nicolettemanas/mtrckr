@@ -21,6 +21,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     var realm: Realm?
     var settingsDetails: [[String]] = [["None", "Not set", "0"], [""]]
     let settingsItems = [["Sync account", "Currency >", "Custom categories >"], ["Log out"]]
+    let settingsIcon = [["sync", "currency", "tag"], ["out"]]
     
     let settingsCellIdentifier = "SettingsCell"
     
@@ -70,8 +71,16 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return 40
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,8 +91,8 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         
         cell.title.text = settingsItems[indexPath.section][indexPath.row].replacingOccurrences(of: " >", with: "")
         cell.detail.text = settingsDetails[indexPath.section][indexPath.row]
+        cell.icon.image = UIImage(named: settingsIcon[indexPath.section][indexPath.row])
         
-        cell.selectionStyle = .gray
         
         if (settingsItems[indexPath.section][indexPath.row]).hasSuffix(">") {
             cell.accessoryType = .disclosureIndicator
@@ -143,7 +152,8 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     
     func displayLogoutSheet() {
         let logoutOptions = UIAlertController(title: nil,
-                                             message: "Are you sure you want to log out? Transactions saved when logged out will not be syned in your account.",
+                                             message: "Are you sure you want to log out? " +
+                                            "Transactions saved when logged out will not be synced to your account.",
                                              preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in

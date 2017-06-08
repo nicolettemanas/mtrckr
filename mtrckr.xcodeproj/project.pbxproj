@@ -28,6 +28,13 @@
 		CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BA1E967F0800EBE809 /* BillTests.swift */; };
 		CE3A89BD1E972BB600EBE809 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BC1E972BB600EBE809 /* Bill.swift */; };
 		CE3A89BF1E97ED8900EBE809 /* BillEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */; };
+		CE43954F1EE92BCB00C05E4A /* SFText-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954B1EE92BCB00C05E4A /* SFText-Light.otf */; };
+		CE4395501EE92BCB00C05E4A /* SFText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954C1EE92BCB00C05E4A /* SFText-Regular.otf */; };
+		CE4395511EE92BCB00C05E4A /* SFText-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954D1EE92BCB00C05E4A /* SFText-RegularItalic.otf */; };
+		CE4395521EE92BCB00C05E4A /* SFText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954E1EE92BCB00C05E4A /* SFText-Semibold.otf */; };
+		CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395531EE93C3C00C05E4A /* MTColors.swift */; };
+		CE4395561EE93E7700C05E4A /* MTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395551EE93E7700C05E4A /* MTNavigationController.swift */; };
+		CE43955A1EE9401200C05E4A /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395591EE9401200C05E4A /* UIColor+Hex.swift */; };
 		CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */; };
 		CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */; };
 		CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFE1E95E54400E5DBA6 /* User.swift */; };
@@ -36,6 +43,7 @@
 		CEA05C151EE0F4640091414F /* MTPresentrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA05C141EE0F4640091414F /* MTPresentrs.swift */; };
 		CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */; };
 		CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8E11ECF008D000F786B /* RealmHolder.swift */; };
+		CED88E431EE90EEE00D147B9 /* UIFont+AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED88E421EE90EEE00D147B9 /* UIFont+AppFont.swift */; };
 		CEF044B01EDDD46500486EAC /* InitialRealmGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */; };
 		CEF044B31EDEABC400486EAC /* Currency.json in Resources */ = {isa = PBXBuildFile; fileRef = CEF044B21EDEABC400486EAC /* Currency.json */; };
 		CEF044B51EDEACD700486EAC /* AccountType.json in Resources */ = {isa = PBXBuildFile; fileRef = CEF044B41EDEACD700486EAC /* AccountType.json */; };
@@ -98,6 +106,13 @@
 		CE3A89BA1E967F0800EBE809 /* BillTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillTests.swift; path = BillTests/BillTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE3A89BC1E972BB600EBE809 /* Bill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bill.swift; path = Models/Bill.swift; sourceTree = "<group>"; };
 		CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillEntryTests.swift; path = BillTests/BillEntryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CE43954B1EE92BCB00C05E4A /* SFText-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Light.otf"; path = "Sources/Fonts/SFText-Light.otf"; sourceTree = "<group>"; };
+		CE43954C1EE92BCB00C05E4A /* SFText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Regular.otf"; path = "Sources/Fonts/SFText-Regular.otf"; sourceTree = "<group>"; };
+		CE43954D1EE92BCB00C05E4A /* SFText-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-RegularItalic.otf"; path = "Sources/Fonts/SFText-RegularItalic.otf"; sourceTree = "<group>"; };
+		CE43954E1EE92BCB00C05E4A /* SFText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Semibold.otf"; path = "Sources/Fonts/SFText-Semibold.otf"; sourceTree = "<group>"; };
+		CE4395531EE93C3C00C05E4A /* MTColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTColors.swift; path = Configs/MTColors.swift; sourceTree = "<group>"; };
+		CE4395551EE93E7700C05E4A /* MTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTNavigationController.swift; path = "ViewControllers/Base Class/MTNavigationController.swift"; sourceTree = "<group>"; };
+		CE4395591EE9401200C05E4A /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Hex.swift"; path = "Sources/Extensions/UIColor+Hex.swift"; sourceTree = "<group>"; };
 		CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CategoryTests.swift; path = CategoryTests/CategoryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AccountTests.swift; path = AccountTests/AccountTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFE1E95E54400E5DBA6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
@@ -106,6 +121,7 @@
 		CEA05C141EE0F4640091414F /* MTPresentrs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTPresentrs.swift; path = ViewControllers/Presentrs/MTPresentrs.swift; sourceTree = "<group>"; };
 		CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthConfig.swift; path = Configs/RealmAuthConfig.swift; sourceTree = "<group>"; };
 		CEB1A8E11ECF008D000F786B /* RealmHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmHolder.swift; path = Utils/RealmHolder.swift; sourceTree = "<group>"; };
+		CED88E421EE90EEE00D147B9 /* UIFont+AppFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIFont+AppFont.swift"; path = "Sources/Extensions/UIFont+AppFont.swift"; sourceTree = "<group>"; };
 		CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialRealmGenerator.swift; path = Utils/InitialRealmGenerator.swift; sourceTree = "<group>"; };
 		CEF044B21EDEABC400486EAC /* Currency.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Currency.json; path = initModelValues/Currency.json; sourceTree = "<group>"; };
 		CEF044B41EDEACD700486EAC /* AccountType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AccountType.json; path = initModelValues/AccountType.json; sourceTree = "<group>"; };
@@ -235,12 +251,14 @@
 			name = XIBs;
 			sourceTree = "<group>";
 		};
-		CE07838C1ED325120007AD15 /* Sources */ = {
+		CE07838C1ED325120007AD15 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CED88E441EE910D400D147B9 /* Fonts */,
+				CED88E411EE90EB700D147B9 /* Extensions */,
 				CEF044B11EDEAB8500486EAC /* initModelValues */,
 			);
-			name = Sources;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		CE0783931ED3D6000007AD15 /* Encryption */ = {
@@ -320,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */,
+				CE4395531EE93C3C00C05E4A /* MTColors.swift */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -331,6 +350,26 @@
 				CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		CED88E411EE90EB700D147B9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE4395591EE9401200C05E4A /* UIColor+Hex.swift */,
+				CED88E421EE90EEE00D147B9 /* UIFont+AppFont.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		CED88E441EE910D400D147B9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CE43954B1EE92BCB00C05E4A /* SFText-Light.otf */,
+				CE43954C1EE92BCB00C05E4A /* SFText-Regular.otf */,
+				CE43954D1EE92BCB00C05E4A /* SFText-RegularItalic.otf */,
+				CE43954E1EE92BCB00C05E4A /* SFText-Semibold.otf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		CEF044B11EDEAB8500486EAC /* initModelValues */ = {
@@ -402,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF044E01EE0214F00486EAC /* MTViewController.swift */,
+				CE4395551EE93E7700C05E4A /* MTNavigationController.swift */,
 			);
 			name = "Base Classes";
 			sourceTree = "<group>";
@@ -432,7 +472,7 @@
 				CEF044D21EE00FE800486EAC /* ViewControllers */,
 				CEF044BA1EDF0A8200486EAC /* Storyboards */,
 				CE03C2261EC364E2009A6AB0 /* Views */,
-				CE07838C1ED325120007AD15 /* Sources */,
+				CE07838C1ED325120007AD15 /* Resources */,
 				CEB1A8E01ECF004D000F786B /* Utils */,
 				CEB1A8DC1ECEEC59000F786B /* Configs */,
 				CE005F511ECAE49500536C1A /* Presenters */,
@@ -592,8 +632,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE4395501EE92BCB00C05E4A /* SFText-Regular.otf in Resources */,
+				CE4395511EE92BCB00C05E4A /* SFText-RegularItalic.otf in Resources */,
 				CEF044BC1EDF0A9F00486EAC /* Settings.storyboard in Resources */,
 				CE03C2361EC3672F009A6AB0 /* MTDetailsTableViewCell.xib in Resources */,
+				CE4395521EE92BCB00C05E4A /* SFText-Semibold.otf in Resources */,
 				CEF044B31EDEABC400486EAC /* Currency.json in Resources */,
 				CEF044C61EDFEF4100486EAC /* Bills.storyboard in Resources */,
 				CEF044BE1EDFEA3100486EAC /* Main.storyboard in Resources */,
@@ -601,6 +644,7 @@
 				CEF044B91EDEADE800486EAC /* Category.json in Resources */,
 				CEF044C81EDFEF4B00486EAC /* Summary.storyboard in Resources */,
 				CEF044C21EDFEE6C00486EAC /* Today.storyboard in Resources */,
+				CE43954F1EE92BCB00C05E4A /* SFText-Light.otf in Resources */,
 				CEFB22A61E94FC2100867CDA /* Assets.xcassets in Resources */,
 				CEF044B51EDEACD700486EAC /* AccountType.json in Resources */,
 				CEF044C01EDFEE6000486EAC /* Accounts.storyboard in Resources */,
@@ -731,10 +775,12 @@
 				CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */,
 				CE2C7DFD1EE56B61002AB5DC /* RealmLogoutInteractor.swift in Sources */,
 				CE3A89BD1E972BB600EBE809 /* Bill.swift in Sources */,
+				CED88E431EE90EEE00D147B9 /* UIFont+AppFont.swift in Sources */,
 				CEFB22C51E94FD8B00867CDA /* Currency.swift in Sources */,
 				CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */,
 				CEFB22C71E94FD8B00867CDA /* Category.swift in Sources */,
 				CE03C22F1EC365F3009A6AB0 /* MTTextInputTableViewCell.swift in Sources */,
+				CE4395561EE93E7700C05E4A /* MTNavigationController.swift in Sources */,
 				CE03C2341EC36711009A6AB0 /* MTTableViewCell.swift in Sources */,
 				CEF044E11EE0214F00486EAC /* MTViewController.swift in Sources */,
 				CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */,
@@ -752,7 +798,9 @@
 				CE03C2321EC36686009A6AB0 /* MTFormModalView.swift in Sources */,
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
 				CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */,
+				CE43955A1EE9401200C05E4A /* UIColor+Hex.swift in Sources */,
 				CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */,
+				CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */,
 				CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */,
 				CEF044DC1EE0211500486EAC /* LoginViewController.swift in Sources */,
 				CE2C7DFB1EE567A2002AB5DC /* RealmLoginInteractor.swift in Sources */,
