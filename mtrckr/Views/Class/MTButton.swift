@@ -8,14 +8,34 @@
 
 import UIKit
 
+@IBDesignable
 class MTButton: UIButton {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBInspectable var hasBorders: Bool = false { didSet { updateBorder() }}
+    @IBInspectable var borderColor: UIColor = MTColors.mainBlue { didSet { updateBorder() }}
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
-    */
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func setupUIProperties() {
+        
+    }
+    
+    func updateBorder() {
+        if hasBorders {
+            self.layer.borderWidth = 1.0
+            self.layer.borderColor = borderColor.cgColor
+            self.backgroundColor = borderColor
+            self.isOpaque = true
+            self.setTitleColor(.white, for: .normal)
+            self.titleLabel?.font = UIFont.mySystemFont(ofSize: 13)
+            self.layer.cornerRadius = self.layer.frame.height/2
+        }
+    }
 
 }

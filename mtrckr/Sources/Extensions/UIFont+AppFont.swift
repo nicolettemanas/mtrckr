@@ -12,7 +12,7 @@ import Foundation
 import UIKit
 
 struct AppFontName {
-    static let regular = "SFUIText-Light"
+    static let regular = "SFUIText-Regular"
     static let bold = "SFUIText-Semibold"
     static let italic = "SFUIText-Italic"
 }

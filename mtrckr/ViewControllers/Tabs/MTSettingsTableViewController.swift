@@ -27,6 +27,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         setupUserData()
     }
 
@@ -52,6 +53,12 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         settingsDetails[0][2] = "\(Category.all(in: realm!, customized: true).count)"
     }
     
+    // MARK: - UI methods
+    func setupUI() {
+        tableView.separatorStyle = .none
+//        tableView.separatorColor = MTColors.separatorColor
+    }
+    
     // MARK: AuthViewControllerDelegate methods
     func didDismiss() {
         setupUserData()
@@ -72,7 +79,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 50
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -92,7 +99,6 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         cell.title.text = settingsItems[indexPath.section][indexPath.row].replacingOccurrences(of: " >", with: "")
         cell.detail.text = settingsDetails[indexPath.section][indexPath.row]
         cell.icon.image = UIImage(named: settingsIcon[indexPath.section][indexPath.row])
-        
         
         if (settingsItems[indexPath.section][indexPath.row]).hasSuffix(">") {
             cell.accessoryType = .disclosureIndicator
@@ -147,7 +153,9 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         regViewController.delegate = self
         regViewController.presenter = authPresenter
         
-        navigationController?.present(regViewController, animated: true, completion: nil)
+        regViewController.modalTransitionStyle = .coverVertical
+        regViewController.modalPresentationStyle = .fullScreen
+        present(regViewController, animated: true, completion: nil)
     }
     
     func displayLogoutSheet() {

@@ -15,12 +15,15 @@ class LoginViewController: MTViewController, RealmAuthPresenterOutput {
     @IBOutlet weak var emailTxtField: MTTextField!
     @IBOutlet weak var passwordTxtField: MTTextField!
     
+    @IBOutlet weak var loginScrollView: UIScrollView!
+    
     weak var delegate: AuthViewControllerDelegate?
     var presenter: RealmAuthPresenterProtocol?
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         setupTextfields()
+        scrollView = loginScrollView
+        super.viewDidLoad()
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,18 +69,18 @@ class LoginViewController: MTViewController, RealmAuthPresenterOutput {
     }
     
     func loginWithOption(option: LoginSyncOption) {
-        guard let email = emailTxtField.text,
-            let pw = passwordTxtField.text else {
-                if emailTxtField.text == nil {
-                    emailTxtField.errorMessage = "You can't leave this empty"
-                }
-                if passwordTxtField.text == nil {
-                    passwordTxtField.errorMessage = "You can't leave this empty"
-                }
-                return
+        if emailTxtField.text == "" {
+            emailTxtField.showError(errorMsg: "You can't leave this empty")
+            return
         }
-        showLoadingView()
-        presenter?.login(withEmail: email, withPassword: pw, loginSyncOption: option)
+        
+        if passwordTxtField.text == "" {
+            passwordTxtField.showError(errorMsg: "You can't leave this empty")
+            return
+        }
+        
+        showLoadingView(withColor: MTColors.mainOrange)
+        presenter?.login(withEmail: emailTxtField.text!, withPassword: passwordTxtField.text!, loginSyncOption: option)
     }
     
     // MARK: UI setup methods
@@ -102,11 +105,11 @@ class LoginViewController: MTViewController, RealmAuthPresenterOutput {
     
     // MARK: - UITextFieldDelegate methods
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let txtField = textField as? MTTextField {
+        if textField is MTTextField {
             let txt = textField.text as NSString?
             if let str = txt?.replacingCharacters(in: range, with: string) {
                 if str.characters.count > 0 {
-                    txtField.errorMessage = ""
+                    (textField as? MTTextField)?.hideError()
                 }
             }
         }

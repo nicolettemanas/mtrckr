@@ -12,11 +12,14 @@ import NVActivityIndicatorView
 class MTViewController: UIViewController, UITextFieldDelegate {
 
     var loadingView: NVActivityIndicatorView?
+    var scrollView: UIScrollView? { didSet {
+            scrollView?.keyboardDismissMode = .interactive
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        listenToKeyboard()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,9 +34,9 @@ class MTViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Activity indicator methods
-    func showLoadingView() {
+    func showLoadingView(withColor color: UIColor) {
         if loadingView == nil {
-            loadingView = NVActivityIndicatorView(frame: view.frame, type: .ballScale, color: .blue)
+            loadingView = NVActivityIndicatorView(frame: view.frame, type: .ballScale, color: color)
             view.addSubview(loadingView!)
         }
         loadingView?.startAnimating()
@@ -42,6 +45,44 @@ class MTViewController: UIViewController, UITextFieldDelegate {
     func hideLoadingView() {
         guard loadingView != nil else { return }
         loadingView?.stopAnimating()
+    }
+    
+    // MARK: - Keyboard & Scrollview methods
+    func listenToKeyboard() {
+        if self.scrollView != nil {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(keyboardWillShow),
+                                                   name:NSNotification.Name.UIKeyboardWillShow,
+                                                   object: nil)
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(keyboardWillHide),
+                                                   name:NSNotification.Name.UIKeyboardWillHide,
+                                                   object: nil)
+        }
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if self.scrollView != nil {
+            var userInfo = notification.userInfo!
+            guard let keyboardFrameValue: NSValue = userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue
+            else {
+                return
+            }
+            
+            var keyboardFrame: CGRect = keyboardFrameValue.cgRectValue
+            keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+            
+            var contentInset: UIEdgeInsets = self.scrollView!.contentInset
+            contentInset.bottom = keyboardFrame.size.height
+            self.scrollView?.contentInset = contentInset
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if self.scrollView != nil {
+            let contentInset: UIEdgeInsets = UIEdgeInsets.zero
+            self.scrollView!.contentInset = contentInset
+        }
     }
 
 }

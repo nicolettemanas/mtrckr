@@ -13,19 +13,17 @@
             <objects>
                 <tabBarController id="RcO-Nt-8c8" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="jAG-Y2-baC">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="jAG-Y2-baC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="0.0" green="0.65490196078431373" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.16078431372549018" green="0.16470588235294117" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="selectedImageTintColor" red="0.0" green="0.65490196079999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.3921568627" green="0.6705882353" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.39215686274509803" green="0.6705882352941176" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="I48-bK-8Xs" kind="relationship" relationship="viewControllers" id="Cn8-fo-N2l"/>
                         <segue destination="pU8-bq-ycy" kind="relationship" relationship="viewControllers" id="zrP-qH-luP"/>
                         <segue destination="ch3-9Z-a7k" kind="relationship" relationship="viewControllers" id="JOU-dV-33W"/>
-                        <segue destination="geE-dR-2Hq" kind="relationship" relationship="viewControllers" id="pqb-3X-JMj"/>
                         <segue destination="Dsl-sI-G6I" kind="relationship" relationship="viewControllers" id="5iy-YZ-424"/>
                     </connections>
                 </tabBarController>

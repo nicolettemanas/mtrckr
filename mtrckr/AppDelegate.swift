@@ -23,21 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        UIApplication.shared.statusBarStyle = .lightContent
-        UINavigationBar.appearance().backgroundColor = UIColor(hexString: MTColors.barBg)
-        UINavigationBar.appearance().tintColor = UIColor(hexString: MTColors.barBg)
+        UIApplication.shared.statusBarStyle = .default
+        UINavigationBar.appearance().backgroundColor = MTColors.mainBg
+        UINavigationBar.appearance().tintColor = MTColors.mainText
         UINavigationBar.appearance().isOpaque = true
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor(hexString: MTColors.mainText)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: MTColors.mainText]
         UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().barTintColor = UIColor(hexString: MTColors.barBg)
+        UINavigationBar.appearance().barTintColor = MTColors.barBg
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 
         // **************
         // TODO: Remove this when auth process is finished
         // logout every run
         InitialRealmGenerator.generateInitRealm { (_) in
-            if SyncUser.current != nil {
-                RealmLogoutInteractor().logout()
-            }
             _ = RealmHolder.sharedInstance.userRealm
         }
         

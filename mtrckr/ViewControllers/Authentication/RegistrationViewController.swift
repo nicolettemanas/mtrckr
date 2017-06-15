@@ -18,12 +18,15 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
     @IBOutlet weak var regPw: MTTextField!
     @IBOutlet weak var regConfirmPw: MTTextField!
     
+    @IBOutlet weak var regScrollView: UIScrollView!
+    
     weak var delegate: AuthViewControllerDelegate?
     var presenter: RealmAuthPresenterProtocol?
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         setupTextfields()
+        scrollView = regScrollView
+        super.viewDidLoad()
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,7 +36,7 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
     // MARK: LoginView actions
     @IBAction func createAccountBtnPressed(_ sender: MTButton) {
         if isValid() {
-            showLoadingView()
+            showLoadingView(withColor: MTColors.mainBlue)
             presenter?.register(withEmail: regEmail.text!, withPassword: regPw.text!, withName: regConfirmPw.text!)
         }
     }
@@ -99,17 +102,17 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let txt = textField.text as NSString?
         if let text = txt?.replacingCharacters(in: range, with: string) {
-            guard let floatingLabelTextField = textField as? SkyFloatingLabelTextField else {
+            guard let mttextField = textField as? MTTextField else {
                 return true
             }
             
             if textField == regEmail {
-                let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+                let emailRegEx = "[A-Z0-9a-z.dd_%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
                 let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
                 if emailTest.evaluate(with: text) {
-                    floatingLabelTextField.errorMessage = ""
+                    mttextField.hideError()
                 } else {
-                    floatingLabelTextField.errorMessage = "Invalid email"
+                    mttextField.showError(errorMsg: "Invalid email")
                 }
             } else if textField == regPw || textField == regConfirmPw {
                 if text.characters.count >= 6 {
@@ -118,14 +121,14 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
                     let pwMatches = text == (isPw ? regConfirmPw.text : regPw.text)
                     
                     if pwMatches {
-                        regPw.errorMessage = ""
-                        regConfirmPw.errorMessage = ""
+                        regPw.hideError()
+                        regConfirmPw.hideError()
                     } else {
-                        regPw.errorMessage = "Passwords do not match"
-                        regConfirmPw.errorMessage = "Passwords do not match"
+                        regPw.showError(errorMsg: "Passwords do not match")
+                        regConfirmPw.showError(errorMsg: "Passwords do not match")
                     }
                 } else {
-                    floatingLabelTextField.errorMessage = "Password must be at least 6 characters long"
+                    mttextField.showError(errorMsg: "Password must be at least 6 characters long")
                 }
             }
         }
