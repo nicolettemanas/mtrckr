@@ -10,76 +10,94 @@ import UIKit
 import Realm
 import RealmSwift
 
+protocol RealmHolderProtocol {
+    var realmHolder: RealmHolder? { get set }
+    var config: AuthConfigProtocol { get set }
+}
+
 class RealmHolder {
-    static let sharedInstance = RealmHolder(config: RealmAuthConfig())
+    var config: AuthConfigProtocol
+    var syncUser: MTSyncUser?
 
-    private var config: AuthConfigProtocol
-    private var userNotificationToken: NotificationToken!
-    private var didSync: Bool = false
-    
-    var shouldSync: Bool = false
-
-    var userRealm: Realm? {
-        if SyncUser.current == nil {
-            do {
-                let offlineRealm = getOfflineRealm()
-                if offlineRealm.objects(Currency.self).count < 1 {
-                    let initConfig = Realm.Configuration(fileURL: config.initialRealm)
-                    let initDbRealm = try Realm(configuration: initConfig)
-                    migrate(objects: config.objects, fromRealm: initDbRealm, toRealm: offlineRealm)
-                }
-                
-                print("offline realm: \(String(describing: offlineRealm.configuration.fileURL))")
-                return offlineRealm
-            } catch let error as NSError {
-                fatalError("Cannot initialize offline user realm with error: \(error)")
-            }
-        } else {
-            guard let userRealm = try? Realm() else {
-                fatalError("Cannot initialize user realm")
-            }
-            
-            if didSync == false && shouldSync == true {
-                let offlineRealm = getOfflineRealm()
-                migrate(objects: config.objects, fromRealm: offlineRealm, toRealm: userRealm)
-                didSync = true
-            }
-            
-            print("sync realm: \(String(describing: userRealm.configuration.syncConfiguration?.realmURL))")
-            return userRealm
-        }
+    init(withConfig configuration: AuthConfigProtocol) {
+        self.config = configuration
     }
     
-    init(config: AuthConfigProtocol) {
-        self.config = config
+    init(withConfig configuration: AuthConfigProtocol, syncUser: MTSyncUser?) {
+        self.config = configuration
+        self.syncUser = syncUser
+    }
+    
+    var userRealm: Realm? {
+        if self.syncUser == nil {
+            return readOfflineRealm()
+        } else {
+           return getSyncedRealm()
+        }
     }
 
     // MARK: - Realm methods
-    func setupNotificationToken() {
-        DispatchQueue.main.async {
-            self.userNotificationToken = self.userRealm?.addNotificationBlock { _ in
-                print("User realm updated")
-            }
+    func syncRealm() {
+        guard let uRealm = self.userRealm else {
+            fatalError("Sync realm is nil")
+        }
+        
+        let offlineRealm = readOfflineRealm()
+        migrate(objects: config.objects, fromRealm: offlineRealm, toRealm: uRealm)
+    }
+    
+    func populateInitialValues(ofRealm realm: Realm) {
+        do {
+            print("Populating initial values...")
+            let initConfig = Realm.Configuration(fileURL: config.initialRealm)
+            let initDbRealm = try Realm(configuration: initConfig)
+            migrate(objects: config.objects, fromRealm: initDbRealm, toRealm: realm)
+        } catch let error as NSError {
+            fatalError("Cannot initialize offline user realm with error: \(error)")
         }
     }
     
-    func getOfflineRealm() -> Realm {
+    func readOfflineRealm() -> Realm {
         do {
             var offlineConfig = Realm.Configuration()
-            offlineConfig.fileURL = offlineConfig.fileURL!.deletingLastPathComponent()
-                                    .appendingPathComponent("initRealm/\(config.offlineRealmFileName).realm")
+            offlineConfig.fileURL = offlineConfig.fileURL!
+                .deletingLastPathComponent()
+                .appendingPathComponent("initRealm/\(config.offlineRealmFileName).realm")
+            
             let offlineRealm = try Realm(configuration: offlineConfig)
+            if offlineRealm.objects(Currency.self).count < 1 {
+                populateInitialValues(ofRealm: offlineRealm)
+            }
+            print("[REALM] offline realm: \(String(describing: offlineRealm.configuration.fileURL))")
             return offlineRealm
         } catch let error as NSError {
             fatalError("Cannot initialize offline user realm with error: \(error)")
         }
     }
     
+    func getSyncedRealm() -> Realm {
+        guard let sUser = syncUser?.syncUser else {
+            fatalError("SyncUser is nil; no logged in user")
+        }
+        
+        setDefaultConfiguration(user: sUser, url: config.userRealmPath)
+        var userRealm: Realm!
+        userRealm = try? Realm()
+        
+        print("[REALM]sync realm: \(String(describing: userRealm.configuration.syncConfiguration?.realmURL))")
+        return userRealm
+    }
+    
+    func setDefaultConfiguration(user: SyncUser, url: URL) {
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(
+            syncConfiguration: SyncConfiguration(user: user,
+                                                 realmURL: url)
+        )
+    }
+    
     // MARK: - Migrating between realms
     private func migrate(objects: [String], fromRealm source: Realm, toRealm destination: Realm) {
         do {
-            print("Migrating contents of \(String(describing: source.configuration.fileURL?.lastPathComponent)) to " +
-                "\(String(describing: destination.configuration.fileURL?.lastPathComponent))")
             try destination.write({
                 for object in objects {
                     let localObjects = source.dynamicObjects(object)

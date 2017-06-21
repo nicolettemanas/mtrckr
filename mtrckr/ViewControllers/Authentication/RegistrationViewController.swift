@@ -10,7 +10,6 @@ import UIKit
 import Hero
 import Realm
 import RealmSwift
-import SkyFloatingLabelTextField
 
 class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
     
@@ -34,10 +33,10 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
     }
     
     // MARK: LoginView actions
-    @IBAction func createAccountBtnPressed(_ sender: MTButton) {
+    @IBAction func createAccountBtnPressed(_ sender: MTButton?) {
         if isValid() {
             showLoadingView(withColor: MTColors.mainBlue)
-            presenter?.register(withEmail: regEmail.text!, withPassword: regPw.text!, withName: regConfirmPw.text!)
+            presenter?.register(withEmail: regEmail.text!, withPassword: regPw.text!, withName: regEmail.text!)
         }
     }
     
@@ -49,7 +48,7 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
         
         let authConfig = RealmAuthConfig()
         let authEncryption = EncryptionInteractor()
-        let loginInteractor = RealmLoginInteractor(config: authConfig)
+        let loginInteractor = RealmLoginInteractor(withConfig: authConfig, syncUser: MTSyncUser.current)
         let loginPresenter = RealmAuthPresenter(regInteractor: nil,
                                                loginInteractor: loginInteractor,
                                                logoutInteractor: nil,
@@ -62,7 +61,7 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
         present(loginVC, animated: true)
     }
     
-    @IBAction func dismissBtnPressed(_ sender: MTButton) {
+    @IBAction func dismissBtnPressed(_ sender: MTButton?) {
         dismiss(animated: true, completion: nil)
     }
     
@@ -81,7 +80,15 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
             return false
         }
         
-        return pw.characters.count >= 6 && (pw == cpw)
+        return (pw.characters.count >= 6) &&
+                (pw == cpw) &&
+                isValidEmail(email: regEmail.text!)
+    }
+    
+    func isValidEmail(email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z.dd_%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: email)
     }
     
     // MARK: - RealmAuthPresenterOutput methods
@@ -92,7 +99,7 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
         }
     }
     
-    func showSuccessfulRegistration(ofUser user: RLMSyncUser) {
+    func showSuccessfulRegistration(ofUser user: MTSyncUser) {
         hideLoadingView()
         delegate?.didDismiss()
         dismiss(animated: true, completion: nil)
@@ -107,9 +114,7 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
             }
             
             if textField == regEmail {
-                let emailRegEx = "[A-Z0-9a-z.dd_%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-                let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-                if emailTest.evaluate(with: text) {
+                if isValidEmail(email: text) {
                     mttextField.hideError()
                 } else {
                     mttextField.showError(errorMsg: "Invalid email")

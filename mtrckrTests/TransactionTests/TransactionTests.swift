@@ -33,14 +33,10 @@ class TransactionTests: QuickSpec {
             var transaction: Transaction!
             var transDate: Date!
             var account: Account!
-            var user: User!
             var category: mtrckr.Category!
-            var currency: Currency!
             var cashAccountType: AccountType!
 
             beforeEach {
-                currency = Currency(id: "Curr1", isoCode: "USD", symbol: "`$", state: "USA")
-                user = User(id: "user1", name: "", email: "", image: "", currency: currency)
                 category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
                 cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
                 account = Account(value: ["id": "accnt1",

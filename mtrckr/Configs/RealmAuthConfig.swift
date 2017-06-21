@@ -24,12 +24,15 @@ protocol AuthConfigProtocol {
     
     var initRealmFileName: String { get }
     var offlineRealmFileName: String { get }
+    
+//    var inMemoryIdentifier: String? { get set }
 }
 
 struct RealmAuthConfig: AuthConfigProtocol {
     var initRealmFileName: String = "mtrckr-\(buildConfig)-init-db"
     var offlineRealmFileName: String = "mtrckr-\(buildConfig)"
     
+//    var domainHost: String = "localhost:9080" //"192.168.1.76:9080"
     var domainHost: String = "192.168.1.76:9080"
     var serverURL: URL
     var realmDomainURL: URL
@@ -39,6 +42,7 @@ struct RealmAuthConfig: AuthConfigProtocol {
     var offlineRealm: URL
     var objects: [String] = ["Account", "AccountType", "Bill", "BillEntry",
                              "Category", "Currency", "Transaction", "User"]
+//    var inMemoryIdentifier: String?
     
     init() {
         let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]

@@ -35,8 +35,6 @@ class BillEntryTests: QuickSpec {
             var billEntry: BillEntry!
 
             beforeEach {
-                let currency = Currency(id: "Curr1", isoCode: "USD", symbol: "`$", state: "USA")
-                let user = User(id: "user1", name: "", email: "", image: "", currency: currency)
                 let category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
 
                 dueDate = Date()

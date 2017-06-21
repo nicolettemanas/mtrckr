@@ -18,8 +18,7 @@ protocol RealmLogoutInteractorOutput {
     func didLogout()
 }
 
-class RealmLogoutInteractor: RealmLogoutInteractorProtocol {
-    
+class RealmLogoutInteractor: RealmHolder, RealmLogoutInteractorProtocol {
     var output: RealmLogoutInteractorOutput?
     
     func logout() {
@@ -27,7 +26,7 @@ class RealmLogoutInteractor: RealmLogoutInteractorProtocol {
             print("logging out user \(String(describing: SyncUser.current?.identity))")
             SyncUser.current?.logOut()
             
-            guard let realm = RealmHolder.sharedInstance.userRealm else {
+            guard let realm = self.userRealm else {
                 self.output?.didLogout()
                 return
             }

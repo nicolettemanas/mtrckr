@@ -12,7 +12,7 @@ import RealmSwift
 
 protocol RealmLoginInteractorOutput {
     func didFailLogin(withError error: Error?)
-    func didLogin(user: RLMSyncUser)
+    func didLogin(user: MTSyncUser)
 }
 
 protocol RealmLoginInteractorProtocol {
@@ -20,24 +20,21 @@ protocol RealmLoginInteractorProtocol {
     var output: RealmLoginInteractorOutput? { get set }
 }
 
-class RealmLoginInteractor: RealmLoginInteractorProtocol {
+class RealmLoginInteractor: RealmHolder, RealmLoginInteractorProtocol {
     
     var output: RealmLoginInteractorOutput?
-    var config: AuthConfigProtocol
-    
-    init(config: AuthConfigProtocol) {
-        self.config = config
-    }
     
     // MARK: RealmAuthInteractorProtocol methods
     func login(withEmail email: String, withEncryptedPassword password: String, loginOption option: LoginSyncOption) {
         let credentials = SyncCredentials.usernamePassword(username: email, password: password)
         SyncUser.logIn(with: credentials, server: config.serverURL, timeout: config.timeout) { (user, error) in
             if let user = user {
-                self.setDefaultRealm(ofUser: user)
-                RealmHolder.sharedInstance.shouldSync = (option == .append)
-                RealmHolder.sharedInstance.setupNotificationToken()
-                self.output?.didLogin(user: user)
+                let mt = MTSyncUser(syncUser: user)
+                self.setDefaultRealm(ofUser: mt)
+                if option == .append {
+                    self.syncRealm()
+                }
+                self.output?.didLogin(user: mt)
             } else {
                 self.output?.didFailLogin(withError: error)
             }
@@ -45,9 +42,9 @@ class RealmLoginInteractor: RealmLoginInteractorProtocol {
     }
     
     // MARK: - Realm setup methods
-    func setDefaultRealm(ofUser user: RLMSyncUser) {
+    func setDefaultRealm(ofUser user: MTSyncUser) {
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            syncConfiguration: SyncConfiguration(user: user, realmURL: config.userRealmPath)
+            syncConfiguration: SyncConfiguration(user: user.syncUser!, realmURL: config.userRealmPath)
         )
     }
 }

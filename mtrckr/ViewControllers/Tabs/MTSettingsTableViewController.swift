@@ -15,11 +15,11 @@ protocol AuthViewControllerDelegate: class {
 
 class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDelegate, RealmAuthPresenterOutput {
 
-    private var syncedUserToken: NotificationToken?
-    private var authPresenter: RealmAuthPresenter?
+    var syncedUserToken: NotificationToken?
+    var authPresenter: RealmAuthPresenter?
+    var settingsPresenter: SettingsPresenterProtocol?
     
-    var realm: Realm?
-    var settingsDetails: [[String]] = [["None", "Not set", "0"], [""]]
+    var settingsDetails: [[String]] = []
     let settingsItems = [["Sync account", "Currency >", "Custom categories >"], ["Log out"]]
     let settingsIcon = [["sync", "currency", "tag"], ["out"]]
     
@@ -27,6 +27,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         setupUI()
         setupUserData()
     }
@@ -36,21 +37,12 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     }
     
     // MARK: - User data methods
+    func setup() {
+        settingsPresenter = SettingsPresenter(withConfig: RealmAuthConfig(), syncUser: MTSyncUser.current)
+    }
+    
     func setupUserData() {
-        realm = RealmHolder.sharedInstance.userRealm
-        guard realm != nil else {
-            fatalError("No realm provided")
-        }
-        
-        let user = realm?.objects(User.self).first
-        if SyncUser.current == nil {
-            settingsDetails[0][0] = "None"
-        } else {
-            settingsDetails[0][0] = realm?.objects(User.self).first?.name ?? ""
-        }
-        
-        settingsDetails[0][1] = user?.currency?.isoCode ?? "Not set"
-        settingsDetails[0][2] = "\(Category.all(in: realm!, customized: true).count)"
+        settingsDetails = settingsPresenter?.fetchSettingsData() ?? []
     }
     
     // MARK: - UI methods
@@ -143,12 +135,12 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         // TODO: Use Swinject for these
         let authConfig = RealmAuthConfig()
         let authEncryption = EncryptionInteractor()
-        let regInteractor = RealmRegInteractor(config: authConfig)
-        let authPresenter = RealmAuthPresenter(regInteractor: regInteractor,
-                                               loginInteractor: nil,
-                                               logoutInteractor: nil,
-                                               encrypter: authEncryption,
-                                               output: regViewController)
+        let regInteractor = RealmRegInteractor(withConfig: authConfig, syncUser: MTSyncUser.current)
+        authPresenter = RealmAuthPresenter(regInteractor: regInteractor,
+                                           loginInteractor: nil,
+                                           logoutInteractor: nil,
+                                           encrypter: authEncryption,
+                                           output: regViewController)
         regInteractor.output = authPresenter
         regViewController.delegate = self
         regViewController.presenter = authPresenter
@@ -180,7 +172,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     
     func performLogout() {
         // TODO: Use Swinject for these
-        let logoutInteractor = RealmLogoutInteractor()
+        let logoutInteractor = RealmLogoutInteractor(withConfig: RealmAuthConfig(), syncUser: MTSyncUser.current)
         authPresenter = RealmAuthPresenter(regInteractor: nil,
                                            loginInteractor: nil,
                                            logoutInteractor: logoutInteractor,

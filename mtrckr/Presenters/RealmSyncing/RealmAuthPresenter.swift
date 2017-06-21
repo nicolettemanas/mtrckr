@@ -22,8 +22,8 @@ protocol RealmAuthPresenterProtocol {
 
 @objc protocol RealmAuthPresenterOutput {
     @objc optional func showFailedAuth(withAlert alert: UIAlertController?)
-    @objc optional func showSuccessfulLogin(ofUser user: RLMSyncUser)
-    @objc optional func showSuccessfulRegistration(ofUser user: RLMSyncUser)
+    @objc optional func showSuccessfulLogin(ofUser user: MTSyncUser)
+    @objc optional func showSuccessfulRegistration(ofUser user: MTSyncUser)
     @objc optional func showSuccesfulLogout()
 }
 
@@ -34,11 +34,11 @@ class RealmAuthPresenter: RealmAuthPresenterProtocol, RealmRegInteractorOutput,
     var loginInteractor: RealmLoginInteractorProtocol?
     var logoutInteractor: RealmLogoutInteractorProtocol?
     var encrypter: EncryptionInteractorProtocol?
-    var output: RealmAuthPresenterOutput
+    var output: RealmAuthPresenterOutput?
     
     init(regInteractor: RealmRegInteractorProtocol?, loginInteractor: RealmLoginInteractorProtocol?,
          logoutInteractor: RealmLogoutInteractorProtocol?, encrypter: EncryptionInteractorProtocol?,
-         output: RealmAuthPresenterOutput) {
+         output: RealmAuthPresenterOutput?) {
         
         self.regInteractor = regInteractor
         self.loginInteractor = loginInteractor
@@ -51,6 +51,7 @@ class RealmAuthPresenter: RealmAuthPresenterProtocol, RealmRegInteractorOutput,
     func login(withEmail email: String, withPassword password: String, loginSyncOption option: LoginSyncOption) {
         assert(loginInteractor != nil)
         assert(encrypter != nil)
+            
         if let encryptedPw = self.encrypter?.encrypt(str: password) {
             self.loginInteractor?.login(withEmail: email, withEncryptedPassword: encryptedPw, loginOption: option)
         }
@@ -70,10 +71,10 @@ class RealmAuthPresenter: RealmAuthPresenterProtocol, RealmRegInteractorOutput,
     }
     
     // MARK: - RealmLoginInteractorOutput methods
-    func didLogin(user: RLMSyncUser) {
+    func didLogin(user: MTSyncUser) {
         print(":: did login \(user)")
         DispatchQueue.main.async {
-            self.output.showSuccessfulLogin?(ofUser: user)
+            self.output?.showSuccessfulLogin?(ofUser: user)
         }
     }
 
@@ -83,7 +84,7 @@ class RealmAuthPresenter: RealmAuthPresenterProtocol, RealmRegInteractorOutput,
             let alert = UIAlertController(title: "Oops! Something went wrong.", message: error?.localizedDescription, preferredStyle: .alert)
             let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
             alert.addAction(ok)
-            self.output.showFailedAuth?(withAlert: alert)
+            self.output?.showFailedAuth?(withAlert: alert)
         }
     }
 
@@ -94,14 +95,14 @@ class RealmAuthPresenter: RealmAuthPresenterProtocol, RealmRegInteractorOutput,
             let alert = UIAlertController(title: "Oops! Something went wrong.", message: error?.localizedDescription, preferredStyle: .alert)
             let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
             alert.addAction(ok)
-            self.output.showFailedAuth?(withAlert: alert)
+            self.output?.showFailedAuth?(withAlert: alert)
         }
     }
 
-    func didRegister(user: RLMSyncUser) {
+    func didRegister(user: MTSyncUser) {
         print(":: did register user \(String(describing: user.identity))")
         DispatchQueue.main.async {
-            self.output.showSuccessfulRegistration?(ofUser: user)
+            self.output?.showSuccessfulRegistration?(ofUser: user)
         }
     }
 
@@ -109,7 +110,7 @@ class RealmAuthPresenter: RealmAuthPresenterProtocol, RealmRegInteractorOutput,
     func didLogout() {
         print(":: did log out")
         DispatchQueue.main.async {
-            self.output.showSuccesfulLogout?()
+            self.output?.showSuccesfulLogout?()
         }
     }
 }

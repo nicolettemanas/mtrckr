@@ -16,6 +16,12 @@ class InitialRealmGenerator {
     
     static func generateInitRealm(onComplete: (_ path: URL?) -> Void) {
         
+        if SyncUser.current != nil {
+            print("Has logged in user, skipping generation of init realm...")
+            onComplete((try? Realm())?.configuration.syncConfiguration?.realmURL)
+            return
+        }
+        
         makeInitDir()
         
         print("Generating inital Realm...")

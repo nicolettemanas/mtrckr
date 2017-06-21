@@ -31,10 +31,7 @@ class BillTests: QuickSpec {
 
         describe("Model Bill") {
             describe("initialize with values", {
-
                 it("initializes and assign properties correctly", closure: {
-                    let currency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
-                    let user = User(id: "user1", name: "", email: "", image: "", currency: currency)
                     let category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
                     let startDate = Date()
 

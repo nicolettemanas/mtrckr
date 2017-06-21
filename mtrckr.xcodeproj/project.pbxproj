@@ -35,14 +35,25 @@
 		CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395531EE93C3C00C05E4A /* MTColors.swift */; };
 		CE4395561EE93E7700C05E4A /* MTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395551EE93E7700C05E4A /* MTNavigationController.swift */; };
 		CE43955A1EE9401200C05E4A /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395591EE9401200C05E4A /* UIColor+Hex.swift */; };
+		CE44F40C1EFA622500E035C7 /* MockRegInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F40B1EFA622500E035C7 /* MockRegInteractor.swift */; };
 		CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */; };
 		CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */; };
 		CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFE1E95E54400E5DBA6 /* User.swift */; };
+		CE75D7961EF8EE4A00F2913A /* MockRealmHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE75D7951EF8EE4A00F2913A /* MockRealmHolder.swift */; };
 		CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */; };
 		CEA05C121EE0DFCC0091414F /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA05C111EE0DFCC0091414F /* MTTextField.swift */; };
 		CEA05C151EE0F4640091414F /* MTPresentrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA05C141EE0F4640091414F /* MTPresentrs.swift */; };
 		CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */; };
 		CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8E11ECF008D000F786B /* RealmHolder.swift */; };
+		CEB403B11EF26DB80013CB3C /* RegistrationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */; };
+		CEB403B31EF286080013CB3C /* MockRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B21EF286080013CB3C /* MockRegistrationViewController.swift */; };
+		CEB403B51EF28C3F0013CB3C /* MockRealmAuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B41EF28C3F0013CB3C /* MockRealmAuthPresenter.swift */; };
+		CEB403B71EF291950013CB3C /* MockEncrypter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B61EF291950013CB3C /* MockEncrypter.swift */; };
+		CEB403B91EF296D00013CB3C /* TestableRegInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B81EF296D00013CB3C /* TestableRegInteractor.swift */; };
+		CEB403BB1EF298C00013CB3C /* MockLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403BA1EF298C00013CB3C /* MockLoginInteractor.swift */; };
+		CEB403BD1EF29E4B0013CB3C /* RealmAuthPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403BC1EF29E4B0013CB3C /* RealmAuthPresenterTests.swift */; };
+		CEB403C01EF2D4D30013CB3C /* RealmRegInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403BF1EF2D4D30013CB3C /* RealmRegInteractorTests.swift */; };
+		CEB403C21EF3647F0013CB3C /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403C11EF3647F0013CB3C /* SettingsPresenter.swift */; };
 		CED88E431EE90EEE00D147B9 /* UIFont+AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED88E421EE90EEE00D147B9 /* UIFont+AppFont.swift */; };
 		CEF044B01EDDD46500486EAC /* InitialRealmGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */; };
 		CEF044B31EDEABC400486EAC /* Currency.json in Resources */ = {isa = PBXBuildFile; fileRef = CEF044B21EDEABC400486EAC /* Currency.json */; };
@@ -113,14 +124,25 @@
 		CE4395531EE93C3C00C05E4A /* MTColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTColors.swift; path = Configs/MTColors.swift; sourceTree = "<group>"; };
 		CE4395551EE93E7700C05E4A /* MTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTNavigationController.swift; path = "ViewControllers/Base Class/MTNavigationController.swift"; sourceTree = "<group>"; };
 		CE4395591EE9401200C05E4A /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Hex.swift"; path = "Sources/Extensions/UIColor+Hex.swift"; sourceTree = "<group>"; };
+		CE44F40B1EFA622500E035C7 /* MockRegInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockRegInteractor.swift; path = Authentication/MockRegInteractor.swift; sourceTree = "<group>"; };
 		CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CategoryTests.swift; path = CategoryTests/CategoryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AccountTests.swift; path = AccountTests/AccountTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFE1E95E54400E5DBA6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
+		CE75D7951EF8EE4A00F2913A /* MockRealmHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockRealmHolder.swift; path = Authentication/MockRealmHolder.swift; sourceTree = "<group>"; };
 		CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntry.swift; path = Models/BillEntry.swift; sourceTree = "<group>"; };
 		CEA05C111EE0DFCC0091414F /* MTTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTextField.swift; path = "Views/Class/Base Classes/MTTextField.swift"; sourceTree = "<group>"; };
 		CEA05C141EE0F4640091414F /* MTPresentrs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTPresentrs.swift; path = ViewControllers/Presentrs/MTPresentrs.swift; sourceTree = "<group>"; };
 		CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthConfig.swift; path = Configs/RealmAuthConfig.swift; sourceTree = "<group>"; };
 		CEB1A8E11ECF008D000F786B /* RealmHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmHolder.swift; path = Utils/RealmHolder.swift; sourceTree = "<group>"; };
+		CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewControllerTests.swift; path = Authentication/RegistrationViewControllerTests.swift; sourceTree = "<group>"; };
+		CEB403B21EF286080013CB3C /* MockRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockRegistrationViewController.swift; path = Authentication/MockRegistrationViewController.swift; sourceTree = "<group>"; };
+		CEB403B41EF28C3F0013CB3C /* MockRealmAuthPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockRealmAuthPresenter.swift; path = Authentication/MockRealmAuthPresenter.swift; sourceTree = "<group>"; };
+		CEB403B61EF291950013CB3C /* MockEncrypter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockEncrypter.swift; path = Authentication/MockEncrypter.swift; sourceTree = "<group>"; };
+		CEB403B81EF296D00013CB3C /* TestableRegInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestableRegInteractor.swift; path = Authentication/TestableRegInteractor.swift; sourceTree = "<group>"; };
+		CEB403BA1EF298C00013CB3C /* MockLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockLoginInteractor.swift; path = Authentication/MockLoginInteractor.swift; sourceTree = "<group>"; };
+		CEB403BC1EF29E4B0013CB3C /* RealmAuthPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthPresenterTests.swift; path = Authentication/RealmAuthPresenterTests.swift; sourceTree = "<group>"; };
+		CEB403BF1EF2D4D30013CB3C /* RealmRegInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmRegInteractorTests.swift; path = Authentication/RealmRegInteractorTests.swift; sourceTree = "<group>"; };
+		CEB403C11EF3647F0013CB3C /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsPresenter.swift; path = Presenters/Settings/SettingsPresenter.swift; sourceTree = "<group>"; };
 		CED88E421EE90EEE00D147B9 /* UIFont+AppFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIFont+AppFont.swift"; path = "Sources/Extensions/UIFont+AppFont.swift"; sourceTree = "<group>"; };
 		CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialRealmGenerator.swift; path = Utils/InitialRealmGenerator.swift; sourceTree = "<group>"; };
 		CEF044B21EDEABC400486EAC /* Currency.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Currency.json; path = initModelValues/Currency.json; sourceTree = "<group>"; };
@@ -218,7 +240,8 @@
 		CE005F511ECAE49500536C1A /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */,
+				CEB403C41EF364880013CB3C /* Authentication */,
+				CEB403C31EF364820013CB3C /* Settings */,
 			);
 			name = Presenters;
 			sourceTree = "<group>";
@@ -310,6 +333,22 @@
 			name = BillTests;
 			sourceTree = "<group>";
 		};
+		CE44F40A1EFA620D00E035C7 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				CE44F40B1EFA622500E035C7 /* MockRegInteractor.swift */,
+			);
+			name = Stubs;
+			sourceTree = "<group>";
+		};
+		CE44F40D1EFA637000E035C7 /* Testable Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				CEB403B81EF296D00013CB3C /* TestableRegInteractor.swift */,
+			);
+			name = "Testable Subclasses";
+			sourceTree = "<group>";
+		};
 		CE652FF81E95D91700E5DBA6 /* CategoryTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +389,61 @@
 				CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		CEB403AE1EF26A960013CB3C /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F31021E9B21FD0022CA57 /* TransactionTests */,
+				CE3A89B91E967EF300EBE809 /* BillTests */,
+				CE3A89B61E96794900EBE809 /* UserTests */,
+				CE652FFB1E95E2A200E5DBA6 /* AccountTests */,
+				CE652FF81E95D91700E5DBA6 /* CategoryTests */,
+				CEFB22D81E9540FD00867CDA /* CurrencyTests */,
+				CEFB22CE1E9505FF00867CDA /* AccountTypeTests */,
+			);
+			name = ModelTests;
+			sourceTree = "<group>";
+		};
+		CEB403AF1EF26C9C0013CB3C /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				CE44F40D1EFA637000E035C7 /* Testable Subclasses */,
+				CE44F40A1EFA620D00E035C7 /* Stubs */,
+				CEB403BE1EF2D47B0013CB3C /* Mocks */,
+				CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */,
+				CEB403BC1EF29E4B0013CB3C /* RealmAuthPresenterTests.swift */,
+				CEB403BF1EF2D4D30013CB3C /* RealmRegInteractorTests.swift */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		CEB403BE1EF2D47B0013CB3C /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				CEB403B21EF286080013CB3C /* MockRegistrationViewController.swift */,
+				CEB403B41EF28C3F0013CB3C /* MockRealmAuthPresenter.swift */,
+				CEB403B61EF291950013CB3C /* MockEncrypter.swift */,
+				CEB403BA1EF298C00013CB3C /* MockLoginInteractor.swift */,
+				CE75D7951EF8EE4A00F2913A /* MockRealmHolder.swift */,
+			);
+			name = Mocks;
+			sourceTree = "<group>";
+		};
+		CEB403C31EF364820013CB3C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CEB403C11EF3647F0013CB3C /* SettingsPresenter.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		CEB403C41EF364880013CB3C /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */,
+			);
+			name = Authentication;
 			sourceTree = "<group>";
 		};
 		CED88E411EE90EB700D147B9 /* Extensions */ = {
@@ -490,13 +584,8 @@
 		CEFB22B21E94FC2100867CDA /* mtrckrTests */ = {
 			isa = PBXGroup;
 			children = (
-				CE1F31021E9B21FD0022CA57 /* TransactionTests */,
-				CE3A89B91E967EF300EBE809 /* BillTests */,
-				CE3A89B61E96794900EBE809 /* UserTests */,
-				CE652FFB1E95E2A200E5DBA6 /* AccountTests */,
-				CE652FF81E95D91700E5DBA6 /* CategoryTests */,
-				CEFB22D81E9540FD00867CDA /* CurrencyTests */,
-				CEFB22CE1E9505FF00867CDA /* AccountTypeTests */,
+				CEB403AF1EF26C9C0013CB3C /* Authentication */,
+				CEB403AE1EF26A960013CB3C /* ModelTests */,
 				CEFB22B51E94FC2100867CDA /* Info.plist */,
 			);
 			path = mtrckrTests;
@@ -602,8 +691,8 @@
 					};
 					CEFB22AE1E94FC2100867CDA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = S86Z46T95A;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = DXH96DDY7G;
+						ProvisioningStyle = Manual;
 						TestTargetID = CEFB229A1E94FC2100867CDA;
 					};
 				};
@@ -799,6 +888,7 @@
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
 				CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */,
 				CE43955A1EE9401200C05E4A /* UIColor+Hex.swift in Sources */,
+				CEB403C21EF3647F0013CB3C /* SettingsPresenter.swift in Sources */,
 				CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */,
 				CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */,
 				CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */,
@@ -816,14 +906,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB403BB1EF298C00013CB3C /* MockLoginInteractor.swift in Sources */,
+				CEB403B71EF291950013CB3C /* MockEncrypter.swift in Sources */,
+				CEB403B11EF26DB80013CB3C /* RegistrationViewControllerTests.swift in Sources */,
+				CE44F40C1EFA622500E035C7 /* MockRegInteractor.swift in Sources */,
+				CEB403B91EF296D00013CB3C /* TestableRegInteractor.swift in Sources */,
+				CEB403BD1EF29E4B0013CB3C /* RealmAuthPresenterTests.swift in Sources */,
 				CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */,
 				CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */,
 				CEFB22DA1E95419200867CDA /* CurrencyTests.swift in Sources */,
 				CEFB22D21E95087600867CDA /* AccountTypeTests.swift in Sources */,
+				CEB403B51EF28C3F0013CB3C /* MockRealmAuthPresenter.swift in Sources */,
+				CE75D7961EF8EE4A00F2913A /* MockRealmHolder.swift in Sources */,
+				CEB403B31EF286080013CB3C /* MockRegistrationViewController.swift in Sources */,
 				CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */,
 				CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */,
 				CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */,
 				CE3A89BF1E97ED8900EBE809 /* BillEntryTests.swift in Sources */,
+				CEB403C01EF2D4D30013CB3C /* RealmRegInteractorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,7 +995,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG TESTING";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -952,11 +1052,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = DXH96DDY7G;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				INFOPLIST_FILE = mtrckr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.app.mtrckr-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -971,6 +1077,7 @@
 				DEVELOPMENT_TEAM = DXH96DDY7G;
 				INFOPLIST_FILE = mtrckr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.app.mtrckr-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -984,11 +1091,19 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = S86Z46T95A;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DXH96DDY7G;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				INFOPLIST_FILE = mtrckrTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.mtrckrTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG TESTING=1";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mtrckr.app/mtrckr";
 			};
@@ -1000,11 +1115,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = S86Z46T95A;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = mtrckrTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.mtrckrTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mtrckr.app/mtrckr";
 			};

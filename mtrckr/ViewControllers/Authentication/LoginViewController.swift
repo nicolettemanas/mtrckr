@@ -97,7 +97,7 @@ class LoginViewController: MTViewController, RealmAuthPresenterOutput {
         }
     }
     
-    func showSuccessfulLogin(ofUser user: RLMSyncUser) {
+    func showSuccessfulLogin(ofUser user: MTSyncUser) {
         hideLoadingView()
         delegate?.didDismiss()
         view.window?.rootViewController?.dismiss(animated: false, completion: nil)
