@@ -54,7 +54,6 @@ class RealmLoginInteractorTests: QuickSpec {
                 }
                 
                 context("User chooses to append data", {
-                    
                     beforeEach {
                         let customCat = mtrckr.Category(id: "customCategory1", type: .expense, name: "Expense1", icon: "")
                         customCat.save(toRealm: self.offlineRealm!)
@@ -76,14 +75,22 @@ class RealmLoginInteractorTests: QuickSpec {
                 })
                 
                 context("User chooses to disregard offline data", {
-                    itBehavesLike("User is logged in")
+                    beforeEach {
+                        let customCat = mtrckr.Category(id: "customCategory1", type: .expense, name: "Expense1", icon: "")
+                        customCat.save(toRealm: self.offlineRealm!)
+                        
+                        self.loginInteractor?.login(withEmail: "sample@gmail.com",
+                                                    withEncryptedPassword: "sample",
+                                                    loginOption: .useRemote)
+                    }
                     
+                    itBehavesLike("User is logged in")
                     it("Sync data overwrites offline data", closure: { 
                         self.syncRealm = self.loginInteractor?.userRealm
                         let categories = mtrckr.Category.all(in: self.syncRealm!)
                         let customCategory = mtrckr.Category.with(key: "customCategory1", inRealm: self.syncRealm!)
                         
-                        expect(categories.count).toEventually(equal(22))
+                        expect(categories.count).toEventually(equal(0))
                         expect(customCategory).to(beNil())
                     })
                 })
