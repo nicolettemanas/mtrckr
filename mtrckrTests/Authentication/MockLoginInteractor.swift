@@ -19,6 +19,7 @@ class MockLoginInteractor: RealmLoginInteractor {
     
     override func login(withEmail email: String, withEncryptedPassword password: String, loginOption option: LoginSyncOption) {
         didLogin = true
+        output?.didLogin(user: MTSyncUser())
     }
     
 }

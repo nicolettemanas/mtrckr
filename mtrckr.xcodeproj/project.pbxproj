@@ -36,17 +36,19 @@
 		CE4395561EE93E7700C05E4A /* MTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395551EE93E7700C05E4A /* MTNavigationController.swift */; };
 		CE43955A1EE9401200C05E4A /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395591EE9401200C05E4A /* UIColor+Hex.swift */; };
 		CE44F40C1EFA622500E035C7 /* MockRegInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F40B1EFA622500E035C7 /* MockRegInteractor.swift */; };
+		CE44F40F1EFA6AD600E035C7 /* RealmLoginInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F40E1EFA6AD600E035C7 /* RealmLoginInteractorTests.swift */; };
+		CE44F4111EFA743C00E035C7 /* TestableLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F4101EFA743C00E035C7 /* TestableLoginInteractor.swift */; };
+		CE44F4131EFB84EC00E035C7 /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F4121EFB84EC00E035C7 /* LoginViewControllerTests.swift */; };
+		CE44F4151EFB876A00E035C7 /* MockPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F4141EFB876A00E035C7 /* MockPresenterOutput.swift */; };
 		CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */; };
 		CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */; };
 		CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFE1E95E54400E5DBA6 /* User.swift */; };
-		CE75D7961EF8EE4A00F2913A /* MockRealmHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE75D7951EF8EE4A00F2913A /* MockRealmHolder.swift */; };
 		CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */; };
 		CEA05C121EE0DFCC0091414F /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA05C111EE0DFCC0091414F /* MTTextField.swift */; };
 		CEA05C151EE0F4640091414F /* MTPresentrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA05C141EE0F4640091414F /* MTPresentrs.swift */; };
 		CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */; };
 		CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8E11ECF008D000F786B /* RealmHolder.swift */; };
 		CEB403B11EF26DB80013CB3C /* RegistrationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */; };
-		CEB403B31EF286080013CB3C /* MockRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B21EF286080013CB3C /* MockRegistrationViewController.swift */; };
 		CEB403B51EF28C3F0013CB3C /* MockRealmAuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B41EF28C3F0013CB3C /* MockRealmAuthPresenter.swift */; };
 		CEB403B71EF291950013CB3C /* MockEncrypter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B61EF291950013CB3C /* MockEncrypter.swift */; };
 		CEB403B91EF296D00013CB3C /* TestableRegInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B81EF296D00013CB3C /* TestableRegInteractor.swift */; };
@@ -125,17 +127,19 @@
 		CE4395551EE93E7700C05E4A /* MTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTNavigationController.swift; path = "ViewControllers/Base Class/MTNavigationController.swift"; sourceTree = "<group>"; };
 		CE4395591EE9401200C05E4A /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Hex.swift"; path = "Sources/Extensions/UIColor+Hex.swift"; sourceTree = "<group>"; };
 		CE44F40B1EFA622500E035C7 /* MockRegInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockRegInteractor.swift; path = Authentication/MockRegInteractor.swift; sourceTree = "<group>"; };
+		CE44F40E1EFA6AD600E035C7 /* RealmLoginInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmLoginInteractorTests.swift; path = Authentication/RealmLoginInteractorTests.swift; sourceTree = "<group>"; };
+		CE44F4101EFA743C00E035C7 /* TestableLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestableLoginInteractor.swift; path = Authentication/TestableLoginInteractor.swift; sourceTree = "<group>"; };
+		CE44F4121EFB84EC00E035C7 /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewControllerTests.swift; path = Authentication/LoginViewControllerTests.swift; sourceTree = "<group>"; };
+		CE44F4141EFB876A00E035C7 /* MockPresenterOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockPresenterOutput.swift; path = Authentication/MockPresenterOutput.swift; sourceTree = "<group>"; };
 		CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CategoryTests.swift; path = CategoryTests/CategoryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AccountTests.swift; path = AccountTests/AccountTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFE1E95E54400E5DBA6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
-		CE75D7951EF8EE4A00F2913A /* MockRealmHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockRealmHolder.swift; path = Authentication/MockRealmHolder.swift; sourceTree = "<group>"; };
 		CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntry.swift; path = Models/BillEntry.swift; sourceTree = "<group>"; };
 		CEA05C111EE0DFCC0091414F /* MTTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTextField.swift; path = "Views/Class/Base Classes/MTTextField.swift"; sourceTree = "<group>"; };
 		CEA05C141EE0F4640091414F /* MTPresentrs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTPresentrs.swift; path = ViewControllers/Presentrs/MTPresentrs.swift; sourceTree = "<group>"; };
 		CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthConfig.swift; path = Configs/RealmAuthConfig.swift; sourceTree = "<group>"; };
 		CEB1A8E11ECF008D000F786B /* RealmHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmHolder.swift; path = Utils/RealmHolder.swift; sourceTree = "<group>"; };
 		CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewControllerTests.swift; path = Authentication/RegistrationViewControllerTests.swift; sourceTree = "<group>"; };
-		CEB403B21EF286080013CB3C /* MockRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockRegistrationViewController.swift; path = Authentication/MockRegistrationViewController.swift; sourceTree = "<group>"; };
 		CEB403B41EF28C3F0013CB3C /* MockRealmAuthPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockRealmAuthPresenter.swift; path = Authentication/MockRealmAuthPresenter.swift; sourceTree = "<group>"; };
 		CEB403B61EF291950013CB3C /* MockEncrypter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockEncrypter.swift; path = Authentication/MockEncrypter.swift; sourceTree = "<group>"; };
 		CEB403B81EF296D00013CB3C /* TestableRegInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestableRegInteractor.swift; path = Authentication/TestableRegInteractor.swift; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB403B81EF296D00013CB3C /* TestableRegInteractor.swift */,
+				CE44F4101EFA743C00E035C7 /* TestableLoginInteractor.swift */,
 			);
 			name = "Testable Subclasses";
 			sourceTree = "<group>";
@@ -412,8 +417,10 @@
 				CE44F40A1EFA620D00E035C7 /* Stubs */,
 				CEB403BE1EF2D47B0013CB3C /* Mocks */,
 				CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */,
+				CE44F4121EFB84EC00E035C7 /* LoginViewControllerTests.swift */,
 				CEB403BC1EF29E4B0013CB3C /* RealmAuthPresenterTests.swift */,
 				CEB403BF1EF2D4D30013CB3C /* RealmRegInteractorTests.swift */,
+				CE44F40E1EFA6AD600E035C7 /* RealmLoginInteractorTests.swift */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -421,11 +428,10 @@
 		CEB403BE1EF2D47B0013CB3C /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				CEB403B21EF286080013CB3C /* MockRegistrationViewController.swift */,
 				CEB403B41EF28C3F0013CB3C /* MockRealmAuthPresenter.swift */,
 				CEB403B61EF291950013CB3C /* MockEncrypter.swift */,
 				CEB403BA1EF298C00013CB3C /* MockLoginInteractor.swift */,
-				CE75D7951EF8EE4A00F2913A /* MockRealmHolder.swift */,
+				CE44F4141EFB876A00E035C7 /* MockPresenterOutput.swift */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -908,22 +914,24 @@
 			files = (
 				CEB403BB1EF298C00013CB3C /* MockLoginInteractor.swift in Sources */,
 				CEB403B71EF291950013CB3C /* MockEncrypter.swift in Sources */,
+				CE44F4151EFB876A00E035C7 /* MockPresenterOutput.swift in Sources */,
 				CEB403B11EF26DB80013CB3C /* RegistrationViewControllerTests.swift in Sources */,
 				CE44F40C1EFA622500E035C7 /* MockRegInteractor.swift in Sources */,
 				CEB403B91EF296D00013CB3C /* TestableRegInteractor.swift in Sources */,
 				CEB403BD1EF29E4B0013CB3C /* RealmAuthPresenterTests.swift in Sources */,
 				CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */,
 				CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */,
+				CE44F4111EFA743C00E035C7 /* TestableLoginInteractor.swift in Sources */,
 				CEFB22DA1E95419200867CDA /* CurrencyTests.swift in Sources */,
 				CEFB22D21E95087600867CDA /* AccountTypeTests.swift in Sources */,
 				CEB403B51EF28C3F0013CB3C /* MockRealmAuthPresenter.swift in Sources */,
-				CE75D7961EF8EE4A00F2913A /* MockRealmHolder.swift in Sources */,
-				CEB403B31EF286080013CB3C /* MockRegistrationViewController.swift in Sources */,
+				CE44F40F1EFA6AD600E035C7 /* RealmLoginInteractorTests.swift in Sources */,
 				CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */,
 				CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */,
 				CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */,
 				CE3A89BF1E97ED8900EBE809 /* BillEntryTests.swift in Sources */,
 				CEB403C01EF2D4D30013CB3C /* RealmRegInteractorTests.swift in Sources */,
+				CE44F4131EFB84EC00E035C7 /* LoginViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1116,7 +1124,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DXH96DDY7G;
 				INFOPLIST_FILE = mtrckrTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";

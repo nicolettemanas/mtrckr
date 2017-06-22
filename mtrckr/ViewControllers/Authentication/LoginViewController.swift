@@ -31,7 +31,7 @@ class LoginViewController: MTViewController, RealmAuthPresenterOutput {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func loginBtnPressed(_ sender: MTButton) {
+    @IBAction func loginBtnPressed(_ sender: MTButton?) {
         displayLoginOptions()
     }
     

@@ -15,6 +15,9 @@ class MockRealmAuthPresenter: RealmAuthPresenter {
     var didRegister: Bool = false
     var didLogout: Bool = false
     
+    var didFailLogin: Bool = false
+    var didFailRegister: Bool = false
+    
     init() {
         super.init(regInteractor: nil, loginInteractor: nil, logoutInteractor: nil, encrypter: nil, output: nil)
     }
@@ -40,11 +43,11 @@ class MockRealmAuthPresenter: RealmAuthPresenter {
     }
     
     override func didFailLogin(withError error: Error?) {
-        didLogin = false
+        didFailLogin = true
     }
     
     override func didFailRegistration(withError error: Error?) {
-        didRegister = false
+        didFailRegister = true
     }
     
 }

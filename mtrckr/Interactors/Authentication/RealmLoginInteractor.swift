@@ -27,24 +27,31 @@ class RealmLoginInteractor: RealmHolder, RealmLoginInteractorProtocol {
     // MARK: RealmAuthInteractorProtocol methods
     func login(withEmail email: String, withEncryptedPassword password: String, loginOption option: LoginSyncOption) {
         let credentials = SyncCredentials.usernamePassword(username: email, password: password)
-        SyncUser.logIn(with: credentials, server: config.serverURL, timeout: config.timeout) { (user, error) in
-            if let user = user {
-                let mt = MTSyncUser(syncUser: user)
-                self.setDefaultRealm(ofUser: mt)
+        loginUser(withCredentials: credentials, server: config.serverURL, timeout: config.timeout) { (user, error) in
+            if error == nil {
                 if option == .append {
                     self.syncRealm()
                 }
-                self.output?.didLogin(user: mt)
+                self.output?.didLogin(user: user!)
             } else {
                 self.output?.didFailLogin(withError: error)
             }
         }
     }
     
-    // MARK: - Realm setup methods
-    func setDefaultRealm(ofUser user: MTSyncUser) {
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            syncConfiguration: SyncConfiguration(user: user.syncUser!, realmURL: config.userRealmPath)
-        )
+    // MARK: - Realm Login methods
+    func loginUser(withCredentials credentials: SyncCredentials,
+                   server: URL,
+                   timeout: TimeInterval,
+                   completion: @escaping (MTSyncUser?, Error?) -> Void) {
+        
+        SyncUser.logIn(with: credentials, server: server, timeout: timeout) { (user, error) in
+            if let syncUser = user {
+                let mt = MTSyncUser(syncUser: syncUser)
+                completion(mt, error)
+            } else {
+                completion(nil, error)
+            }
+        }
     }
 }

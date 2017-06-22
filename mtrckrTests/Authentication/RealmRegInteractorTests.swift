@@ -14,9 +14,8 @@ import RealmSwift
 
 class RealmRegInteractorTests: QuickSpec {
     
-    var regInteractor: TestableRegInteractor?
+    var regInteractor: RealmRegInteractor?
     var regPresenter: MockRealmAuthPresenter?
-    var mockConfig: AuthConfigProtocol = RealmAuthConfig()
     var offlineRealm: Realm?
     var syncRealm: Realm?
     
@@ -37,36 +36,36 @@ class RealmRegInteractorTests: QuickSpec {
             try? self.syncRealm?.write {
                 self.syncRealm?.deleteAll()
             }
-            
-            InitialRealmGenerator.generateInitRealm(onComplete: { (_) in
-                self.regInteractor = TestableRegInteractor("RealmRegInteractorTests")
-                self.regPresenter = MockRealmAuthPresenter()
-                self.regInteractor?.output = self.regPresenter
-                
-                // "Logout"
-                self.regInteractor?.syncUser = nil
-            })
         }
         
         describe("Registration") {
             context("Successful registration", {
                 beforeEach {
-                    self.offlineRealm = self.regInteractor?.userRealm
-                    let cashAccountType = AccountType.with(key: 218, inRealm: self.offlineRealm!)
-                    
-                    let account = Account(value: ["id": "accnt1",
-                                                  "name": "My Cash",
-                                                  "type": cashAccountType!,
-                                                  "initialAmount": 10.0,
-                                                  "currentAmount": 20.0,
-                                                  "totalExpenses": 100.0,
-                                                  "totalIncome": 30.0,
-                                                  "color": "#AAAAAA",
-                                                  "dateOpened": Date() ])
-                    account.save(toRealm: self.offlineRealm!)
-                    self.regInteractor?.register(withEmail: "sample@gmail.com",
-                                                 withEncryptedPassword: "sample",
-                                                 withName: "sample")
+                    InitialRealmGenerator.generateInitRealm(onComplete: { (_) in
+                        self.regInteractor = TestableRegInteractor("RealmRegInteractorTests")
+                        self.regPresenter = MockRealmAuthPresenter()
+                        self.regInteractor?.output = self.regPresenter
+                        
+                        // "Logout"
+                        self.regInteractor?.syncUser = nil
+                        
+                        self.offlineRealm = self.regInteractor?.userRealm
+                        let cashAccountType = AccountType.with(key: 218, inRealm: self.offlineRealm!)
+                        
+                        let account = Account(value: ["id": "accnt1",
+                                                      "name": "My Cash",
+                                                      "type": cashAccountType!,
+                                                      "initialAmount": 10.0,
+                                                      "currentAmount": 20.0,
+                                                      "totalExpenses": 100.0,
+                                                      "totalIncome": 30.0,
+                                                      "color": "#AAAAAA",
+                                                      "dateOpened": Date() ])
+                        account.save(toRealm: self.offlineRealm!)
+                        self.regInteractor?.register(withEmail: "sample@gmail.com",
+                                                     withEncryptedPassword: "sample",
+                                                     withName: "sample")
+                    })
                 }
                 
                 it("Saves registered user to synced database", closure: {
@@ -89,6 +88,27 @@ class RealmRegInteractorTests: QuickSpec {
                 
                 it("Calls output's success registration method", closure: { 
                     expect(self.regPresenter?.didRegister).toEventually(equal(true))
+                })
+            })
+            
+            context("Failed registration", {
+                beforeEach {
+                    InitialRealmGenerator.generateInitRealm(onComplete: { (_) in
+                        self.regInteractor = StubFailedRegInteractor()
+                        self.regPresenter = MockRealmAuthPresenter()
+                        self.regInteractor?.output = self.regPresenter
+                        
+                        // "Logout"
+                        self.regInteractor?.syncUser = nil
+
+                        self.regInteractor?.register(withEmail: "sample@gmail.com",
+                                                     withEncryptedPassword: "sample",
+                                                     withName: "sample")
+                    })
+                }
+                
+                it("Informs presenter about error", closure: {
+                    expect(self.regPresenter?.didFailRegister).toEventually(beTrue())
                 })
             })
         }

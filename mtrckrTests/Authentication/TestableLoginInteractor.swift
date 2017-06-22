@@ -1,30 +1,25 @@
 //
-//  MockRegInteractor.swift
+//  TestableLoginInteractor.swift
 //  mtrckr
 //
-//  Created by User on 6/15/17.
+//  Created by User on 6/21/17.
 //
 //
 
 import UIKit
-@testable import mtrckr
 import RealmSwift
 import Realm
 
-class TestableRegInteractor: RealmRegInteractor {
-    var didRegister = false
+@testable import mtrckr
+
+class TestableLoginInteractor: RealmLoginInteractor {
+    
+    var didLogin = false
     var inMemoryIdentifier: String
     
     init(_ inMemoryIdentifier: String) {
         self.inMemoryIdentifier = inMemoryIdentifier
         super.init(withConfig: RealmAuthConfig(), syncUser: MTSyncUser())
-    }
-    
-    override func registerUser(withCredentials credentials: SyncCredentials, server: URL,
-                               timeout: TimeInterval, completion:@escaping (_ user: MTSyncUser?, _ error: Error?) -> Void) {
-        didRegister = true
-        self.syncUser = MTSyncUser()
-        completion(self.syncUser, nil)
     }
     
     override func readOfflineRealm() -> Realm {
@@ -52,16 +47,26 @@ class TestableRegInteractor: RealmRegInteractor {
         
         return userRealm
     }
+    
+    override func loginUser(withCredentials credentials: SyncCredentials,
+                            server: URL, timeout: TimeInterval,
+                            completion: @escaping (MTSyncUser?, Error?) -> Void) {
+        didLogin = true
+        self.syncUser = MTSyncUser()
+        completion(self.syncUser, nil)
+    }
 }
 
-class StubFailedRegInteractor: RealmRegInteractor {
+class StubFailedLoginInteractor: RealmLoginInteractor {
     
     init() {
         super.init(withConfig: RealmAuthConfig(), syncUser: MTSyncUser())
     }
     
-    override func registerUser(withCredentials credentials: SyncCredentials, server: URL,
-                               timeout: TimeInterval, completion: @escaping (MTSyncUser?, Error?) -> Void) {
+    override func loginUser(withCredentials credentials: SyncCredentials,
+                            server: URL, timeout: TimeInterval,
+                            completion: @escaping (MTSyncUser?, Error?) -> Void) {
+        
         let customError = NSError(domain: "", code: 500, userInfo: nil)
         completion(MTSyncUser(), customError as Error)
     }

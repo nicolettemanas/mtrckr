@@ -15,6 +15,8 @@ enum LoginSyncOption {
 }
 
 protocol RealmAuthPresenterProtocol {
+    var output: RealmAuthPresenterOutput? { get set }
+    
     func login(withEmail email: String, withPassword password: String, loginSyncOption option: LoginSyncOption)
     func register(withEmail email: String, withPassword password: String, withName name: String)
     func logout()
