@@ -8,10 +8,16 @@
 
 import UIKit
 
+/// Base class for UIButtons
 @IBDesignable
 class MTButton: UIButton {
-
+    
+    // MARK: - Properties
+    
+    /// Boolean value indicating whether to render the button with borders
     @IBInspectable var hasBorders: Bool = false { didSet { updateBorder() }}
+    
+    /// UIColor of the border to be rendered
     @IBInspectable var borderColor: UIColor = MTColors.mainBlue { didSet { updateBorder() }}
     
     override init(frame: CGRect) {
@@ -20,10 +26,6 @@ class MTButton: UIButton {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-    
-    func setupUIProperties() {
-        
     }
     
     func updateBorder() {

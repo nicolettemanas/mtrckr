@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RealmAuthPresenterOutput Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/RealmAuthPresenterOutput" class="dashAnchor"></a>
+    <a title="RealmAuthPresenterOutput Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (73% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        RealmAuthPresenterOutput Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountType.html">AccountType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Bill.html">Bill</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BillEntry.html">BillEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Category.html">Category</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Currency.html">Currency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EncryptionInteractor.html">EncryptionInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/InitialRealmGenerator.html">InitialRealmGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTButton.html">MTButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTSyncUser.html">MTSyncUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTTextField.html">MTTextField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTViewController.html">MTViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmAuthPresenter.html">RealmAuthPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmHolder.html">RealmHolder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmLoginInteractor.html">RealmLoginInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmLogoutInteractor.html">RealmLogoutInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmRegInteractor.html">RealmRegInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SettingsPresenter.html">SettingsPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Transaction.html">Transaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15BillDueReminder">BillDueReminder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15BillEntryStatus">BillEntryStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr18BillRepeatSchedule">BillRepeatSchedule</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr12CategoryType">CategoryType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15LoginSyncOption">LoginSyncOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15TransactionType">TransactionType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AuthConfig.html">AuthConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RealmAuthPresenterOutput.html">RealmAuthPresenterOutput</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>RealmAuthPresenterOutput</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">protocol</span> <span class="kt">RealmAuthPresenterOutput</span></code></pre>
+
+                </div>
+              </div>
+            <p>Collection of properties and methods that <code><a href="../Classes/RealmAuthPresenter.html">RealmAuthPresenter</a></code> gives its <code>output</code>.
+Must be conformed to when used <code><a href="../Classes/RealmAuthPresenter.html">RealmAuthPresenter</a></code> as an event handler</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Authentication"></a>
+                <a name="//apple_ref/swift/Section/Authentication" class="dashAnchor"></a>
+                <a href="#/Authentication">
+                  <h3 class="section-name">Authentication</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP6mtrckr24RealmAuthPresenterOutput14showFailedAuthFT9withAlertGSqCSo17UIAlertController__T_"></a>
+                    <a name="//apple_ref/swift/Method/showFailedAuth(withAlert:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP6mtrckr24RealmAuthPresenterOutput14showFailedAuthFT9withAlertGSqCSo17UIAlertController__T_">showFailedAuth(withAlert:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Passes a UIAlertController when an authentication is failed (Login and Sign up)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="kd">func</span> <span class="nf">showFailedAuth</span><span class="p">(</span><span class="n">withAlert</span> <span class="nv">alert</span><span class="p">:</span> <span class="kt">UIAlertController</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alert</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UIAlertController to be displayed</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP6mtrckr24RealmAuthPresenterOutput19showSuccessfulLoginFT6ofUserCS_10MTSyncUser_T_"></a>
+                    <a name="//apple_ref/swift/Method/showSuccessfulLogin(ofUser:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP6mtrckr24RealmAuthPresenterOutput19showSuccessfulLoginFT6ofUserCS_10MTSyncUser_T_">showSuccessfulLogin(ofUser:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Triggered when a user has successfully logged in</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="kd">func</span> <span class="nf">showSuccessfulLogin</span><span class="p">(</span><span class="n">ofUser</span> <span class="nv">user</span><span class="p">:</span> <span class="kt"><a href="../Classes/MTSyncUser.html">MTSyncUser</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>user</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>MTSyncUser</code> logged in</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP6mtrckr24RealmAuthPresenterOutput26showSuccessfulRegistrationFT6ofUserCS_10MTSyncUser_T_"></a>
+                    <a name="//apple_ref/swift/Method/showSuccessfulRegistration(ofUser:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP6mtrckr24RealmAuthPresenterOutput26showSuccessfulRegistrationFT6ofUserCS_10MTSyncUser_T_">showSuccessfulRegistration(ofUser:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Triggered when a user has successfully registered</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="kd">func</span> <span class="nf">showSuccessfulRegistration</span><span class="p">(</span><span class="n">ofUser</span> <span class="nv">user</span><span class="p">:</span> <span class="kt"><a href="../Classes/MTSyncUser.html">MTSyncUser</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>user</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The newly registered <code>MTSyncUser</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP6mtrckr24RealmAuthPresenterOutput19showSuccesfulLogoutFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/showSuccesfulLogout()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP6mtrckr24RealmAuthPresenterOutput19showSuccesfulLogoutFT_T_">showSuccesfulLogout()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Triggered when a user has logged out</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="kd">func</span> <span class="nf">showSuccesfulLogout</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-06-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

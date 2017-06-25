@@ -12,44 +12,57 @@ PODS:
   - Nimble (5.0.0)
   - NVActivityIndicatorView (3.6.1)
   - Quick (1.0.0)
-  - Realm (2.7.0):
-    - Realm/Headers (= 2.7.0)
-  - Realm/Headers (2.7.0)
-  - RealmSwift (2.7.0):
-    - Realm (= 2.7.0)
-  - SkyFloatingLabelTextField (3.1.0)
+  - Realm (2.8.3):
+    - Realm/Headers (= 2.8.3)
+  - Realm/Headers (2.8.3)
+  - RealmSwift (2.8.3):
+    - Realm (= 2.8.3)
   - SwiftLint (0.18.1)
-  - Swinject (2.0.0)
+  - Swinject (2.1.0)
   - URITemplate (2.0.0)
 
 DEPENDENCIES:
-  - CryptoSwift (~> 0.6.9)
+  - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift.git`, branch `develop`)
   - DateToolsSwift (~> 2.0.3)
   - Hero (~> 0.3.6)
   - Mockingjay (~> 2.0.0)
   - Nimble (= 5.0.0)
   - NVActivityIndicatorView (~> 3.6.1)
   - Quick (= 1.0.0)
-  - RealmSwift (~> 2.7.0)
-  - SkyFloatingLabelTextField (~> 3.1.0)
+  - RealmSwift (~> 2.8.3)
   - SwiftLint (~> 0.18.1)
-  - Swinject (~> 2.0.0)
+  - Swinject (from `https://github.com/Swinject/Swinject.git`, branch `swift4`)
+
+EXTERNAL SOURCES:
+  CryptoSwift:
+    :branch: develop
+    :git: https://github.com/krzyzanowskim/CryptoSwift.git
+  Swinject:
+    :branch: swift4
+    :git: https://github.com/Swinject/Swinject.git
+
+CHECKOUT OPTIONS:
+  CryptoSwift:
+    :commit: d2e3491ac780ec69329a3d70ab058f2f2c35e6c4
+    :git: https://github.com/krzyzanowskim/CryptoSwift.git
+  Swinject:
+    :commit: 4b3d047cd6745a276d20e5e2fe6ded7fd6b4454e
+    :git: https://github.com/Swinject/Swinject.git
 
 SPEC CHECKSUMS:
-  CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
+  CryptoSwift: b3e56d2cc816dced7aa832cc9d2824dbbb16b7b3
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
   NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
-  Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
-  RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
-  SkyFloatingLabelTextField: 26a92ad407044dd5a7c3e4e348738ff0991514fe
+  Realm: 3601ef091c8c499a31101d8563b991e75546cdce
+  RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   SwiftLint: b467d08f5b25dc3b3cfed243d8e1b74b91714c67
-  Swinject: 2e964a80d70ab09b3949c99032711f89147bfd60
+  Swinject: 4793342bed1bed528c7e97d5bae3e7a60e3bdcac
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: c5707a96ca042204751f0cc612fd9e8a4a163efc
+PODFILE CHECKSUM: 39a67ac4ca4ed0db98604f8d72e89a1046e2bed3
 
 COCOAPODS: 1.1.1

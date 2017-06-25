@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Transaction Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Transaction" class="dashAnchor"></a>
+    <a title="Transaction Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (73% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Transaction Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountType.html">AccountType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Bill.html">Bill</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BillEntry.html">BillEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Category.html">Category</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Currency.html">Currency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EncryptionInteractor.html">EncryptionInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/InitialRealmGenerator.html">InitialRealmGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTButton.html">MTButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTSyncUser.html">MTSyncUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTTextField.html">MTTextField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTViewController.html">MTViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmAuthPresenter.html">RealmAuthPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmHolder.html">RealmHolder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmLoginInteractor.html">RealmLoginInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmLogoutInteractor.html">RealmLogoutInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmRegInteractor.html">RealmRegInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SettingsPresenter.html">SettingsPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Transaction.html">Transaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15BillDueReminder">BillDueReminder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15BillEntryStatus">BillEntryStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr18BillRepeatSchedule">BillRepeatSchedule</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr12CategoryType">CategoryType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15LoginSyncOption">LoginSyncOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15TransactionType">TransactionType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AuthConfig.html">AuthConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RealmAuthPresenterOutput.html">RealmAuthPresenterOutput</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Transaction</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">class</span> <span class="kt">Transaction</span><span class="p">:</span> <span class="kt">Object</span></code></pre>
+
+                </div>
+              </div>
+            <p>A Realm <code>Object</code> that represents a single <code>Transaction</code> record</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr11Transaction2idSS"></a>
+                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr11Transaction2idSS">id</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The unique identifier of the <code>Transaction</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">dynamic</span> <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr11Transaction4typeSS"></a>
+                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr11Transaction4typeSS">type</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type of the <code>Transaction</code> in raw value. See <code><a href="../Enums.html#/s:O6mtrckr15TransactionType">TransactionType</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">dynamic</span> <span class="k">var</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr11Transaction4nameSS"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr11Transaction4nameSS">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The name or title of the <code>Transaction</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">dynamic</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr11Transaction5imageGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/image" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr11Transaction5imageGSqSS_">image</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The image of the <code>Transaction</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">dynamic</span> <span class="k">var</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr11Transaction4descGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/desc" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr11Transaction4descGSqSS_">desc</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The description details of the <code>Transaction</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">dynamic</span> <span class="k">var</span> <span class="nv">desc</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr11Transaction6amountSd"></a>
+                    <a name="//apple_ref/swift/Property/amount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr11Transaction6amountSd">amount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The cost or amount of the <code>Transaction</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">dynamic</span> <span class="k">var</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">0.0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr11Transaction15transactionDateV10Foundation4Date"></a>
+                    <a name="//apple_ref/swift/Property/transactionDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr11Transaction15transactionDateV10Foundation4Date">transactionDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The date of the <code>Transaction</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">dynamic</span> <span class="k">var</span> <span class="nv">transactionDate</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr11Transaction11fromAccountGSqCS_7Account_"></a>
+                    <a name="//apple_ref/swift/Property/fromAccount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr11Transaction11fromAccountGSqCS_7Account_">fromAccount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code><a href="../Classes/Account.html">Account</a></code> from where the <code>Transaction</code> is recorded</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">dynamic</span> <span class="k">var</span> <span class="nv">fromAccount</span><span class="p">:</span> <span class="kt"><a href="../Classes/Account.html">Account</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr11Transaction9toAccountGSqCS_7Account_"></a>
+                    <a name="//apple_ref/swift/Property/toAccount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr11Transaction9toAccountGSqCS_7Account_">toAccount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code><a href="../Classes/Account.html">Account</a></code> to where the <code>Transaction</code> is recorded. If the <code>Transaction</code> is of type <code>.expense</code>
+or <code>.income</code>, <code>toAccount</code> and <code><a href="../Classes/Transaction.html#/s:vC6mtrckr11Transaction11fromAccountGSqCS_7Account_">fromAccount</a></code> is of the same value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">dynamic</span> <span class="k">var</span> <span class="nv">toAccount</span><span class="p">:</span> <span class="kt"><a href="../Classes/Account.html">Account</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr11Transaction8categoryGSqCS_8Category_"></a>
+                    <a name="//apple_ref/swift/Property/category" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr11Transaction8categoryGSqCS_8Category_">category</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code><a href="../Classes/Category.html">Category</a></code> of the <code>Transaction</code>. See <code><a href="../Classes/Category.html">Category</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">dynamic</span> <span class="k">var</span> <span class="nv">category</span><span class="p">:</span> <span class="kt"><a href="../Classes/Category.html">Category</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr11Transaction9billEntryGSqCS_9BillEntry_"></a>
+                    <a name="//apple_ref/swift/Property/billEntry" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr11Transaction9billEntryGSqCS_9BillEntry_">billEntry</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code><a href="../Classes/BillEntry.html">BillEntry</a></code> associated with the <code>Transaction</code> if available</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">dynamic</span> <span class="k">var</span> <span class="nv">billEntry</span><span class="p">:</span> <span class="kt"><a href="../Classes/BillEntry.html">BillEntry</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initializers"></a>
+                <a name="//apple_ref/swift/Section/Initializers" class="dashAnchor"></a>
+                <a href="#/Initializers">
+                  <h3 class="section-name">Initializers</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr11TransactioncFT4typeOS_15TransactionType4nameSS5imageGSqSS_11descriptionGSqSS_6amountSd8categoryGSqCS_8Category_4fromCS_7Account2toS3_4dateV10Foundation4Date_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(type:name:image:description:amount:category:from:to:date:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr11TransactioncFT4typeOS_15TransactionType4nameSS5imageGSqSS_11descriptionGSqSS_6amountSd8categoryGSqCS_8Category_4fromCS_7Account2toS3_4dateV10Foundation4Date_S0_">init(type:name:image:description:amount:category:from:to:date:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>Transaction</code> with the given properties</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums.html#/s:O6mtrckr15TransactionType">TransactionType</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span>
+         <span class="nv">category</span><span class="p">:</span> <span class="kt"><a href="../Classes/Category.html">Category</a></span><span class="p">?,</span> <span class="n">from</span> <span class="nv">fromAccount</span><span class="p">:</span> <span class="kt"><a href="../Classes/Account.html">Account</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">toAccount</span><span class="p">:</span> <span class="kt"><a href="../Classes/Account.html">Account</a></span><span class="p">,</span> <span class="nv">date</span><span class="p">:</span> <span class="kt">Date</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the <code>Transaction</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name or title of the <code>Transaction</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>image</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The image path of the <code>Transaction</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>description</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The description of the <code>Transaction</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount or cost of the <code>Transaction</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>category</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The category of the <code>Transaction</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fromAccount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Account</code> where the <code>Transaction</code> is recorded. If the <code>Transaction</code> is of type <code>.transfer</code>: The <code>Account</code>
+where the amount is taken from.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>toAccount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If the <code>Transaction</code> is of type <code>.expense</code> or <code>.income</code>: The <code>Account</code> where the <code>Transaction</code> is recorded
+If the <code>Transaction</code> is of type <code>.transfer</code>: The <code>Account</code> there the amount is transfered to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>date</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The date of the <code>Transaction</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CRUD"></a>
+                <a name="//apple_ref/swift/Section/CRUD" class="dashAnchor"></a>
+                <a href="#/CRUD">
+                  <h3 class="section-name">CRUD</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr11Transaction4saveERR"></a>
+                    <a name="//apple_ref/swift/Method/save(toRealm:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr11Transaction4saveERR">save(toRealm:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Saves the <code>Transaction</code> to the given <code>Realm</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">save</span><span class="p">(</span><span class="n">toRealm</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">Realm</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Realm</code> to save the <code>Transaction</code> to</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr11Transaction6updateERR"></a>
+                    <a name="//apple_ref/swift/Method/update(type:name:image:description:amount:category:from:to:date:inRealm:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr11Transaction6updateERR">update(type:name:image:description:amount:category:from:to:date:inRealm:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Updates the <code>Transaction</code> property values to the given values</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">update</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums.html#/s:O6mtrckr15TransactionType">TransactionType</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+                <span class="nv">amount</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">category</span><span class="p">:</span> <span class="kt"><a href="../Classes/Category.html">Category</a></span><span class="p">?,</span> <span class="n">from</span> <span class="nv">fromAccount</span><span class="p">:</span> <span class="kt"><a href="../Classes/Account.html">Account</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">toAccount</span><span class="p">:</span> <span class="kt"><a href="../Classes/Account.html">Account</a></span><span class="p">,</span>
+                <span class="nv">date</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="n">inRealm</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">Realm</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new type of the <code>Transaction</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new title or name of the <code>Transaction</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>image</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new image path of the <code>Transaction</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>description</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new description of the <code>Transaction</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new amount of the <code>Transaction</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>category</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new <code>Category</code> of the <code>Transaction</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fromAccount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new <code>Account</code> source of the <code>Transaction</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>toAccount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new <code>Account</code> destination of the <code>Transaction</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>date</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new <code>Transaction</code> date</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Realm</code> where the updated will be saved</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr11Transaction6deleteERR"></a>
+                    <a name="//apple_ref/swift/Method/delete(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr11Transaction6deleteERR">delete(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes a <code>Transaction</code> and its associated models</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">delete</span><span class="p">(</span><span class="k">in</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">Realm</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Realm</code> to delete the <code>Transaction</code> from</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC6mtrckr11Transaction4withERR"></a>
+                    <a name="//apple_ref/swift/Method/with(key:inRealm:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC6mtrckr11Transaction4withERR">with(key:inRealm:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the <code>Transaction</code> with the given unique ID found in the given `Realm</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">with</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">inRealm</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">Realm</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Transaction</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The unique ID of the <code>Transaction</code> to be fetched</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Realm</code> to fetch the <code>Transaction</code> from</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The fetched <code>Transaction</code></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC6mtrckr11Transaction3allERR"></a>
+                    <a name="//apple_ref/swift/Method/all(in:fromAccount:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC6mtrckr11Transaction3allERR">all(in:fromAccount:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns all <code>Transaction</code>s from <code><a href="../Classes/Account.html">Account</a></code> under given `Realm</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">all</span><span class="p">(</span><span class="k">in</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">Realm</span><span class="p">,</span> <span class="n"><a href="../Classes/Transaction.html#/s:vC6mtrckr11Transaction11fromAccountGSqCS_7Account_">fromAccount</a></span> <span class="nv">account</span><span class="p">:</span> <span class="kt"><a href="../Classes/Account.html">Account</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Results</span><span class="o">&lt;</span><span class="kt">Transaction</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Realm</code> to fetch <code>Transaction</code>s from</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>account</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Account</code> to fetch the <code>Transaction</code>s from</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The <code>Transaction</code>s fetched</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC6mtrckr11Transaction3allERR"></a>
+                    <a name="//apple_ref/swift/Method/all(in:underCategory:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC6mtrckr11Transaction3allERR">all(in:underCategory:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns all <code>Transaction</code>s with the given <code><a href="../Classes/Category.html">Category</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">all</span><span class="p">(</span><span class="k">in</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">Realm</span><span class="p">,</span> <span class="n">underCategory</span> <span class="nv">category</span><span class="p">:</span> <span class="kt"><a href="../Classes/Category.html">Category</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Results</span><span class="o">&lt;</span><span class="kt">Transaction</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Realm</code> to fetch the <code>Transaction</code>s from</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>category</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Category</code> to filter the <code>Transaction</code> with</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The <code>Transaction</code>s fetched</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC6mtrckr11Transaction3allERR"></a>
+                    <a name="//apple_ref/swift/Method/all(in:underBill:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC6mtrckr11Transaction3allERR">all(in:underBill:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns all <code>Transaction</code>s associated with the given <code><a href="../Classes/Bill.html">Bill</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">all</span><span class="p">(</span><span class="k">in</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">Realm</span><span class="p">,</span> <span class="n">underBill</span> <span class="nv">bill</span><span class="p">:</span> <span class="kt"><a href="../Classes/Bill.html">Bill</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Results</span><span class="o">&lt;</span><span class="kt">Transaction</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Realm</code> to fetch the <code>Transaction</code>s from</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bill</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Bill</code> associated to the <code>Transaction</code>s to be fetched</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The <code>Transaction</code>s fetched</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-06-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

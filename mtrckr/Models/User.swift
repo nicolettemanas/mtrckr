@@ -10,25 +10,38 @@ import UIKit
 import RealmSwift
 import Realm
 
+/// A Realm `Object` that represents a single User in the application
 class User: Object {
 
+    // MARK: - Properties
+    /// The unique identifier of the `User`
     dynamic var id: String = ""
+    
+    /// The name of the `User`
     dynamic var name: String = ""
+    
+    /// The email of the `User`
     dynamic var email: String = ""
+    
+    /// The image of the `User`
     dynamic var image: String = ""
+    
+    /// The `Currency` currently used by the `User`
     dynamic var currency: Currency?
-
-//    var accounts = LinkingObjects(fromType: Account.self, property: "user")
-//    let bills = LinkingObjects(fromType: Bill.self, property: "user")
-//    let customCategories = LinkingObjects(fromType: Category.self, property: "user")
-
-//    let budgets = LinkingObjects(fromType: Budget.self, property: "user")
-//    let transactions = LinkingObjects(fromType: Transaction.self, property: "user")
 
     override static func primaryKey() -> String? {
         return "id"
     }
 
+    // MARK: - Initializers
+    /// Creates a user with the given values
+    ///
+    /// - Parameters:
+    ///   - id: A unique ID of the `User`
+    ///   - name: The name of the `User`
+    ///   - email: The email of the `User`
+    ///   - image: The image path of the `User`
+    ///   - currency: The `Currency` that will be used by the `User`
     convenience init(id: String, name: String, email: String, image: String, currency: Currency) {
         self.init()
         self.id = id
@@ -39,19 +52,26 @@ class User: Object {
     }
 
     // MARK: Required methods
+    /// :nodoc:
     required init() {
         super.init()
     }
 
+    /// :nodoc:
     required init(realm: RLMRealm, schema: RLMObjectSchema) {
         super.init(realm: realm, schema: schema)
     }
 
+    /// :nodoc:
     required init(value: Any, schema: RLMSchema) {
         super.init(value: value, schema: schema)
     }
 
-    // MARK: CRUD operations
+    // MARK: CRUD
+    
+    /// Saves the `User` to the fiven `Realm`
+    ///
+    /// - Parameter realm: The `Realm` to save the `User` to
     func save(toRealm realm: Realm) {
         do {
             try realm.write {
@@ -62,6 +82,11 @@ class User: Object {
         }
     }
 
+    /// Updates the `User` to the given `User` instance
+    ///
+    /// - Parameters:
+    ///   - user: The updated `User`
+    ///   - realm: The `Realm` to save the updated `User` to
     func update(to user: User, in realm: Realm) {
         guard self.id == user.id else { return }
 
@@ -74,6 +99,9 @@ class User: Object {
         }
     }
 
+    /// Deletes the `User` from the given `Realm`
+    ///
+    /// - Parameter realm: The `Realm` to delete the `User` from
     func delete(in realm: Realm) {
         do {
             try realm.write {
@@ -86,11 +114,21 @@ class User: Object {
             fatalError(error.localizedDescription)
         }
     }
-
+    
+    /// Fetch the `User` with the given ID
+    ///
+    /// - Parameters:
+    ///   - key: The unique ID of the `User` to be fetched
+    ///   - realm: The `Realm` to fetch the `User` from
+    /// - Returns: The fetched `User`
     static func with(key: String, inRealm realm: Realm) -> User? {
         return realm.object(ofType: User.self, forPrimaryKey: key) as User?
     }
 
+    /// Fetch all the `User`s in the given `Realm`
+    ///
+    /// - Parameter realm: The `Realm` to fetch the `User` from
+    /// - Returns: The fetched `User`
     static func all(in realm: Realm) -> Results<User> {
         return realm.objects(User.self).sorted(byKeyPath: "name")
     }

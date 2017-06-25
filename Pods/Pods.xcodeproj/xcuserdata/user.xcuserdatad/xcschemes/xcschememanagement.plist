@@ -59,11 +59,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SkyFloatingLabelTextField.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Swinject.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -76,77 +71,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4A3E211676B243619B026D147D272253</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5BAACC736A5215103E10E2DC0A74FDCD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5BAEE407D509A3F67350A21DD9179E25</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>641580D96E8EEA8CD167D615AAD7B180</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6B14503623272475FB334272FCDCBAF0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6BB1C1403B2419F911818DA8413FDA07</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>83809A38136027B4284EC111C802F7B0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>87B6A3F2C1827A927B8C5BEB0D0B43F0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A6F3A47BE3BF5574BBB96B4580B407ED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D15A9CC9689956B99A02EE67205EAB53</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E5EB976D9344AD2E89AC0CB2D08D52EF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E89CFD99B895BCC6E8EDC2F95A03500C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FDB4D9443249B47BDCB6C2489A64B3EE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

@@ -12,28 +12,47 @@ import RealmSwift
 
 let buildConfig = "dev"
 
-protocol AuthConfigProtocol {
+/// Protocol to conform to when making a Realm Authentication Configuration
+/// Used by instances of `RealmHolder`
+protocol AuthConfig {
+    
+    /// The domain where the Realm Object Server is hosted
     var domainHost: String { get }
+    
+    /// The URL of the host in format "http(s)://"
     var serverURL: URL { get }
+    
+    /// The URL of the host in format "realm://server-url"
     var realmDomainURL: URL { get }
+    
+    /// The path of the synced realm when uploaded to the Realm Object Server
     var userRealmPath: URL { get }
+    
+    /// Timeout in seconds
     var timeout: TimeInterval { get }
+    
+    /// The path of the offline realm in the bundle
     var offlineRealm: URL { get }
+    
+    /// The path of the initial realm in the bundle
     var initialRealm: URL { get }
+    
+    /// Array of model names to be included in Realm migrations
     var objects: [String] { get }
     
+    /// The file name of the initial realm
     var initRealmFileName: String { get }
-    var offlineRealmFileName: String { get }
     
-//    var inMemoryIdentifier: String? { get set }
+    // The file name of the offline realm
+    var offlineRealmFileName: String { get }
 }
 
-struct RealmAuthConfig: AuthConfigProtocol {
+struct RealmAuthConfig: AuthConfig {
     var initRealmFileName: String = "mtrckr-\(buildConfig)-init-db"
     var offlineRealmFileName: String = "mtrckr-\(buildConfig)"
     
-//    var domainHost: String = "localhost:9080" //"192.168.1.76:9080"
-    var domainHost: String = "192.168.1.76:9080"
+    var domainHost: String = "localhost:9080"
+//    var domainHost: String = "192.168.1.76:9080"
     var serverURL: URL
     var realmDomainURL: URL
     var userRealmPath: URL
@@ -42,7 +61,6 @@ struct RealmAuthConfig: AuthConfigProtocol {
     var offlineRealm: URL
     var objects: [String] = ["Account", "AccountType", "Bill", "BillEntry",
                              "Category", "Currency", "Transaction", "User"]
-//    var inMemoryIdentifier: String?
     
     init() {
         let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]

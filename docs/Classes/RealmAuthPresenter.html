@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RealmAuthPresenter Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/RealmAuthPresenter" class="dashAnchor"></a>
+    <a title="RealmAuthPresenter Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (73% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        RealmAuthPresenter Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountType.html">AccountType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Bill.html">Bill</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BillEntry.html">BillEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Category.html">Category</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Currency.html">Currency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EncryptionInteractor.html">EncryptionInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/InitialRealmGenerator.html">InitialRealmGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTButton.html">MTButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTSyncUser.html">MTSyncUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTTextField.html">MTTextField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTViewController.html">MTViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmAuthPresenter.html">RealmAuthPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmHolder.html">RealmHolder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmLoginInteractor.html">RealmLoginInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmLogoutInteractor.html">RealmLogoutInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmRegInteractor.html">RealmRegInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SettingsPresenter.html">SettingsPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Transaction.html">Transaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15BillDueReminder">BillDueReminder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15BillEntryStatus">BillEntryStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr18BillRepeatSchedule">BillRepeatSchedule</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr12CategoryType">CategoryType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15LoginSyncOption">LoginSyncOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15TransactionType">TransactionType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AuthConfig.html">AuthConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RealmAuthPresenterOutput.html">RealmAuthPresenterOutput</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>RealmAuthPresenter</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">class</span> <span class="kt">RealmAuthPresenter</span><span class="p">:</span> <span class="kt">RealmAuthPresenterProtocol</span><span class="p">,</span> <span class="kt">RealmRegInteractorOutput</span><span class="p">,</span>
+                            <span class="kt">RealmLoginInteractorOutput</span><span class="p">,</span> <span class="kt">RealmLogoutInteractorOutput</span></code></pre>
+
+                </div>
+              </div>
+            <p>The event handler for authentication ViewControllers</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr18RealmAuthPresenter13regInteractorGSqPS_26RealmRegInteractorProtocol__"></a>
+                    <a name="//apple_ref/swift/Property/regInteractor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr18RealmAuthPresenter13regInteractorGSqPS_26RealmRegInteractorProtocol__">regInteractor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The interactor responsible for registration purposes</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">regInteractor</span><span class="p">:</span> <span class="kt">RealmRegInteractorProtocol</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr18RealmAuthPresenter15loginInteractorGSqPS_28RealmLoginInteractorProtocol__"></a>
+                    <a name="//apple_ref/swift/Property/loginInteractor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr18RealmAuthPresenter15loginInteractorGSqPS_28RealmLoginInteractorProtocol__">loginInteractor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The interactor responsible for login purposes</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">loginInteractor</span><span class="p">:</span> <span class="kt">RealmLoginInteractorProtocol</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr18RealmAuthPresenter16logoutInteractorGSqPS_29RealmLogoutInteractorProtocol__"></a>
+                    <a name="//apple_ref/swift/Property/logoutInteractor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr18RealmAuthPresenter16logoutInteractorGSqPS_29RealmLogoutInteractorProtocol__">logoutInteractor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The interactor responsible for logout purposes</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">logoutInteractor</span><span class="p">:</span> <span class="kt">RealmLogoutInteractorProtocol</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr18RealmAuthPresenter9encrypterGSqPS_28EncryptionInteractorProtocol__"></a>
+                    <a name="//apple_ref/swift/Property/encrypter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr18RealmAuthPresenter9encrypterGSqPS_28EncryptionInteractorProtocol__">encrypter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The interactor responsible for encryption purposes</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">encrypter</span><span class="p">:</span> <span class="kt">EncryptionInteractorProtocol</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr18RealmAuthPresenter6outputGSqPS_24RealmAuthPresenterOutput__"></a>
+                    <a name="//apple_ref/swift/Property/output" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr18RealmAuthPresenter6outputGSqPS_24RealmAuthPresenterOutput__">output</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The output of the presenter</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">output</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RealmAuthPresenterOutput.html">RealmAuthPresenterOutput</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initializers"></a>
+                <a name="//apple_ref/swift/Section/Initializers" class="dashAnchor"></a>
+                <a href="#/Initializers">
+                  <h3 class="section-name">Initializers</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr18RealmAuthPresentercFT13regInteractorGSqPS_26RealmRegInteractorProtocol__15loginInteractorGSqPS_28RealmLoginInteractorProtocol__16logoutInteractorGSqPS_29RealmLogoutInteractorProtocol__9encrypterGSqPS_28EncryptionInteractorProtocol__6outputGSqPS_24RealmAuthPresenterOutput___S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(regInteractor:loginInteractor:logoutInteractor:encrypter:output:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr18RealmAuthPresentercFT13regInteractorGSqPS_26RealmRegInteractorProtocol__15loginInteractorGSqPS_28RealmLoginInteractorProtocol__16logoutInteractorGSqPS_29RealmLogoutInteractorProtocol__9encrypterGSqPS_28EncryptionInteractorProtocol__6outputGSqPS_24RealmAuthPresenterOutput___S0_">init(regInteractor:loginInteractor:logoutInteractor:encrypter:output:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a RealmAuthPresenter with given interactors</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="nv">regInteractor</span><span class="p">:</span> <span class="kt">RealmRegInteractorProtocol</span><span class="p">?,</span> <span class="nv">loginInteractor</span><span class="p">:</span> <span class="kt">RealmLoginInteractorProtocol</span><span class="p">?,</span>
+         <span class="nv">logoutInteractor</span><span class="p">:</span> <span class="kt">RealmLogoutInteractorProtocol</span><span class="p">?,</span> <span class="nv">encrypter</span><span class="p">:</span> <span class="kt">EncryptionInteractorProtocol</span><span class="p">?,</span>
+         <span class="nv">output</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RealmAuthPresenterOutput.html">RealmAuthPresenterOutput</a></span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>regInteractor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The interactor to use in registration</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>loginInteractor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The interactor to use in logging in</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>logoutInteractor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The interactor to use in logging out</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>encrypter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The interactor to use when encrypting data</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>output</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The delegate output of RealmAuthPresenter</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Event%20handlers"></a>
+                <a name="//apple_ref/swift/Section/Event handlers" class="dashAnchor"></a>
+                <a href="#/Event%20handlers">
+                  <h3 class="section-name">Event handlers</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr18RealmAuthPresenter5loginFT9withEmailSS12withPasswordSS15loginSyncOptionOS_15LoginSyncOption_T_"></a>
+                    <a name="//apple_ref/swift/Method/login(withEmail:withPassword:loginSyncOption:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr18RealmAuthPresenter5loginFT9withEmailSS12withPasswordSS15loginSyncOptionOS_15LoginSyncOption_T_">login(withEmail:withPassword:loginSyncOption:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Event handler for loggin in; encrypts data to be passed to the interactor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="n">withEmail</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withPassword</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">loginSyncOption</span> <span class="nv">option</span><span class="p">:</span> <span class="kt"><a href="../Enums.html#/s:O6mtrckr15LoginSyncOption">LoginSyncOption</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The email credential of the user to login</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The password credential of the user to login</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>option</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The login option, see <code>LoginSyncOption</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr18RealmAuthPresenter8registerFT9withEmailSS12withPasswordSS8withNameSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/register(withEmail:withPassword:withName:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr18RealmAuthPresenter8registerFT9withEmailSS12withPasswordSS8withNameSS_T_">register(withEmail:withPassword:withName:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Event handler for creating an account; encrypts data to be passed to the interactor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="n">withEmail</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withPassword</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The email credential of the user</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The password credential of the user</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the user</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr18RealmAuthPresenter6logoutFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/logout()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr18RealmAuthPresenter6logoutFT_T_">logout()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Event handler for logging out</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">logout</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Output%20methods"></a>
+                <a name="//apple_ref/swift/Section/Output methods" class="dashAnchor"></a>
+                <a href="#/Output%20methods">
+                  <h3 class="section-name">Output methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr18RealmAuthPresenter8didLoginFT4userCS_10MTSyncUser_T_"></a>
+                    <a name="//apple_ref/swift/Method/didLogin(user:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr18RealmAuthPresenter8didLoginFT4userCS_10MTSyncUser_T_">didLogin(user:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fires when a user has successfuly logded in</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">didLogin</span><span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt"><a href="../Classes/MTSyncUser.html">MTSyncUser</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>user</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>MTSyncUser</code> logged in</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr18RealmAuthPresenter12didFailLoginFT9withErrorGSqPs5Error___T_"></a>
+                    <a name="//apple_ref/swift/Method/didFailLogin(withError:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr18RealmAuthPresenter12didFailLoginFT9withErrorGSqPs5Error___T_">didFailLogin(withError:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fires when an error encountered upon login</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">didFailLogin</span><span class="p">(</span><span class="n">withError</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The error encountered upon login</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr18RealmAuthPresenter19didFailRegistrationFT9withErrorGSqPs5Error___T_"></a>
+                    <a name="//apple_ref/swift/Method/didFailRegistration(withError:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr18RealmAuthPresenter19didFailRegistrationFT9withErrorGSqPs5Error___T_">didFailRegistration(withError:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fires when there is an error encountered during registration</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">didFailRegistration</span><span class="p">(</span><span class="n">withError</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Error encountered during registration</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr18RealmAuthPresenter11didRegisterFT4userCS_10MTSyncUser_T_"></a>
+                    <a name="//apple_ref/swift/Method/didRegister(user:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr18RealmAuthPresenter11didRegisterFT4userCS_10MTSyncUser_T_">didRegister(user:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fires when a user has successfully registered</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">didRegister</span><span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt"><a href="../Classes/MTSyncUser.html">MTSyncUser</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>user</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The newly registered <code>MTSyncUser</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr18RealmAuthPresenter9didLogoutFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/didLogout()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr18RealmAuthPresenter9didLogoutFT_T_">didLogout()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fires when a user has logged out</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">didLogout</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-06-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

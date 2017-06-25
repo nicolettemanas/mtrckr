@@ -14,15 +14,13 @@ protocol AuthViewControllerDelegate: class {
 }
 
 class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDelegate, RealmAuthPresenterOutput {
-
-    var syncedUserToken: NotificationToken?
+    
+    // MARK: - Properties
     var authPresenter: RealmAuthPresenter?
     var settingsPresenter: SettingsPresenterProtocol?
-    
     var settingsDetails: [[String]] = []
     let settingsItems = [["Sync account", "Currency >", "Custom categories >"], ["Log out"]]
     let settingsIcon = [["sync", "currency", "tag"], ["out"]]
-    
     let settingsCellIdentifier = "SettingsCell"
     
     override func viewDidLoad() {
@@ -36,7 +34,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - User data methods
+    // MARK: - Methods
     func setup() {
         settingsPresenter = SettingsPresenter(withConfig: RealmAuthConfig(), syncUser: MTSyncUser.current)
     }
@@ -45,13 +43,10 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         settingsDetails = settingsPresenter?.fetchSettingsData() ?? []
     }
     
-    // MARK: - UI methods
     func setupUI() {
         tableView.separatorStyle = .none
-//        tableView.separatorColor = MTColors.separatorColor
     }
     
-    // MARK: AuthViewControllerDelegate methods
     func didDismiss() {
         setupUserData()
         tableView.reloadData()
@@ -123,8 +118,20 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         tableView.reloadData()
     }
     
-    // MARK: - UX Flow methods
-    func goToRegistration() {
+    func showSuccessfulRegistration(ofUser user: MTSyncUser) {
+        (self.settingsPresenter as? SettingsPresenter)?.syncUser = user
+        setupUserData()
+        tableView.reloadData()
+    }
+    
+    func showSuccessfulLogin(ofUser user: MTSyncUser) {
+        (self.settingsPresenter as? SettingsPresenter)?.syncUser = user
+        setupUserData()
+        tableView.reloadData()
+    }
+    
+    // MARK: - UI/UX flow methods
+    private func goToRegistration() {
         guard let regViewController = self.storyboard?
             .instantiateViewController(withIdentifier: "RegistrationViewController")
             as? RegistrationViewController
@@ -150,7 +157,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         present(regViewController, animated: true, completion: nil)
     }
     
-    func displayLogoutSheet() {
+    private func displayLogoutSheet() {
         let logoutOptions = UIAlertController(title: nil,
                                              message: "Are you sure you want to log out? " +
                                             "Transactions saved when logged out will not be synced to your account.",
@@ -170,7 +177,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         present(logoutOptions, animated: true, completion: nil)
     }
     
-    func performLogout() {
+    private func performLogout() {
         // TODO: Use Swinject for these
         let logoutInteractor = RealmLogoutInteractor(withConfig: RealmAuthConfig(), syncUser: MTSyncUser.current)
         authPresenter = RealmAuthPresenter(regInteractor: nil,

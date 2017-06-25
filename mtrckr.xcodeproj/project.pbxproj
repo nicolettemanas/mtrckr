@@ -18,8 +18,6 @@
 		CE03C2361EC3672F009A6AB0 /* MTDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE03C2351EC3672F009A6AB0 /* MTDetailsTableViewCell.xib */; };
 		CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */; };
 		CE130B481EE12F68007C6979 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE130B471EE12F68007C6979 /* RegistrationViewController.swift */; };
-		CE130B4B1EE12FFA007C6979 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE130B4A1EE12FFA007C6979 /* LoginView.swift */; };
-		CE130B4D1EE1300B007C6979 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE130B4C1EE1300B007C6979 /* RegistrationView.swift */; };
 		CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */; };
 		CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31051E9B2AAB0022CA57 /* Transaction.swift */; };
 		CE2C7DFB1EE567A2002AB5DC /* RealmLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C7DFA1EE567A2002AB5DC /* RealmLoginInteractor.swift */; };
@@ -45,7 +43,6 @@
 		CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFE1E95E54400E5DBA6 /* User.swift */; };
 		CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */; };
 		CEA05C121EE0DFCC0091414F /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA05C111EE0DFCC0091414F /* MTTextField.swift */; };
-		CEA05C151EE0F4640091414F /* MTPresentrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA05C141EE0F4640091414F /* MTPresentrs.swift */; };
 		CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */; };
 		CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8E11ECF008D000F786B /* RealmHolder.swift */; };
 		CEB403B11EF26DB80013CB3C /* RegistrationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */; };
@@ -109,8 +106,6 @@
 		CE03C2351EC3672F009A6AB0 /* MTDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MTDetailsTableViewCell.xib; path = Views/XIBs/MTDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptionInteractor.swift; path = Interactors/Encryption/EncryptionInteractor.swift; sourceTree = "<group>"; };
 		CE130B471EE12F68007C6979 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = ViewControllers/Authentication/RegistrationViewController.swift; sourceTree = "<group>"; };
-		CE130B4A1EE12FFA007C6979 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = Views/Class/Authentication/LoginView.swift; sourceTree = "<group>"; };
-		CE130B4C1EE1300B007C6979 /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationView.swift; path = Views/Class/Authentication/RegistrationView.swift; sourceTree = "<group>"; };
 		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE1F31051E9B2AAB0022CA57 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Models/Transaction.swift; sourceTree = "<group>"; };
 		CE2C7DFA1EE567A2002AB5DC /* RealmLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmLoginInteractor.swift; path = Interactors/Authentication/RealmLoginInteractor.swift; sourceTree = "<group>"; };
@@ -136,7 +131,6 @@
 		CE652FFE1E95E54400E5DBA6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntry.swift; path = Models/BillEntry.swift; sourceTree = "<group>"; };
 		CEA05C111EE0DFCC0091414F /* MTTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTextField.swift; path = "Views/Class/Base Classes/MTTextField.swift"; sourceTree = "<group>"; };
-		CEA05C141EE0F4640091414F /* MTPresentrs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTPresentrs.swift; path = ViewControllers/Presentrs/MTPresentrs.swift; sourceTree = "<group>"; };
 		CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthConfig.swift; path = Configs/RealmAuthConfig.swift; sourceTree = "<group>"; };
 		CEB1A8E11ECF008D000F786B /* RealmHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmHolder.swift; path = Utils/RealmHolder.swift; sourceTree = "<group>"; };
 		CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewControllerTests.swift; path = Authentication/RegistrationViewControllerTests.swift; sourceTree = "<group>"; };
@@ -299,8 +293,6 @@
 		CE130B491EE12FE0007C6979 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				CE130B4A1EE12FFA007C6979 /* LoginView.swift */,
-				CE130B4C1EE1300B007C6979 /* RegistrationView.swift */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -368,14 +360,6 @@
 				CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */,
 			);
 			name = AccountTests;
-			sourceTree = "<group>";
-		};
-		CEA05C131EE0F43C0091414F /* Presentrs */ = {
-			isa = PBXGroup;
-			children = (
-				CEA05C141EE0F4640091414F /* MTPresentrs.swift */,
-			);
-			name = Presentrs;
 			sourceTree = "<group>";
 		};
 		CEB1A8DC1ECEEC59000F786B /* Configs */ = {
@@ -512,7 +496,6 @@
 		CEF044D21EE00FE800486EAC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CEA05C131EE0F43C0091414F /* Presentrs */,
 				CEF044DF1EE0213900486EAC /* Base Classes */,
 				CEF044D81EE020D000486EAC /* Tabs */,
 				CEF044D51EE0104500486EAC /* Authentication */,
@@ -883,12 +866,10 @@
 				CE130B481EE12F68007C6979 /* RegistrationViewController.swift in Sources */,
 				CE005F531ECAE4DC00536C1A /* RealmRegInteractor.swift in Sources */,
 				CEF044B01EDDD46500486EAC /* InitialRealmGenerator.swift in Sources */,
-				CEA05C151EE0F4640091414F /* MTPresentrs.swift in Sources */,
 				CEF044CF1EDFF67700486EAC /* MTTableViewController.swift in Sources */,
 				CEF044CC1EDFF44000486EAC /* MTSettingsTableViewCell.swift in Sources */,
 				CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */,
 				CE03C22B1EC3652A009A6AB0 /* MTButton.swift in Sources */,
-				CE130B4B1EE12FFA007C6979 /* LoginView.swift in Sources */,
 				CEF044DA1EE020FE00486EAC /* MTSettingsTableViewController.swift in Sources */,
 				CE03C2321EC36686009A6AB0 /* MTFormModalView.swift in Sources */,
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
@@ -901,7 +882,6 @@
 				CEF044DC1EE0211500486EAC /* LoginViewController.swift in Sources */,
 				CE2C7DFB1EE567A2002AB5DC /* RealmLoginInteractor.swift in Sources */,
 				CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */,
-				CE130B4D1EE1300B007C6979 /* RegistrationView.swift in Sources */,
 				CE03C22D1EC36539009A6AB0 /* MTView.swift in Sources */,
 				CEA05C121EE0DFCC0091414F /* MTTextField.swift in Sources */,
 				CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */,

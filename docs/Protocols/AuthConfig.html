@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AuthConfig Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/AuthConfig" class="dashAnchor"></a>
+    <a title="AuthConfig Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (73% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        AuthConfig Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountType.html">AccountType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Bill.html">Bill</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BillEntry.html">BillEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Category.html">Category</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Currency.html">Currency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EncryptionInteractor.html">EncryptionInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/InitialRealmGenerator.html">InitialRealmGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTButton.html">MTButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTSyncUser.html">MTSyncUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTTextField.html">MTTextField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTViewController.html">MTViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmAuthPresenter.html">RealmAuthPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmHolder.html">RealmHolder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmLoginInteractor.html">RealmLoginInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmLogoutInteractor.html">RealmLogoutInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmRegInteractor.html">RealmRegInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SettingsPresenter.html">SettingsPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Transaction.html">Transaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15BillDueReminder">BillDueReminder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15BillEntryStatus">BillEntryStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr18BillRepeatSchedule">BillRepeatSchedule</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr12CategoryType">CategoryType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15LoginSyncOption">LoginSyncOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15TransactionType">TransactionType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AuthConfig.html">AuthConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RealmAuthPresenterOutput.html">RealmAuthPresenterOutput</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>AuthConfig</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">AuthConfig</span></code></pre>
+
+                </div>
+              </div>
+            <p>Protocol to conform to when making a Realm Authentication Configuration
+Used by instances of <code><a href="../Classes/RealmHolder.html">RealmHolder</a></code></p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP6mtrckr10AuthConfig10domainHostSS"></a>
+                    <a name="//apple_ref/swift/Property/domainHost" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP6mtrckr10AuthConfig10domainHostSS">domainHost</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The domain where the Realm Object Server is hosted</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">domainHost</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP6mtrckr10AuthConfig9serverURLV10Foundation3URL"></a>
+                    <a name="//apple_ref/swift/Property/serverURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP6mtrckr10AuthConfig9serverURLV10Foundation3URL">serverURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The URL of the host in format <q>http(s)://</q></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">serverURL</span><span class="p">:</span> <span class="kt">URL</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP6mtrckr10AuthConfig14realmDomainURLV10Foundation3URL"></a>
+                    <a name="//apple_ref/swift/Property/realmDomainURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP6mtrckr10AuthConfig14realmDomainURLV10Foundation3URL">realmDomainURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The URL of the host in format <q>realm://server-url</q></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">realmDomainURL</span><span class="p">:</span> <span class="kt">URL</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP6mtrckr10AuthConfig13userRealmPathV10Foundation3URL"></a>
+                    <a name="//apple_ref/swift/Property/userRealmPath" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP6mtrckr10AuthConfig13userRealmPathV10Foundation3URL">userRealmPath</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The path of the synced realm when uploaded to the Realm Object Server</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">userRealmPath</span><span class="p">:</span> <span class="kt">URL</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP6mtrckr10AuthConfig7timeoutSd"></a>
+                    <a name="//apple_ref/swift/Property/timeout" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP6mtrckr10AuthConfig7timeoutSd">timeout</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Timeout in seconds</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">timeout</span><span class="p">:</span> <span class="kt">TimeInterval</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP6mtrckr10AuthConfig12offlineRealmV10Foundation3URL"></a>
+                    <a name="//apple_ref/swift/Property/offlineRealm" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP6mtrckr10AuthConfig12offlineRealmV10Foundation3URL">offlineRealm</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The path of the offline realm in the bundle</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">offlineRealm</span><span class="p">:</span> <span class="kt">URL</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP6mtrckr10AuthConfig12initialRealmV10Foundation3URL"></a>
+                    <a name="//apple_ref/swift/Property/initialRealm" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP6mtrckr10AuthConfig12initialRealmV10Foundation3URL">initialRealm</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The path of the initial realm in the bundle</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">initialRealm</span><span class="p">:</span> <span class="kt">URL</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP6mtrckr10AuthConfig7objectsGSaSS_"></a>
+                    <a name="//apple_ref/swift/Property/objects" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP6mtrckr10AuthConfig7objectsGSaSS_">objects</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Array of model names to be included in Realm migrations</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">objects</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP6mtrckr10AuthConfig17initRealmFileNameSS"></a>
+                    <a name="//apple_ref/swift/Property/initRealmFileName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP6mtrckr10AuthConfig17initRealmFileNameSS">initRealmFileName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The file name of the initial realm</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">initRealmFileName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-06-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

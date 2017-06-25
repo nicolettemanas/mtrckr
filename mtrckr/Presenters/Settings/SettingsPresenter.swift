@@ -10,15 +10,23 @@ import UIKit
 import Realm
 import RealmSwift
 
+/// :nodoc:
 protocol SettingsPresenterProtocol {
     func fetchSettingsData() -> [[String]]
 }
 
+/// The event handler for `SettingsTableViewController`
 class SettingsPresenter: RealmHolder, SettingsPresenterProtocol {
     
+    /// The current realm being used
     var realm: Realm?
+    
+    /// :nodoc:
     var settingsDetails: [[String]] = [["None", "Not set", "0"], [""]]
     
+    /// Extracts data from the realm used and returns values to be displayed in the settings table
+    ///
+    /// - Returns: An collection of array of Strings to be displayed in the settings table
     func fetchSettingsData() -> [[String]] {
         realm = userRealm
         guard realm != nil else {

@@ -7,13 +7,20 @@
 //
 
 import UIKit
-import SkyFloatingLabelTextField
 
+/// Base class for a UITextField
 @IBDesignable
 class MTTextField: UITextField {
 
+    // MARK: - Properties
+    
+    /// UIColor value of the bottom border to be rendered
     @IBInspectable var bottomBorderColor: UIColor = MTColors.mainBlue { didSet { updateBorder() }}
+    
+    /// The UIImage icon to be displaued at the left view iof the text field
     @IBInspectable var icon: UIImage = MTTextField.getDefaultImage() { didSet { updateIcon() }}
+    
+    /// The masked color of the icon
     @IBInspectable var iconColor: UIColor = MTColors.mainBg { didSet { updateIconColor() }}
     
     private var leftIcon: UIImageView?
@@ -23,6 +30,7 @@ class MTTextField: UITextField {
     private var errorContainer: UIView?
     private var border: UIView?
     
+    // MARK: - Methods
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -72,6 +80,9 @@ class MTTextField: UITextField {
         self.addSubview(errorContainer!)
     }
     
+    /// Displays an error message at the bottom of the textfield
+    ///
+    /// - Parameter errorMsg: Message to be displayed
     func showError(errorMsg: String) {
         errorLabel?.text = errorMsg
         
@@ -92,6 +103,7 @@ class MTTextField: UITextField {
         }
     }
     
+    /// Hides the error message of the textfield if applicable
     func hideError() {
         UIView.animate(withDuration: 0.3, delay: 0, options: [.allowAnimatedContent, .showHideTransitionViews],
                        animations: {

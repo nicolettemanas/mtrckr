@@ -14,7 +14,6 @@ class LoginViewController: MTViewController, RealmAuthPresenterOutput {
 
     @IBOutlet weak var emailTxtField: MTTextField!
     @IBOutlet weak var passwordTxtField: MTTextField!
-    
     @IBOutlet weak var loginScrollView: UIScrollView!
     
     weak var delegate: AuthViewControllerDelegate?

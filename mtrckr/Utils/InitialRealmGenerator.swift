@@ -12,19 +12,22 @@ import Realm
 
 private var initRealmFileName = "mtrckr-dev-init-db"
 
+/// Class responsible for reading Bundle's json files and populate the initial realm
 class InitialRealmGenerator {
     
+    /// Creates a bundled `.realm` from json files found in the bundle
+    ///
+    /// - Parameter onComplete: Block to execute after the creation of realm given the path
+    /// of the created initial realm
     static func generateInitRealm(onComplete: (_ path: URL?) -> Void) {
         
         if SyncUser.current != nil {
-            print("Has logged in user, skipping generation of init realm...")
             onComplete((try? Realm())?.configuration.syncConfiguration?.realmURL)
             return
         }
         
         makeInitDir()
         
-        print("Generating inital Realm...")
         var initialConfiguration = Realm.Configuration()
         initialConfiguration.fileURL = initialConfiguration.fileURL!
                                         .deletingLastPathComponent()
@@ -34,7 +37,7 @@ class InitialRealmGenerator {
         
         let lookups = ["Currency", "Category", "AccountType"]
         for lookup in lookups {
-            print("Reading contents of file \(lookup).json")
+            print("[INIT REALM] Reading contents of file \(lookup).json")
             do {
                 guard let path = Bundle.main.path(forResource: lookup, ofType: "json") else {
                     fatalError("Missing \(lookup).json for initial values")
@@ -55,11 +58,11 @@ class InitialRealmGenerator {
             }
         }
         
-        print("Saved realm in \(String(describing: initialRealm.configuration.fileURL))")
+        print("[INIT REALM] Saved realm in \(String(describing: initialRealm.configuration.fileURL))")
         onComplete(initialRealm.configuration.fileURL)
     }
     
-    static func makeInitDir() {
+    private static func makeInitDir() {
         let fileManager = FileManager.default
         let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         let realmDir = URL(fileURLWithPath: docsDir, isDirectory: true).appendingPathComponent("initRealm")

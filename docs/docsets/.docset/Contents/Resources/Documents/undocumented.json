@@ -1,0 +1,516 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Account.swift",
+      "line": 51,
+      "symbol": "Account.primaryKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/AppDelegate.swift",
+      "line": 14,
+      "symbol": "AppDelegate",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Configs/MTColors.swift",
+      "line": 11,
+      "symbol": "MTColors",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Configs/RealmAuthConfig.swift",
+      "line": 13,
+      "symbol": "buildConfig",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Configs/RealmAuthConfig.swift",
+      "line": 47,
+      "symbol": "AuthConfig.offlineRealmFileName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Configs/RealmAuthConfig.swift",
+      "line": 50,
+      "symbol": "RealmAuthConfig",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Interactors/Encryption/EncryptionInteractor.swift",
+      "line": 12,
+      "symbol": "key",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Interactors/Encryption/EncryptionInteractor.swift",
+      "line": 13,
+      "symbol": "iv",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Lookups/AccountType.swift",
+      "line": 26,
+      "symbol": "AccountType.primaryKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Lookups/Category.swift",
+      "line": 13,
+      "symbol": "CategoryType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Lookups/Category.swift",
+      "line": 17,
+      "symbol": "Category",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Lookups/Currency.swift",
+      "line": 28,
+      "symbol": "Currency.primaryKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 23,
+      "symbol": "BillDueReminder.never",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 23,
+      "symbol": "BillDueReminder.onDate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 23,
+      "symbol": "BillDueReminder.oneDay",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 23,
+      "symbol": "BillDueReminder.oneWeek",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 23,
+      "symbol": "BillDueReminder.threeDays",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 23,
+      "symbol": "BillDueReminder.twoDays",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 23,
+      "symbol": "BillDueReminder.twoWeeks",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 33,
+      "symbol": "BillRepeatSchedule.monthly",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 33,
+      "symbol": "BillRepeatSchedule.never",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 33,
+      "symbol": "BillRepeatSchedule.weekly",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 33,
+      "symbol": "BillRepeatSchedule.yearly",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Bill.swift",
+      "line": 67,
+      "symbol": "Bill.primaryKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/BillEntry.swift",
+      "line": 19,
+      "symbol": "BillEntryStatus.paid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/BillEntry.swift",
+      "line": 19,
+      "symbol": "BillEntryStatus.skipped",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/BillEntry.swift",
+      "line": 19,
+      "symbol": "BillEntryStatus.unpaid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/BillEntry.swift",
+      "line": 45,
+      "symbol": "BillEntry.primaryKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Transaction.swift",
+      "line": 19,
+      "symbol": "TransactionType.expense",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Transaction.swift",
+      "line": 19,
+      "symbol": "TransactionType.income",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Transaction.swift",
+      "line": 19,
+      "symbol": "TransactionType.transfer",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/Transaction.swift",
+      "line": 61,
+      "symbol": "Transaction.primaryKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Models/User.swift",
+      "line": 32,
+      "symbol": "User.primaryKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Presenters/RealmSyncing/RealmAuthPresenter.swift",
+      "line": 18,
+      "symbol": "LoginSyncOption.append",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Presenters/RealmSyncing/RealmAuthPresenter.swift",
+      "line": 18,
+      "symbol": "LoginSyncOption.useRemote",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Sources/Extensions/UIFont+AppFont.swift",
+      "line": 14,
+      "symbol": "AppFontName",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Utils/InitialRealmGenerator.swift",
+      "line": 13,
+      "symbol": "initRealmFileName",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Utils/InitialRealmGenerator.swift",
+      "line": 65,
+      "symbol": "InitialRealmGenerator.makeInitDir()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewController.swift",
+      "line": 13,
+      "symbol": "ViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Authentication/LoginViewController.swift",
+      "line": 13,
+      "symbol": "LoginViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Authentication/RegistrationViewController.swift",
+      "line": 14,
+      "symbol": "RegistrationViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Base Class/MTNavigationController.swift",
+      "line": 11,
+      "symbol": "MTNavigationController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Base Class/MTViewController.swift",
+      "line": 20,
+      "symbol": "MTViewController.scrollView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Base Class/MTViewController.swift",
+      "line": 25,
+      "symbol": "MTViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Base Class/MTViewController.swift",
+      "line": 30,
+      "symbol": "MTViewController.didReceiveMemoryWarning()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Base Class/MTViewController.swift",
+      "line": 36,
+      "symbol": "MTViewController.textFieldShouldReturn(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Base Class/MTViewController.swift",
+      "line": 61,
+      "symbol": "MTViewController.listenToKeyboard()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Base Class/MTViewController.swift",
+      "line": 74,
+      "symbol": "MTViewController.keyboardWillShow(notification:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Base Class/MTViewController.swift",
+      "line": 91,
+      "symbol": "MTViewController.keyboardWillHide(notification:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Tabs/MTSettingsTableViewController.swift",
+      "line": 12,
+      "symbol": "AuthViewControllerDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/ViewControllers/Tabs/MTSettingsTableViewController.swift",
+      "line": 16,
+      "symbol": "MTSettingsTableViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTableViewController.swift",
+      "line": 11,
+      "symbol": "MTTableViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 26,
+      "symbol": "MTTextField.leftIcon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 27,
+      "symbol": "MTTextField.warningIcon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 29,
+      "symbol": "MTTextField.errorLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 30,
+      "symbol": "MTTextField.errorContainer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 31,
+      "symbol": "MTTextField.border",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 34,
+      "symbol": "MTTextField.init(frame:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 39,
+      "symbol": "MTTextField.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 44,
+      "symbol": "MTTextField.layoutSubviews()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 49,
+      "symbol": "MTTextField.getDefaultImage()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 53,
+      "symbol": "MTTextField.setupUI()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 121,
+      "symbol": "MTTextField.updateBorder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 133,
+      "symbol": "MTTextField.updateIcon()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/Base Classes/MTTextField.swift",
+      "line": 147,
+      "symbol": "MTTextField.updateIconColor()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/MTButton.swift",
+      "line": 23,
+      "symbol": "MTButton.init(frame:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/MTButton.swift",
+      "line": 27,
+      "symbol": "MTButton.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/MTButton.swift",
+      "line": 31,
+      "symbol": "MTButton.updateBorder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/MTFormModalView.swift",
+      "line": 11,
+      "symbol": "MTFormModalView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/MTSettingsTableViewCell.swift",
+      "line": 11,
+      "symbol": "MTSettingsTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/MTTableViewCell.swift",
+      "line": 11,
+      "symbol": "MTTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/MTTextInputTableViewCell.swift",
+      "line": 11,
+      "symbol": "MTTextInputTableViewCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Views/Class/MTView.swift",
+      "line": 11,
+      "symbol": "MTView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr"
+}
