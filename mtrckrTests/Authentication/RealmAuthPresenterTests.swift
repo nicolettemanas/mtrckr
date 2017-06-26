@@ -24,7 +24,7 @@ class RealmAuthPresenterTests: QuickSpec {
             
             beforeEach {
                 mockEncrypter = MockEncrypter()
-                mockRegInteractor = MockRegInteractor(withConfig: RealmAuthConfig())
+                mockRegInteractor = MockRegInteractor(with: RealmAuthConfig())
                 mockLoginInteractor = MockLoginInteractor()
                 self.authPresenter = RealmAuthPresenter(regInteractor: mockRegInteractor,
                                                         loginInteractor: mockLoginInteractor,

@@ -9,9 +9,9 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.0):
     - Mockingjay/Core
-  - Nimble (5.0.0)
+  - Nimble (7.0.1)
   - NVActivityIndicatorView (3.6.1)
-  - Quick (1.0.0)
+  - Quick (1.1.0)
   - Realm (2.8.3):
     - Realm/Headers (= 2.8.3)
   - Realm/Headers (2.8.3)
@@ -26,9 +26,9 @@ DEPENDENCIES:
   - DateToolsSwift (~> 2.0.3)
   - Hero (~> 0.3.6)
   - Mockingjay (~> 2.0.0)
-  - Nimble (= 5.0.0)
+  - Nimble (~> 7.0.1)
   - NVActivityIndicatorView (~> 3.6.1)
-  - Quick (= 1.0.0)
+  - Quick (~> 1.1.0)
   - RealmSwift (~> 2.8.3)
   - SwiftLint (~> 0.18.1)
   - Swinject (from `https://github.com/Swinject/Swinject.git`, branch `swift4`)
@@ -54,15 +54,15 @@ SPEC CHECKSUMS:
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
-  Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
+  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
   NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
-  Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   SwiftLint: b467d08f5b25dc3b3cfed243d8e1b74b91714c67
   Swinject: 4793342bed1bed528c7e97d5bae3e7a60e3bdcac
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: 39a67ac4ca4ed0db98604f8d72e89a1046e2bed3
+PODFILE CHECKSUM: 5d546d27bfd68924e53a18395ad2ef86fccd11ad
 
 COCOAPODS: 1.1.1

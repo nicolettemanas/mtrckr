@@ -47,9 +47,9 @@ class RealmRegInteractorTests: QuickSpec {
                         self.regInteractor?.output = self.regPresenter
                         
                         // "Logout"
-                        self.regInteractor?.syncUser = nil
+                        self.regInteractor?.realmContainer?.setDefaultRealm(to: .offline)
                         
-                        self.offlineRealm = self.regInteractor?.userRealm
+                        self.offlineRealm = self.regInteractor?.realmContainer?.userRealm
                         let cashAccountType = AccountType.with(key: 218, inRealm: self.offlineRealm!)
                         
                         let account = Account(value: ["id": "accnt1",
@@ -69,7 +69,7 @@ class RealmRegInteractorTests: QuickSpec {
                 }
                 
                 it("Saves registered user to synced database", closure: {
-                    self.syncRealm = self.regInteractor?.userRealm
+                    self.syncRealm = self.regInteractor?.realmContainer?.userRealm
                     let syncedUsers = User.all(in: self.syncRealm!)
                     
                     expect(syncedUsers.count).toEventually(equal(1))
@@ -78,7 +78,7 @@ class RealmRegInteractorTests: QuickSpec {
                 })
                 
                 it("Syncs offline data to synced realm", closure: {
-                    let syncrealm = self.regInteractor?.userRealm
+                    let syncrealm = self.regInteractor?.realmContainer?.userRealm
                     let syncedAccounts = Account.all(in: syncrealm!)
                     
                     expect(syncedAccounts.count).toEventually(equal(1))
@@ -99,8 +99,8 @@ class RealmRegInteractorTests: QuickSpec {
                         self.regInteractor?.output = self.regPresenter
                         
                         // "Logout"
-                        self.regInteractor?.syncUser = nil
-
+                        self.regInteractor?.realmContainer?.setDefaultRealm(to: .offline)
+                        
                         self.regInteractor?.register(withEmail: "sample@gmail.com",
                                                      withEncryptedPassword: "sample",
                                                      withName: "sample")

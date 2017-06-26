@@ -39,13 +39,15 @@ class RealmLoginInteractor: RealmHolder, RealmLoginInteractorProtocol {
     ///   - option: The `LoginSyncOption` the user selected upon logging in
     func login(withEmail email: String, withEncryptedPassword password: String, loginOption option: LoginSyncOption) {
         let credentials = SyncCredentials.usernamePassword(username: email, password: password)
-        loginUser(withCredentials: credentials, server: config.serverURL, timeout: config.timeout) { (user, error) in
+        loginUser(withCredentials: credentials, server: config!.serverURL, timeout: config!.timeout) { (user, error) in
             if error == nil {
+                self.realmContainer?.setDefaultRealm(to: .sync)
                 if option == .append {
-                    self.syncRealm()
+                    self.realmContainer?.syncRealm()
                 }
                 self.output?.didLogin(user: user!)
             } else {
+                self.realmContainer?.setDefaultRealm(to: .offline)
                 self.output?.didFailLogin(withError: error)
             }
         }
@@ -67,7 +69,6 @@ class RealmLoginInteractor: RealmHolder, RealmLoginInteractorProtocol {
         SyncUser.logIn(with: credentials, server: server, timeout: timeout) { (user, error) in
             if let syncUser = user {
                 let mt = MTSyncUser(syncUser: syncUser)
-                self.syncUser = mt
                 completion(mt, error)
             } else {
                 completion(nil, error)

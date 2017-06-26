@@ -10,56 +10,101 @@ import UIKit
 import Realm
 import RealmSwift
 
-//protocol RealmHolderProtocol {
-//    var realmHolder: RealmHolder? { get set }
-//    var config: AuthConfig { get set }
-//}
-
-/// `RealmHolder` is a superclass containing all necessary methods to interact with offline and online Realms
+/// A superclass that holds an instance of a class conforming to protocol `RealmContainerProtocol`
 class RealmHolder {
+    /// The container of the Realm methods
+    var realmContainer: RealmContainerProtocol?
+    
+    /// The getter of the configuration used by the realm container
+    var config: AuthConfig? {
+        return self.realmContainer?.config
+    }
+    
+    /// Initializes the with the given `AuthConfig` to be used when
+    /// initializing the `realmContainer`
+    ///
+    /// - Parameter config: The configuration to be used
+    init(with config: AuthConfig) {
+        self.realmContainer = RealmContainer(withConfig: config)
+    }
+}
+
+/// :nodoc:
+protocol RealmContainerProtocol {
+    var config: AuthConfig { get }
+    var userRealm: Realm? { get }
+    
+    init(withConfig configuration: AuthConfig)
+    
+    func setDefaultRealm(to option: RealmOption)
+    func syncRealm()
+    func offlineRealmConfig() -> Realm.Configuration
+}
+
+/// Collection of Realm options to be used
+///
+/// - offline: Uses the offline URL provided in the configuration given
+/// - sync: Uses the sync URL provided in the configuration given
+enum RealmOption {
+    case offline
+    case sync
+}
+
+/// `RealmContainer` is a class containing all methods necessary to interact with offline and online Realms
+class RealmContainer: RealmContainerProtocol {
     
     // MARK: - Properties
     
     /// The configuration of the realm to be used
-    var config: AuthConfig
+    private(set) var config: AuthConfig
     
-    /// The current syncd user
-    /// Must be nil if there is no user logged in
-    var syncUser: MTSyncUser?
-
-    /// Returns the realm to be used
+    /// Returns the realm to be used.
     /// Returns a sync realm if a user is logged in the system, otherwise returns an offline realm
     var userRealm: Realm? {
-        if self.syncUser == nil {
-            return readOfflineRealm()
-        } else {
-            return getSyncedRealm()
+        if let realm = try? Realm() {
+            if realm.configuration.syncConfiguration == nil &&
+                realm.objects(Currency.self).count < 1 {
+                populateInitialValues(ofRealm: realm)
+            }
+            return realm
         }
+        
+        fatalError("Cannot initialize Realm with given configuration")
     }
     
     // MARK: - Initializers
     /// Creates a RealmHolder that has the given configuration
     ///
     /// - Parameter configuration: The configuration of the realm to be used
-    init(withConfig configuration: AuthConfig) {
+    required init(withConfig configuration: AuthConfig) {
         self.config = configuration
     }
-    
-    /// Creates a RealmHolder that has the given configuration and syncUser
-    ///
-    /// - Parameters:
-    ///   - configuration: The configuration of the realm to be used
-    ///   - syncUser: The current syned user
-    init(withConfig configuration: AuthConfig, syncUser: MTSyncUser?) {
-        self.config = configuration
-        self.syncUser = syncUser
-    }
-
+        
     // MARK: - Realm methods
     
-    /// Migrates the offline realm values to the sync realm to be used
+    /// Sets the default configuration of the Realm to be fetched.
+    /// Realm URLs will be from the configuration provided
+    /// upon initilization.
+    ///
+    /// - Parameter option: The preferred Realm option. See `RealmOption`
+    func setDefaultRealm(to option: RealmOption) {
+        var configuration = Realm.Configuration()
+        switch option {
+            case .offline:
+                configuration = offlineRealmConfig()
+                break
+            case .sync:
+                assert(RLMSyncUser.current != nil)
+                configuration.syncConfiguration = SyncConfiguration(user: RLMSyncUser.current!,
+                                                                    realmURL: config.userRealmPath)
+                break
+        }
+        Realm.Configuration.defaultConfiguration = configuration
+    }
+    
+    /// Migrates the offline realm values to the sync realm to be used.
     /// 
-    /// Locations of these realms are all defined in the configuration used
+    /// Locations of these realms are all defined in the configuration used.
     func syncRealm() {
         guard let uRealm = self.userRealm else {
             fatalError("Sync realm is nil")
@@ -88,13 +133,9 @@ class RealmHolder {
     /// Retrieves the Offline Realm specified in the configuration
     ///
     /// - Returns: The Realm read from the static offline configuration URL
-    func readOfflineRealm() -> Realm {
+    private func readOfflineRealm() -> Realm {
         do {
-            var offlineConfig = Realm.Configuration()
-            offlineConfig.fileURL = offlineConfig.fileURL!
-                .deletingLastPathComponent()
-                .appendingPathComponent("initRealm/\(config.offlineRealmFileName).realm")
-            
+            let offlineConfig = offlineRealmConfig()
             let offlineRealm = try Realm(configuration: offlineConfig)
             if offlineRealm.objects(Currency.self).count < 1 {
                 populateInitialValues(ofRealm: offlineRealm)
@@ -106,28 +147,15 @@ class RealmHolder {
         }
     }
     
-    /// Retrieves the Synced Realm specified in the configuration
+    /// Returns the offline realm configuration built from the provided `AuthConfig`
     ///
-    /// - Returns: The Realm read from the static sync configuration URL
-    func getSyncedRealm() -> Realm {
-        guard let sUser = syncUser?.syncUser else {
-            fatalError("SyncUser is nil; no logged in user")
-        }
-        
-        setDefaultConfiguration(user: sUser, url: config.userRealmPath)
-        var userRealm: Realm!
-        userRealm = try? Realm()
-        
-        print("[REALM] did get sync realm: \(String(describing: userRealm.configuration.syncConfiguration?.realmURL.lastPathComponent))")
-        return userRealm
-    }
-    
-    /// :nodoc:
-    private func setDefaultConfiguration(user: SyncUser, url: URL) {
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            syncConfiguration: SyncConfiguration(user: user,
-                                                 realmURL: url)
-        )
+    /// - Returns: The realm configuration
+    func offlineRealmConfig() -> Realm.Configuration {
+        var offlineConfig = Realm.Configuration()
+        offlineConfig.fileURL = offlineConfig.fileURL!
+            .deletingLastPathComponent()
+            .appendingPathComponent("initRealm/\(config.offlineRealmFileName).realm")
+        return offlineConfig
     }
     
     // MARK: - Migrating between realms

@@ -80,13 +80,15 @@ class RealmRegInteractor: RealmHolder, RealmRegInteractorProtocol {
     ///   - name: The name of the user to be registered
     func register(withEmail email: String, withEncryptedPassword password: String, withName name: String) {
         let credentials = SyncCredentials.usernamePassword(username: email, password: password, register: true)
-        registerUser(withCredentials: credentials, server: config.serverURL,
-                     timeout: config.timeout) { (user, error) in
+        registerUser(withCredentials: credentials, server: config!.serverURL,
+                     timeout: config!.timeout) { (user, error) in
             if error == nil {
-                self.syncRealm()
+                self.realmContainer?.setDefaultRealm(to: .sync)
+                self.realmContainer?.syncRealm()
                 self.saveUserDetails(ofUser: user!, withEmail: email, withName: name)
                 self.output?.didRegister(user: user!)
             } else {
+                self.realmContainer?.setDefaultRealm(to: .offline)
                 self.output?.didFailRegistration(withError: error)
             }
         }
@@ -102,7 +104,7 @@ class RealmRegInteractor: RealmHolder, RealmRegInteractorProtocol {
     ///   - name: The name registered
     func saveUserDetails(ofUser user: MTSyncUser, withEmail email: String, withName name: String) {
         DispatchQueue.main.async {
-            guard let userRealm = self.userRealm
+            guard let userRealm = self.realmContainer?.userRealm
             else { return }
             
             let newUser = User(id: user.identity, name: name, email: email, image: "",
@@ -123,11 +125,10 @@ class RealmRegInteractor: RealmHolder, RealmRegInteractorProtocol {
     func registerUser(withCredentials credentials: SyncCredentials, server: URL,
                       timeout: TimeInterval, completion:@escaping (_ user: MTSyncUser?, _ error: Error?) -> Void) {
         
-        SyncUser.logIn(with: credentials, server: server, timeout: config.timeout) { (user, error) in
+        SyncUser.logIn(with: credentials, server: server, timeout: config!.timeout) { (user, error) in
             
             if let syncUser = user {
                 let mt = MTSyncUser(syncUser: syncUser)
-                self.syncUser = mt
                 completion(mt, error)
             } else {
                 completion(nil, error)

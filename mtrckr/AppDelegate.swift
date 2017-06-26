@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TODO: Remove this when auth process is finished
         // logout every run
         InitialRealmGenerator.generateInitRealm { (_) in
-            let holder = RealmHolder(withConfig: RealmAuthConfig())
+            let holder = RealmContainer(withConfig: RealmAuthConfig())
 //            _ = holder.realmHolder.userRealm
             _ = holder.userRealm
         }

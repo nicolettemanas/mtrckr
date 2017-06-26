@@ -36,11 +36,14 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     
     // MARK: - Methods
     func setup() {
-        settingsPresenter = SettingsPresenter(withConfig: RealmAuthConfig(), syncUser: MTSyncUser.current)
+        settingsPresenter = SettingsPresenter(with: RealmAuthConfig())
     }
     
     func setupUserData() {
-        settingsDetails = settingsPresenter?.fetchSettingsData() ?? []
+        settingsPresenter?.fetchSettingsData({ (details) in
+            self.settingsDetails = details
+            self.tableView.reloadData()
+        })
     }
     
     func setupUI() {
@@ -49,7 +52,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     
     func didDismiss() {
         setupUserData()
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     
     // MARK: - UITableViewDelegate and UITableViewDatasource Methods
@@ -78,6 +81,8 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if settingsDetails.count < 1 { return UITableViewCell() }
+        
         guard let cell: MTSettingsTableViewCell = tableView.dequeueReusableCell(withIdentifier: settingsCellIdentifier) as? MTSettingsTableViewCell
             else {
                 fatalError("Cannot dequeue cell with identifier: \(settingsCellIdentifier)")
@@ -115,19 +120,17 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     // MARK: - RealmAuthPresenterOutput methods
     func showSuccesfulLogout() {
         setupUserData()
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     
     func showSuccessfulRegistration(ofUser user: MTSyncUser) {
-        (self.settingsPresenter as? SettingsPresenter)?.syncUser = user
         setupUserData()
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     
     func showSuccessfulLogin(ofUser user: MTSyncUser) {
-        (self.settingsPresenter as? SettingsPresenter)?.syncUser = user
         setupUserData()
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     
     // MARK: - UI/UX flow methods
@@ -142,7 +145,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         // TODO: Use Swinject for these
         let authConfig = RealmAuthConfig()
         let authEncryption = EncryptionInteractor()
-        let regInteractor = RealmRegInteractor(withConfig: authConfig, syncUser: MTSyncUser.current)
+        let regInteractor = RealmRegInteractor(with: authConfig)
         authPresenter = RealmAuthPresenter(regInteractor: regInteractor,
                                            loginInteractor: nil,
                                            logoutInteractor: nil,
@@ -179,7 +182,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     
     private func performLogout() {
         // TODO: Use Swinject for these
-        let logoutInteractor = RealmLogoutInteractor(withConfig: RealmAuthConfig(), syncUser: MTSyncUser.current)
+        let logoutInteractor = RealmLogoutInteractor(with: RealmAuthConfig())
         authPresenter = RealmAuthPresenter(regInteractor: nil,
                                            loginInteractor: nil,
                                            logoutInteractor: logoutInteractor,

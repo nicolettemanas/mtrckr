@@ -48,7 +48,7 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
         
         let authConfig = RealmAuthConfig()
         let authEncryption = EncryptionInteractor()
-        let loginInteractor = RealmLoginInteractor(withConfig: authConfig, syncUser: MTSyncUser.current)
+        let loginInteractor = RealmLoginInteractor(with: authConfig)
         let loginPresenter = RealmAuthPresenter(regInteractor: nil,
                                                loginInteractor: loginInteractor,
                                                logoutInteractor: nil,

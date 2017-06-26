@@ -48,9 +48,9 @@ class RealmLoginInteractorTests: QuickSpec {
                         self.loginInteractor?.output = self.regPresenter
                         
                         // "Logout"
-                        self.loginInteractor?.syncUser = nil
+                        self.loginInteractor?.realmContainer?.setDefaultRealm(to: .offline)
                     })
-                    self.offlineRealm = self.loginInteractor?.userRealm
+                    self.offlineRealm = self.loginInteractor?.realmContainer?.userRealm
                 }
                 
                 context("User chooses to append data", {
@@ -65,7 +65,7 @@ class RealmLoginInteractorTests: QuickSpec {
                     
                     itBehavesLike("User is logged in")
                     it("Appends offline data to synced data", closure: {
-                        self.syncRealm = self.loginInteractor?.userRealm
+                        self.syncRealm = self.loginInteractor?.realmContainer?.userRealm
                         let categories = mtrckr.Category.all(in: self.syncRealm!)
                         let customCategory = mtrckr.Category.with(key: "customCategory1", inRealm: self.syncRealm!)
                         
@@ -86,7 +86,7 @@ class RealmLoginInteractorTests: QuickSpec {
                     
                     itBehavesLike("User is logged in")
                     it("Sync data overwrites offline data", closure: { 
-                        self.syncRealm = self.loginInteractor?.userRealm
+                        self.syncRealm = self.loginInteractor?.realmContainer?.userRealm
                         let categories = mtrckr.Category.all(in: self.syncRealm!)
                         let customCategory = mtrckr.Category.with(key: "customCategory1", inRealm: self.syncRealm!)
                         
@@ -104,7 +104,7 @@ class RealmLoginInteractorTests: QuickSpec {
                         self.loginInteractor?.output = self.regPresenter
                         
                         // "Logout"
-                        self.loginInteractor?.syncUser = nil
+                        self.loginInteractor?.realmContainer?.setDefaultRealm(to: .offline)
                         
                         self.loginInteractor?.login(withEmail: "",
                                                     withEncryptedPassword: "",
@@ -117,7 +117,7 @@ class RealmLoginInteractorTests: QuickSpec {
                 })
                 
                 it("Informs presenter about error", closure: {
-                    self.syncRealm = self.loginInteractor?.userRealm
+                    self.syncRealm = self.loginInteractor?.realmContainer?.userRealm
                     let categories = mtrckr.Category.all(in: self.syncRealm!)
                     let customCategory = mtrckr.Category.with(key: "customCategory1", inRealm: self.syncRealm!)
                     
@@ -157,7 +157,7 @@ class SharedLoginBehaviour: QuickConfiguration {
                                       withEncryptedPassword: "sample",
                                       loginOption: .append)
                 
-                syncedRealm = loginInteractor.userRealm
+                syncedRealm = loginInteractor.realmContainer?.userRealm
                 let syncedUsers = User.all(in: syncedRealm!)
                 
                 expect(syncedRealm?.configuration.inMemoryIdentifier).toEventually(contain("sync"))

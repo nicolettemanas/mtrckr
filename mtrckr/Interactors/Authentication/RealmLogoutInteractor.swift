@@ -22,7 +22,6 @@ protocol RealmLogoutInteractorOutput {
 
 /// Class responsible for logging out
 class RealmLogoutInteractor: RealmHolder, RealmLogoutInteractorProtocol {
-    
     /// The output delegate of the interactor
     var output: RealmLogoutInteractorOutput?
     
@@ -32,16 +31,16 @@ class RealmLogoutInteractor: RealmHolder, RealmLogoutInteractorProtocol {
         if SyncUser.current != nil {
             print("logging out user \(String(describing: SyncUser.current?.identity))")
             SyncUser.current?.logOut()
-            
-            guard let realm = self.userRealm else {
+            guard var realm = self.realmContainer?.userRealm else {
                 self.output?.didLogout()
                 return
             }
             
+            self.realmContainer?.setDefaultRealm(to: .offline)
+            realm = self.realmContainer!.userRealm!
             try? realm.write {
                 realm.deleteAll()
             }
-            
             self.output?.didLogout()
         }
     }

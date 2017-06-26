@@ -69,6 +69,8 @@
 		CEF044DA1EE020FE00486EAC /* MTSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF044D91EE020FE00486EAC /* MTSettingsTableViewController.swift */; };
 		CEF044DC1EE0211500486EAC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF044DB1EE0211500486EAC /* LoginViewController.swift */; };
 		CEF044E11EE0214F00486EAC /* MTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF044E01EE0214F00486EAC /* MTViewController.swift */; };
+		CEF1E5BC1EFFCAE100B57C71 /* MockRealmHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF1E5BB1EFFCAE100B57C71 /* MockRealmHolder.swift */; };
+		CEF1E5BE1F00091200B57C71 /* MockRealmContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF1E5BD1F00091200B57C71 /* MockRealmContainer.swift */; };
 		CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB229E1E94FC2100867CDA /* AppDelegate.swift */; };
 		CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22A01E94FC2100867CDA /* ViewController.swift */; };
 		CEFB22A61E94FC2100867CDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFB22A51E94FC2100867CDA /* Assets.xcassets */; };
@@ -157,6 +159,8 @@
 		CEF044D91EE020FE00486EAC /* MTSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTSettingsTableViewController.swift; path = ViewControllers/Tabs/MTSettingsTableViewController.swift; sourceTree = "<group>"; };
 		CEF044DB1EE0211500486EAC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ViewControllers/Authentication/LoginViewController.swift; sourceTree = "<group>"; };
 		CEF044E01EE0214F00486EAC /* MTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTViewController.swift; path = "ViewControllers/Base Class/MTViewController.swift"; sourceTree = "<group>"; };
+		CEF1E5BB1EFFCAE100B57C71 /* MockRealmHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockRealmHolder.swift; path = Authentication/MockRealmHolder.swift; sourceTree = "<group>"; };
+		CEF1E5BD1F00091200B57C71 /* MockRealmContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockRealmContainer.swift; path = Authentication/MockRealmContainer.swift; sourceTree = "<group>"; };
 		CEFB229B1E94FC2100867CDA /* mtrckr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mtrckr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFB229E1E94FC2100867CDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEFB22A01E94FC2100867CDA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -416,6 +420,8 @@
 				CEB403B61EF291950013CB3C /* MockEncrypter.swift */,
 				CEB403BA1EF298C00013CB3C /* MockLoginInteractor.swift */,
 				CE44F4141EFB876A00E035C7 /* MockPresenterOutput.swift */,
+				CEF1E5BB1EFFCAE100B57C71 /* MockRealmHolder.swift */,
+				CEF1E5BD1F00091200B57C71 /* MockRealmContainer.swift */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -899,11 +905,13 @@
 				CE44F40C1EFA622500E035C7 /* MockRegInteractor.swift in Sources */,
 				CEB403B91EF296D00013CB3C /* TestableRegInteractor.swift in Sources */,
 				CEB403BD1EF29E4B0013CB3C /* RealmAuthPresenterTests.swift in Sources */,
+				CEF1E5BC1EFFCAE100B57C71 /* MockRealmHolder.swift in Sources */,
 				CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */,
 				CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */,
 				CE44F4111EFA743C00E035C7 /* TestableLoginInteractor.swift in Sources */,
 				CEFB22DA1E95419200867CDA /* CurrencyTests.swift in Sources */,
 				CEFB22D21E95087600867CDA /* AccountTypeTests.swift in Sources */,
+				CEF1E5BE1F00091200B57C71 /* MockRealmContainer.swift in Sources */,
 				CEB403B51EF28C3F0013CB3C /* MockRealmAuthPresenter.swift in Sources */,
 				CE44F40F1EFA6AD600E035C7 /* RealmLoginInteractorTests.swift in Sources */,
 				CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */,

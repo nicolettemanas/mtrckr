@@ -14,7 +14,7 @@ class MockLoginInteractor: RealmLoginInteractor {
     var didLogin = false
     
     init() {
-        super.init(withConfig: RealmAuthConfig(), syncUser: MTSyncUser())
+        super.init(with: RealmAuthConfig())
     }
     
     override func login(withEmail email: String, withEncryptedPassword password: String, loginOption option: LoginSyncOption) {

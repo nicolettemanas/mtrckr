@@ -12,7 +12,7 @@ import RealmSwift
 
 /// :nodoc:
 protocol SettingsPresenterProtocol {
-    func fetchSettingsData() -> [[String]]
+    func fetchSettingsData(_ fetched:@escaping ([[String]]) -> Void)
 }
 
 /// The event handler for `SettingsTableViewController`
@@ -27,22 +27,24 @@ class SettingsPresenter: RealmHolder, SettingsPresenterProtocol {
     /// Extracts data from the realm used and returns values to be displayed in the settings table
     ///
     /// - Returns: An collection of array of Strings to be displayed in the settings table
-    func fetchSettingsData() -> [[String]] {
-        realm = userRealm
-        guard realm != nil else {
-            fatalError("No realm provided")
+    func fetchSettingsData(_ fetched:@escaping ([[String]]) -> Void) {
+        DispatchQueue.main.async {
+            self.realm = self.realmContainer?.userRealm
+            guard self.realm != nil else {
+                fatalError("No realm provided")
+            }
+            
+            let user = self.realm?.objects(User.self).first
+            if SyncUser.current == nil {
+                self.settingsDetails[0][0] = "None"
+            } else {
+                self.settingsDetails[0][0] = self.realm?.objects(User.self).first?.name ?? ""
+            }
+            
+            self.settingsDetails[0][1] = user?.currency?.isoCode ?? "Not set"
+            self.settingsDetails[0][2] = "\(Category.all(in: self.realm!, customized: true).count)"
+            
+            fetched(self.settingsDetails)
         }
-        
-        let user = realm?.objects(User.self).first
-        if SyncUser.current == nil {
-            settingsDetails[0][0] = "None"
-        } else {
-            settingsDetails[0][0] = realm?.objects(User.self).first?.name ?? ""
-        }
-        
-        settingsDetails[0][1] = user?.currency?.isoCode ?? "Not set"
-        settingsDetails[0][2] = "\(Category.all(in: realm!, customized: true).count)"
-        
-        return settingsDetails
     }
 }
