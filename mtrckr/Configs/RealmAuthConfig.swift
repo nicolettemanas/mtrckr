@@ -10,7 +10,8 @@ import Foundation
 import Realm
 import RealmSwift
 
-let buildConfig = "dev"
+let buildConfig = Bundle.main.object(forInfoDictionaryKey: "BUILD_CONFIG_NAME") as? String
+//let buildConfig = "dev"
 
 /// Protocol to conform to when making a Realm Authentication Configuration
 /// Used by instances of `RealmHolder`
@@ -48,8 +49,8 @@ protocol AuthConfig {
 }
 
 struct RealmAuthConfig: AuthConfig {
-    var initRealmFileName: String = "mtrckr-\(buildConfig)-init-db"
-    var offlineRealmFileName: String = "mtrckr-\(buildConfig)"
+    var initRealmFileName: String = "mtrckr-\(buildConfig!)-init-db"
+    var offlineRealmFileName: String = "mtrckr-\(buildConfig!)"
     
     var domainHost: String = "localhost:9080"
 //    var domainHost: String = "192.168.1.76:9080"
@@ -69,6 +70,10 @@ struct RealmAuthConfig: AuthConfig {
         self.offlineRealm = URL(fileURLWithPath: docsDir).appendingPathComponent("initRealm/\(offlineRealmFileName).realm")
         self.serverURL = URL(string: "http://\(domainHost)/")!
         self.realmDomainURL = URL(string: "realm://\(domainHost)")!
-        self.userRealmPath = URL(string: "\(self.realmDomainURL)/~/mtrckr-\(buildConfig)")!
+        guard let config = buildConfig  else {
+            fatalError("Cannor read build configuration")
+        }
+        
+        self.userRealmPath = URL(string: "\(self.realmDomainURL)/~/mtrckr-\(config)")!
     }
 }

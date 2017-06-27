@@ -61,6 +61,11 @@ class RealmContainer: RealmContainerProtocol {
     /// Returns the realm to be used.
     /// Returns a sync realm if a user is logged in the system, otherwise returns an offline realm
     var userRealm: Realm? {
+        if SyncUser.current == nil {
+            setDefaultRealm(to: .offline)
+        } else {
+            setDefaultRealm(to: .sync)
+        }
         if let realm = try? Realm() {
             if realm.configuration.syncConfiguration == nil &&
                 realm.objects(Currency.self).count < 1 {
@@ -99,6 +104,12 @@ class RealmContainer: RealmContainerProtocol {
                                                                     realmURL: config.userRealmPath)
                 break
         }
+        
+        // TODO: Encrypt Realm in prod config
+//        guard let key = Bundle.main.object(forInfoDictionaryKey: "ENCRYPTION_KEY") as? String else {
+//            fatalError("Cannot read key")
+//        }
+//        configuration.encryptionKey = Data(base64Encoded: key)
         Realm.Configuration.defaultConfiguration = configuration
     }
     

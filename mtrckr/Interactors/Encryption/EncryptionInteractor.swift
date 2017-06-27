@@ -9,10 +9,6 @@
 import UIKit
 import CryptoSwift
 
-// TODO: Build configurations for key and iv
-let key = "1234567890123456"
-let iv = "0987654321098765"
-
 /// :nodoc:
 protocol EncryptionInteractorProtocol {
     func encrypt(str: String) -> String
@@ -27,8 +23,12 @@ class EncryptionInteractor: EncryptionInteractorProtocol {
     /// - Returns: The encrypted string
     func encrypt(str: String) -> String {
 //        TODO: CryptoSwift & Swinject not in 'master' branch due to Swift4 compatibilities
-        return str
         do {
+            guard let iv = Bundle.main.object(forInfoDictionaryKey: "CRYPT_IV") as? String,
+                let key = Bundle.main.object(forInfoDictionaryKey: "CRYPT_KEY") as? String else {
+                    fatalError("No IV and KEY found in bundle")
+            }
+            
             let aes = try AES(key: key, iv: iv, blockMode: .CBC)
             let ciphertext = try aes.encrypt(Array(str.utf8))
             return ciphertext.toHexString()
