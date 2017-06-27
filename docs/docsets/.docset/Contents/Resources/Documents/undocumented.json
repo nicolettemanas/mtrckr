@@ -44,14 +44,14 @@
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Interactors/Encryption/EncryptionInteractor.swift",
-      "line": 12,
+      "line": 13,
       "symbol": "key",
       "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Interactors/Encryption/EncryptionInteractor.swift",
-      "line": 13,
+      "line": 14,
       "symbol": "iv",
       "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
@@ -65,21 +65,28 @@
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Lookups/Category.swift",
-      "line": 13,
-      "symbol": "CategoryType",
-      "symbol_kind": "source.lang.swift.decl.enum",
+      "line": 18,
+      "symbol": "CategoryType.expense",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Lookups/Category.swift",
-      "line": 17,
-      "symbol": "Category",
-      "symbol_kind": "source.lang.swift.decl.class",
+      "line": 18,
+      "symbol": "CategoryType.income",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Lookups/Category.swift",
+      "line": 46,
+      "symbol": "Category.primaryKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Lookups/Currency.swift",
-      "line": 28,
+      "line": 30,
       "symbol": "Currency.primaryKey()",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"

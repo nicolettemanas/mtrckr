@@ -30,30 +30,16 @@
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Configs/RealmAuthConfig.swift",
-      "line": 47,
+      "line": 48,
       "symbol": "AuthConfig.offlineRealmFileName",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Configs/RealmAuthConfig.swift",
-      "line": 50,
+      "line": 51,
       "symbol": "RealmAuthConfig",
       "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Interactors/Encryption/EncryptionInteractor.swift",
-      "line": 13,
-      "symbol": "key",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Interactors/Encryption/EncryptionInteractor.swift",
-      "line": 14,
-      "symbol": "iv",
-      "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     },
     {
@@ -271,6 +257,20 @@
       "line": 65,
       "symbol": "InitialRealmGenerator.makeInitDir()",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Utils/RealmHolder.swift",
+      "line": 49,
+      "symbol": "RealmOption.offline",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Utils/RealmHolder.swift",
+      "line": 50,
+      "symbol": "RealmOption.sync",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
