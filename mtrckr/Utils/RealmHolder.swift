@@ -11,7 +11,7 @@ import Realm
 import RealmSwift
 
 /// A superclass that holds an instance of a class conforming to protocol `RealmContainerProtocol`
-class RealmHolder {
+class RealmHolder: NSObject {
     /// The container of the Realm methods
     var realmContainer: RealmContainerProtocol?
     

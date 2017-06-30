@@ -13,7 +13,6 @@ import UIKit
 class MTButton: UIButton {
     
     // MARK: - Properties
-    
     /// Boolean value indicating whether to render the button with borders
     @IBInspectable var hasBorders: Bool = false { didSet { updateBorder() }}
     

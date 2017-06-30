@@ -7,13 +7,26 @@
 //
 
 import UIKit
+import DateToolsSwift
+
+/// Collection of textfield types. It determines the
+/// input view of the textfield
+///
+/// - text: If the textfield only needs a text input
+/// - date: If the textfield needs a date input
+/// - numeric: If the textfield needs numeric input
+/// - decimal: If the textfield needs decimal input
+enum MTTextFieldInputType {
+    case text, date, numeric, decimal
+}
 
 /// Base class for a UITextField
 @IBDesignable
 class MTTextField: UITextField {
-
-    // MARK: - Properties
     
+    var datePicker: UIDatePicker?
+    
+    // MARK: - Properties
     /// UIColor value of the bottom border to be rendered
     @IBInspectable var bottomBorderColor: UIColor = MTColors.mainBlue { didSet { updateBorder() }}
     
@@ -50,16 +63,17 @@ class MTTextField: UITextField {
         return UIImage()
     }
 
-    func setupUI() {
+    private func setupUI() {
         self.textColor = MTColors.mainText
         if let p = self.placeholder {
             self.attributedPlaceholder = NSAttributedString(string: p,
                                                             attributes: [NSForegroundColorAttributeName:
-                                                                MTColors.subText])
+                                                                MTColors.placeholderText])
         }
         
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-        let imageHolder = UIImageView(frame: CGRect(x: 0, y: 2, width: 20, height: 20))
+        let x = (textAlignment == .right) == true ? 35-20 : 0
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 25))
+        let imageHolder = UIImageView(frame: CGRect(x: x, y: 2, width: 20, height: 20))
         imageHolder.contentMode = .scaleAspectFit
         imageHolder.image = UIImage(named: "warning")?.withRenderingMode(.alwaysTemplate)
         imageHolder.tintColor = MTColors.mainRed
@@ -75,9 +89,29 @@ class MTTextField: UITextField {
         errorLabel?.textColor = MTColors.mainRed
         errorLabel?.font = UIFont.systemFont(ofSize: 12)
         errorContainer?.isHidden = true
+        errorLabel?.textAlignment = textAlignment
         
         errorContainer?.addSubview(errorLabel!)
         self.addSubview(errorContainer!)
+    }
+    
+    /// Setups the input type and adds accessory views
+    ///
+    /// - Parameter type: The type of the input in format `MTTextFieldInputType`
+    func setInputType(type: MTTextFieldInputType) {
+        switch type {
+        case .text:
+            keyboardType = UIKeyboardType.alphabet
+        case .date:
+            setupDateInputView()
+            break
+        case .decimal:
+            keyboardType = UIKeyboardType.decimalPad
+            break
+        case .numeric:
+            keyboardType = UIKeyboardType.numberPad
+            break
+        }
     }
     
     /// Displays an error message at the bottom of the textfield
@@ -118,7 +152,7 @@ class MTTextField: UITextField {
         }
     }
     
-    func updateBorder() {
+    private func updateBorder() {
         let width = CGFloat(0.5)
         if border == nil {
             border = UIView(frame: CGRect(x: 0, y: self.frame.size.height - width,
@@ -130,7 +164,7 @@ class MTTextField: UITextField {
         self.addSubview(border!)
     }
     
-    func updateIcon() {
+    private func updateIcon() {
         leftIcon = nil
         let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 25))
         let imageHolder = UIImageView(frame: CGRect(x: 0, y: 2, width: 20, height: 20))
@@ -144,10 +178,47 @@ class MTTextField: UITextField {
         self.leftView?.alpha = 0.5
     }
     
-    func updateIconColor() {
+    private func updateIconColor() {
         if leftIcon != nil {
             leftIcon?.tintColor = iconColor
             self.leftView?.alpha = 0.5
         }
+    }
+    
+    private func setupDateInputView() {
+        datePicker = UIDatePicker()
+            
+        datePicker?.datePickerMode = .date
+        datePicker?.maximumDate = Date()
+        datePicker?.setDate(Date(), animated: false)
+        
+        inputView = datePicker
+        
+        let toolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
+        toolbar.tintColor = MTColors.mainBlue
+        toolbar.sizeToFit()
+        
+        let doneBtn = UIBarButtonItem(image: UIImage(named: "check-tab"), style: .plain, target: self, action: #selector(selectAndDismiss))
+        let cancelBtn = UIBarButtonItem(image: UIImage(named: "x-tab"), style: .plain, target: self, action: #selector(dismissInput))
+        
+        doneBtn.tintColor = MTColors.mainBlue
+        cancelBtn.tintColor = MTColors.mainRed
+        
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: #selector(dismissInput))
+        
+        toolbar.setItems([cancelBtn, spaceButton, doneBtn], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        inputAccessoryView = toolbar
+    }
+    
+    func selectAndDismiss() {
+        text = datePicker?.date.format(with: "MMM dd, yyyy")
+        resignFirstResponder()
+    }
+    
+    func dismissInput() {
+        resignFirstResponder()
     }
 }

@@ -2,46 +2,46 @@
 {
     "typeId": 218,
     "name": "Savings",
-    "icon": "atype-savings.png"
+    "icon": "atype-savings"
 },
 {
     "typeId": 200,
     "name": "Credit Card",
-    "icon": "atype-ccard.png"
+    "icon": "atype-ccard"
 },
 {
     "typeId": 139,
     "name": "Cash",
-    "icon": "atype-cash.png"
+    "icon": "atype-cash"
 },
 {
     "typeId": 85,
     "name": "Checking",
-    "icon": "atype-checking.png"
+    "icon": "atype-checking"
 },
 {
     "typeId": 119,
     "name": "Debit Card",
-    "icon": "atype-dcard.png"
+    "icon": "atype-dcard"
 },
 {
     "typeId": 165,
     "name": "Investment",
-    "icon": "atype-investment.png"
+    "icon": "atype-investment"
 },
 {
     "typeId": 175,
     "name": "Loan",
-    "icon": "atype-loan.png"
+    "icon": "atype-loan"
 },
 {
     "typeId": 32,
     "name": "Business",
-    "icon": "atype-business.png"
+    "icon": "atype-business"
 },
 {
     "typeId": 158,
     "name": "Others",
-    "icon": "atype-others.png"
+    "icon": "atype-others"
 }
 ]
