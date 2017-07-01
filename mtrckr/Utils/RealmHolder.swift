@@ -39,6 +39,7 @@ protocol RealmContainerProtocol {
     func setDefaultRealm(to option: RealmOption)
     func syncRealm()
     func offlineRealmConfig() -> Realm.Configuration
+    func currency() -> String
 }
 
 /// Collection of Realm options to be used
@@ -167,6 +168,18 @@ class RealmContainer: RealmContainerProtocol {
             .deletingLastPathComponent()
             .appendingPathComponent("initRealm/\(config.offlineRealmFileName).realm")
         return offlineConfig
+    }
+    
+    /// Returns the currency symbol used by the logged in user.
+    /// Default value is ₱
+    ///
+    /// - Returns: The currency symbol
+    func currency() -> String {
+        if let realm = userRealm {
+            return User.all(in: realm).first?.currency?.symbol ?? "₱"
+        }
+        
+        return "₱"
     }
     
     // MARK: - Migrating between realms

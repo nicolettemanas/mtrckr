@@ -9,7 +9,6 @@
 import UIKit
 
 /// Base class for UIButtons
-@IBDesignable
 class MTButton: UIButton {
     
     // MARK: - Properties

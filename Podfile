@@ -13,6 +13,7 @@ target "mtrckr" do
     pod 'CryptoSwift', :git => 'https://github.com/krzyzanowskim/CryptoSwift.git', :branch => 'develop'
     pod 'Hero', '~> 0.3.6'
     pod 'NVActivityIndicatorView', '~> 3.6.1'
+    pod 'UIColor_Hex_Swift', '~> 3.0.2'
     commonPods
  
  abstract_target 'Tests' do

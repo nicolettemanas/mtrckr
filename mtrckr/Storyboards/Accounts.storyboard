@@ -13,12 +13,12 @@
         <scene sceneID="pwg-B5-2Ln">
             <objects>
                 <tableViewController storyboardIdentifier="MTAccountsTableViewController" id="IMa-B7-y7O" customClass="MTAccountsTableViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vlh-BX-uZT">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vlh-BX-uZT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6by-sg-iS9">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="6by-sg-iS9">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6by-sg-iS9" id="diS-50-Frb">
@@ -36,7 +36,7 @@
                         <barButtonItem key="rightBarButtonItem" image="add-tab" style="plain" id="T4R-Ev-EsG">
                             <color key="tintColor" red="0.0" green="0.65490196079999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="q1n-o7-vo4" kind="presentation" id="J1g-kC-Kti"/>
+                                <action selector="addAccountBtnPressed:" destination="IMa-B7-y7O" id="q9m-uk-L7n"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -48,7 +48,7 @@
         <!--Navigation Controller-->
         <scene sceneID="5Ht-Dj-wgx">
             <objects>
-                <navigationController id="q1n-o7-vo4" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NewAccountNavigationController" id="q1n-o7-vo4" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SSm-Ot-EbP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -64,7 +64,7 @@
         <!--New Account-->
         <scene sceneID="fun-uW-acO">
             <objects>
-                <viewController id="5bP-TR-78k" customClass="NewAccountViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewAccountViewController" id="5bP-TR-78k" customClass="NewAccountViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yvu-Tx-2vj"/>
                         <viewControllerLayoutGuide type="bottom" id="Gqe-ah-2oU"/>
@@ -92,34 +92,34 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GXX-BD-bf4" customClass="MTTextField" customModule="mtrckr" customModuleProvider="target">
-                                                <rect key="frame" x="158" y="173" width="197" height="18"/>
+                                                <rect key="frame" x="158" y="167" width="197" height="18"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tz3-aj-OST">
-                                                <rect key="frame" x="20" y="171.5" width="128" height="19.5"/>
+                                                <rect key="frame" x="20" y="165.5" width="128" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Today" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8pQ-xb-lpF" customClass="MTTextField" customModule="mtrckr" customModuleProvider="target">
-                                                <rect key="frame" x="128.5" y="233.5" width="226.5" height="18"/>
+                                                <rect key="frame" x="128.5" y="227.5" width="226.5" height="18"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date opened" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ruX-B4-5Lt">
-                                                <rect key="frame" x="20" y="232" width="98.5" height="19.5"/>
+                                                <rect key="frame" x="20" y="226" width="98.5" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="74y-nd-Hue">
-                                                <rect key="frame" x="8" y="80.5" width="359" height="50"/>
+                                                <rect key="frame" x="8" y="80.5" width="359" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="nCM-NZ-3qb"/>
+                                                    <constraint firstAttribute="height" constant="44" id="nCM-NZ-3qb"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3pu-e3-q9o">
                                                     <size key="itemSize" width="50" height="50"/>
@@ -139,7 +139,7 @@
                                                 </cells>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oBf-p5-kS2">
-                                                <rect key="frame" x="8" y="292.5" width="359" height="65"/>
+                                                <rect key="frame" x="8" y="286.5" width="359" height="65"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="65" id="WYX-wd-MIk"/>
@@ -169,21 +169,21 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yzg-67-NNb">
-                                                <rect key="frame" x="10" y="150.5" width="365" height="1"/>
+                                                <rect key="frame" x="10" y="144.5" width="365" height="1"/>
                                                 <color key="backgroundColor" red="0.91654108502538068" green="0.91654108502538068" blue="0.91654108502538068" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="io0-wH-hY7"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yOd-Up-kre">
-                                                <rect key="frame" x="10" y="211" width="365" height="1"/>
+                                                <rect key="frame" x="10" y="205" width="365" height="1"/>
                                                 <color key="backgroundColor" red="0.91654108502538068" green="0.91654108502538068" blue="0.91654108502538068" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="yRe-BZ-O44"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1D-NW-eip">
-                                                <rect key="frame" x="10" y="271.5" width="365" height="1"/>
+                                                <rect key="frame" x="10" y="265.5" width="365" height="1"/>
                                                 <color key="backgroundColor" red="0.91654108502538068" green="0.91654108502538068" blue="0.91654108502538068" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="weC-yQ-rZi"/>

@@ -64,6 +64,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UIColor_Hex_Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>URITemplate.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -78,6 +83,11 @@
 			<true/>
 		</dict>
 		<key>4A3E211676B243619B026D147D272253</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>566F7437E950B713D7B774579733D9B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +107,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>71E9B618FF9AE7A5995C2745E6950874</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>72C056B7EE4E8865E6B7628BE00FC40D</key>
+		<key>6C11AE5F56B5C32A3BE96889DB3598E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,12 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A9168BDE9EE4A55041076878351751E0</key>
+		<key>C9318E26D819DF9A1BDD0AF702ABA485</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7DA770877BDFA26378532DDE0110A28</key>
+		<key>D9F37A33AF7376E18FC9CC4862DAC229</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -128,6 +133,11 @@
 			<true/>
 		</dict>
 		<key>E89CFD99B895BCC6E8EDC2F95A03500C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD110AC68D25E65AF35C1D142054094D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

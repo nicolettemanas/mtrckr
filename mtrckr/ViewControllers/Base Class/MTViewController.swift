@@ -24,6 +24,7 @@ class MTViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = MTColors.lightBg
         listenToKeyboard()
     }
 

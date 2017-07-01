@@ -12,7 +12,7 @@ class MTTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = MTColors.lightBg
         self.tableView.separatorStyle = .none
     }
 

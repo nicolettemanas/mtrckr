@@ -140,7 +140,6 @@ class Account: Object {
     static func with(key: String, inRealm realm: Realm) -> Account? {
         return realm.object(ofType: Account.self, forPrimaryKey: key) as Account?
     }
-
     
     /// Fetches all the account from the given realm
     ///

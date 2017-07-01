@@ -21,7 +21,6 @@ enum MTTextFieldInputType {
 }
 
 /// Base class for a UITextField
-@IBDesignable
 class MTTextField: UITextField {
     
     var datePicker: UIDatePicker?

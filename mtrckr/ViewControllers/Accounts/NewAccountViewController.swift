@@ -6,10 +6,19 @@
 //
 
 import UIKit
+import DateToolsSwift
+import UIColor_Hex_Swift
+
+protocol NewAccountViewControllerDelegate: class {
+    func shouldCreateAccount(withName name: String, type: AccountType,
+                             initBalance: Double, dateOpened: Date,
+                             color: UIColor)
+}
 
 class NewAccountViewController: MTViewController, UICollectionViewDelegate,
 AccountTypeCollectionDelegate, ColorsCollectionDelegate {
-
+    
+    // MARK: - IBOutlets and IBActions
     @IBOutlet weak var nameTxtField: MTTextField!
     @IBOutlet weak var startingBalanceTxtField: MTTextField!
     @IBOutlet weak var dateOpenedTxtField: MTTextField!
@@ -29,10 +38,14 @@ AccountTypeCollectionDelegate, ColorsCollectionDelegate {
     
     @IBAction func okBtnPressed(_ sender: Any) {
         if isValid() {
+            returnFields()
             view.endEditing(true)
             dismiss(animated: true, completion: nil)
         }
     }
+    
+    // MARK: - Properties
+    weak var delegate: NewAccountViewControllerDelegate?
     
     var selectedType: AccountType?
     var selectedColor: UIColor?
@@ -40,8 +53,13 @@ AccountTypeCollectionDelegate, ColorsCollectionDelegate {
     var accTypeDataSource: AccountTypeCollectionDataSource?
     var colorDataSource: ColorsCollectionDataSource?
     
+    var account: Account?
+    
     override func viewDidLoad() {
         setupUIFields()
+        if account != nil {
+            autoFillAccount()
+        }
         super.viewDidLoad()
     }
     
@@ -55,15 +73,30 @@ AccountTypeCollectionDelegate, ColorsCollectionDelegate {
     }
     
     // MARK: - UI setup methods
-    func setupUIFields() {
+    private func autoFillAccount() {
+        nameTxtField.text = account?.name
+        startingBalanceTxtField.text = "\(account!.initialAmount)"
+        dateOpenedTxtField.datePicker?.date = account!.dateOpened
+        dateOpenedTxtField.text = account!.dateOpened.format(with: "MMM dd, yyyy")
+        
+        selectedType = account!.type
+        selectedColor = UIColor(account!.color)
+        
+        accTypeDataSource?.select(type: selectedType!)
+        colorDataSource?.select(color: selectedColor!)
+    }
+    
+    private func setupUIFields() {
         scrollView = accountsScrollView
         
         nameTxtField.delegate = self
         startingBalanceTxtField.delegate = self
         dateOpenedTxtField.delegate = self
         
-        accTypeDataSource = AccountTypeCollectionDataSource(with: RealmAuthConfig(), collectionView: typeCollectionView)
-        colorDataSource = ColorsCollectionDataSource(with: RealmAuthConfig(), collectionView: colorCollectionView)
+        accTypeDataSource = AccountTypeCollectionDataSource(with: RealmAuthConfig(),
+                                                            collectionView: typeCollectionView)
+        colorDataSource = ColorsCollectionDataSource(with: RealmAuthConfig(),
+                                                     collectionView: colorCollectionView)
         
         accTypeDataSource?.delegate = self
         colorDataSource?.delegate = self
@@ -74,6 +107,12 @@ AccountTypeCollectionDelegate, ColorsCollectionDelegate {
         colorCollectionView.delegate = colorDataSource
         
         dateOpenedTxtField.setInputType(type: .date)
+        
+        accTypeDataSource?.selectDefault()
+        colorDataSource?.selectDefault()
+        
+        okBtn.tintColor = MTColors.mainBlue
+        cancelBtn.tintColor = MTColors.mainRed
     }
     
     func isValid() -> Bool {
@@ -86,25 +125,38 @@ AccountTypeCollectionDelegate, ColorsCollectionDelegate {
         }
         
         if selectedType == nil {
-            typeCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
-            accTypeDataSource?.collectionView(typeCollectionView, didSelectItemAt: IndexPath(row: 0, section: 0))
+            accTypeDataSource?.selectDefault()
         }
         
         if selectedColor == nil {
-            colorCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
-            colorDataSource?.collectionView(colorCollectionView, didSelectItemAt: IndexPath(row: 0, section: 0))
+            colorDataSource?.selectDefault()
         }
         
         if nameTxtField.text == "" || nameTxtField.text == nil {
-            nameTxtField.showError(errorMsg: NSLocalizedString("You can't leave this empty", comment: "Indicates that the field is required"))
+            nameTxtField.showError(errorMsg: NSLocalizedString("You can't leave this empty",
+                                                               comment: "Indicates that the field is required"))
             return false
         }
         
         return true
     }
     
+    private func returnFields() {
+        let date = Date(dateString: dateOpenedTxtField.text!,
+                        format: "MMM dd, yyyy",
+                        timeZone: TimeZone.current)
+        delegate?.shouldCreateAccount(withName: nameTxtField.text!,
+                                      type: selectedType!,
+                                      initBalance: Double(startingBalanceTxtField.text!)!,
+                                      dateOpened: date,
+                                      color: selectedColor!)
+    }
+    
     // MARK: - UITextFieldDelegate methods
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        
         if nameTxtField == textField {
             let txt = (nameTxtField.text! as NSString).replacingCharacters(in: range, with: string)
             if txt.characters.count > 0 {

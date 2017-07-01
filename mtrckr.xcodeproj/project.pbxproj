@@ -17,7 +17,7 @@
 		CE03C2341EC36711009A6AB0 /* MTTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03C2331EC36711009A6AB0 /* MTTableViewCell.swift */; };
 		CE03C2361EC3672F009A6AB0 /* MTDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE03C2351EC3672F009A6AB0 /* MTDetailsTableViewCell.xib */; };
 		CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */; };
-		CE0A4A2D1F02A8D500FCF581 /* MTAccoutnsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A4A2C1F02A8D500FCF581 /* MTAccoutnsTableViewController.swift */; };
+		CE0A4A2D1F02A8D500FCF581 /* MTAccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A4A2C1F02A8D500FCF581 /* MTAccountsTableViewController.swift */; };
 		CE130B481EE12F68007C6979 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE130B471EE12F68007C6979 /* RegistrationViewController.swift */; };
 		CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */; };
 		CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31051E9B2AAB0022CA57 /* Transaction.swift */; };
@@ -29,24 +29,27 @@
 		CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BA1E967F0800EBE809 /* BillTests.swift */; };
 		CE3A89BD1E972BB600EBE809 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BC1E972BB600EBE809 /* Bill.swift */; };
 		CE3A89BF1E97ED8900EBE809 /* BillEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */; };
+		CE3CDAFC1F0638AC00D4A054 /* ColorsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CDAFB1F0638AC00D4A054 /* ColorsCollectionDataSource.swift */; };
+		CE3CDAFE1F06406800D4A054 /* AccountsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CDAFD1F06406800D4A054 /* AccountsInteractor.swift */; };
 		CE43954F1EE92BCB00C05E4A /* SFText-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954B1EE92BCB00C05E4A /* SFText-Light.otf */; };
 		CE4395501EE92BCB00C05E4A /* SFText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954C1EE92BCB00C05E4A /* SFText-Regular.otf */; };
 		CE4395511EE92BCB00C05E4A /* SFText-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954D1EE92BCB00C05E4A /* SFText-RegularItalic.otf */; };
 		CE4395521EE92BCB00C05E4A /* SFText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954E1EE92BCB00C05E4A /* SFText-Semibold.otf */; };
 		CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395531EE93C3C00C05E4A /* MTColors.swift */; };
 		CE4395561EE93E7700C05E4A /* MTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395551EE93E7700C05E4A /* MTNavigationController.swift */; };
-		CE43955A1EE9401200C05E4A /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395591EE9401200C05E4A /* UIColor+Hex.swift */; };
 		CE44F40F1EFA6AD600E035C7 /* RealmLoginInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F40E1EFA6AD600E035C7 /* RealmLoginInteractorTests.swift */; };
 		CE44F4111EFA743C00E035C7 /* TestableLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F4101EFA743C00E035C7 /* TestableLoginInteractor.swift */; };
 		CE44F4131EFB84EC00E035C7 /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F4121EFB84EC00E035C7 /* LoginViewControllerTests.swift */; };
 		CE44F4151EFB876A00E035C7 /* MockPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F4141EFB876A00E035C7 /* MockPresenterOutput.swift */; };
-		CE62B7421F03E0FB0064A159 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B7411F03E0FB0064A159 /* CollectionViewDataSource.swift */; };
+		CE4D35C11F065415008146AF /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D35C01F065415008146AF /* AccountTableViewCell.swift */; };
+		CE62B7421F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B7411F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift */; };
 		CE62B7451F03E8960064A159 /* AccountTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE62B7441F03E8960064A159 /* AccountTypeCollectionViewCell.xib */; };
 		CE62B7481F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B7471F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift */; };
 		CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */; };
 		CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */; };
 		CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFE1E95E54400E5DBA6 /* User.swift */; };
 		CE76C99E1F022E6000877C0E /* AccountsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76C99D1F022E6000877C0E /* AccountsTableViewControllerTests.swift */; };
+		CE987AF21F064E8C0048C5A1 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE987AF11F064E8C0048C5A1 /* AccountTableViewCell.xib */; };
 		CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */; };
 		CEA05C121EE0DFCC0091414F /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA05C111EE0DFCC0091414F /* MTTextField.swift */; };
 		CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */; };
@@ -118,7 +121,7 @@
 		CE03C2331EC36711009A6AB0 /* MTTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTableViewCell.swift; path = Views/Class/MTTableViewCell.swift; sourceTree = "<group>"; };
 		CE03C2351EC3672F009A6AB0 /* MTDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MTDetailsTableViewCell.xib; path = Views/XIBs/MTDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptionInteractor.swift; path = Interactors/Encryption/EncryptionInteractor.swift; sourceTree = "<group>"; };
-		CE0A4A2C1F02A8D500FCF581 /* MTAccoutnsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MTAccoutnsTableViewController.swift; path = ViewControllers/Tabs/MTAccoutnsTableViewController.swift; sourceTree = "<group>"; };
+		CE0A4A2C1F02A8D500FCF581 /* MTAccountsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MTAccountsTableViewController.swift; path = ViewControllers/Tabs/MTAccountsTableViewController.swift; sourceTree = "<group>"; };
 		CE130B471EE12F68007C6979 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = ViewControllers/Authentication/RegistrationViewController.swift; sourceTree = "<group>"; };
 		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE1F31051E9B2AAB0022CA57 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Models/Transaction.swift; sourceTree = "<group>"; };
@@ -130,24 +133,27 @@
 		CE3A89BA1E967F0800EBE809 /* BillTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillTests.swift; path = BillTests/BillTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE3A89BC1E972BB600EBE809 /* Bill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bill.swift; path = Models/Bill.swift; sourceTree = "<group>"; };
 		CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillEntryTests.swift; path = BillTests/BillEntryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CE3CDAFB1F0638AC00D4A054 /* ColorsCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorsCollectionDataSource.swift; path = Interactors/Accounts/ColorsCollectionDataSource.swift; sourceTree = "<group>"; };
+		CE3CDAFD1F06406800D4A054 /* AccountsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountsInteractor.swift; path = Interactors/Accounts/AccountsInteractor.swift; sourceTree = "<group>"; };
 		CE43954B1EE92BCB00C05E4A /* SFText-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Light.otf"; path = "Sources/Fonts/SFText-Light.otf"; sourceTree = "<group>"; };
 		CE43954C1EE92BCB00C05E4A /* SFText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Regular.otf"; path = "Sources/Fonts/SFText-Regular.otf"; sourceTree = "<group>"; };
 		CE43954D1EE92BCB00C05E4A /* SFText-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-RegularItalic.otf"; path = "Sources/Fonts/SFText-RegularItalic.otf"; sourceTree = "<group>"; };
 		CE43954E1EE92BCB00C05E4A /* SFText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Semibold.otf"; path = "Sources/Fonts/SFText-Semibold.otf"; sourceTree = "<group>"; };
 		CE4395531EE93C3C00C05E4A /* MTColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTColors.swift; path = Configs/MTColors.swift; sourceTree = "<group>"; };
 		CE4395551EE93E7700C05E4A /* MTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTNavigationController.swift; path = "ViewControllers/Base Class/MTNavigationController.swift"; sourceTree = "<group>"; };
-		CE4395591EE9401200C05E4A /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Hex.swift"; path = "Sources/Extensions/UIColor+Hex.swift"; sourceTree = "<group>"; };
 		CE44F40E1EFA6AD600E035C7 /* RealmLoginInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmLoginInteractorTests.swift; path = Authentication/RealmLoginInteractorTests.swift; sourceTree = "<group>"; };
 		CE44F4101EFA743C00E035C7 /* TestableLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestableLoginInteractor.swift; path = Authentication/TestableLoginInteractor.swift; sourceTree = "<group>"; };
 		CE44F4121EFB84EC00E035C7 /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewControllerTests.swift; path = Authentication/LoginViewControllerTests.swift; sourceTree = "<group>"; };
 		CE44F4141EFB876A00E035C7 /* MockPresenterOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockPresenterOutput.swift; path = Authentication/MockPresenterOutput.swift; sourceTree = "<group>"; };
-		CE62B7411F03E0FB0064A159 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewDataSource.swift; path = Interactors/Accounts/CollectionViewDataSource.swift; sourceTree = "<group>"; };
+		CE4D35C01F065415008146AF /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountTableViewCell.swift; path = Views/XIBs/Accounts/AccountTableViewCell.swift; sourceTree = "<group>"; };
+		CE62B7411F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountTypeCollectionDataSource.swift; path = Interactors/Accounts/AccountTypeCollectionDataSource.swift; sourceTree = "<group>"; };
 		CE62B7441F03E8960064A159 /* AccountTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountTypeCollectionViewCell.xib; path = Views/XIBs/Accounts/AccountTypeCollectionViewCell.xib; sourceTree = "<group>"; };
 		CE62B7471F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountTypeCollectionViewCell.swift; path = Views/Class/Accounts/AccountTypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CategoryTests.swift; path = CategoryTests/CategoryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AccountTests.swift; path = AccountTests/AccountTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFE1E95E54400E5DBA6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		CE76C99D1F022E6000877C0E /* AccountsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTableViewControllerTests.swift; sourceTree = "<group>"; };
+		CE987AF11F064E8C0048C5A1 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountTableViewCell.xib; path = Views/XIBs/Accounts/AccountTableViewCell.xib; sourceTree = "<group>"; };
 		CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntry.swift; path = Models/BillEntry.swift; sourceTree = "<group>"; };
 		CEA05C111EE0DFCC0091414F /* MTTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTextField.swift; path = "Views/Class/Base Classes/MTTextField.swift"; sourceTree = "<group>"; };
 		CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthConfig.swift; path = Configs/RealmAuthConfig.swift; sourceTree = "<group>"; };
@@ -387,7 +393,9 @@
 		CE62B7401F03E0AD0064A159 /* Accounts */ = {
 			isa = PBXGroup;
 			children = (
-				CE62B7411F03E0FB0064A159 /* CollectionViewDataSource.swift */,
+				CE62B7411F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift */,
+				CE3CDAFB1F0638AC00D4A054 /* ColorsCollectionDataSource.swift */,
+				CE3CDAFD1F06406800D4A054 /* AccountsInteractor.swift */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -397,6 +405,7 @@
 			children = (
 				CE62B7441F03E8960064A159 /* AccountTypeCollectionViewCell.xib */,
 				CEBC0BAE1F04F4730080DBC9 /* ColorCollectionViewCell.xib */,
+				CE987AF11F064E8C0048C5A1 /* AccountTableViewCell.xib */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -406,6 +415,7 @@
 			children = (
 				CE62B7471F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift */,
 				CEBC0BB01F04F56C0080DBC9 /* ColorCollectionViewCell.swift */,
+				CE4D35C01F065415008146AF /* AccountTableViewCell.swift */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -513,7 +523,6 @@
 		CED88E411EE90EB700D147B9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CE4395591EE9401200C05E4A /* UIColor+Hex.swift */,
 				CED88E421EE90EEE00D147B9 /* UIFont+AppFont.swift */,
 			);
 			name = Extensions;
@@ -590,7 +599,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF044D91EE020FE00486EAC /* MTSettingsTableViewController.swift */,
-				CE0A4A2C1F02A8D500FCF581 /* MTAccoutnsTableViewController.swift */,
+				CE0A4A2C1F02A8D500FCF581 /* MTAccountsTableViewController.swift */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
@@ -824,6 +833,7 @@
 				CE43954F1EE92BCB00C05E4A /* SFText-Light.otf in Resources */,
 				CEFB22A61E94FC2100867CDA /* Assets.xcassets in Resources */,
 				CEF044B51EDEACD700486EAC /* AccountType.json in Resources */,
+				CE987AF21F064E8C0048C5A1 /* AccountTableViewCell.xib in Resources */,
 				CEF044C01EDFEE6000486EAC /* Accounts.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -958,6 +968,7 @@
 				CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */,
 				CEFB22C71E94FD8B00867CDA /* Category.swift in Sources */,
 				CE03C22F1EC365F3009A6AB0 /* MTTextInputTableViewCell.swift in Sources */,
+				CE3CDAFC1F0638AC00D4A054 /* ColorsCollectionDataSource.swift in Sources */,
 				CE4395561EE93E7700C05E4A /* MTNavigationController.swift in Sources */,
 				CE03C2341EC36711009A6AB0 /* MTTableViewCell.swift in Sources */,
 				CEF044E11EE0214F00486EAC /* MTViewController.swift in Sources */,
@@ -967,6 +978,7 @@
 				CE005F531ECAE4DC00536C1A /* RealmRegInteractor.swift in Sources */,
 				CEF044B01EDDD46500486EAC /* InitialRealmGenerator.swift in Sources */,
 				CEF044CF1EDFF67700486EAC /* MTTableViewController.swift in Sources */,
+				CE4D35C11F065415008146AF /* AccountTableViewCell.swift in Sources */,
 				CEBC0BB11F04F56C0080DBC9 /* ColorCollectionViewCell.swift in Sources */,
 				CEF044CC1EDFF44000486EAC /* MTSettingsTableViewCell.swift in Sources */,
 				CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */,
@@ -977,14 +989,14 @@
 				CEFF80731F03BC3100FF65EC /* NewAccountViewController.swift in Sources */,
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
 				CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */,
-				CE43955A1EE9401200C05E4A /* UIColor+Hex.swift in Sources */,
+				CE3CDAFE1F06406800D4A054 /* AccountsInteractor.swift in Sources */,
 				CEB403C21EF3647F0013CB3C /* SettingsPresenter.swift in Sources */,
 				CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */,
 				CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */,
 				CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */,
 				CEF044DC1EE0211500486EAC /* LoginViewController.swift in Sources */,
-				CE0A4A2D1F02A8D500FCF581 /* MTAccoutnsTableViewController.swift in Sources */,
-				CE62B7421F03E0FB0064A159 /* CollectionViewDataSource.swift in Sources */,
+				CE0A4A2D1F02A8D500FCF581 /* MTAccountsTableViewController.swift in Sources */,
+				CE62B7421F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift in Sources */,
 				CE2C7DFB1EE567A2002AB5DC /* RealmLoginInteractor.swift in Sources */,
 				CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */,
 				CE03C22D1EC36539009A6AB0 /* MTView.swift in Sources */,
