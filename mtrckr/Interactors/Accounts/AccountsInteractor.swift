@@ -17,6 +17,7 @@ protocol AccountsInteractorProtocol {
     func currency() -> String
     func createAccount(account: Account)
     func accounts() -> Results<Account>
+    func deleteAccount(account: Account)
     func updateAccount(fromAccount old: Account, toAccount new: Account)
     
     weak var output: AccountsInteractorOutput? { get set }
@@ -48,6 +49,10 @@ class AccountsInteractor: RealmHolder, AccountsInteractorProtocol {
     
     func accounts() -> Results<Account> {
         return Account.all(in: realm!)
+    }
+    
+    func deleteAccount(account: Account) {
+        account.delete(in: realm!)
     }
     
     func currency() -> String {

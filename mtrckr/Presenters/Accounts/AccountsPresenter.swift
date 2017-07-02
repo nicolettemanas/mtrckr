@@ -18,9 +18,9 @@ protocol AccountsPresenterProtocol {
     
     init(interactor: AccountsInteractorProtocol?, output ao: AccountsPresenterOutput?)
     
-    func showEditAccount(with id: String)
     func accounts() -> [Account]
     func currency() -> String
+    func deleteAccount(account: Account)
     func createAccount(withId: String?, name: String, type: AccountType,
                        initBalance: Double, dateOpened: Date,
                        color: UIColor)
@@ -35,8 +35,8 @@ class AccountsPresenter: AccountsInteractorOutput, AccountsPresenterProtocol {
         output = ao
     }
     
-    func showEditAccount(with id: String) {
-        
+    func deleteAccount(account: Account) {
+        interactor?.deleteAccount(account: account)
     }
     
     func accounts() -> [Account] {

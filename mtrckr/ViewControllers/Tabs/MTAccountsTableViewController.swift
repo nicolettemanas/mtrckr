@@ -11,7 +11,6 @@ import SwipeCellKit
 protocol MTAccountsTableViewControllerProtocol {
     var presenter: AccountsPresenterProtocol? { get set }
     func createNewAccount()
-    func editAccount(with id: String)
 }
 
 class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewControllerProtocol,
@@ -64,7 +63,7 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
     }
     
     func deleteAccount(atIndex indexPath: IndexPath) {
-        
+        presenter?.deleteAccount(account: accounts[indexPath.row])
     }
     
     // MARK: - Table view data source
@@ -111,8 +110,27 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
         present(nav!, animated: true, completion: nil)
     }
     
-    func editAccount(with id: String) {
-        presenter?.showEditAccount(with: id)
+    func displayDeleteSheet(toDelete indexPath: IndexPath) {
+        let deleteConfirmation = UIAlertController(title: nil,
+                                                   message: NSLocalizedString("Are you sure you want to delete this account? " +
+                                                    "Deleting an account deletes all associated transactions. " +
+                                                    "This cannot be undone.",
+                                                  comment: "A warning that indicates the deletion of transactions under" +
+                                                    " the account to be deleted. Asks for user's confirmation."),
+                                              preferredStyle: .actionSheet)
+        
+        let cancel = UIAlertAction(title: "Don't delete!", style: .cancel) { _ in
+            deleteConfirmation.dismiss(animated: true, completion: nil)
+        }
+        
+        let delete = UIAlertAction(title: "Yes, please.", style: .destructive) { _ in
+            self.deleteAccount(atIndex: indexPath)
+        }
+        
+        deleteConfirmation.addAction(cancel)
+        deleteConfirmation.addAction(delete)
+        
+        present(deleteConfirmation, animated: true, completion: nil)
     }
     
     // MARK: - NewAccountViewControllerDelegate methods
@@ -148,7 +166,7 @@ extension MTAccountsTableViewController: SwipeTableViewCellDelegate {
             edit.textColor = .white
             
             let delete = SwipeAction(style: .destructive, title: nil, handler: { (_, _) in
-                
+                self.displayDeleteSheet(toDelete: indexPath)
             })
             
             delete.accessibilityLabel = "Delete"
