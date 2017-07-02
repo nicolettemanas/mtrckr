@@ -21,7 +21,7 @@ protocol AccountsPresenterProtocol {
     func showEditAccount(with id: String)
     func accounts() -> [Account]
     func currency() -> String
-    func createAccount(withName name: String, type: AccountType,
+    func createAccount(withId: String?, name: String, type: AccountType,
                        initBalance: Double, dateOpened: Date,
                        color: UIColor)
 }
@@ -47,10 +47,11 @@ class AccountsPresenter: AccountsInteractorOutput, AccountsPresenterProtocol {
         return Array(res)
     }
     
-    func createAccount(withName name: String, type: AccountType,
+    func createAccount(withId id: String?, name: String, type: AccountType,
                        initBalance: Double, dateOpened: Date,
                        color: UIColor) {
-        let att: [String: Any] = ["id": "accnt-\(UUID().uuidString)",
+        
+        let att: [String: Any] = ["id": id ?? "accnt-\(UUID().uuidString)",
                                     "name": name,
                                     "type": type,
                                     "initialAmount": initBalance,

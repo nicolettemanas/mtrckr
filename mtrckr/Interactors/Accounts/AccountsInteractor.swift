@@ -17,6 +17,8 @@ protocol AccountsInteractorProtocol {
     func currency() -> String
     func createAccount(account: Account)
     func accounts() -> Results<Account>
+    func updateAccount(fromAccount old: Account, toAccount new: Account)
+    
     weak var output: AccountsInteractorOutput? { get set }
 }
 class AccountsInteractor: RealmHolder, AccountsInteractorProtocol {
@@ -33,7 +35,15 @@ class AccountsInteractor: RealmHolder, AccountsInteractorProtocol {
     }
     
     func createAccount(account: Account) {
-        account.save(toRealm: realm!)
+        if let acc = Account.with(key: account.id, inRealm: realm!) {
+            updateAccount(fromAccount: acc, toAccount: account)
+        } else {
+            account.save(toRealm: realm!)
+        }
+    }
+    
+    func updateAccount(fromAccount old: Account, toAccount new: Account) {
+        old.update(to: new, in: realm!)
     }
     
     func accounts() -> Results<Account> {

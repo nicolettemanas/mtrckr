@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 protocol MTAccountsTableViewControllerProtocol {
     var presenter: AccountsPresenterProtocol? { get set }
@@ -49,6 +50,23 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
         createNewAccount()
     }
     
+    // MARK: - Accounts modification methods
+    func editAccount(atIndex indexPath: IndexPath) {
+        let nav = storyboard?.instantiateViewController(withIdentifier: "NewAccountNavigationController")
+        guard let vc = (nav as? UINavigationController)?.topViewController
+            as? NewAccountViewController else {
+                return
+        }
+        
+        vc.delegate = self
+        vc.account = accounts[indexPath.row]
+        present(nav!, animated: true, completion: nil)
+    }
+    
+    func deleteAccount(atIndex indexPath: IndexPath) {
+        
+    }
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
@@ -76,6 +94,8 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
         cell.typeView.backgroundColor = UIColor(a.color)
         cell.typeImageView.image = UIImage(named: a.type!.icon)
         cell.typeLabel.text = a.type!.name
+        
+        cell.delegate = self
         return cell
     }
     
@@ -96,10 +116,10 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
     }
     
     // MARK: - NewAccountViewControllerDelegate methods
-    func shouldCreateAccount(withName name: String, type: AccountType,
+    func shouldCreateAccount(withId id: String?, name: String, type: AccountType,
                              initBalance: Double, dateOpened: Date,
                              color: UIColor) {
-        presenter?.createAccount(withName: name, type: type,
+        presenter?.createAccount(withId: id, name: name, type: type,
                                  initBalance: initBalance, dateOpened: dateOpened,
                                  color: color)
     }
@@ -111,5 +131,42 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
             self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
     }
+}
 
+extension MTAccountsTableViewController: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath,
+                   for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
+        if orientation == .right {
+            let edit = SwipeAction(style: .default, title: nil) { _, indexPath in
+                self.editAccount(atIndex: indexPath)
+            }
+            
+            edit.accessibilityLabel = "Edit"
+            edit.image = #imageLiteral(resourceName: "edit")
+            edit.backgroundColor = MTColors.mainBlue
+            edit.textColor = .white
+            
+            let delete = SwipeAction(style: .destructive, title: nil, handler: { (_, _) in
+                
+            })
+            
+            delete.accessibilityLabel = "Delete"
+            delete.image = #imageLiteral(resourceName: "trash")
+            delete.backgroundColor = MTColors.mainRed
+            delete.textColor = .white
+            
+            return [delete, edit]
+        }
+        
+        return []
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath,
+                   for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        var options = SwipeTableOptions()
+        options.expansionStyle = .none
+        options.transitionStyle = .border
+        return options
+    }
 }

@@ -96,6 +96,10 @@ class ColorsCollectionDataSource: RealmHolder, ColorCollectionProtocol, UICollec
     }
     
     func indexPath(of color: UIColor) -> IndexPath? {
-        return IndexPath(row: MTColors.colors.index(of: color)!, section: 0)
+        if let c = MTColors.colors.index(of: color) {
+            return IndexPath(row: c, section: 0)
+        }
+        
+        return IndexPath(row: 0, section: 0)
     }
 }

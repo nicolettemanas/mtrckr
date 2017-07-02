@@ -10,7 +10,7 @@ import DateToolsSwift
 import UIColor_Hex_Swift
 
 protocol NewAccountViewControllerDelegate: class {
-    func shouldCreateAccount(withName name: String, type: AccountType,
+    func shouldCreateAccount(withId: String?, name: String, type: AccountType,
                              initBalance: Double, dateOpened: Date,
                              color: UIColor)
 }
@@ -145,7 +145,8 @@ AccountTypeCollectionDelegate, ColorsCollectionDelegate {
         let date = Date(dateString: dateOpenedTxtField.text!,
                         format: "MMM dd, yyyy",
                         timeZone: TimeZone.current)
-        delegate?.shouldCreateAccount(withName: nameTxtField.text!,
+        delegate?.shouldCreateAccount(withId: account?.id,
+                                      name: nameTxtField.text!,
                                       type: selectedType!,
                                       initBalance: Double(startingBalanceTxtField.text!)!,
                                       dateOpened: date,

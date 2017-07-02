@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class AccountTableViewCell: UITableViewCell {
+class AccountTableViewCell: SwipeTableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
@@ -18,7 +19,6 @@ class AccountTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         typeView.layer.masksToBounds = true
-        clipsToBounds = true
         typeView.layer.cornerRadius = 10
         typeImageView.tintColor = .white
     }
