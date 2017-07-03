@@ -9,9 +9,9 @@ import UIKit
 import Realm
 import RealmSwift
 
-protocol AccountsInteractorOutput: class {
-    func didUpdateAccounts()
-}
+//protocol AccountsInteractorOutput: class {
+//    func didUpdateAccounts()
+//}
 
 protocol AccountsInteractorProtocol {
     func currency() -> String
@@ -20,39 +20,36 @@ protocol AccountsInteractorProtocol {
     func deleteAccount(account: Account)
     func updateAccount(fromAccount old: Account, toAccount new: Account)
     
-    weak var output: AccountsInteractorOutput? { get set }
+//    weak var output: AccountsInteractorOutput? { get set }
 }
 class AccountsInteractor: RealmHolder, AccountsInteractorProtocol {
-    var realm: Realm?
-    var notificationToken: NotificationToken?
-    weak var output: AccountsInteractorOutput?
+//    var realm: Realm?
+//    var notificationToken: NotificationToken?
+//    weak var output: AccountsInteractorOutput?
     
     override init(with config: AuthConfig) {
         super.init(with: config)
-        realm = realmContainer?.userRealm
-        notificationToken = realm?.addNotificationBlock({ (_, _) in
-            self.output?.didUpdateAccounts()
-        })
+//        realm = realmContainer?.userRealm
     }
     
     func createAccount(account: Account) {
-        if let acc = Account.with(key: account.id, inRealm: realm!) {
+        if let acc = Account.with(key: account.id, inRealm: realmContainer!.userRealm!) {
             updateAccount(fromAccount: acc, toAccount: account)
         } else {
-            account.save(toRealm: realm!)
+            account.save(toRealm: realmContainer!.userRealm!)
         }
     }
     
     func updateAccount(fromAccount old: Account, toAccount new: Account) {
-        old.update(to: new, in: realm!)
+        old.update(to: new, in: realmContainer!.userRealm!)
     }
     
     func accounts() -> Results<Account> {
-        return Account.all(in: realm!)
+        return Account.all(in: realmContainer!.userRealm!)
     }
     
     func deleteAccount(account: Account) {
-        account.delete(in: realm!)
+        account.delete(in: realmContainer!.userRealm!)
     }
     
     func currency() -> String {

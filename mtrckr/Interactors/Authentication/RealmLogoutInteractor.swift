@@ -41,6 +41,8 @@ class RealmLogoutInteractor: RealmHolder, RealmLogoutInteractorProtocol {
             try? realm.write {
                 realm.deleteAll()
             }
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didChangeUser"), object: nil)
             self.output?.didLogout()
         }
     }

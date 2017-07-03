@@ -19,22 +19,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Cash" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tY-cs-ZxR">
-                        <rect key="frame" x="20" y="10" width="110" height="19.5"/>
+                        <rect key="frame" x="20" y="10" width="63.5" height="19.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="NGo-Ra-ZPv"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" red="0.20392156862745098" green="0.21568627450980393" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$20.30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jS-Un-4kP">
-                        <rect key="frame" x="20" y="29.5" width="110" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="20" y="29.5" width="63.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.42352941176470588" green="0.43529411764705883" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICf-du-Udx">
-                        <rect key="frame" x="140" y="8" width="140" height="43.5"/>
+                        <rect key="frame" x="150.5" y="8" width="129.5" height="43.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cLT-CQ-64c">
                                 <rect key="frame" x="10" y="12" width="30" height="20"/>
@@ -45,7 +45,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit Card" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tz3-b4-jh1">
-                                <rect key="frame" x="45" y="12" width="85" height="21"/>
+                                <rect key="frame" x="45" y="12" width="74.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Mg0-60-HC6"/>
                                 </constraints>
@@ -60,7 +60,6 @@
                             <constraint firstAttribute="height" constant="43.5" id="Yco-nA-26G"/>
                             <constraint firstItem="cLT-CQ-64c" firstAttribute="centerY" secondItem="ICf-du-Udx" secondAttribute="centerY" id="aBa-mC-9jF"/>
                             <constraint firstItem="Tz3-b4-jh1" firstAttribute="leading" secondItem="cLT-CQ-64c" secondAttribute="trailing" constant="5" id="azi-Sb-HTM"/>
-                            <constraint firstAttribute="width" constant="140" id="jKH-gA-att"/>
                             <constraint firstItem="cLT-CQ-64c" firstAttribute="leading" secondItem="ICf-du-Udx" secondAttribute="leading" constant="10" id="tRT-Cs-Vt9"/>
                             <constraint firstItem="cLT-CQ-64c" firstAttribute="centerY" secondItem="Tz3-b4-jh1" secondAttribute="centerY" id="u3I-23-Xkt"/>
                         </constraints>
@@ -68,7 +67,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ICf-du-Udx" firstAttribute="centerY" secondItem="IfZ-OQ-hIn" secondAttribute="centerY" id="9rH-5T-wh7"/>
-                    <constraint firstItem="ICf-du-Udx" firstAttribute="leading" secondItem="9jS-Un-4kP" secondAttribute="trailing" constant="10" id="Gxe-lL-0li"/>
+                    <constraint firstItem="ICf-du-Udx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9jS-Un-4kP" secondAttribute="trailing" constant="10" id="Gxe-lL-0li"/>
                     <constraint firstItem="8tY-cs-ZxR" firstAttribute="leading" secondItem="IfZ-OQ-hIn" secondAttribute="leading" constant="20" id="I5H-oj-yI2"/>
                     <constraint firstItem="8tY-cs-ZxR" firstAttribute="centerY" secondItem="IfZ-OQ-hIn" secondAttribute="centerY" constant="-10" id="Vcd-Jj-wxK"/>
                     <constraint firstItem="9jS-Un-4kP" firstAttribute="height" secondItem="8tY-cs-ZxR" secondAttribute="height" id="W3b-J0-mut"/>

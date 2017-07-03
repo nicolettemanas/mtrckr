@@ -20,7 +20,8 @@ protocol TypeCollectionProtocol {
     func indexPath(of type: AccountType) -> IndexPath?
 }
 
-class AccountTypeCollectionDataSource: RealmHolder, TypeCollectionProtocol, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class AccountTypeCollectionDataSource: RealmHolder, TypeCollectionProtocol,
+UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var realm: Realm?
     var notifToken: NotificationToken?
@@ -43,6 +44,10 @@ class AccountTypeCollectionDataSource: RealmHolder, TypeCollectionProtocol, UICo
                                  forCellWithReuseIdentifier: "AccountTypeCollectionViewCell")
         collectionView?.allowsMultipleSelection = false
         
+    }
+    
+    deinit {
+        notifToken?.stop()
     }
     
     // MARK: - UICollectionViewDelegate and UICollectionViewDataSource methods

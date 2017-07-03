@@ -6,19 +6,20 @@
 //
 
 import UIKit
+import RealmSwift
 import UIColor_Hex_Swift
 
-protocol AccountsPresenterOutput: class {
-    func updateAccounts()
-}
+//protocol AccountsPresenterOutput: class {
+//    func updateAccounts()
+//}
 
 protocol AccountsPresenterProtocol {
     var interactor: AccountsInteractorProtocol? { get set }
-    weak var output: AccountsPresenterOutput? { get set }
+//    weak var output: AccountsPresenterOutput? { get set }
     
-    init(interactor: AccountsInteractorProtocol?, output ao: AccountsPresenterOutput?)
+    init(interactor: AccountsInteractorProtocol?/*, output ao: AccountsPresenterOutput?*/)
     
-    func accounts() -> [Account]
+    func accounts() -> Results<Account>?
     func currency() -> String
     func deleteAccount(account: Account)
     func createAccount(withId: String?, name: String, type: AccountType,
@@ -26,25 +27,25 @@ protocol AccountsPresenterProtocol {
                        color: UIColor)
 }
 
-class AccountsPresenter: AccountsInteractorOutput, AccountsPresenterProtocol {
-    weak var output: AccountsPresenterOutput?
+class AccountsPresenter: /*AccountsInteractorOutput,*/ AccountsPresenterProtocol {
+//    weak var output: AccountsPresenterOutput?
     var interactor: AccountsInteractorProtocol?
     
-    required init(interactor ai: AccountsInteractorProtocol?, output ao: AccountsPresenterOutput?) {
+    required init(interactor ai: AccountsInteractorProtocol?/*, output ao: AccountsPresenterOutput?*/) {
         interactor = ai
-        output = ao
+//        output = ao
     }
     
     func deleteAccount(account: Account) {
         interactor?.deleteAccount(account: account)
     }
     
-    func accounts() -> [Account] {
+    func accounts() -> Results<Account>? {
         guard let res = interactor?.accounts() else {
-            return []
+            return nil
         }
         
-        return Array(res)
+        return res
     }
     
     func createAccount(withId id: String?, name: String, type: AccountType,
@@ -70,6 +71,6 @@ class AccountsPresenter: AccountsInteractorOutput, AccountsPresenterProtocol {
     
     // MARK: - AccountsInteractorOutput methods
     func didUpdateAccounts() {
-        output?.updateAccounts()
+//        output?.updateAccounts()
     }
 }

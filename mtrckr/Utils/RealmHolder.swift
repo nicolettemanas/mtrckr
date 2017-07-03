@@ -62,12 +62,12 @@ class RealmContainer: RealmContainerProtocol {
     /// Returns the realm to be used.
     /// Returns a sync realm if a user is logged in the system, otherwise returns an offline realm
     var userRealm: Realm? {
-        if SyncUser.current == nil {
-            setDefaultRealm(to: .offline)
-        } else {
-            setDefaultRealm(to: .sync)
+        var config = getConfig(of: .offline)
+        if SyncUser.current != nil {
+            config = getConfig(of: .sync)
         }
-        if let realm = try? Realm() {
+        
+        if let realm = try? Realm(configuration: config) {
             if realm.configuration.syncConfiguration == nil &&
                 realm.objects(Currency.self).count < 1 {
                 populateInitialValues(ofRealm: realm)
@@ -85,7 +85,22 @@ class RealmContainer: RealmContainerProtocol {
     required init(withConfig configuration: AuthConfig) {
         self.config = configuration
     }
-        
+    
+    func getConfig(of option: RealmOption) -> Realm.Configuration {
+        var configuration = Realm.Configuration()
+            switch option {
+            case .offline:
+                configuration = offlineRealmConfig()
+                break
+            case .sync:
+                assert(RLMSyncUser.current != nil)
+                configuration.syncConfiguration = SyncConfiguration(user: RLMSyncUser.current!,
+                                                                    realmURL: config.userRealmPath)
+                break
+            }
+        return configuration
+    }
+    
     // MARK: - Realm methods
     
     /// Sets the default configuration of the Realm to be fetched.

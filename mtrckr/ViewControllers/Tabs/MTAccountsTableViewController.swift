@@ -7,6 +7,8 @@
 
 import UIKit
 import SwipeCellKit
+import Realm
+import RealmSwift
 
 protocol MTAccountsTableViewControllerProtocol {
     var presenter: AccountsPresenterProtocol? { get set }
@@ -14,24 +16,28 @@ protocol MTAccountsTableViewControllerProtocol {
 }
 
 class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewControllerProtocol,
-NewAccountViewControllerDelegate, AccountsPresenterOutput {
+                                    NewAccountViewControllerDelegate, UserObserver/*, AccountsPresenterOutput*/ {
     
     var presenter: AccountsPresenterProtocol?
-    var accounts: [Account] = []
+    var accounts: Results<Account>?
     var currency: String?
+    var notifToken: NotificationToken?
+    var observer: ObserverProtocol?
+    
+    deinit {
+        self.notifToken?.stop()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateAccounts()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let interactor = AccountsInteractor(with: RealmAuthConfig())
-        presenter = AccountsPresenter(interactor: interactor, output: self)
+        presenter = AccountsPresenter(interactor: interactor)
         
-        interactor.output = presenter as? AccountsInteractorOutput
         tableView.register(UINib(nibName: "AccountTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "AccountTableViewCell")
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = MTColors.placeholderText
@@ -39,6 +45,11 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
         tableView.allowsSelection = false
         
         currency = presenter?.currency()
+        setupResults()
+        observer = NotificationObserver()
+        observer?.setDidChangeUserBlock {
+            self.setupResults()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,24 +69,32 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
         }
         
         vc.delegate = self
-        vc.account = accounts[indexPath.row]
+        vc.account = accounts![indexPath.row]
         present(nav!, animated: true, completion: nil)
     }
     
     func deleteAccount(atIndex indexPath: IndexPath) {
-        presenter?.deleteAccount(account: accounts[indexPath.row])
+        presenter?.deleteAccount(account: accounts![indexPath.row])
+    }
+    
+    func setupResults() {
+        DispatchQueue.main.async {
+            self.accounts = self.presenter?.accounts()
+            self.notifToken = self.accounts?.addNotificationBlock(self.tableView.applyChanges)
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 60
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return accounts.count
+        return accounts?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,7 +106,7 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
         formatter.numberStyle = .currency
         formatter.currencySymbol = currency
         
-        let a = accounts[indexPath.row]
+        let a = accounts![indexPath.row]
         cell.nameLabel.text = a.name
         cell.amountLabel.text = "\(formatter.string(from: a.currentAmount as NSNumber)!)"
         cell.typeView.backgroundColor = UIColor(a.color)
@@ -96,6 +115,13 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
         
         cell.delegate = self
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.deleteRows(at: [indexPath], with: .top)
+            self.deleteAccount(atIndex: indexPath)
+        }
     }
     
     // MARK: - MTAccountsTableViewControllerProtocol methods
@@ -125,6 +151,7 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
         
         let delete = UIAlertAction(title: "Yes, please.", style: .destructive) { _ in
             self.deleteAccount(atIndex: indexPath)
+            
         }
         
         deleteConfirmation.addAction(cancel)
@@ -140,14 +167,6 @@ NewAccountViewControllerDelegate, AccountsPresenterOutput {
         presenter?.createAccount(withId: id, name: name, type: type,
                                  initBalance: initBalance, dateOpened: dateOpened,
                                  color: color)
-    }
-    
-    // MARK: - AccountsPresenterOutput methods
-    func updateAccounts() {
-        DispatchQueue.main.async {
-            self.accounts = self.presenter!.accounts()
-            self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-        }
     }
 }
 

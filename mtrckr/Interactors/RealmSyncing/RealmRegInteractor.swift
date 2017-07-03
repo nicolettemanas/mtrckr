@@ -86,6 +86,7 @@ class RealmRegInteractor: RealmHolder, RealmRegInteractorProtocol {
                 self.realmContainer?.setDefaultRealm(to: .sync)
                 self.realmContainer?.syncRealm()
                 self.saveUserDetails(ofUser: user!, withEmail: email, withName: name)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didChangeUser"), object: nil)
                 self.output?.didRegister(user: user!)
             } else {
                 self.realmContainer?.setDefaultRealm(to: .offline)

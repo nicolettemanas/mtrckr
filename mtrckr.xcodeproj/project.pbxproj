@@ -25,6 +25,7 @@
 		CE2C7DFD1EE56B61002AB5DC /* RealmLogoutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C7DFC1EE56B61002AB5DC /* RealmLogoutInteractor.swift */; };
 		CE33EEB91F03498D0047CBF0 /* AccountsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33EEB81F03498D0047CBF0 /* AccountsPresenter.swift */; };
 		CE33EEBC1F0350320047CBF0 /* MockAccountsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33EEBB1F0350320047CBF0 /* MockAccountsPresenter.swift */; };
+		CE3A3F2F1F0A419C0079D38F /* UserObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A3F2E1F0A419C0079D38F /* UserObserver.swift */; };
 		CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89B71E96797A00EBE809 /* UserTests.swift */; };
 		CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BA1E967F0800EBE809 /* BillTests.swift */; };
 		CE3A89BD1E972BB600EBE809 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BC1E972BB600EBE809 /* Bill.swift */; };
@@ -129,6 +130,7 @@
 		CE2C7DFC1EE56B61002AB5DC /* RealmLogoutInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmLogoutInteractor.swift; path = Interactors/Authentication/RealmLogoutInteractor.swift; sourceTree = "<group>"; };
 		CE33EEB81F03498D0047CBF0 /* AccountsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountsPresenter.swift; path = Presenters/Accounts/AccountsPresenter.swift; sourceTree = "<group>"; };
 		CE33EEBB1F0350320047CBF0 /* MockAccountsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccountsPresenter.swift; sourceTree = "<group>"; };
+		CE3A3F2E1F0A419C0079D38F /* UserObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserObserver.swift; path = Utils/UserObserver.swift; sourceTree = "<group>"; };
 		CE3A89B71E96797A00EBE809 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = UserTests.swift; path = UserTests/UserTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE3A89BA1E967F0800EBE809 /* BillTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillTests.swift; path = BillTests/BillTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE3A89BC1E972BB600EBE809 /* Bill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bill.swift; path = Models/Bill.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 			children = (
 				CEB1A8E11ECF008D000F786B /* RealmHolder.swift */,
 				CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */,
+				CE3A3F2E1F0A419C0079D38F /* UserObserver.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -967,6 +970,7 @@
 				CE33EEB91F03498D0047CBF0 /* AccountsPresenter.swift in Sources */,
 				CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */,
 				CEFB22C71E94FD8B00867CDA /* Category.swift in Sources */,
+				CE3A3F2F1F0A419C0079D38F /* UserObserver.swift in Sources */,
 				CE03C22F1EC365F3009A6AB0 /* MTTextInputTableViewCell.swift in Sources */,
 				CE3CDAFC1F0638AC00D4A054 /* ColorsCollectionDataSource.swift in Sources */,
 				CE4395561EE93E7700C05E4A /* MTNavigationController.swift in Sources */,

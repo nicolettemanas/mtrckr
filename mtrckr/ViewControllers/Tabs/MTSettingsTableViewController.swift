@@ -13,7 +13,7 @@ protocol AuthViewControllerDelegate: class {
     func didDismiss()
 }
 
-class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDelegate, RealmAuthPresenterOutput {
+class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDelegate, RealmAuthPresenterOutput, UserObserver {
     
     // MARK: - Properties
     var authPresenter: RealmAuthPresenter?
@@ -23,10 +23,21 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     let settingsIcon = [["sync", "currency", "tag"], ["out"]]
     let settingsCellIdentifier = "SettingsCell"
     
+    var observer: ObserverProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         setupUI()
+        setupUserData()
+        observer = NotificationObserver()
+        observer?.setDidChangeUserBlock {
+//            self.setupUserData()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupUserData()
     }
 
@@ -40,7 +51,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     }
     
     func setupUserData() {
-        settingsPresenter?.fetchSettingsData({ (details) in
+        self.settingsPresenter?.fetchSettingsData({ (details) in
             self.settingsDetails = details
             self.tableView.reloadData()
         })
@@ -51,7 +62,7 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     }
     
     func didDismiss() {
-        setupUserData()
+//        setupUserData()
 //        tableView.reloadData()
     }
     
@@ -119,17 +130,17 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
     
     // MARK: - RealmAuthPresenterOutput methods
     func showSuccesfulLogout() {
-        setupUserData()
+//        setupUserData()
 //        tableView.reloadData()
     }
     
     func showSuccessfulRegistration(ofUser user: MTSyncUser) {
-        setupUserData()
+//        setupUserData()
 //        tableView.reloadData()
     }
     
     func showSuccessfulLogin(ofUser user: MTSyncUser) {
-        setupUserData()
+//        setupUserData()
 //        tableView.reloadData()
     }
     

@@ -45,6 +45,7 @@ class RealmLoginInteractor: RealmHolder, RealmLoginInteractorProtocol {
                 if option == .append {
                     self.realmContainer?.syncRealm()
                 }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didChangeUser"), object: nil)
                 self.output?.didLogin(user: user!)
             } else {
                 self.realmContainer?.setDefaultRealm(to: .offline)
