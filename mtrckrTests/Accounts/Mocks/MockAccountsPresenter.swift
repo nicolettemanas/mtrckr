@@ -6,24 +6,26 @@
 //
 
 import UIKit
+import Realm
+import RealmSwift
 @testable import mtrckr
 
-class MockAccountsPresenter: AccountsPresenterProtocol {
+class MockAccountsPresenter: AccountsPresenter {
     
-    var didShowCreateAccount = false
-    var didShowEditAccount = false
-    var editAccountId: String?
+    var didDelete = false
+    var deleteAccountId = ""
     
-    func showCreateAccount() {
-        didShowCreateAccount = true
+    var didCreate = false
+    var createWithAccountId: String?
+    
+    override func deleteAccount(account: Account) {
+        didDelete = true
+        deleteAccountId = account.id
     }
     
-    func showEditAccount(with id: String) {
-        didShowEditAccount = true
-        editAccountId = id
-    }
-    
-    func accounts() -> [Account] {
-        return []
+    override func createAccount(withId id: String?, name: String, type: AccountType,
+                                initBalance: Double, dateOpened: Date, color: UIColor) {
+        didCreate = true
+        createWithAccountId = id
     }
 }

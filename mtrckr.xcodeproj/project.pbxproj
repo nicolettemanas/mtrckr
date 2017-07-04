@@ -54,6 +54,12 @@
 		CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */; };
 		CEA05C121EE0DFCC0091414F /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA05C111EE0DFCC0091414F /* MTTextField.swift */; };
 		CEB0D1E01F0B567D0044A433 /* EmptyAccountsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0D1DF1F0B567D0044A433 /* EmptyAccountsDataSource.swift */; };
+		CEB0D1E21F0B71A00044A433 /* NewAccountsViewController+SwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0D1E11F0B71A00044A433 /* NewAccountsViewController+SwipeTableViewCell.swift */; };
+		CEB0D1E41F0B71F40044A433 /* NewAccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0D1E31F0B71F40044A433 /* NewAccountPresenter.swift */; };
+		CEB0D1E61F0B75570044A433 /* MockNewAccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0D1E51F0B75570044A433 /* MockNewAccountPresenter.swift */; };
+		CEB0D1E81F0B89A50044A433 /* MockDeleteSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0D1E71F0B89A50044A433 /* MockDeleteSheetPresenter.swift */; };
+		CEB0D1EA1F0B9A590044A433 /* MockAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0D1E91F0B9A590044A433 /* MockAlertAction.swift */; };
+		CEB0D1EC1F0BA1AF0044A433 /* MockAccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0D1EB1F0BA1AF0044A433 /* MockAccountInteractor.swift */; };
 		CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */; };
 		CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8E11ECF008D000F786B /* RealmHolder.swift */; };
 		CEB403B11EF26DB80013CB3C /* RegistrationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */; };
@@ -160,6 +166,12 @@
 		CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntry.swift; path = Models/BillEntry.swift; sourceTree = "<group>"; };
 		CEA05C111EE0DFCC0091414F /* MTTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTextField.swift; path = "Views/Class/Base Classes/MTTextField.swift"; sourceTree = "<group>"; };
 		CEB0D1DF1F0B567D0044A433 /* EmptyAccountsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyAccountsDataSource.swift; path = Interactors/Accounts/EmptyAccountsDataSource.swift; sourceTree = "<group>"; };
+		CEB0D1E11F0B71A00044A433 /* NewAccountsViewController+SwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NewAccountsViewController+SwipeTableViewCell.swift"; path = "ViewControllers/Accounts/NewAccountsViewController+SwipeTableViewCell.swift"; sourceTree = "<group>"; };
+		CEB0D1E31F0B71F40044A433 /* NewAccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewAccountPresenter.swift; path = Presenters/Accounts/NewAccountPresenter.swift; sourceTree = "<group>"; };
+		CEB0D1E51F0B75570044A433 /* MockNewAccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNewAccountPresenter.swift; sourceTree = "<group>"; };
+		CEB0D1E71F0B89A50044A433 /* MockDeleteSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeleteSheetPresenter.swift; sourceTree = "<group>"; };
+		CEB0D1E91F0B9A590044A433 /* MockAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAlertAction.swift; sourceTree = "<group>"; };
+		CEB0D1EB1F0BA1AF0044A433 /* MockAccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccountInteractor.swift; sourceTree = "<group>"; };
 		CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthConfig.swift; path = Configs/RealmAuthConfig.swift; sourceTree = "<group>"; };
 		CEB1A8E11ECF008D000F786B /* RealmHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmHolder.swift; path = Utils/RealmHolder.swift; sourceTree = "<group>"; };
 		CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewControllerTests.swift; path = Authentication/RegistrationViewControllerTests.swift; sourceTree = "<group>"; };
@@ -356,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				CE33EEB81F03498D0047CBF0 /* AccountsPresenter.swift */,
+				CEB0D1E31F0B71F40044A433 /* NewAccountPresenter.swift */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -364,6 +377,10 @@
 			isa = PBXGroup;
 			children = (
 				CE33EEBB1F0350320047CBF0 /* MockAccountsPresenter.swift */,
+				CEB0D1E51F0B75570044A433 /* MockNewAccountPresenter.swift */,
+				CEB0D1E71F0B89A50044A433 /* MockDeleteSheetPresenter.swift */,
+				CEB0D1E91F0B9A590044A433 /* MockAlertAction.swift */,
+				CEB0D1EB1F0BA1AF0044A433 /* MockAccountInteractor.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -725,6 +742,7 @@
 			isa = PBXGroup;
 			children = (
 				CEFF80721F03BC3100FF65EC /* NewAccountViewController.swift */,
+				CEB0D1E11F0B71A00044A433 /* NewAccountsViewController+SwipeTableViewCell.swift */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -981,6 +999,7 @@
 				CEF044E11EE0214F00486EAC /* MTViewController.swift in Sources */,
 				CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */,
 				CEFB22C41E94FD8B00867CDA /* AccountType.swift in Sources */,
+				CEB0D1E41F0B71F40044A433 /* NewAccountPresenter.swift in Sources */,
 				CE130B481EE12F68007C6979 /* RegistrationViewController.swift in Sources */,
 				CE005F531ECAE4DC00536C1A /* RealmRegInteractor.swift in Sources */,
 				CEF044B01EDDD46500486EAC /* InitialRealmGenerator.swift in Sources */,
@@ -995,6 +1014,7 @@
 				CE03C2321EC36686009A6AB0 /* MTFormModalView.swift in Sources */,
 				CEFF80731F03BC3100FF65EC /* NewAccountViewController.swift in Sources */,
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
+				CEB0D1E21F0B71A00044A433 /* NewAccountsViewController+SwipeTableViewCell.swift in Sources */,
 				CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */,
 				CE3CDAFE1F06406800D4A054 /* AccountsInteractor.swift in Sources */,
 				CEB403C21EF3647F0013CB3C /* SettingsPresenter.swift in Sources */,
@@ -1023,9 +1043,11 @@
 				CEB403B11EF26DB80013CB3C /* RegistrationViewControllerTests.swift in Sources */,
 				CE76C99E1F022E6000877C0E /* AccountsTableViewControllerTests.swift in Sources */,
 				CEB403B91EF296D00013CB3C /* TestableRegInteractor.swift in Sources */,
+				CEB0D1EA1F0B9A590044A433 /* MockAlertAction.swift in Sources */,
 				CE33EEBC1F0350320047CBF0 /* MockAccountsPresenter.swift in Sources */,
 				CEB403BD1EF29E4B0013CB3C /* RealmAuthPresenterTests.swift in Sources */,
 				CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */,
+				CEB0D1E61F0B75570044A433 /* MockNewAccountPresenter.swift in Sources */,
 				CEF1E5C31F010E8F00B57C71 /* MockRegInteractor.swift in Sources */,
 				CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */,
 				CE44F4111EFA743C00E035C7 /* TestableLoginInteractor.swift in Sources */,
@@ -1033,7 +1055,9 @@
 				CEFB22D21E95087600867CDA /* AccountTypeTests.swift in Sources */,
 				CEF1E5BE1F00091200B57C71 /* MockRealmContainer.swift in Sources */,
 				CEB403B51EF28C3F0013CB3C /* MockRealmAuthPresenter.swift in Sources */,
+				CEB0D1E81F0B89A50044A433 /* MockDeleteSheetPresenter.swift in Sources */,
 				CE44F40F1EFA6AD600E035C7 /* RealmLoginInteractorTests.swift in Sources */,
+				CEB0D1EC1F0BA1AF0044A433 /* MockAccountInteractor.swift in Sources */,
 				CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */,
 				CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */,
 				CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */,

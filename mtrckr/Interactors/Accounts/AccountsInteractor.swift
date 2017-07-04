@@ -9,10 +9,6 @@ import UIKit
 import Realm
 import RealmSwift
 
-//protocol AccountsInteractorOutput: class {
-//    func didUpdateAccounts()
-//}
-
 protocol AccountsInteractorProtocol {
     func currency() -> String
     func createAccount(account: Account)
@@ -20,17 +16,8 @@ protocol AccountsInteractorProtocol {
     func deleteAccount(account: Account)
     func updateAccount(fromAccount old: Account, toAccount new: Account)
     
-//    weak var output: AccountsInteractorOutput? { get set }
 }
 class AccountsInteractor: RealmHolder, AccountsInteractorProtocol {
-//    var realm: Realm?
-//    var notificationToken: NotificationToken?
-//    weak var output: AccountsInteractorOutput?
-    
-    override init(with config: AuthConfig) {
-        super.init(with: config)
-//        realm = realmContainer?.userRealm
-    }
     
     func createAccount(account: Account) {
         if let acc = Account.with(key: account.id, inRealm: realmContainer!.userRealm!) {

@@ -25,8 +25,18 @@ class AccountTableViewCell: SwipeTableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    func setValues(ofAccount acc: Account, withCurrency c: String) {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = c
+        
+        nameLabel.text = acc.name
+        amountLabel.text = "\(formatter.string(from: acc.currentAmount as NSNumber)!)"
+        typeView.backgroundColor = UIColor(acc.color)
+        typeImageView.image = UIImage(named: acc.type!.icon)
+        typeLabel.text = acc.type!.name
     }
 
 }

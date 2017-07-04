@@ -9,13 +9,8 @@ import UIKit
 import RealmSwift
 import UIColor_Hex_Swift
 
-//protocol AccountsPresenterOutput: class {
-//    func updateAccounts()
-//}
-
 protocol AccountsPresenterProtocol {
     var interactor: AccountsInteractorProtocol? { get set }
-//    weak var output: AccountsPresenterOutput? { get set }
     
     init(interactor: AccountsInteractorProtocol?/*, output ao: AccountsPresenterOutput?*/)
     
@@ -27,13 +22,11 @@ protocol AccountsPresenterProtocol {
                        color: UIColor)
 }
 
-class AccountsPresenter: /*AccountsInteractorOutput,*/ AccountsPresenterProtocol {
-//    weak var output: AccountsPresenterOutput?
+class AccountsPresenter: AccountsPresenterProtocol {
     var interactor: AccountsInteractorProtocol?
     
     required init(interactor ai: AccountsInteractorProtocol?/*, output ao: AccountsPresenterOutput?*/) {
         interactor = ai
-//        output = ao
     }
     
     func deleteAccount(account: Account) {
@@ -71,6 +64,6 @@ class AccountsPresenter: /*AccountsInteractorOutput,*/ AccountsPresenterProtocol
     
     // MARK: - AccountsInteractorOutput methods
     func didUpdateAccounts() {
-//        output?.updateAccounts()
+        
     }
 }

@@ -13,20 +13,26 @@ import DZNEmptyDataSet
 
 protocol MTAccountsTableViewControllerProtocol {
     var presenter: AccountsPresenterProtocol? { get set }
-    func createNewAccount()
 }
 
 class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewControllerProtocol,
                                     NewAccountViewControllerDelegate, UserObserver, DZNEmptyDataSetSource,
                                     DZNEmptyDataSetDelegate {
     
+    // MARK: - Properties
     var presenter: AccountsPresenterProtocol?
     var accounts: Results<Account>?
     var currency: String?
     var notifToken: NotificationToken?
     var observer: ObserverProtocol?
-    var emptyDatasource: EmptyAccountsDataSource?
     
+    var emptyDatasource: EmptyAccountsDataSource?
+    var newAccountPresenter: NewAccountPresenterProtocol?
+    var deleteSheetPresenter: DeleteSheetPresenterProtocol?
+    
+    @IBOutlet weak var addBtn: UIBarButtonItem!
+    
+    // MARK: - Life cycle
     deinit {
         self.notifToken?.stop()
     }
@@ -57,27 +63,27 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
         observer?.setDidChangeUserBlock {
             self.setupResults()
         }
+        
+        newAccountPresenter = NewAccountPresenter()
+        deleteSheetPresenter = DeleteSheetPresenter()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
+    // MARK: - IBActions
     @IBAction func addAccountBtnPressed(_ sender: Any) {
-        createNewAccount()
+        newAccountPresenter?.presentNewAccountVC(with: nil, presentingVC: self, delegate: self)
     }
     
     // MARK: - Accounts modification methods
     func editAccount(atIndex indexPath: IndexPath) {
-        let nav = storyboard?.instantiateViewController(withIdentifier: "NewAccountNavigationController")
-        guard let vc = (nav as? UINavigationController)?.topViewController
-            as? NewAccountViewController else {
-                return
-        }
-        
-        vc.delegate = self
-        vc.account = accounts![indexPath.row]
-        present(nav!, animated: true, completion: nil)
+        newAccountPresenter?.presentNewAccountVC(with: accounts![indexPath.row], presentingVC: self, delegate: self)
+    }
+    
+    func confirmDelete(atIndex indexPath: IndexPath) {
+        deleteSheetPresenter?.displayDeleteSheet(toDelete: indexPath, presentingVC: self)
     }
     
     func deleteAccount(atIndex indexPath: IndexPath) {
@@ -92,7 +98,7 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
         }
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table view data source & delegate methods
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
@@ -109,16 +115,8 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
             fatalError("Cannot initialize AccountTableViewCell")
         }
         
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencySymbol = currency
-        
         let a = accounts![indexPath.row]
-        cell.nameLabel.text = a.name
-        cell.amountLabel.text = "\(formatter.string(from: a.currentAmount as NSNumber)!)"
-        cell.typeView.backgroundColor = UIColor(a.color)
-        cell.typeImageView.image = UIImage(named: a.type!.icon)
-        cell.typeLabel.text = a.type!.name
+        cell.setValues(ofAccount: a, withCurrency: currency!)
         
         cell.delegate = self
         return cell
@@ -131,42 +129,6 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
         }
     }
     
-    // MARK: - MTAccountsTableViewControllerProtocol methods
-    func createNewAccount() {
-        let nav = storyboard?.instantiateViewController(withIdentifier: "NewAccountNavigationController")
-        guard let vc = (nav as? UINavigationController)?.topViewController
-            as? NewAccountViewController else {
-            return
-        }
-        
-        vc.delegate = self
-        present(nav!, animated: true, completion: nil)
-    }
-    
-    func displayDeleteSheet(toDelete indexPath: IndexPath) {
-        let deleteConfirmation = UIAlertController(title: nil,
-                                                   message: NSLocalizedString("Are you sure you want to delete this account? " +
-                                                    "Deleting an account deletes all associated transactions. " +
-                                                    "This cannot be undone.",
-                                                  comment: "A warning that indicates the deletion of transactions under" +
-                                                    " the account to be deleted. Asks for user's confirmation."),
-                                              preferredStyle: .actionSheet)
-        
-        let cancel = UIAlertAction(title: "Don't delete!", style: .cancel) { _ in
-            deleteConfirmation.dismiss(animated: true, completion: nil)
-        }
-        
-        let delete = UIAlertAction(title: "Yes, please.", style: .destructive) { _ in
-            self.deleteAccount(atIndex: indexPath)
-            
-        }
-        
-        deleteConfirmation.addAction(cancel)
-        deleteConfirmation.addAction(delete)
-        
-        present(deleteConfirmation, animated: true, completion: nil)
-    }
-    
     // MARK: - NewAccountViewControllerDelegate methods
     func shouldCreateAccount(withId id: String?, name: String, type: AccountType,
                              initBalance: Double, dateOpened: Date,
@@ -174,43 +136,5 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
         presenter?.createAccount(withId: id, name: name, type: type,
                                  initBalance: initBalance, dateOpened: dateOpened,
                                  color: color)
-    }
-}
-
-extension MTAccountsTableViewController: SwipeTableViewCellDelegate {
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath,
-                   for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        
-        if orientation == .right {
-            let edit = SwipeAction(style: .default, title: nil) { _, indexPath in
-                self.editAccount(atIndex: indexPath)
-            }
-            
-            edit.accessibilityLabel = "Edit"
-            edit.image = #imageLiteral(resourceName: "edit")
-            edit.backgroundColor = MTColors.mainBlue
-            edit.textColor = .white
-            
-            let delete = SwipeAction(style: .destructive, title: nil, handler: { (_, _) in
-                self.displayDeleteSheet(toDelete: indexPath)
-            })
-            
-            delete.accessibilityLabel = "Delete"
-            delete.image = #imageLiteral(resourceName: "trash")
-            delete.backgroundColor = MTColors.mainRed
-            delete.textColor = .white
-            
-            return [delete, edit]
-        }
-        
-        return []
-    }
-    
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath,
-                   for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
-        var options = SwipeTableOptions()
-        options.expansionStyle = .none
-        options.transitionStyle = .border
-        return options
     }
 }
