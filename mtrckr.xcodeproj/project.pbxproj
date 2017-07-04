@@ -53,6 +53,7 @@
 		CE987AF21F064E8C0048C5A1 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE987AF11F064E8C0048C5A1 /* AccountTableViewCell.xib */; };
 		CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */; };
 		CEA05C121EE0DFCC0091414F /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA05C111EE0DFCC0091414F /* MTTextField.swift */; };
+		CEB0D1E01F0B567D0044A433 /* EmptyAccountsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0D1DF1F0B567D0044A433 /* EmptyAccountsDataSource.swift */; };
 		CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */; };
 		CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1A8E11ECF008D000F786B /* RealmHolder.swift */; };
 		CEB403B11EF26DB80013CB3C /* RegistrationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */; };
@@ -158,6 +159,7 @@
 		CE987AF11F064E8C0048C5A1 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountTableViewCell.xib; path = Views/XIBs/Accounts/AccountTableViewCell.xib; sourceTree = "<group>"; };
 		CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntry.swift; path = Models/BillEntry.swift; sourceTree = "<group>"; };
 		CEA05C111EE0DFCC0091414F /* MTTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTextField.swift; path = "Views/Class/Base Classes/MTTextField.swift"; sourceTree = "<group>"; };
+		CEB0D1DF1F0B567D0044A433 /* EmptyAccountsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyAccountsDataSource.swift; path = Interactors/Accounts/EmptyAccountsDataSource.swift; sourceTree = "<group>"; };
 		CEB1A8DD1ECEEC74000F786B /* RealmAuthConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthConfig.swift; path = Configs/RealmAuthConfig.swift; sourceTree = "<group>"; };
 		CEB1A8E11ECF008D000F786B /* RealmHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmHolder.swift; path = Utils/RealmHolder.swift; sourceTree = "<group>"; };
 		CEB403B01EF26DB80013CB3C /* RegistrationViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewControllerTests.swift; path = Authentication/RegistrationViewControllerTests.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				CE62B7411F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift */,
 				CE3CDAFB1F0638AC00D4A054 /* ColorsCollectionDataSource.swift */,
 				CE3CDAFD1F06406800D4A054 /* AccountsInteractor.swift */,
+				CEB0D1DF1F0B567D0044A433 /* EmptyAccountsDataSource.swift */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -998,6 +1001,7 @@
 				CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */,
 				CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */,
 				CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */,
+				CEB0D1E01F0B567D0044A433 /* EmptyAccountsDataSource.swift in Sources */,
 				CEF044DC1EE0211500486EAC /* LoginViewController.swift in Sources */,
 				CE0A4A2D1F02A8D500FCF581 /* MTAccountsTableViewController.swift in Sources */,
 				CE62B7421F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift in Sources */,

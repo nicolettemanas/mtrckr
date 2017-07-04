@@ -15,6 +15,7 @@ target "mtrckr" do
     pod 'NVActivityIndicatorView', '~> 3.6.1'
     pod 'UIColor_Hex_Swift', '~> 3.0.2'
     pod 'SwipeCellKit'
+    pod 'DZNEmptyDataSet'
     commonPods
  
  abstract_target 'Tests' do

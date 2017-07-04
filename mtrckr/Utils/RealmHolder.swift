@@ -86,6 +86,10 @@ class RealmContainer: RealmContainerProtocol {
         self.config = configuration
     }
     
+    /// Returns the `Realm.Configuration` of the provided option
+    ///
+    /// - Parameter option: The `RealmOption` to get the configuration from
+    /// - Returns: The `RealmConfiguration` generated
     func getConfig(of option: RealmOption) -> Realm.Configuration {
         var configuration = Realm.Configuration()
             switch option {

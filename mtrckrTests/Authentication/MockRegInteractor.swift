@@ -17,7 +17,9 @@ class MockRegInteractor: RealmRegInteractor {
         super.init(with: RealmAuthConfig())
     }
     
-    override func registerUser(withCredentials credentials: SyncCredentials, server: URL, timeout: TimeInterval, completion: @escaping (MTSyncUser?, Error?) -> Void) {
+    override func registerUser(withCredentials credentials: SyncCredentials,
+                               server: URL, timeout: TimeInterval,
+                               completion: @escaping (MTSyncUser?, Error?) -> Void) {
         didRegister = true
         output?.didRegister(user: MTSyncUser())
     }

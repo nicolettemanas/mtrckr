@@ -1,6 +1,7 @@
 PODS:
   - CryptoSwift (0.6.9)
   - DateToolsSwift (2.0.3)
+  - DZNEmptyDataSet (1.8.1)
   - Hero (0.3.6)
   - Mockingjay (2.0.0):
     - Mockingjay/Core (= 2.0.0)
@@ -26,6 +27,7 @@ PODS:
 DEPENDENCIES:
   - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift.git`, branch `develop`)
   - DateToolsSwift (~> 2.0.3)
+  - DZNEmptyDataSet
   - Hero (~> 0.3.6)
   - Mockingjay (~> 2.0.0)
   - Nimble (~> 7.0.1)
@@ -56,6 +58,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CryptoSwift: b3e56d2cc816dced7aa832cc9d2824dbbb16b7b3
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
@@ -69,6 +72,6 @@ SPEC CHECKSUMS:
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: aab50ef6b43575344d1dbf7337da80c4dca07963
+PODFILE CHECKSUM: 803be87c0f9f33f581c5a539dd0df759bbae5a50
 
 COCOAPODS: 1.1.1

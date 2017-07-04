@@ -9,6 +9,7 @@ import UIKit
 import SwipeCellKit
 import Realm
 import RealmSwift
+import DZNEmptyDataSet
 
 protocol MTAccountsTableViewControllerProtocol {
     var presenter: AccountsPresenterProtocol? { get set }
@@ -16,13 +17,15 @@ protocol MTAccountsTableViewControllerProtocol {
 }
 
 class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewControllerProtocol,
-                                    NewAccountViewControllerDelegate, UserObserver/*, AccountsPresenterOutput*/ {
+                                    NewAccountViewControllerDelegate, UserObserver, DZNEmptyDataSetSource,
+                                    DZNEmptyDataSetDelegate {
     
     var presenter: AccountsPresenterProtocol?
     var accounts: Results<Account>?
     var currency: String?
     var notifToken: NotificationToken?
     var observer: ObserverProtocol?
+    var emptyDatasource: EmptyAccountsDataSource?
     
     deinit {
         self.notifToken?.stop()
@@ -43,6 +46,10 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
         tableView.separatorColor = MTColors.placeholderText
         tableView.tableFooterView = UIView()
         tableView.allowsSelection = false
+        
+        emptyDatasource = EmptyAccountsDataSource()
+        tableView.emptyDataSetSource = emptyDatasource
+        tableView.emptyDataSetDelegate = emptyDatasource
         
         currency = presenter?.currency()
         setupResults()
