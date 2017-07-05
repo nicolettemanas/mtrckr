@@ -26,6 +26,10 @@ class MTViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.backgroundColor = MTColors.lightBg
         listenToKeyboard()
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "back-tab")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back-tab")
     }
 
     override func didReceiveMemoryWarning() {

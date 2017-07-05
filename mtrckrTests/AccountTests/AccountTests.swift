@@ -9,6 +9,7 @@
 import XCTest
 import Quick
 import Nimble
+import Realm
 import RealmSwift
 @testable import mtrckr
 
@@ -55,7 +56,6 @@ class AccountTests: QuickSpec {
                     expect(account.totalIncome) == 30.0
                     expect(account.color) == "#AAAAAA"
                     expect(account.dateOpened) == dateOpened
-//                    expect(account.user) == user
                 })
             })
         }
@@ -87,26 +87,8 @@ class AccountTests: QuickSpec {
                 beforeEach {
                     account.save(toRealm: self.testRealm)
                 }
-
-                it("saves object to database correctly", closure: {
-                    let accountFromDatabase = self.testRealm.objects(Account.self).last
-                    expect(accountFromDatabase?.id) == "accnt1"
-                    expect(accountFromDatabase?.name) == "My Cash"
-                    expect(accountFromDatabase?.type) == cashAccountType
-                    expect(accountFromDatabase?.initialAmount) == 10.0
-                    expect(accountFromDatabase?.currentAmount) == 20.0
-                    expect(accountFromDatabase?.totalExpenses) == 100.0
-                    expect(accountFromDatabase?.totalIncome) == 30.0
-                    expect(accountFromDatabase?.color) == "#AAAAAA"
-                    expect(accountFromDatabase?.dateOpened) == dateOpened
-//                    expect(accountFromDatabase?.user) == user
-                })
-
-//                it("reflects as account under user", closure: {
-//                    let user = User.with(key: user.id, inRealm: self.testRealm)
-//                    expect(user?.accounts.count) == 1
-//                    expect(user?.accounts[0].id) == "accnt1"
-//                })
+                
+                itBehavesLike("can be found in database") { ["account": account, "realm": self.testRealm] }
             })
 
             describe("update()", {
@@ -136,7 +118,6 @@ class AccountTests: QuickSpec {
                         expect(accounts[0].totalIncome) == 10000
                         expect(accounts[0].color) == "#BBBBBB"
                         expect(accounts[0].dateOpened) == dateOpened
-//                        expect(accounts[0].user) == user
                     })
                 })
                 context("user can only update name, type, initial amount, color and date opened", {
@@ -201,7 +182,6 @@ class AccountTests: QuickSpec {
                         expect(accounts[0].totalIncome) == 30
                         expect(accounts[0].color) == "#AAAAAA"
                         expect(accounts[0].dateOpened) == dateOpened
-//                        expect(accounts[0].user) == user
                     })
                 }
             })
@@ -238,17 +218,6 @@ class AccountTests: QuickSpec {
                     expect(transactions[0].name) == "trans 1"
                     expect(transactions[1].name) == "trans 2"
                 })
-
-//                it("should be deleted from the user it belongs to", closure: {
-//                    let user = User.with(key: user.id, inRealm: self.testRealm)
-//                    expect(user?.accounts.count) == 2
-//                    expect(user?.accounts[0].id) == "accnt1"
-//                    expect(user?.accounts[1].id) == "accnt2"
-//                })
-
-//                it("remove account from affected budgets; delete if necessary", closure: {
-//                
-//                })
             })
         }
     }
@@ -272,5 +241,46 @@ class AccountTests: QuickSpec {
                         from: acc, to: acc, date: Date()).save(toRealm: self.testRealm)
         }
     }
+}
 
+class SharedAccountsBehavior: QuickConfiguration {
+    override class func configure(_ configuration: Configuration) {
+        sharedExamples("can be found in database") { (context: @escaping SharedExampleContext) in
+            var account: Account?
+            var realm: Realm?
+            
+            beforeEach {
+                account = context()["account"] as? Account
+                realm = context()["realm"] as? Realm
+            }
+            
+            it("saves object to database correctly", closure: {
+                let accountFromDatabase = realm?.objects(Account.self).last
+                expect(accountFromDatabase?.id) == account?.id
+                expect(accountFromDatabase?.name) == account?.name
+                expect(accountFromDatabase?.type) == account?.type
+                expect(accountFromDatabase?.initialAmount) == account?.initialAmount
+                expect(accountFromDatabase?.currentAmount) == account?.currentAmount
+                expect(accountFromDatabase?.totalExpenses) == account?.totalExpenses
+                expect(accountFromDatabase?.totalIncome) == account?.totalIncome
+                expect(accountFromDatabase?.color) == account?.color
+                expect(accountFromDatabase?.dateOpened) == account?.dateOpened
+            })
+        }
+        
+        sharedExamples("cannot be found in database") { (context: @escaping SharedExampleContext) in
+            var account: Account?
+            var realm: Realm?
+            
+            beforeEach {
+                account = context()["account"] as? Account
+                realm = context()["realm"] as? Realm
+            }
+            
+            it("must be nil", closure: {
+                let accountFromDatabase = Account.with(key: account!.id, inRealm: realm!)
+                expect(accountFromDatabase).to(beNil())
+            })
+        }
+    }
 }

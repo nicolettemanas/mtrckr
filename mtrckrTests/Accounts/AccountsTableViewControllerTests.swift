@@ -17,9 +17,10 @@ class AccountsTableViewControllerTests: QuickSpec {
     var accountsVC: MTAccountsTableViewController?
     
     var mockPresenter: MockAccountsPresenter?
-    var mockInteractor: MockAccountInteractor?
+    var mockInteractor: MockAccountsInteractor?
     var mockNewAccountPresenter: MockNewAccountPresenter?
     var mockDeleteSheetPresenter: MockDeleteSheetPresenter?
+    var mockTransactionsPresenter: MockTransactionsPresenter?
     
     var identifier = "AccountsTableViewControllerTests"
     
@@ -42,15 +43,19 @@ class AccountsTableViewControllerTests: QuickSpec {
                     realm!.deleteAll()
                 }
                 
-                self.mockInteractor = MockAccountInteractor(with: RealmAuthConfig())
+                self.mockInteractor = MockAccountsInteractor(with: RealmAuthConfig())
                 self.mockInteractor?.realmContainer = MockRealmContainer(memoryIdentifier: self.identifier)
                 self.mockInteractor?.realmContainer?.setDefaultRealm(to: .offline)
+                
                 self.mockPresenter = MockAccountsPresenter(interactor: self.mockInteractor)
                 self.mockNewAccountPresenter = MockNewAccountPresenter()
                 self.mockDeleteSheetPresenter = MockDeleteSheetPresenter()
+                self.mockTransactionsPresenter = MockTransactionsPresenter()
+                
                 self.accountsVC?.presenter = self.mockPresenter
                 self.accountsVC?.newAccountPresenter = self.mockNewAccountPresenter
                 self.accountsVC?.deleteSheetPresenter = self.mockDeleteSheetPresenter
+                self.accountsVC?.transactionsPresenter = self.mockTransactionsPresenter
                 
                 let cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
                 let dateOpened = Date()
@@ -100,6 +105,19 @@ class AccountsTableViewControllerTests: QuickSpec {
                 it("Displays delete action sheet", closure: {
                     expect(self.mockDeleteSheetPresenter!.didPresentDeleteSheet) == true
                     expect(self.mockDeleteSheetPresenter?.indexToDelete) == IndexPath(row: 0, section: 0)
+                })
+                
+                context("User taps an account", {
+                    beforeEach {
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        self.accountsVC?.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .middle)
+                        self.accountsVC?.tableView(self.accountsVC!.tableView!, didSelectRowAt: indexPath)
+                    }
+                    
+                    it("Tells presenter to display transactions under selected account", closure: {
+                        expect(self.mockTransactionsPresenter?.didPresent) == true
+                        expect(self.mockTransactionsPresenter?.didPresentId) == "accnt1"
+                    })
                 })
                 
                 context("User chooses to delete account", {

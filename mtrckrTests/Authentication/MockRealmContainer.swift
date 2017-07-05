@@ -13,6 +13,7 @@ import RealmSwift
 class MockRealmContainer: RealmContainer {
     var isOffline: Bool = true
     var inMemoryIdentifier: String = ""
+    var didCallCurrency = false
     
     init(memoryIdentifier: String) {
         inMemoryIdentifier = memoryIdentifier
@@ -52,5 +53,10 @@ class MockRealmContainer: RealmContainer {
         var offlineConfig = Realm.Configuration()
         offlineConfig.inMemoryIdentifier = self.inMemoryIdentifier
         return offlineConfig
+    }
+    
+    override func currency() -> String {
+        didCallCurrency = true
+        return super.currency()
     }
 }

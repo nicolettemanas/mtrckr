@@ -15,8 +15,8 @@ protocol AccountsInteractorProtocol {
     func accounts() -> Results<Account>
     func deleteAccount(account: Account)
     func updateAccount(fromAccount old: Account, toAccount new: Account)
-    
 }
+
 class AccountsInteractor: RealmHolder, AccountsInteractorProtocol {
     
     func createAccount(account: Account) {

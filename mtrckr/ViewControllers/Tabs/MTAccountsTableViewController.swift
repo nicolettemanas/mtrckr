@@ -29,6 +29,7 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
     var emptyDatasource: EmptyAccountsDataSource?
     var newAccountPresenter: NewAccountPresenterProtocol?
     var deleteSheetPresenter: DeleteSheetPresenterProtocol?
+    var transactionsPresenter: TransactionsPresenterProtocol?
     
     @IBOutlet weak var addBtn: UIBarButtonItem!
     
@@ -51,7 +52,7 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = MTColors.placeholderText
         tableView.tableFooterView = UIView()
-        tableView.allowsSelection = false
+        tableView.allowsSelection = true
         
         emptyDatasource = EmptyAccountsDataSource()
         tableView.emptyDataSetSource = emptyDatasource
@@ -66,6 +67,7 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
         
         newAccountPresenter = NewAccountPresenter()
         deleteSheetPresenter = DeleteSheetPresenter()
+        transactionsPresenter = TransactionsPresenter()
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,7 +119,7 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
         
         let a = accounts![indexPath.row]
         cell.setValues(ofAccount: a, withCurrency: currency!)
-        
+        cell.selectionStyle = .none
         cell.delegate = self
         return cell
     }
@@ -127,6 +129,11 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
             tableView.deleteRows(at: [indexPath], with: .top)
             self.deleteAccount(atIndex: indexPath)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        transactionsPresenter?.presentTransactions(ofAccount: accounts![indexPath.row], presentingVC: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - NewAccountViewControllerDelegate methods

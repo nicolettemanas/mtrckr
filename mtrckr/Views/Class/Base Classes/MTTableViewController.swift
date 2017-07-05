@@ -16,6 +16,10 @@ class MTTableViewController: UITableViewController {
         super.viewDidLoad()
         self.view.backgroundColor = MTColors.lightBg
         self.tableView.separatorStyle = .none
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "back-tab")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back-tab")
     }
 
     override func didReceiveMemoryWarning() {

@@ -12,7 +12,7 @@ import UIColor_Hex_Swift
 protocol AccountsPresenterProtocol {
     var interactor: AccountsInteractorProtocol? { get set }
     
-    init(interactor: AccountsInteractorProtocol?/*, output ao: AccountsPresenterOutput?*/)
+    init(interactor: AccountsInteractorProtocol?)
     
     func accounts() -> Results<Account>?
     func currency() -> String
@@ -25,7 +25,7 @@ protocol AccountsPresenterProtocol {
 class AccountsPresenter: AccountsPresenterProtocol {
     var interactor: AccountsInteractorProtocol?
     
-    required init(interactor ai: AccountsInteractorProtocol?/*, output ao: AccountsPresenterOutput?*/) {
+    required init(interactor ai: AccountsInteractorProtocol?) {
         interactor = ai
     }
     
@@ -60,10 +60,5 @@ class AccountsPresenter: AccountsPresenterProtocol {
     
     func currency() -> String {
         return interactor?.currency() ?? "₱"
-    }
-    
-    // MARK: - AccountsInteractorOutput methods
-    func didUpdateAccounts() {
-        
     }
 }
