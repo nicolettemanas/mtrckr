@@ -9,9 +9,14 @@ import UIKit
 import Realm
 import RealmSwift
 
+// source: https://stackoverflow.com/a/40629365
+extension String: LocalizedError {
+    public var errorDescription: String? { return self }
+}
+
 protocol AccountsInteractorProtocol {
     func currency() -> String
-    func createAccount(account: Account)
+    func createAccount(account: Account) throws
     func accounts() -> Results<Account>
     func deleteAccount(account: Account)
     func updateAccount(fromAccount old: Account, toAccount new: Account)
@@ -19,11 +24,16 @@ protocol AccountsInteractorProtocol {
 
 class AccountsInteractor: RealmHolder, AccountsInteractorProtocol {
     
-    func createAccount(account: Account) {
+    func createAccount(account: Account) throws {
         if let acc = Account.with(key: account.id, inRealm: realmContainer!.userRealm!) {
             updateAccount(fromAccount: acc, toAccount: account)
         } else {
-            account.save(toRealm: realmContainer!.userRealm!)
+            if Account.all(in: realmContainer!.userRealm!).count < 20 {
+                account.save(toRealm: realmContainer!.userRealm!)
+            } else {
+                throw NSLocalizedString("Sorry. You cannot create more than 20 accounts.",
+                                        comment: "Tells the user that account creation failed due to the 20-account limit")
+            }
         }
     }
     

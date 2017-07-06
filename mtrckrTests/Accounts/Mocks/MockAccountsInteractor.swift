@@ -25,7 +25,7 @@ class MockAccountsInteractor: AccountsInteractor {
         return super.accounts()
     }
     
-    override func createAccount(account: Account) {
+    override func createAccount(account: Account) throws {
         accountToCreate = account
     }
     

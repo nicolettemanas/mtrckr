@@ -22,6 +22,10 @@ class MTViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    deinit {
+        print("[VIEW CONTROLLER] Deallocating \(self)")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = MTColors.lightBg

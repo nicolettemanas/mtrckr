@@ -11,11 +11,16 @@ import Realm
 import RealmSwift
 
 class MTTableViewController: UITableViewController {
-
+    
+    deinit {
+        print("[TABLEVIEW CONTROLLER] Deallocating \(self)")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = MTColors.lightBg
         self.tableView.separatorStyle = .none
+        self.tableView.tableFooterView = UIView()
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "back-tab")

@@ -140,8 +140,21 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
     func shouldCreateAccount(withId id: String?, name: String, type: AccountType,
                              initBalance: Double, dateOpened: Date,
                              color: UIColor) {
-        presenter?.createAccount(withId: id, name: name, type: type,
-                                 initBalance: initBalance, dateOpened: dateOpened,
-                                 color: color)
+        do {
+            try presenter?.createAccount(withId: id, name: name, type: type,
+                                         initBalance: initBalance, dateOpened: dateOpened,
+                                         color: color)
+        } catch let errorMsg {
+            showError(msg: errorMsg.localizedDescription)
+        }
+    }
+    
+    private func showError(msg: String) {
+        let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+        let ok = UIAlertAction(title: NSLocalizedString("Ok", comment: "'Ok' action of an alert"),
+                               style: .default,
+                               handler: nil)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
 }

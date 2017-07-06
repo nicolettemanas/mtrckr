@@ -16,7 +16,7 @@ class TransactionsPresenter: TransactionsPresenterProtocol {
         let nav = UIStoryboard(name: "Accounts", bundle: Bundle.main)
             .instantiateViewController(withIdentifier: "TransactionsNavigationController")
         guard let vc = (nav as? UINavigationController)?.topViewController
-            as? TransactionsViewController else {
+            as? AccountTransactionsViewController else {
                 return
         }
         

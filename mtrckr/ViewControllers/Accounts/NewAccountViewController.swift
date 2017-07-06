@@ -38,9 +38,10 @@ AccountTypeCollectionDelegate, ColorsCollectionDelegate {
     
     @IBAction func okBtnPressed(_ sender: Any) {
         if isValid() {
-            returnFields()
             view.endEditing(true)
-            dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: {
+                self.returnFields()
+            })
         }
     }
     

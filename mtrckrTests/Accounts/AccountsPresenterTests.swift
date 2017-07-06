@@ -63,7 +63,7 @@ class AccountsPresenterTests: QuickSpec {
             
             context("asked to create an account given property values", {
                 it("passes generated account model to interactor to create to database", closure: {
-                    self.accountsPresenter?.createAccount(withId: "accnt2", name: "account name",
+                    try? self.accountsPresenter?.createAccount(withId: "accnt2", name: "account name",
                                                           type: cashAccountType, initBalance: 10,
                                                           dateOpened: dateOpened, color: .red)
                     let a = self.mockAccountsInteractor?.accountToCreate

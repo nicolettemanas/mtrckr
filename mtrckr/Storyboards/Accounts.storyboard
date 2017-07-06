@@ -269,7 +269,7 @@
         <!--Root View Controller-->
         <scene sceneID="ShT-Ni-Obb">
             <objects>
-                <tableViewController storyboardIdentifier="TransactionsViewController" id="I81-JG-rkd" customClass="TransactionsViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AccountTransactionsViewController" id="I81-JG-rkd" customClass="AccountTransactionsViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gdr-mi-HOV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -53,37 +53,62 @@ class AccountsInteractorTests: QuickSpec {
             }
             
             context("when asked to create an account", {
-                context("account is new", {
+                context("reached limit of 20 accounts", {
                     beforeEach {
-                        self.accountsInteractor?.createAccount(account: account!)
+                        let r = self.accountsInteractor?.realmContainer?.userRealm
+                        for i in 0..<20 {
+                            account?.save(toRealm: r!)
+                            account = Account(value: ["id": "accnt-\(i)",
+                                                      "name": "My Cash",
+                                                      "type": cashAccountType,
+                                                      "initialAmount": 10.0,
+                                                      "currentAmount": 20.0,
+                                                      "totalExpenses": 100.0,
+                                                      "totalIncome": 30.0,
+                                                      "color": "#AAAAAA",
+                                                      "dateOpened": dateOpened ])
+                        }
                     }
                     
-                    itBehavesLike("can be found in database") { ["account": account!,
-                                                                 "realm": realm!] }
+                    it("throws an error", closure: {
+                        expect { try self.accountsInteractor?.createAccount(account: account!) }.to(throwError())
+                    })
                 })
                 
-                context("account id already exists", {
-                    var newAccount: Account?
-                    beforeEach {
-                        self.accountsInteractor?.createAccount(account: account!)
-                        newAccount = Account(value: ["id": "accnt1",
-                                                     "name": "My Cashuuu",
-                                                     "type": cashAccountType,
-                                                     "initialAmount": 10.0,
-                                                     "currentAmount": 20.0,
-                                                     "totalExpenses": 100.0,
-                                                     "totalIncome": 30.0,
-                                                     "color": "#AAAAAA",
-                                                     "dateOpened": dateOpened ])
-                        newAccount?.name = "new name"
-                        newAccount?.dateOpened = Date()
-                        newAccount?.initialAmount = 0.23
-                        self.accountsInteractor?.createAccount(account: newAccount!)
-                    }
+                context("accounts saved is less than 20", {
+                    it("throws no error", closure: {
+                        expect({ try self.accountsInteractor?.createAccount(account: account!) }).toNot(throwError())
+                    })
                     
-                    itBehavesLike("can be found in database") { ["account": newAccount!,
-                                                                 "realm": realm!] }
+                    context("account is new", {
+                        beforeEach {
+                            try? self.accountsInteractor?.createAccount(account: account!)
+                        }
+                        
+                        itBehavesLike("can be found in database") { ["account": account!, "realm": realm!] }
+                    })
                     
+                    context("account id already exists", {
+                        var newAccount: Account?
+                        beforeEach {
+                            try? self.accountsInteractor?.createAccount(account: account!)
+                            newAccount = Account(value: ["id": "accnt1",
+                                                         "name": "My Cashuuu",
+                                                         "type": cashAccountType,
+                                                         "initialAmount": 10.0,
+                                                         "currentAmount": 20.0,
+                                                         "totalExpenses": 100.0,
+                                                         "totalIncome": 30.0,
+                                                         "color": "#AAAAAA",
+                                                         "dateOpened": dateOpened ])
+                            newAccount?.name = "new name"
+                            newAccount?.dateOpened = Date()
+                            newAccount?.initialAmount = 0.23
+                            try? self.accountsInteractor?.createAccount(account: newAccount!)
+                        }
+                        
+                        itBehavesLike("can be found in database") { ["account": newAccount!, "realm": realm!] }
+                    })
                 })
             })
             

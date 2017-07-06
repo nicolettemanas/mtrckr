@@ -19,7 +19,7 @@ protocol AccountsPresenterProtocol {
     func deleteAccount(account: Account)
     func createAccount(withId: String?, name: String, type: AccountType,
                        initBalance: Double, dateOpened: Date,
-                       color: UIColor)
+                       color: UIColor) throws
 }
 
 class AccountsPresenter: AccountsPresenterProtocol {
@@ -43,7 +43,7 @@ class AccountsPresenter: AccountsPresenterProtocol {
     
     func createAccount(withId id: String?, name: String, type: AccountType,
                        initBalance: Double, dateOpened: Date,
-                       color: UIColor) {
+                       color: UIColor) throws {
         
         let att: [String: Any] = ["id": id ?? "accnt-\(UUID().uuidString)",
                                     "name": name,
@@ -55,7 +55,7 @@ class AccountsPresenter: AccountsPresenterProtocol {
                                     "color": color.hexString(),
                                     "dateOpened": dateOpened]
         let acc: Account = Account(value: att)
-        interactor?.createAccount(account: acc)
+        try interactor?.createAccount(account: acc)
     }
     
     func currency() -> String {
