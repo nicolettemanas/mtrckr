@@ -27,10 +27,10 @@ class AccountTableViewCell: SwipeTableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setValues(ofAccount acc: Account, withCurrency c: String) {
+    func setValues(ofAccount acc: Account, withCurrency currency: String) {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-        formatter.currencySymbol = c
+        formatter.currencySymbol = currency
         
         nameLabel.text = acc.name
         amountLabel.text = "\(formatter.string(from: acc.currentAmount as NSNumber)!)"

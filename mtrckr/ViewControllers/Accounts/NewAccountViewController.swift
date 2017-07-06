@@ -114,6 +114,8 @@ AccountTypeCollectionDelegate, ColorsCollectionDelegate {
         
         okBtn.tintColor = MTColors.mainBlue
         cancelBtn.tintColor = MTColors.mainRed
+        
+        startingBalanceTxtField.setInputType(type: .decimal)
     }
     
     func isValid() -> Bool {
@@ -146,10 +148,14 @@ AccountTypeCollectionDelegate, ColorsCollectionDelegate {
         let date = Date(dateString: dateOpenedTxtField.text!,
                         format: "MMM dd, yyyy",
                         timeZone: TimeZone.current)
+        
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "en")
+        let bal = formatter.number(from: startingBalanceTxtField.text!)
         delegate?.shouldCreateAccount(withId: account?.id,
                                       name: nameTxtField.text!,
                                       type: selectedType!,
-                                      initBalance: Double(startingBalanceTxtField.text!)!,
+                                      initBalance: Double(bal!),
                                       dateOpened: date,
                                       color: selectedColor!)
     }
