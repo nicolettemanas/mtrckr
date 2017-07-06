@@ -10,6 +10,8 @@ import UIKit
 import Realm
 import RealmSwift
 
+/// Base class of UITableViewController. All general UI setups are
+/// prepared here.
 class MTTableViewController: UITableViewController {
     
     deinit {
@@ -47,6 +49,10 @@ class MTTableViewController: UITableViewController {
 }
 
 extension UITableView {
+    
+    /// Applies `.automatic` table row animations to the changes received in `RealmCollectionChange`
+    ///
+    /// - Parameter changes: The `RealmCollectionChange` received
     func applyChanges<T>(changes: RealmCollectionChange<T>) {
         switch changes {
         case .initial: reloadData()

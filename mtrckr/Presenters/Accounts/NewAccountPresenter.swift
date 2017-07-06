@@ -12,7 +12,15 @@ protocol NewAccountPresenterProtocol {
                              delegate: NewAccountViewControllerDelegate)
 }
 
+/// An event handler of `Account` tableview controller regarding new `Account`s
 class NewAccountPresenter: NewAccountPresenterProtocol {
+    
+    /// Presents the form for creating a new account or updating an existing one
+    ///
+    /// - Parameters:
+    ///   - account: The `Account` to be updated if available
+    ///   - presentingVC: The presenting View Controller
+    ///   - delegate: The delegate of the controller to be presented
     func presentNewAccountVC(with account: Account?, presentingVC: UIViewController,
                              delegate: NewAccountViewControllerDelegate) {
         let nav = UIStoryboard(name: "Accounts", bundle: Bundle.main)
@@ -35,10 +43,20 @@ protocol DeleteSheetPresenterProtocol {
     func displayDeleteSheet(toDelete indexPath: IndexPath, presentingVC: MTAccountsTableViewController)
 }
 
+/// An event handler of `Account` tableview controller regaring deleting `Account`s
 class DeleteSheetPresenter: DeleteSheetPresenterProtocol {
+    
+    /// :nodoc:
     var action: UIAlertAction.Type = UIAlertAction.self
+    
+    /// The `UIAlertController` displayed
     weak var alert: UIAlertController?
     
+    /// Displays a confirmation action sheet when asked to delete an `Account`
+    ///
+    /// - Parameters:
+    ///   - indexPath: The indexPath of the `Account` from the `UITableView`
+    ///   - presentingVC: The presenting view controller
     func displayDeleteSheet(toDelete indexPath: IndexPath, presentingVC: MTAccountsTableViewController) {
         let deleteConfirmation = UIAlertController(title: nil,
                                                    message: NSLocalizedString("Are you sure you want to delete this account? " +
@@ -69,6 +87,7 @@ class DeleteSheetPresenter: DeleteSheetPresenterProtocol {
 
 // source: http://swiftandpainless.com/correction-on-testing-uialertcontroller/
 extension UIAlertAction {
+    /// :nodoc:
     class func makeActionWithTitle(title: String?, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Void)?) -> UIAlertAction {
         return UIAlertAction(title: title, style: style, handler: handler)
     }

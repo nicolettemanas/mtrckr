@@ -12,10 +12,10 @@ import DateToolsSwift
 /// Collection of textfield types. It determines the
 /// input view of the textfield
 ///
-/// - text: If the textfield only needs a text input
-/// - date: If the textfield needs a date input
-/// - numeric: If the textfield needs numeric input
-/// - decimal: If the textfield needs decimal input
+/// - `.text`: If the textfield only needs a text input
+/// - `.date`: If the textfield needs a date input
+/// - `.numeric`: If the textfield needs numeric input
+/// - `.decimal`: If the textfield needs decimal input
 enum MTTextFieldInputType {
     case text, date, numeric, decimal
 }
@@ -23,6 +23,7 @@ enum MTTextFieldInputType {
 /// Base class for a UITextField
 class MTTextField: UITextField {
     
+    /// The UIDatePicker input view used if type is `.date`
     var datePicker: UIDatePicker?
     
     // MARK: - Properties
@@ -212,12 +213,12 @@ class MTTextField: UITextField {
         inputAccessoryView = toolbar
     }
     
-    func selectAndDismiss() {
+    @objc private func selectAndDismiss() {
         text = datePicker?.date.format(with: "MMM dd, yyyy")
         resignFirstResponder()
     }
     
-    func dismissInput() {
+    @objc private func dismissInput() {
         resignFirstResponder()
     }
 }

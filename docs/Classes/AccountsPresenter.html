@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AccountsPresenter Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/AccountsPresenter" class="dashAnchor"></a>
+    <a title="AccountsPresenter Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (67% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        AccountsPresenter Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountType.html">AccountType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountsInteractor.html">AccountsInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountsPresenter.html">AccountsPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Bill.html">Bill</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BillEntry.html">BillEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Category.html">Category</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Currency.html">Currency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeleteSheetPresenter.html">DeleteSheetPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EncryptionInteractor.html">EncryptionInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/InitialRealmGenerator.html">InitialRealmGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTButton.html">MTButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTSyncUser.html">MTSyncUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:C6mtrckr21MTTableViewController">MTTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTTextField.html">MTTextField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MTViewController.html">MTViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NewAccountPresenter.html">NewAccountPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NotificationObserver.html">NotificationObserver</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmAuthPresenter.html">RealmAuthPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmContainer.html">RealmContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmHolder.html">RealmHolder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmLoginInteractor.html">RealmLoginInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmLogoutInteractor.html">RealmLogoutInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RealmRegInteractor.html">RealmRegInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SettingsPresenter.html">SettingsPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Transaction.html">Transaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15BillDueReminder">BillDueReminder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15BillEntryStatus">BillEntryStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr18BillRepeatSchedule">BillRepeatSchedule</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr12CategoryType">CategoryType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15LoginSyncOption">LoginSyncOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr20MTTextFieldInputType">MTTextFieldInputType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr11RealmOption">RealmOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6mtrckr15TransactionType">TransactionType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AuthConfig.html">AuthConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ObserverProtocol.html">ObserverProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RealmAuthPresenterOutput.html">RealmAuthPresenterOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/UserObserver.html">UserObserver</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>AccountsPresenter</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">class</span> <span class="kt">AccountsPresenter</span><span class="p">:</span> <span class="kt">AccountsPresenterProtocol</span></code></pre>
+
+                </div>
+              </div>
+            <p>The event handler for <code><a href="../Classes/Account.html">Account</a></code>s Tableview controller</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC6mtrckr17AccountsPresenter10interactorGSqPS_26AccountsInteractorProtocol__"></a>
+                    <a name="//apple_ref/swift/Property/interactor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC6mtrckr17AccountsPresenter10interactorGSqPS_26AccountsInteractorProtocol__">interactor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The interactor responsible for <code><a href="../Classes/Account.html">Account</a></code> modifications</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">interactor</span><span class="p">:</span> <span class="kt">AccountsInteractorProtocol</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initializers"></a>
+                <a name="//apple_ref/swift/Section/Initializers" class="dashAnchor"></a>
+                <a href="#/Initializers">
+                  <h3 class="section-name">Initializers</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr17AccountsPresentercFT10interactorGSqPS_26AccountsInteractorProtocol___S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(interactor:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr17AccountsPresentercFT10interactorGSqPS_26AccountsInteractorProtocol___S0_">init(interactor:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates an <code>AccountsPresenter</code> with the given interactor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="n"><a href="../Classes/AccountsPresenter.html#/s:vC6mtrckr17AccountsPresenter10interactorGSqPS_26AccountsInteractorProtocol__">interactor</a></span> <span class="nv">ai</span><span class="p">:</span> <span class="kt">AccountsInteractorProtocol</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ai</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The interactor to use in <code>Account</code> modifications</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr17AccountsPresenter13deleteAccountFT7accountCS_7Account_T_"></a>
+                    <a name="//apple_ref/swift/Method/deleteAccount(account:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr17AccountsPresenter13deleteAccountFT7accountCS_7Account_T_">deleteAccount(account:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>MARK: - Event handlers
+Passes the <code><a href="../Classes/Account.html">Account</a></code> to delete to the interactor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">deleteAccount</span><span class="p">(</span><span class="nv">account</span><span class="p">:</span> <span class="kt"><a href="../Classes/Account.html">Account</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>account</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Account</code> to delete</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr17AccountsPresenter8accountsERR"></a>
+                    <a name="//apple_ref/swift/Method/accounts()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr17AccountsPresenter8accountsERR">accounts()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks for the list of <code><a href="../Classes/Account.html">Account</a></code>s from the interactor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">accounts</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Results</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/Account.html">Account</a></span><span class="o">&gt;</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>&lt;#return value description#&gt;</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr17AccountsPresenter13createAccountFzT6withIdGSqSS_4nameSS4typeCS_11AccountType11initBalanceSd10dateOpenedV10Foundation4Date5colorCSo7UIColor_T_"></a>
+                    <a name="//apple_ref/swift/Method/createAccount(withId:name:type:initBalance:dateOpened:color:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr17AccountsPresenter13createAccountFzT6withIdGSqSS_4nameSS4typeCS_11AccountType11initBalanceSd10dateOpenedV10Foundation4Date5colorCSo7UIColor_T_">createAccount(withId:name:type:initBalance:dateOpened:color:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes an untracked <code><a href="../Classes/Account.html">Account</a></code> with the given values and passes it to
+the interactor to save or update</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Throws an error if succeeded the limit of 20 accounts per user
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">createAccount</span><span class="p">(</span><span class="n">withId</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Classes/AccountType.html">AccountType</a></span><span class="p">,</span>
+                       <span class="nv">initBalance</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">dateOpened</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span>
+                       <span class="nv">color</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The ID of the <code>Account</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the <code>Account</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the <code>Account</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>initBalance</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The initial value of the <code>Account</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dateOpened</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The date the <code>Account</code> was opened</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>color</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color of the <code>Account</code> to be created</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6mtrckr17AccountsPresenter8currencyFT_SS"></a>
+                    <a name="//apple_ref/swift/Method/currency()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6mtrckr17AccountsPresenter8currencyFT_SS">currency()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the interactor for the currency symbol used
+by the logged in user</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">currency</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The currency used. Default value is <code>₱</code></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-07-06)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

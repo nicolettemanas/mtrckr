@@ -32,7 +32,6 @@ class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDe
         setupUserData()
         observer = NotificationObserver()
         observer?.setDidChangeUserBlock {
-//            self.setupUserData()
         }
     }
     

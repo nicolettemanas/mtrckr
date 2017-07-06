@@ -23,9 +23,10 @@ class EmptyAccountsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetD
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = NSLocalizedString("You are almost settled! Start tracking \n by tapping the '+' button and \n adding a new account.",
+        let str = NSLocalizedString("You are almost settled! Start tracking \n by tapping the '+' " +
+                                    " button and \n adding a new account.",
                                     comment: "The description shown when there are no accounts registered. " +
-            "Instructs user how to add an account.")
+                                    "Instructs user how to add an account.")
         let style = NSMutableParagraphStyle()
         style.lineBreakMode = .byWordWrapping
         style.alignment = .center

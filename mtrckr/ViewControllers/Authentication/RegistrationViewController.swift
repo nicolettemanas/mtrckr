@@ -117,7 +117,8 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
                 if isValidEmail(email: text) {
                     mttextField.hideError()
                 } else {
-                    mttextField.showError(errorMsg: "Invalid email")
+                    mttextField.showError(errorMsg: NSLocalizedString("Invalid email",
+                                                                      comment: "Text indicating that the email provided is invalid"))
                 }
             } else if textField == regPw || textField == regConfirmPw {
                 if text.characters.count >= 6 {
@@ -129,11 +130,14 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
                         regPw.hideError()
                         regConfirmPw.hideError()
                     } else {
-                        regPw.showError(errorMsg: "Passwords do not match")
-                        regConfirmPw.showError(errorMsg: "Passwords do not match")
+                        regPw.showError(errorMsg: NSLocalizedString("Passwords do not match",
+                                                                    comment: "Text indicating that inputted passwords do not match "))
+                        regConfirmPw.showError(errorMsg: NSLocalizedString("Passwords do not match",
+                                                                           comment: "Text indicating that inputted passwords do not match "))
                     }
                 } else {
-                    mttextField.showError(errorMsg: "Password must be at least 6 characters long")
+                    mttextField.showError(errorMsg: NSLocalizedString("Password must be at least 6 characters long",
+                                                                      comment: "Error message displayed when the password typed is shorter than the minimum 6 characters"))
                 }
             }
         }
