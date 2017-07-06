@@ -29,7 +29,7 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
     var emptyDatasource: EmptyAccountsDataSource?
     var newAccountPresenter: NewAccountPresenterProtocol?
     var deleteSheetPresenter: DeleteSheetPresenterProtocol?
-    var transactionsPresenter: TransactionsPresenterProtocol?
+    var transactionsPresenter: AccountTransactionsPresenterProtocol?
     
     @IBOutlet weak var addBtn: UIBarButtonItem!
     
@@ -49,10 +49,6 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
         presenter = AccountsPresenter(interactor: interactor)
         
         tableView.register(UINib(nibName: "AccountTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "AccountTableViewCell")
-        tableView.separatorStyle = .singleLine
-        tableView.separatorColor = MTColors.placeholderText
-        tableView.tableFooterView = UIView()
-        tableView.allowsSelection = true
         
         emptyDatasource = EmptyAccountsDataSource()
         tableView.emptyDataSetSource = emptyDatasource
@@ -67,7 +63,7 @@ class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewC
         
         newAccountPresenter = NewAccountPresenter()
         deleteSheetPresenter = DeleteSheetPresenter()
-        transactionsPresenter = TransactionsPresenter()
+        transactionsPresenter = AccountTransactionsPresenter()
     }
 
     override func didReceiveMemoryWarning() {

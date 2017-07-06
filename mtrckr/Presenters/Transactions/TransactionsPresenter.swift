@@ -1,26 +1,44 @@
 //
-//  TransactionsPresenter.swift
+//  TransactionListPresenter.swift
 //  mtrckr
 //
 //  Created by User on 7/5/17.
 //
 
 import UIKit
+import Realm
+import RealmSwift
 
 protocol TransactionsPresenterProtocol {
-    func presentTransactions(ofAccount account: Account, presentingVC: MTAccountsTableViewController)
+    init(with int: TransactionsInteractor)
+    
+    func currency() -> String
+    func transactions(fromAccount account: Account) -> Results<Transaction>
+    func editTransaction(transaction: Transaction) throws
+    func deleteTransaction(transaction: Transaction)
 }
 
 class TransactionsPresenter: TransactionsPresenterProtocol {
-    func presentTransactions(ofAccount account: Account, presentingVC: MTAccountsTableViewController) {
-        let nav = UIStoryboard(name: "Accounts", bundle: Bundle.main)
-            .instantiateViewController(withIdentifier: "TransactionsNavigationController")
-        guard let vc = (nav as? UINavigationController)?.topViewController
-            as? AccountTransactionsViewController else {
-                return
-        }
-        
-        vc.account = account
-        presentingVC.navigationController?.pushViewController(vc, animated: true)
+    
+    private var interactor: TransactionsInteractorProtocol
+    
+    required init(with int: TransactionsInteractor) {
+        interactor = int
+    }
+    
+    func currency() -> String {
+        return interactor.currency()
+    }
+    
+    func transactions(fromAccount account: Account) -> Results<Transaction> {
+        return interactor.transactions(fromAccount: account)
+    }
+    
+    func editTransaction(transaction: Transaction) throws {
+        try interactor.editTransaction(transaction: transaction)
+    }
+    
+    func deleteTransaction(transaction: Transaction) {
+        interactor.deleteTransaction(transaction: transaction)
     }
 }

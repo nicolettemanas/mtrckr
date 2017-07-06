@@ -20,13 +20,16 @@ class MTTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = MTColors.lightBg
-        self.tableView.separatorStyle = .none
-        self.tableView.tableFooterView = UIView()
+        view.backgroundColor = MTColors.lightBg
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "back-tab")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back-tab")
+        
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = MTColors.placeholderText
+        tableView.tableFooterView = UIView()
+        tableView.allowsSelection = true
     }
 
     override func didReceiveMemoryWarning() {

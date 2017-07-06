@@ -10,9 +10,7 @@ import RealmSwift
 import UIColor_Hex_Swift
 
 protocol AccountsPresenterProtocol {
-    var interactor: AccountsInteractorProtocol? { get set }
-    
-    init(interactor: AccountsInteractorProtocol?)
+    init(interactor: AccountsInteractorProtocol)
     
     func accounts() -> Results<Account>?
     func currency() -> String
@@ -26,14 +24,14 @@ protocol AccountsPresenterProtocol {
 class AccountsPresenter: AccountsPresenterProtocol {
     
     /// The interactor responsible for `Account` modifications
-    var interactor: AccountsInteractorProtocol?
+    private var interactor: AccountsInteractorProtocol
     
     // MARK: - Initializers
     
     /// Creates an `AccountsPresenter` with the given interactor
     ///
     /// - Parameter ai: The interactor to use in `Account` modifications
-    required init(interactor ai: AccountsInteractorProtocol?) {
+    required init(interactor ai: AccountsInteractorProtocol) {
         interactor = ai
     }
     
@@ -43,18 +41,14 @@ class AccountsPresenter: AccountsPresenterProtocol {
     ///
     /// - Parameter account: The `Account` to delete
     func deleteAccount(account: Account) {
-        interactor?.deleteAccount(account: account)
+        interactor.deleteAccount(account: account)
     }
     
     /// Asks for the list of `Account`s from the interactor
     ///
-    /// - Returns: <#return value description#>
+    /// - Returns: The `Account`s retrieved
     func accounts() -> Results<Account>? {
-        guard let res = interactor?.accounts() else {
-            return nil
-        }
-        
-        return res
+        return interactor.accounts()
     }
     
     /// Makes an untracked `Account` with the given values and passes it to
@@ -82,14 +76,14 @@ class AccountsPresenter: AccountsPresenterProtocol {
                                     "color": color.hexString(),
                                     "dateOpened": dateOpened]
         let acc: Account = Account(value: att)
-        try interactor?.createAccount(account: acc)
+        try interactor.createAccount(account: acc)
     }
     
     /// Asks the interactor for the currency symbol used
     /// by the logged in user
     ///
-    /// - Returns: The currency used. Default value is `₱`
+    /// - Returns: The currency used.
     func currency() -> String {
-        return interactor?.currency() ?? "₱"
+        return interactor.currency()
     }
 }
