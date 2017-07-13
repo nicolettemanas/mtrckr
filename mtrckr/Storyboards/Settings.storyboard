@@ -13,7 +13,7 @@
         <!--Settings-->
         <scene sceneID="F6V-Ib-eHi">
             <objects>
-                <tableViewController id="aJO-pc-0Gc" customClass="MTSettingsTableViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="aJO-pc-0Gc" customClass="SettingsTableViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="40" sectionHeaderHeight="18" sectionFooterHeight="18" id="OJT-cd-YFN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

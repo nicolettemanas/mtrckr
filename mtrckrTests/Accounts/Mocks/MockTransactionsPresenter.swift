@@ -11,7 +11,7 @@ import UIKit
 class MockTransactionsPresenter: TransactionsPresenter {
     var didPresent = false
     var didPresentId = ""
-    override func presentTransactions(ofAccount account: Account, presentingVC: MTAccountsTableViewController) {
+    override func presentTransactions(ofAccount account: Account, presentingVC: AccountsTableViewController) {
         didPresent = true
         didPresentId = account.id
     }

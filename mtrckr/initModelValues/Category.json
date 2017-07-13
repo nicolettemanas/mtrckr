@@ -3,154 +3,176 @@
     "id": "B1917669-CD21-4531-8434-AF5C79EE4399",
     "type": "expense",
     "name": "Utilities",
-    "icon": "expense-utilities.png",
-    "isCustomized": 0
+    "icon": "expense-utilities",
+    "isCustomized": 0,
+    "color": "#35A7FF"
 },
 {
     "id": "EC94B6B1-4B8B-4CE6-8AED-94F20D2719BF",
     "type": "expense",
     "name": "Car",
-    "icon": "expense-car.png",
-    "isCustomized": 0
+    "icon": "expense-car",
+    "isCustomized": 0,
+    "color": "#662E9B"
 },
 {
     "id": "A1BAF3B5-2676-4453-B48D-06837F423EAC",
     "type": "expense",
     "name": "Beauty",
-    "icon": "expense-beauty.png",
-    "isCustomized": 0
+    "icon": "expense-beauty",
+    "isCustomized": 0,
+    "color": "#FF5376"
 },
 {
     "id": "DA450B34-74E7-4E11-9C4F-88C2585032BF",
     "type": "expense",
     "name": "Health",
-    "icon": "expense-health.png",
-    "isCustomized": 0
+    "icon": "expense-health",
+    "isCustomized": 0,
+    "color": "#F0386B"
 },
 {
     "id": "A7C0EEC8-2195-4256-8C1B-AF014E2D2825",
     "type": "expense",
     "name": "Groceries",
-    "icon": "expense-groceries.png",
-    "isCustomized": 0
+    "icon": "expense-groceries",
+    "isCustomized": 0,
+    "color": "#BE3E82"
 },
 {
     "id": "CDA6D31C-39B9-4B14-A210-2A533E8801EA",
     "type": "expense",
     "name": "Eating Out",
-    "icon": "expense-eatingout.png",
-    "isCustomized": 0
+    "icon": "expense-food",
+    "isCustomized": 0,
+    "color": "#32936F"
 },
 {
     "id": "D71E449D-9615-474C-8901-96E50D10CC3B",
     "type": "expense",
     "name": "Household",
-    "icon": "expense-household.png",
-    "isCustomized": 0
+    "icon": "expense-household",
+    "isCustomized": 0,
+    "color": "#00FFF5"
 },
 {
     "id": "3DBE13DF-7FA8-4B23-ABF7-CF564C82CB2C",
     "type": "expense",
     "name": "Transport",
-    "icon": "expense-transport.png",
-    "isCustomized": 0
+    "icon": "expense-transport",
+    "isCustomized": 0,
+    "color": "#FFBF00"
 },
 {
     "id": "7EC409C4-1697-47A3-912C-539C6BCB636F",
     "type": "expense",
     "name": "Clothing",
-    "icon": "expense-clothing.png",
-    "isCustomized": 0
+    "icon": "expense-clothes",
+    "isCustomized": 0,
+    "color": "#FFD670"
 },
 {
     "id": "E67092C0-967E-492D-AEB1-C7A940EB4D21",
     "type": "expense",
     "name": "Bank Charge",
-    "icon": "expense-bankcharge.png",
-    "isCustomized": 0
+    "icon": "expense-bank",
+    "isCustomized": 0,
+    "color": "#2F52E0"
 },
 {
     "id": "CA8564FB-F39B-4C5B-BB9B-D6BBE0C03954",
     "type": "expense",
     "name": "Fun",
-    "icon": "expense-fun.png",
-    "isCustomized": 0
+    "icon": "expense-fun",
+    "isCustomized": 0,
+    "color": "#DAEFB3"
 },
 {
     "id": "65A67018-121F-47C2-A967-E7D7AD136526",
     "type": "expense",
     "name": "Academics",
-    "icon": "expense-academics.png",
-    "isCustomized": 0
+    "icon": "expense-acads",
+    "isCustomized": 0,
+    "color": "#F0386B"
 },
 {
     "id": "F39FD9A1-F379-4118-ABF7-F6B2C755BFC3",
     "type": "expense",
     "name": "Donation",
-    "icon": "expense-donation.png",
-    "isCustomized": 0
+    "icon": "expense-donation",
+    "isCustomized": 0,
+    "color": "#960200"
 },
 {
     "id": "73ABE7F4-DCA0-4845-9F1C-C03427A1E7B0",
     "type": "expense",
     "name": "Others",
-    "icon": "expense-others.png",
-    "isCustomized": 0
+    "icon": "expense-others",
+    "isCustomized": 0,
+    "color": "#FF8966"
 },
 {
     "id": "6939C10F-C941-4337-B090-9F04BEEEB66B",
     "type": "income",
     "name": "Salary",
-    "icon": "income-salary.png",
-    "isCustomized": 0
+    "icon": "income-salary",
+    "isCustomized": 0,
+    "color": "#4AAD78"
 },
 {
     "id": "D47FCAEC-E078-43A6-8CA4-18E19C9E8455",
     "type": "income",
     "name": "Donation",
-    "icon": "income-donation.png",
-    "isCustomized": 0
+    "icon": "expense-donation",
+    "isCustomized": 0,
+    "color": "#FFBA08"
 },
 {
     "id": "D5416C92-71BB-4E56-AE9D-9DB33D16BAD0",
     "type": "income",
-    "name": "Interest Earned",
-    "icon": "income-interestearned.png",
-    "isCustomized": 0
+    "name": "Interest",
+    "icon": "expense-bank",
+    "isCustomized": 0,
+    "color": "#4F6D7A"
 },
 {
     "id": "84BA06F8-38C0-4455-9CAB-E08E43ADFC2E",
     "type": "income",
     "name": "Bonus",
-    "icon": "income-bonus.png",
-    "isCustomized": 0
+    "icon": "income-bonus",
+    "isCustomized": 0,
+    "color": "#F0386B"
 },
 {
     "id": "2C2E2115-F9FC-4E12-A040-9E9DB58830AE",
     "type": "income",
     "name": "Allowance",
-    "icon": "income-allowance.png",
-    "isCustomized": 0
+    "icon": "income-allowance",
+    "isCustomized": 0,
+    "color": "#DD6E42"
 },
 {
     "id": "CA92DA2A-0A8E-4EF9-BFE1-2630D0BD876D",
     "type": "income",
-    "name": "Business Income",
-    "icon": "income-businessincome.png",
-    "isCustomized": 0
+    "name": "Business",
+    "icon": "income-business",
+    "isCustomized": 0,
+    "color": "#C2D076"
 },
 {
     "id": "E42BD8C0-D440-4605-A0C6-04E027381EDF",
     "type": "income",
     "name": "Tax Refund",
-    "icon": "income-taxrefund.png",
-    "isCustomized": 0
+    "icon": "income-taxrefund",
+    "isCustomized": 0,
+    "color": "#7D53DE"
 },
 {
     "id": "1F27F291-D9BC-4BCA-80CE-AED5932F0F91",
     "type": "income",
     "name": "Others",
-    "icon": "income-others.png",
-    "isCustomized": 0
+    "icon": "expense-others",
+    "isCustomized": 0,
+    "color": "#255C99"
 }
 ]

@@ -16,6 +16,8 @@ target "mtrckr" do
     pod 'UIColor_Hex_Swift', '~> 3.0.2'
     pod 'SwipeCellKit'
     pod 'DZNEmptyDataSet'
+    pod 'Charts', '~> 3.0.2'
+    pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git', :branch => 'swift3.2'
     commonPods
  
  abstract_target 'Tests' do

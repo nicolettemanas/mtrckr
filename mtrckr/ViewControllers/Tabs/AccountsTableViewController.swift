@@ -1,5 +1,5 @@
 //
-//  MTAccoutnsTableViewController.swift
+//  AccountsTableViewController.swift
 //  mtrckr
 //
 //  Created by User on 6/27/17.
@@ -11,11 +11,11 @@ import Realm
 import RealmSwift
 import DZNEmptyDataSet
 
-protocol MTAccountsTableViewControllerProtocol {
+protocol AccountsTableViewControllerProtocol {
     var presenter: AccountsPresenterProtocol? { get set }
 }
 
-class MTAccountsTableViewController: MTTableViewController, MTAccountsTableViewControllerProtocol,
+class AccountsTableViewController: MTTableViewController, AccountsTableViewControllerProtocol,
                                     NewAccountViewControllerDelegate, UserObserver, DZNEmptyDataSetSource,
                                     DZNEmptyDataSetDelegate {
     

@@ -9,7 +9,7 @@ import Foundation
 import SwipeCellKit
 import UIKit
 
-extension MTAccountsTableViewController: SwipeTableViewCellDelegate {
+extension AccountsTableViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath,
                    for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         

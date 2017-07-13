@@ -40,7 +40,7 @@ protocol DeleteSheetPresenterProtocol {
     weak var alert: UIAlertController? { get }
     var action: UIAlertAction.Type { get set }
     
-    func displayDeleteSheet(toDelete indexPath: IndexPath, presentingVC: MTAccountsTableViewController)
+    func displayDeleteSheet(toDelete indexPath: IndexPath, presentingVC: AccountsTableViewController)
 }
 
 /// An event handler of `Account` tableview controller regaring deleting `Account`s
@@ -57,7 +57,7 @@ class DeleteSheetPresenter: DeleteSheetPresenterProtocol {
     /// - Parameters:
     ///   - indexPath: The indexPath of the `Account` from the `UITableView`
     ///   - presentingVC: The presenting view controller
-    func displayDeleteSheet(toDelete indexPath: IndexPath, presentingVC: MTAccountsTableViewController) {
+    func displayDeleteSheet(toDelete indexPath: IndexPath, presentingVC: AccountsTableViewController) {
         let deleteConfirmation = UIAlertController(title: nil,
                                                    message: NSLocalizedString("Are you sure you want to delete this account? " +
                                                     "Deleting an account deletes all associated transactions. " +

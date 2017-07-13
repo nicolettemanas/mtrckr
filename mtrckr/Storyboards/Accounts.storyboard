@@ -12,7 +12,7 @@
         <!--My Accounts-->
         <scene sceneID="pwg-B5-2Ln">
             <objects>
-                <tableViewController storyboardIdentifier="MTAccountsTableViewController" id="IMa-B7-y7O" customClass="MTAccountsTableViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MTAccountsTableViewController" id="IMa-B7-y7O" customClass="AccountsTableViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vlh-BX-uZT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

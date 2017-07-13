@@ -8,11 +8,11 @@
 import UIKit
 
 protocol AccountTransactionsPresenterProtocol {
-    func presentTransactions(ofAccount account: Account, presentingVC: MTAccountsTableViewController)
+    func presentTransactions(ofAccount account: Account, presentingVC: AccountsTableViewController)
 }
 
 class AccountTransactionsPresenter: AccountTransactionsPresenterProtocol {
-    func presentTransactions(ofAccount account: Account, presentingVC: MTAccountsTableViewController) {
+    func presentTransactions(ofAccount account: Account, presentingVC: AccountsTableViewController) {
         let nav = UIStoryboard(name: "Accounts", bundle: Bundle.main)
             .instantiateViewController(withIdentifier: "TransactionsNavigationController")
         guard let vc = (nav as? UINavigationController)?.topViewController

@@ -12,7 +12,7 @@ class MockDeleteSheetPresenter: DeleteSheetPresenter {
     var didPresentDeleteSheet = false
     var indexToDelete: IndexPath?
     
-    override func displayDeleteSheet(toDelete indexPath: IndexPath, presentingVC: MTAccountsTableViewController) {
+    override func displayDeleteSheet(toDelete indexPath: IndexPath, presentingVC: AccountsTableViewController) {
         didPresentDeleteSheet = true
         indexToDelete = indexPath
     }

@@ -35,6 +35,9 @@ class Category: Object {
     
     /// A flag indicating whether a `Category` is a customed category or not
     dynamic var isCustomized: Bool = false
+    
+    /// The color of the `Category`
+    dynamic var color: String = ""
 
     /// The `Transaction`s listed under the `Category`
     let transactions = LinkingObjects(fromType: Transaction.self, property: "category")
@@ -55,13 +58,15 @@ class Category: Object {
     ///   - type: The type of the `Category` to be created
     ///   - name: The name of the `Category` to be created
     ///   - icon: The icon path url of the `Category` to be created
-    convenience init(type: CategoryType, name: String, icon: String) {
+    ///   - color: The color of the `Category` to be created
+    convenience init(type: CategoryType, name: String, icon: String, color: String) {
         self.init()
         self.id = "CAT-\(UUID().uuidString)"
         self.type = type.rawValue
         self.name = name
         self.icon = icon
         self.isCustomized = true
+        self.color = color
     }
 
     /// Creates a `Category` with the given values
@@ -71,12 +76,14 @@ class Category: Object {
     ///   - type: The type of the `Category` to be created
     ///   - name: The name of the `Category` to be created
     ///   - icon: The icon path url of the `Category` to be created
-    convenience init(id: String, type: CategoryType, name: String, icon: String) {
+    ///   - color: The color of the `Category` to be created
+    convenience init(id: String, type: CategoryType, name: String, icon: String, color: String) {
         self.init()
         self.id = id
         self.type = type.rawValue
         self.name = name
         self.icon = icon
+        self.color = color
     }
 
     /// :nodoc:

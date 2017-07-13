@@ -43,7 +43,6 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         collectionView?.register(UINib(nibName: "AccountTypeCollectionViewCell", bundle: Bundle.main),
                                  forCellWithReuseIdentifier: "AccountTypeCollectionViewCell")
         collectionView?.allowsMultipleSelection = false
-        
     }
     
     deinit {

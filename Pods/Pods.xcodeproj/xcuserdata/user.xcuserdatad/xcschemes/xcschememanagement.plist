@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Charts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>CryptoSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -15,6 +20,11 @@
 			<false/>
 		</dict>
 		<key>DateToolsSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Eureka.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -87,27 +97,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0CCB9DACEA1557A0006C2F91F18B467B</key>
+		<key>2F6CB0AA91B83DE398A4C6CEDEC4CF54</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1000AAAB1111226D98B03CA1240F7DCE</key>
+		<key>3643423FC3C3F30253A48672BCB157E0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>190FECD85A252772FAB19B433E5B166C</key>
+		<key>3BAEEAD15CFBA4E4E357CD81D52394FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>41328919A0E646B981500D5872565343</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,22 +132,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>675A114988AE198732ED4AD726408964</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6BB1C1403B2419F911818DA8413FDA07</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8BEF65D6C1163415DF23B05517BC0332</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A65F994947622036CA3D5C6D4B1FA078</key>
+		<key>84C72DEF0739A4357CC28B3E64B168B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>A6F3A47BE3BF5574BBB96B4580B407ED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B3850551307E8D8AFED9C442A13CFC14</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,7 +167,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>DEB7E8867F65B1A4925B926F9986E390</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E89CFD99B895BCC6E8EDC2F95A03500C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F307B842FF76B2DE6C55DB67C0885325</key>
 		<dict>
 			<key>primary</key>
 			<true/>

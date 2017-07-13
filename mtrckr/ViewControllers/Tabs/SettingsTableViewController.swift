@@ -1,5 +1,5 @@
 //
-//  MTSettingsViewController.swift
+//  SettingsTableViewController.swift
 //  mtrckr
 //
 //  Created by User on 6/1/17.
@@ -13,7 +13,7 @@ protocol AuthViewControllerDelegate: class {
     func didDismiss()
 }
 
-class MTSettingsTableViewController: MTTableViewController, AuthViewControllerDelegate, RealmAuthPresenterOutput, UserObserver {
+class SettingsTableViewController: MTTableViewController, AuthViewControllerDelegate, RealmAuthPresenterOutput, UserObserver {
     
     // MARK: - Properties
     var authPresenter: RealmAuthPresenter?

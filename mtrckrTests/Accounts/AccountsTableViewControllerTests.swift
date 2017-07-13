@@ -14,7 +14,7 @@ import RealmSwift
 
 class AccountsTableViewControllerTests: QuickSpec {
     var storyboard: UIStoryboard?
-    var accountsVC: MTAccountsTableViewController?
+    var accountsVC: AccountsTableViewController?
     
     var mockPresenter: MockAccountsPresenter?
     var mockInteractor: MockAccountsInteractor?
@@ -28,7 +28,7 @@ class AccountsTableViewControllerTests: QuickSpec {
         beforeEach {
             self.storyboard = UIStoryboard(name: "Accounts", bundle: Bundle.main)
             self.accountsVC = self.storyboard?.instantiateViewController(withIdentifier: "MTAccountsTableViewController")
-                                as? MTAccountsTableViewController
+                                as? AccountsTableViewController
             expect(self.accountsVC?.view).toNot(beNil())
         }
     

@@ -9,17 +9,19 @@ import UIKit
 import Realm
 import RealmSwift
 
-protocol TransactionsTableViewControllerProtocol {
+protocol TransactionsTableViewControllerProtocol: class {
     var account: Account? { get set }
 }
 
 class TransactionsTableViewController: MTTableViewController, TransactionsTableViewControllerProtocol {
-    var account: Account?
-    var transactions: Results<Transaction>?
-    var currency: String?
-    var notifToken: NotificationToken?
-    var observer: ObserverProtocol?
     
+    private var transactions: Results<Transaction>?
+    private var currency: String?
+    private var notifToken: NotificationToken?
+    private var observer: ObserverProtocol?
+    
+    var account: Account?
+    var transactionDataSource: TransactionsListDataSource?
     var presenter: TransactionsPresenterProtocol?
     
     deinit {
@@ -33,6 +35,10 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
         
         tableView.register(UINib(nibName: "TransactionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "TransactionTableViewCell")
         tableView.allowsSelection = false
+        
+        transactionDataSource = TransactionsListDataSource(parentVC: self)
+        tableView.delegate = transactionDataSource
+        tableView.dataSource = transactionDataSource
         
         if account != nil { setupResults() }
     }
@@ -52,22 +58,5 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
     
     func confirmDelete(atIndex: IndexPath) {
         
-    }
-    
-    // MARK: - UITableView delegate and datasource methods
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell") as? TransactionTableViewCell else {
-            fatalError("Cannot initialize TransactionTableViewCell")
-        }
-        
-        let t = transactions![indexPath.row]
-        cell.setValues(ofTransaction: t, withCurrency: currency!)
-        cell.selectionStyle = .none
-        cell.delegate = self
-        return cell
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return transactions?.count ?? 0
     }
 }
