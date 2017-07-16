@@ -36,7 +36,7 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
         tableView.register(UINib(nibName: "TransactionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "TransactionTableViewCell")
         tableView.allowsSelection = false
         
-        transactionDataSource = TransactionsListDataSource(parentVC: self)
+        transactionDataSource = TransactionsListDataSource(authConfig: RealmAuthConfig(), parentVC: self, tableView: tableView, filterBy: .byAccount)
         tableView.delegate = transactionDataSource
         tableView.dataSource = transactionDataSource
         
@@ -45,7 +45,7 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
     
     func setupResults() {
         DispatchQueue.main.async {
-            self.transactions = self.presenter?.transactions(fromAccount: self.account!)
+            self.transactions = self.presenter?.transactions(fromAccounts: [self.account!])
             self.notifToken = self.transactions?.addNotificationBlock(self.tableView.applyChanges)
             self.tableView.reloadData()
         }

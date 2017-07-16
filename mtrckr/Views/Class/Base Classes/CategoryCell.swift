@@ -21,7 +21,7 @@ final class CategoryRow: Row<CategoryCell>, RowType {
     }
 }
 
-class CategoryCell: Cell<String>, CellType {
+class CategoryCell: Cell<Category>, CellType, CategoryDataSourceDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var dataSource: CategoryDataSourceProtocol?
@@ -29,10 +29,12 @@ class CategoryCell: Cell<String>, CellType {
     override func setup() {
         super.setup()
         dataSource = CategoryDataSource(with: RealmAuthConfig(), ofType: .expense, collectionView: collectionView)
+        dataSource?.delegate = self
         collectionView.dataSource = dataSource as? UICollectionViewDataSource
         collectionView.delegate = dataSource as? UICollectionViewDelegate
         collectionView.register(UINib(nibName: "CategoryCollectionCell", bundle: Bundle.main),
                                 forCellWithReuseIdentifier: "CategoryCollectionCell")
+        collectionView.backgroundColor = .clear
     }
     
     override func update() {
@@ -45,14 +47,25 @@ class CategoryCell: Cell<String>, CellType {
     
     func updateSelection(forType type: TransactionType) {
         dataSource?.updateSelection(forType: type)
+        row.value = nil
+    }
+    
+    // MARK: - CategoryDataSourceDelegate methods
+    func didSelect(category: Category) {
+        row.value = category
     }
 }
 
 protocol CategoryDataSourceProtocol {
     var categories: Results<Category>? { get }
     var collectionView: UICollectionView? { get set }
+    var delegate: CategoryDataSourceDelegate? { get set }
     func selectItem(at indexPath: IndexPath)
     func updateSelection(forType type: TransactionType)
+}
+
+protocol CategoryDataSourceDelegate: class {
+    func didSelect(category: Category)
 }
 
 class CategoryDataSource: RealmHolder, CategoryDataSourceProtocol,
@@ -60,6 +73,7 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var categories: Results<Category>?
     weak var collectionView: UICollectionView?
+    weak var delegate: CategoryDataSourceDelegate?
     
     private let numOfItemsPerSection = 5
     private var numOfSections = 0
@@ -142,6 +156,7 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         if let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionCell {
             let cat = categories![index(from: indexPath)]
             cell.setSelected(selected: true, category: cat)
+            delegate?.didSelect(category: cat)
         }
     }
     

@@ -16,28 +16,27 @@ class TransactionsChartCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var toalAmountLabel: UILabel!
     
     override func awakeFromNib() {
-        setValues(of: nil)
+        super.awakeFromNib()
     }
     
-    func setValues(of transactions: Results<Transaction>?) {
+    func setValues(of transactions: Results<Transaction>?, centerText: String) {
         var dataEntries: [PieChartDataEntry] = []
-//        for trans in transactions {
-//            let a = PieChartDataEntry(value: trans.amount)
-//            dataEntries.append(a)
-//        }
+        guard let trnsctns = transactions else {
+            return
+        }
+        
+        for trans in trnsctns {
+            let a = PieChartDataEntry(value: trans.amount)
+            dataEntries.append(a)
+        }
         
         pieChart.chartDescription = nil
         pieChart.holeRadiusPercent = 0.80
         pieChart.legend.enabled = false
         pieChart.backgroundColor = MTColors.lightBg
-        pieChart.centerText = "April 25\nTUESDAY"
+        pieChart.centerText = centerText
         pieChart.drawEntryLabelsEnabled = false
         pieChart.rotationEnabled = false
-        
-        for i in 1..<5 {
-            let a = PieChartDataEntry(value: Double(i))
-            dataEntries.append(a)
-        }
         
         let dataSet = PieChartDataSet(values: dataEntries, label: "")
         dataSet.setColors(MTColors.colors, alpha: 1)

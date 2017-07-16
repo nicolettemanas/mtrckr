@@ -22,10 +22,11 @@
                         <rect key="frame" x="15" y="12.5" width="40" height="40"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="da9-SW-upu">
-                                <rect key="frame" x="5" y="5" width="30" height="30"/>
+                                <rect key="frame" x="10" y="10" width="20" height="20"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1u8-Aj-WGp"/>
-                                    <constraint firstAttribute="width" constant="30" id="9XR-lc-JK0"/>
+                                    <constraint firstAttribute="height" constant="20" id="1u8-Aj-WGp"/>
+                                    <constraint firstAttribute="width" constant="20" id="9XR-lc-JK0"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -53,13 +54,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apr 23, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uC-ed-l8C">
-                        <rect key="frame" x="65" y="31.5" width="187" height="19.5"/>
+                        <rect key="frame" x="65" y="31.5" width="85" height="19.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="85" id="B5X-UU-hbS"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.42352941176470588" green="0.43529411764705883" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$00.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rh5-ui-8Pi">
-                        <rect key="frame" x="262" y="35" width="100" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Account" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rh5-ui-8Pi">
+                        <rect key="frame" x="160" y="35" width="202" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.42352941176470588" green="0.43529411764705883" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -76,15 +80,14 @@
                     <constraint firstItem="rh5-ui-8Pi" firstAttribute="top" secondItem="G4R-ie-nOq" secondAttribute="bottom" constant="4" id="LvW-4e-lmq"/>
                     <constraint firstItem="G4R-ie-nOq" firstAttribute="centerY" secondItem="Eur-WW-egq" secondAttribute="centerY" id="M26-fG-fyn"/>
                     <constraint firstItem="0uC-ed-l8C" firstAttribute="top" secondItem="Eur-WW-egq" secondAttribute="bottom" id="MaH-Lh-443"/>
-                    <constraint firstItem="0uC-ed-l8C" firstAttribute="width" secondItem="Eur-WW-egq" secondAttribute="width" id="NWF-xW-f8F"/>
                     <constraint firstItem="0uC-ed-l8C" firstAttribute="leading" secondItem="Eur-WW-egq" secondAttribute="leading" id="OXi-ay-2Ke"/>
-                    <constraint firstItem="rh5-ui-8Pi" firstAttribute="width" secondItem="G4R-ie-nOq" secondAttribute="width" id="T80-ZX-Gkk"/>
+                    <constraint firstItem="rh5-ui-8Pi" firstAttribute="leading" secondItem="0uC-ed-l8C" secondAttribute="trailing" constant="10" id="PEb-7R-Ybk"/>
                     <constraint firstAttribute="trailing" secondItem="G4R-ie-nOq" secondAttribute="trailing" constant="10" id="VlB-Co-frN"/>
                     <constraint firstItem="eZ2-98-upK" firstAttribute="leading" secondItem="G3d-9A-845" secondAttribute="leading" constant="15" id="aEd-ek-Qvc"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="balanceRemaining" destination="rh5-ui-8Pi" id="zqA-xz-wvN"/>
+                <outlet property="accountUsed" destination="rh5-ui-8Pi" id="FIX-Hp-Knz"/>
                 <outlet property="dateOfTransaction" destination="0uC-ed-l8C" id="Gnu-Rb-7mu"/>
                 <outlet property="icon" destination="da9-SW-upu" id="n9r-he-Nm6"/>
                 <outlet property="iconView" destination="eZ2-98-upK" id="QcT-I3-Fm2"/>

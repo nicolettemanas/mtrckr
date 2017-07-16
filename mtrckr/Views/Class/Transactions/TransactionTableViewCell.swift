@@ -15,7 +15,7 @@ class TransactionTableViewCell: SwipeTableViewCell {
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var dateOfTransaction: UILabel!
-    @IBOutlet weak var balanceRemaining: UILabel!
+    @IBOutlet weak var accountUsed: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,33 +26,37 @@ class TransactionTableViewCell: SwipeTableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func setValues(ofTransaction transaction: Transaction, withCurrency curr: String) {
-        let limit = MTColors.colors.count
-            
-        // TODO: Set colors per category, remove randomization
-        self.iconView.backgroundColor = MTColors.colors[Int(arc4random_uniform(UInt32(limit)) + 1)]
-        self.icon.image = UIImage(named: transaction.category!.icon)
         self.itemName.text = transaction.name
         
-        // TODO: Get account to know the symbol when type is transfer
         var prefix = ""
-        if transaction.type == TransactionType.expense.rawValue { prefix = "-" }
-        else if transaction.type == TransactionType.income.rawValue { prefix = "+" }
+        var color = transaction.category?.color
+        var imgIcon = transaction.category?.icon
+        var accountUsed = transaction.fromAccount?.name
+        if transaction.type == TransactionType.expense.rawValue {
+            prefix = "-"
+            self.itemPrice.textColor = MTColors.mainRed
+        } else if transaction.type == TransactionType.income.rawValue {
+            prefix = "+"
+            self.itemPrice.textColor = MTColors.mainGreen
+        } else {
+            self.itemPrice.textColor = MTColors.subText
+            color = "#6A7FDBFF"
+            imgIcon = "sync"
+            accountUsed = "\(transaction.fromAccount!.name) > \(transaction.toAccount!.name)"
+        }
         
+        self.iconView.backgroundColor = UIColor(color!)
+        self.icon.image = UIImage(named: imgIcon!)
+        self.accountUsed.text = accountUsed
         self.itemPrice.text = prefix + NumberFormatter.currencyStr(withCurrency: curr,
                                                                    amount: transaction.amount)!
-        
         let dFormatter = DateFormatter()
         dFormatter.dateFormat = "MMM dd, yyyy"
         self.dateOfTransaction.text = dFormatter.string(from: transaction.transactionDate)
         
-        // TODO: Add balance remaining in transactions
-        self.balanceRemaining.text = prefix + NumberFormatter.currencyStr(withCurrency: curr,
-                                                                          amount: transaction.fromAccount!.currentAmount)!
     }
 
 }

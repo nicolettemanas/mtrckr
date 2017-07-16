@@ -13,9 +13,12 @@ protocol TransactionsPresenterProtocol {
     init(with int: TransactionsInteractor)
     
     func currency() -> String
-    func transactions(fromAccount account: Account) -> Results<Transaction>
+    func transactions(from date: Date) -> Results<Transaction>
+    func transactions(fromAccounts account: [Account]) -> Results<Transaction>
     func editTransaction(transaction: Transaction) throws
     func deleteTransaction(transaction: Transaction)
+    func createTransaction(with name: String, amount: Double, type: TransactionType, date: Date,
+                           category: Category?, from sourceAcc: Account, to destAccount: Account)
 }
 
 class TransactionsPresenter: TransactionsPresenterProtocol {
@@ -30,7 +33,11 @@ class TransactionsPresenter: TransactionsPresenterProtocol {
         return interactor.currency()
     }
     
-    func transactions(fromAccount account: Account) -> Results<Transaction> {
+    func transactions(from date: Date) -> Results<Transaction> {
+        return interactor.transactions(from: date)
+    }
+    
+    func transactions(fromAccounts account: [Account]) -> Results<Transaction> {
         return interactor.transactions(fromAccount: account)
     }
     
@@ -40,5 +47,13 @@ class TransactionsPresenter: TransactionsPresenterProtocol {
     
     func deleteTransaction(transaction: Transaction) {
         interactor.deleteTransaction(transaction: transaction)
+    }
+    
+    func createTransaction(with name: String, amount: Double, type: TransactionType, date: Date,
+                           category: Category?, from sourceAcc: Account, to destAccount: Account) {
+        let transaction = Transaction(type: type, name: name, image: nil, description: nil,
+                                      amount: amount, category: category, from: sourceAcc,
+                                      to: destAccount, date: date)
+        interactor.saveTransaction(transaction: transaction)
     }
 }

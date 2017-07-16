@@ -89,13 +89,13 @@
                         <barButtonItem key="rightBarButtonItem" image="add-tab" id="sig-lc-EBz">
                             <color key="tintColor" red="0.0" green="0.65490196079999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="Dcq-i2-hFy" kind="presentation" id="m2Y-mL-ios"/>
+                                <action selector="newTransactionBtnPressed:" destination="aEu-YR-X5V" id="vdg-uh-Ejn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="calendarBtn" destination="hdq-oT-CaR" id="Ghy-Mx-Ixy"/>
-                        <outlet property="chartsCollectionView" destination="klC-Na-rBS" id="1tD-L3-I6i"/>
+                        <outlet property="chartsCollectionView" destination="klC-Na-rBS" id="A8r-m2-iDg"/>
                         <outlet property="transactionsTable" destination="aWM-pF-TJu" id="ILN-OD-0BQ"/>
                     </connections>
                 </viewController>
@@ -106,7 +106,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Gl2-2g-bfd">
             <objects>
-                <navigationController id="Dcq-i2-hFy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NewTransactionNavigationController" id="Dcq-i2-hFy" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="egg-GY-7GC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

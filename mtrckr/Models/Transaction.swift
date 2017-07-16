@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import Realm
+import DateToolsSwift
 
 /// Types of `Transaction`s
 ///
@@ -193,7 +194,7 @@ class Transaction: Object {
     static func all(in realm: Realm, fromAccount account: Account) -> Results<Transaction> {
         return realm.objects(Transaction.self)
             .filter("fromAccount.id == %@", account.id)
-            .sorted(byKeyPath: "transactionDate")
+            .sorted(byKeyPath: "transactionDate", ascending: false)
     }
 
     /// Returns all `Transaction`s with the given `Category`
@@ -205,7 +206,7 @@ class Transaction: Object {
     static func all(in realm: Realm, underCategory category: Category) -> Results<Transaction> {
         return realm.objects(Transaction.self)
             .filter("category.id == %@", category.id)
-            .sorted(byKeyPath: "transactionDate")
+            .sorted(byKeyPath: "transactionDate", ascending: false)
     }
 
     /// Returns all `Transaction`s associated with the given `Bill`
@@ -217,7 +218,13 @@ class Transaction: Object {
     static func all(in realm: Realm, underBill bill: Bill) -> Results<Transaction> {
         return realm.objects(Transaction.self)
             .filter("billEntry.bill.id == %@", bill.id)
-            .sorted(byKeyPath: "transactionDate")
+            .sorted(byKeyPath: "transactionDate", ascending: false)
+    }
+    
+    static func all(in realm: Realm, onDate date: Date) -> Results<Transaction> {
+        return realm.objects(Transaction.self)
+            .filter("transactionDate > %@ AND transactionDate < %@", date.start(of: .day), date.end(of: .day))
+            .sorted(byKeyPath: "transactionDate", ascending: false)
     }
 
     // MARK: - associated account methods
