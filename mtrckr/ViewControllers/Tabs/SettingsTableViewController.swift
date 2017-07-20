@@ -13,7 +13,8 @@ protocol AuthViewControllerDelegate: class {
     func didDismiss()
 }
 
-class SettingsTableViewController: MTTableViewController, AuthViewControllerDelegate, RealmAuthPresenterOutput, UserObserver {
+class SettingsTableViewController: MTTableViewController, AuthViewControllerDelegate,
+    RealmAuthPresenterOutput, UserObserver {
     
     // MARK: - Properties
     var authPresenter: RealmAuthPresenter?
@@ -32,6 +33,7 @@ class SettingsTableViewController: MTTableViewController, AuthViewControllerDele
         setupUserData()
         observer = NotificationObserver()
         observer?.setDidChangeUserBlock {
+            self.tableView.reloadData()
         }
     }
     

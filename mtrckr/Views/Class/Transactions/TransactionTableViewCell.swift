@@ -22,6 +22,7 @@ class TransactionTableViewCell: SwipeTableViewCell {
         iconView.layer.masksToBounds = true
         iconView.layer.cornerRadius = 10
         iconView.clipsToBounds = true
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -10,6 +10,10 @@ import DZNEmptyDataSet
 
 class EmptyAccountsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+        return MTColors.emptyDataSetBg
+    }
+    
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str =  NSLocalizedString("Welcome to Money Tracker!",
                                      comment: "The title shown when there are no accounts registered.")
@@ -37,8 +41,7 @@ class EmptyAccountsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetD
     }
     
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        let img = #imageLiteral(resourceName: "coins")
-        return img
+        return #imageLiteral(resourceName: "coins")
     }
     
     func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {

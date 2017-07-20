@@ -53,7 +53,7 @@ struct RealmAuthConfig: AuthConfig {
     var offlineRealmFileName: String = "mtrckr-\(buildConfig!)"
     
 //    var domainHost: String = "localhost:9080"
-    var domainHost: String = "192.168.1.35:9080"
+    var domainHost: String = "ec2-52-68-176-73.ap-northeast-1.compute.amazonaws.com:9080"
     var serverURL: URL
     var realmDomainURL: URL
     var userRealmPath: URL

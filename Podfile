@@ -18,6 +18,7 @@ target "mtrckr" do
     pod 'DZNEmptyDataSet'
     pod 'Charts', '~> 3.0.2'
     pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git', :branch => 'swift3.2'
+    pod 'FSCalendar', '~> 2.7.9'
     commonPods
  
  abstract_target 'Tests' do

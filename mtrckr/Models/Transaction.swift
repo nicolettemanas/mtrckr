@@ -196,6 +196,12 @@ class Transaction: Object {
             .filter("fromAccount.id == %@", account.id)
             .sorted(byKeyPath: "transactionDate", ascending: false)
     }
+    
+    static func all(in realm: Realm, fromAccounts accounts: [Account]) -> Results<Transaction> {
+        return realm.objects(Transaction.self)
+            .filter("fromAccount in %@", accounts)
+            .sorted(byKeyPath: "transactionDate", ascending: false)
+    }
 
     /// Returns all `Transaction`s with the given `Category`
     ///

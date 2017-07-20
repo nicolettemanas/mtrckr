@@ -7,13 +7,16 @@
 
 import UIKit
 import RealmSwift
+import FSCalendar
+import DZNEmptyDataSet
 
 protocol TodayViewControllerProtocol {
     
 }
 
-class TodayViewController: MTViewController, TodayViewControllerProtocol, TransactionsTableViewControllerProtocol,
-UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NewTransactionViewControllerDelegate {
+class TodayViewController: MTViewController, TodayViewControllerProtocol,
+    TransactionsTableViewControllerProtocol, NewTransactionViewControllerDelegate,
+    TransactionsListDataSourceDelegate, UserObserver {
     
     var account: Account?
     
@@ -21,16 +24,17 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NewTransactionVi
     var newTransPresenter: NewTransactionPresenterProtocol?
     var transactionsPresenter: TransactionsPresenter?
     var date: Date = Date()
-    var transactionsDataSource: TransactionsListDataSource?
+    var observer: ObserverProtocol?
     
-    // MARK: - Outlets
-    @IBOutlet weak var calendarBtn: UIButton!
+    // MARK: DataSource
+    var emptyTransactionsDataSource: EmptyTransactionsDataSource?
+    var transactionsDataSource: TransactionsListDataSourceProtocol?
+    var calendarDataSource: TransactionsCalendarDataSourceProtocol?
+    
+    // MARK: Outlets
     @IBOutlet weak var chartsCollectionView: UICollectionView!
     @IBOutlet weak var transactionsTable: UITableView!
-    
-    @IBAction func calBtnPressed(_ sender: Any) {
-        
-    }
+    @IBOutlet weak var calendar: FSCalendar!
     
     @IBAction func newTransactionBtnPressed(_ sender: Any) {
         newTransPresenter?.presentNewTransactionVC(with: nil, presentingVC: self, delegate: self)
@@ -39,19 +43,46 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NewTransactionVi
     // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        chartsCollectionView.register(UINib(nibName: "TransactionsChartCollectionViewCell",
-                                            bundle: Bundle.main), forCellWithReuseIdentifier: "TransactionsChartCollectionViewCell")
+//        chartsCollectionView.register(UINib(nibName: "TransactionsChartCollectionViewCell",
+//                                            bundle: Bundle.main), forCellWithReuseIdentifier: "TransactionsChartCollectionViewCell")
         transactionsTable.register(UINib(nibName: "TransactionTableViewCell", bundle: Bundle.main),
                                    forCellReuseIdentifier: "TransactionTableViewCell")
+        calendar.register(TransactionCalendarCell.self, forCellReuseIdentifier: "cell")
+        
         transactionsDataSource = TransactionsListDataSource(authConfig: RealmAuthConfig(),
                                                             parentVC: self,
                                                             tableView: transactionsTable,
                                                             filterBy: .byDate)
+        transactionsDataSource?.delegate = self
+        calendarDataSource = TransactionsCalendarDataSource(calendar: calendar,
+                                                            transactionsDataSource: transactionsDataSource!)
+        emptyTransactionsDataSource = EmptyTransactionsDataSource()
+        
         transactionsPresenter = TransactionsPresenter(with: TransactionsInteractor(with: RealmAuthConfig()))
+        newTransPresenter = NewTransactionPresenter()
+        
+        transactionsTable.emptyDataSetSource = emptyTransactionsDataSource
+        transactionsTable.emptyDataSetDelegate = emptyTransactionsDataSource
         transactionsTable.dataSource = transactionsDataSource
         transactionsTable.delegate = transactionsDataSource
         transactionsTable.tableFooterView = UIView()
-        newTransPresenter = NewTransactionPresenter()
+        
+        transactionsTable.tableFooterView = UIView()
+        calendar.dataSource = calendarDataSource
+        calendar.delegate = calendarDataSource
+        calendar.appearance.headerMinimumDissolvedAlpha = 0.0
+        
+        observer = NotificationObserver()
+        observer?.setDidChangeUserBlock {
+            DispatchQueue.main.async {
+                self.transactionsDataSource?.reloadByDate(with: Date())
+                self.calendar.reloadData()
+            }
+        }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
     }
     
     // MARK: - NewTransactionViewControllerDelegate methods
@@ -61,29 +92,8 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NewTransactionVi
                                                  category: category, from: sourceAcc, to: destAccount)
     }
     
-    // MARK: - UICollectionViewDelegateFlowLayout and UICollectionViewDataSource methods
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TransactionsChartCollectionViewCell",
-                                                      for: indexPath) as? TransactionsChartCollectionViewCell
-        let date = transactionsDataSource?.dateFilter
-        var centerText = date!.format(with: "MMM dd")
-        centerText = "\(centerText)\n\(date!.day)"
-        cell?.setValues(of: transactionsDataSource?.transactions, centerText: centerText)
-        return cell!
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 260)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+    // MARK: - TransactionsListDataSourceDelegate
+    func didUpdateTransactions() {
+        calendar.reloadData()
     }
 }
