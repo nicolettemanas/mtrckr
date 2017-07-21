@@ -35,7 +35,7 @@ class InitialRealmGenerator {
         
         let initialRealm = try! Realm(configuration: initialConfiguration)
         
-        let lookups = ["Currency", "Category", "AccountType"]
+        let lookups: [String] = ["Currency", "Category", "AccountType"]
         for lookup in lookups {
             print("[INIT REALM] Reading contents of file \(lookup).json")
             do {

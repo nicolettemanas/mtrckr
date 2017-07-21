@@ -8,13 +8,13 @@
 import UIKit
 import SwipeCellKit
 
-extension TransactionsTableViewController: SwipeTableViewCellDelegate {
+extension TransactionsListDataSource: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath,
                    for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         
         if orientation == .right {
             let edit = SwipeAction(style: .default, title: nil) { _, indexPath in
-                self.editTransaction(atIndex: indexPath)
+//                self.editTransaction(atIndex: indexPath)
             }
             
             edit.accessibilityLabel = "Edit"
@@ -23,7 +23,7 @@ extension TransactionsTableViewController: SwipeTableViewCellDelegate {
             edit.textColor = .white
             
             let delete = SwipeAction(style: .destructive, title: nil, handler: { (_, _) in
-                self.confirmDelete(atIndex: indexPath)
+//                self.confirmDelete(atIndex: indexPath)
             })
             
             delete.accessibilityLabel = "Delete"

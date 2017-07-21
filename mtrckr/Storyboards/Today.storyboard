@@ -135,7 +135,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="calendar" destination="qeJ-FX-JXz" id="IQG-0y-NLN"/>
                         <outlet property="transactionsTable" destination="aWM-pF-TJu" id="ILN-OD-0BQ"/>
@@ -160,6 +159,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWZ-tK-VQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1003" y="144"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ApZ-WR-i1d">
+            <objects>
+                <viewController id="cRQ-jO-GcR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RYG-OQ-UDK"/>
+                        <viewControllerLayoutGuide type="bottom" id="mrL-eg-IfU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EpK-eL-BvT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f9n-xC-aqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1254" y="953"/>
         </scene>
         <!--New Transaction-->
         <scene sceneID="0Yp-yE-6li">

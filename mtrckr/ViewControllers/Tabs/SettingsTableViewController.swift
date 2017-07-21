@@ -20,9 +20,9 @@ class SettingsTableViewController: MTTableViewController, AuthViewControllerDele
     var authPresenter: RealmAuthPresenter?
     var settingsPresenter: SettingsPresenterProtocol?
     var settingsDetails: [[String]] = []
-    let settingsItems = [["Sync account", "Currency >", "Custom categories >"], ["Log out"]]
-    let settingsIcon = [["sync", "currency", "tag"], ["out"]]
-    let settingsCellIdentifier = "SettingsCell"
+    let settingsItems: [[String]] = [["Sync account", "Currency >", "Custom categories >"], ["Log out"]]
+    let settingsIcon: [[String]] = [["sync", "currency", "tag"], ["out"]]
+    let settingsCellIdentifier: String = "SettingsCell"
     
     var observer: ObserverProtocol?
     

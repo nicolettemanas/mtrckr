@@ -16,20 +16,21 @@ protocol TodayViewControllerProtocol {
 
 class TodayViewController: MTViewController, TodayViewControllerProtocol,
     TransactionsTableViewControllerProtocol, NewTransactionViewControllerDelegate,
-    TransactionsListDataSourceDelegate, UserObserver {
-    
-    var account: Account?
+TransactionsListDataSourceDelegate, UserObserver {
     
     // MARK: - Properties
     var newTransPresenter: NewTransactionPresenterProtocol?
     var transactionsPresenter: TransactionsPresenter?
-    var date: Date = Date()
     var observer: ObserverProtocol?
     
     // MARK: DataSource
-    var emptyTransactionsDataSource: EmptyTransactionsDataSource?
-    var transactionsDataSource: TransactionsListDataSourceProtocol?
+    var emptytransactionDataSource: EmptyTransactionsDataSource?
     var calendarDataSource: TransactionsCalendarDataSourceProtocol?
+    
+    // MARK: TransactionsTableViewControllerProtocol properties
+    var accounts: [Account] = []
+    var date: Date? = Date()
+    var transactionDataSource: TransactionsListDataSourceProtocol?
     
     // MARK: Outlets
     @IBOutlet weak var chartsCollectionView: UICollectionView!
@@ -49,22 +50,22 @@ class TodayViewController: MTViewController, TodayViewControllerProtocol,
                                    forCellReuseIdentifier: "TransactionTableViewCell")
         calendar.register(TransactionCalendarCell.self, forCellReuseIdentifier: "cell")
         
-        transactionsDataSource = TransactionsListDataSource(authConfig: RealmAuthConfig(),
+        transactionDataSource = TransactionsListDataSource(authConfig: RealmAuthConfig(),
                                                             parentVC: self,
                                                             tableView: transactionsTable,
                                                             filterBy: .byDate)
-        transactionsDataSource?.delegate = self
+        transactionDataSource?.delegate = self
         calendarDataSource = TransactionsCalendarDataSource(calendar: calendar,
-                                                            transactionsDataSource: transactionsDataSource!)
-        emptyTransactionsDataSource = EmptyTransactionsDataSource()
+                                                            transactionsDataSource: transactionDataSource!)
+        emptytransactionDataSource = EmptyTransactionsDataSource()
         
         transactionsPresenter = TransactionsPresenter(with: TransactionsInteractor(with: RealmAuthConfig()))
         newTransPresenter = NewTransactionPresenter()
         
-        transactionsTable.emptyDataSetSource = emptyTransactionsDataSource
-        transactionsTable.emptyDataSetDelegate = emptyTransactionsDataSource
-        transactionsTable.dataSource = transactionsDataSource
-        transactionsTable.delegate = transactionsDataSource
+        transactionsTable.emptyDataSetSource = emptytransactionDataSource
+        transactionsTable.emptyDataSetDelegate = emptytransactionDataSource
+        transactionsTable.dataSource = transactionDataSource
+        transactionsTable.delegate = transactionDataSource
         transactionsTable.tableFooterView = UIView()
         
         transactionsTable.tableFooterView = UIView()
@@ -75,7 +76,7 @@ class TodayViewController: MTViewController, TodayViewControllerProtocol,
         observer = NotificationObserver()
         observer?.setDidChangeUserBlock {
             DispatchQueue.main.async {
-                self.transactionsDataSource?.reloadByDate(with: Date())
+                self.transactionDataSource?.reloadByDate(with: Date())
                 self.calendar.reloadData()
             }
         }
@@ -95,5 +96,13 @@ class TodayViewController: MTViewController, TodayViewControllerProtocol,
     // MARK: - TransactionsListDataSourceDelegate
     func didUpdateTransactions() {
         calendar.reloadData()
+    }
+    
+    func editTransaction(transaction: Transaction) {
+        
+    }
+    
+    func confirmDeletTransaction(transaction: Transaction) {
+        
     }
 }

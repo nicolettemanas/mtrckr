@@ -81,6 +81,10 @@ class NewTransactionViewController: FormViewController {
         setupForm()
         accountsPresenter = AccountsPresenter(interactor: AccountsInteractor(with: RealmAuthConfig()))
         accounts = accountsPresenter?.accounts()
+        
+        if transaction != nil {
+            setupTransaction()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +95,17 @@ class NewTransactionViewController: FormViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationItem.title = ""
+    }
+    
+    private func setupTransaction() {
+        guard let trans = self.transaction else { return }
+        typeRow?.value = TransactionType(rawValue: trans.type)
+        nameRow?.value = trans.name
+        amountRow?.value = trans.amount
+        dateRow?.value = trans.transactionDate
+        fromRow?.value = trans.fromAccount
+        toRow?.value = trans.toAccount
+//        categoryRow?.value = trans.category
     }
     
     private func setupDefaultRows() {

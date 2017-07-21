@@ -17,6 +17,8 @@ enum TransactionsFilter {
 
 protocol TransactionsListDataSourceDelegate: class {
     func didUpdateTransactions()
+    func editTransaction(transaction: Transaction)
+    func confirmDeletTransaction(transaction: Transaction)
 }
 
 protocol TransactionsListDataSourceProtocol: UITableViewDelegate, UITableViewDataSource {
@@ -37,15 +39,20 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     var dateFilter: Date = Date()
     
     private weak var parentVC: TransactionsTableViewControllerProtocol?
+    private var notifToken: NotificationToken?
+    private var monthSections: [(Date, Date)] = []
+    private var transactions: Results<Transaction>?
+    
     weak var transactionsTable: UITableView?
     weak var delegate: TransactionsListDataSourceDelegate?
     
-    var transactions: Results<Transaction>?
     var currency: String = ""
-    var monthSections: [(Date, Date)] = []
     var sectionTitles: [String] = []
-    var notifToken: NotificationToken?
     var filterBy: TransactionsFilter
+    
+    deinit {
+            notifToken?.stop()
+    }
     
     // MARK: - Initializers
     required init(authConfig: AuthConfig,
@@ -139,6 +146,17 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         return cell
     }
     
+    // MARK: - Action methods
+    func confirmDelete(atIndex indexPath: IndexPath) {
+        guard let trans = self.transactions else { return }
+        delegate?.confirmDeletTransaction(transaction: trans[indexPath.row])
+    }
+    
+    func editTransaction(atIndex indexPath: IndexPath) {
+        guard let trans = self.transactions else { return }
+        delegate?.editTransaction(transaction: trans[indexPath.row])
+    }
+    
     // MARK: - Other methods
     private func sum(of transactions: Results<Transaction>) -> (Double, Double) {
         var expenses: Double = 0
@@ -167,7 +185,6 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
                 self.transactionsTable!.applyChanges(changes: change)
                 self.delegate?.didUpdateTransactions()
             })
-            
         }
     }
     

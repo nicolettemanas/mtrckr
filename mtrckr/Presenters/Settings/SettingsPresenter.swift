@@ -25,7 +25,7 @@ class SettingsPresenter: RealmHolder, SettingsPresenterProtocol {
         if SyncUser.current == nil {
             let realm = self.realmContainer?.userRealm
             
-            var details = [["None", "Not set", "0"], [""]]
+            var details: [[String]] = [["None", "Not set", "0"], [""]]
             details[0][0] = "None"
             details[0][1] = "Not set"
             details[0][2] = "\(Category.all(in: realm!, customized: true).count)"
@@ -41,7 +41,7 @@ class SettingsPresenter: RealmHolder, SettingsPresenterProtocol {
                 fatalError("No User found in realm")
             }
             
-            var details = [["None", "Not set", "0"], [""]]
+            var details: [[String]] = [["None", "Not set", "0"], [""]]
             details[0][0] = user?.name ?? ""
             details[0][1] = user?.currency?.isoCode ?? "Not set"
             details[0][2] = "\(Category.all(in: realm!, customized: true).count)"

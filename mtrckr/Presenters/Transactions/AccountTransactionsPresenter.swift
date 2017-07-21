@@ -20,7 +20,7 @@ class AccountTransactionsPresenter: AccountTransactionsPresenterProtocol {
                 return
         }
         
-        vc.account = account
+        vc.accounts = [account]
         presentingVC.navigationController?.pushViewController(vc, animated: true)
     }
 }
