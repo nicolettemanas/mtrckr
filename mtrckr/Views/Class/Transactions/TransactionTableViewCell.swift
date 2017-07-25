@@ -32,10 +32,10 @@ class TransactionTableViewCell: SwipeTableViewCell {
     func setValues(ofTransaction transaction: Transaction, withCurrency curr: String) {
         self.itemName.text = transaction.name
         
-        var prefix = ""
-        var color = transaction.category?.color
-        var imgIcon = transaction.category?.icon
-        var accountUsed = transaction.fromAccount?.name
+        var prefix: String = ""
+        var color: String? = transaction.category?.color
+        var imgIcon: String? = transaction.category?.icon
+        var accountUsed: String? = transaction.fromAccount?.name
         if transaction.type == TransactionType.expense.rawValue {
             prefix = "-"
             self.itemPrice.textColor = MTColors.mainRed
@@ -54,7 +54,7 @@ class TransactionTableViewCell: SwipeTableViewCell {
         self.accountUsed.text = accountUsed
         self.itemPrice.text = prefix + NumberFormatter.currencyStr(withCurrency: curr,
                                                                    amount: transaction.amount)!
-        let dFormatter = DateFormatter()
+        let dFormatter: DateFormatter = DateFormatter()
         dFormatter.dateFormat = "MMM dd, yyyy"
         self.dateOfTransaction.text = dFormatter.string(from: transaction.transactionDate)
         

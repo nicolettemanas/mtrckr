@@ -137,7 +137,8 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
                     }
                 } else {
                     mttextField.showError(errorMsg: NSLocalizedString("Password must be at least 6 characters long",
-                                                                      comment: "Error message displayed when the password typed is shorter than the minimum 6 characters"))
+                                                                      comment: "Error message displayed when the password typed" +
+                                                                        "is shorter than the minimum 6 characters"))
                 }
             }
         }

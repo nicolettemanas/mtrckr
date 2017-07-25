@@ -28,26 +28,26 @@ class InitialRealmGenerator {
         
         makeInitDir()
         
-        var initialConfiguration = Realm.Configuration()
+        var initialConfiguration: Realm.Configuration = Realm.Configuration()
         initialConfiguration.fileURL = initialConfiguration.fileURL!
                                         .deletingLastPathComponent()
                                         .appendingPathComponent("initRealm/\(initRealmFileName).realm")
         
-        let initialRealm = try! Realm(configuration: initialConfiguration)
+        let initialRealm: Realm = try! Realm(configuration: initialConfiguration)
         
         let lookups: [String] = ["Currency", "Category", "AccountType"]
-        for lookup in lookups {
+        for lookup: String in lookups {
             print("[INIT REALM] Reading contents of file \(lookup).json")
             do {
-                guard let path = Bundle.main.path(forResource: lookup, ofType: "json") else {
+                guard let path: String = Bundle.main.path(forResource: lookup, ofType: "json") else {
                     fatalError("Missing \(lookup).json for initial values")
                 }
                 
-                let jsonData = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.dataReadingMapped)
+                let jsonData: Data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.dataReadingMapped)
                 let jsonResult = try JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
-                if let array = jsonResult as? [Any] {
+                if let array: [Any] = jsonResult as? [Any] {
                     try initialRealm.write({
-                        for item in array {
+                        for item: Any in array {
                             initialRealm.dynamicCreate(lookup, value: item, update: true)
                         }
                     })
@@ -63,9 +63,9 @@ class InitialRealmGenerator {
     }
     
     private static func makeInitDir() {
-        let fileManager = FileManager.default
-        let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let realmDir = URL(fileURLWithPath: docsDir, isDirectory: true).appendingPathComponent("initRealm")
+        let fileManager: FileManager = FileManager.default
+        let docsDir: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let realmDir: URL = URL(fileURLWithPath: docsDir, isDirectory: true).appendingPathComponent("initRealm")
         if fileManager.fileExists(atPath: realmDir.path) {
             return
         } else {

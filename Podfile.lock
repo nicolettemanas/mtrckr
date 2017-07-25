@@ -34,7 +34,7 @@ DEPENDENCIES:
   - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift.git`, branch `develop`)
   - DateToolsSwift (~> 2.0.3)
   - DZNEmptyDataSet
-  - Eureka (from `https://github.com/xmartlabs/Eureka.git`, branch `swift3.2`)
+  - Eureka (from `https://github.com/xmartlabs/Eureka.git`, branch `feature/Xcode9-Swift3_2`)
   - FSCalendar (~> 2.7.9)
   - Hero (~> 0.3.6)
   - Mockingjay (~> 2.0.0)
@@ -52,7 +52,7 @@ EXTERNAL SOURCES:
     :branch: develop
     :git: https://github.com/krzyzanowskim/CryptoSwift.git
   Eureka:
-    :branch: swift3.2
+    :branch: feature/Xcode9-Swift3_2
     :git: https://github.com/xmartlabs/Eureka.git
   Swinject:
     :branch: swift4
@@ -60,10 +60,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CryptoSwift:
-    :commit: d2e3491ac780ec69329a3d70ab058f2f2c35e6c4
+    :commit: 1d9af96d1f9745308acebcde4f664fc833decd64
     :git: https://github.com/krzyzanowskim/CryptoSwift.git
   Eureka:
-    :commit: 89b0326fe79aeec1f9fef90a4f57c95bd1931089
+    :commit: ca16432dde9b94b3b5335cd9287f1cc57ebbebc4
     :git: https://github.com/xmartlabs/Eureka.git
   Swinject:
     :commit: 4b3d047cd6745a276d20e5e2fe6ded7fd6b4454e
@@ -71,7 +71,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
-  CryptoSwift: b3e56d2cc816dced7aa832cc9d2824dbbb16b7b3
+  CryptoSwift: 138d0ffbc0c5ee40f7b7fc7b073c0f41e5d36dba
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
@@ -89,6 +89,6 @@ SPEC CHECKSUMS:
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: 859bcd5baff3fd9abb3189249668de6717dc8e8f
+PODFILE CHECKSUM: 9c92060ee8ad682ed62626616c800cb950573ba0
 
 COCOAPODS: 1.1.1

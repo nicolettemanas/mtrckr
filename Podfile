@@ -17,7 +17,7 @@ target "mtrckr" do
     pod 'SwipeCellKit'
     pod 'DZNEmptyDataSet'
     pod 'Charts', '~> 3.0.2'
-    pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git', :branch => 'swift3.2'
+    pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git', :branch => 'feature/Xcode9-Swift3_2'
     pod 'FSCalendar', '~> 2.7.9'
     commonPods
  

@@ -56,7 +56,7 @@
 		CE4FC0871F0CC1800016437D /* AccountsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FC0861F0CC1800016437D /* AccountsInteractorTests.swift */; };
 		CE5BD7601F0DDA2D00CCFD11 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BD75F1F0DDA2D00CCFD11 /* TransactionTableViewCell.swift */; };
 		CE5BD7621F0E24C900CCFD11 /* MTNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BD7611F0E24C900CCFD11 /* MTNumberFormatter.swift */; };
-		CE5BD7641F0E274800CCFD11 /* TransactionsListDataSource+SwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BD7631F0E274800CCFD11 /* TransactionsListDataSource+SwipeTableViewCell.swift */; };
+		CE5BD7641F0E274800CCFD11 /* TransactionsTableViewController+SwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BD7631F0E274800CCFD11 /* TransactionsTableViewController+SwipeTableViewCell.swift */; };
 		CE62B7421F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B7411F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift */; };
 		CE62B7451F03E8960064A159 /* AccountTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE62B7441F03E8960064A159 /* AccountTypeCollectionViewCell.xib */; };
 		CE62B7481F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B7471F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift */; };
@@ -191,7 +191,7 @@
 		CE4FC0861F0CC1800016437D /* AccountsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsInteractorTests.swift; sourceTree = "<group>"; };
 		CE5BD75F1F0DDA2D00CCFD11 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionTableViewCell.swift; path = Views/Class/Transactions/TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		CE5BD7611F0E24C900CCFD11 /* MTNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MTNumberFormatter.swift; path = Utils/MTNumberFormatter.swift; sourceTree = "<group>"; };
-		CE5BD7631F0E274800CCFD11 /* TransactionsListDataSource+SwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TransactionsListDataSource+SwipeTableViewCell.swift"; path = "ViewControllers/Transactions/TransactionsListDataSource+SwipeTableViewCell.swift"; sourceTree = "<group>"; };
+		CE5BD7631F0E274800CCFD11 /* TransactionsTableViewController+SwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TransactionsTableViewController+SwipeTableViewCell.swift"; path = "ViewControllers/Transactions/TransactionsTableViewController+SwipeTableViewCell.swift"; sourceTree = "<group>"; };
 		CE62B7411F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountTypeCollectionDataSource.swift; path = Interactors/Accounts/AccountTypeCollectionDataSource.swift; sourceTree = "<group>"; };
 		CE62B7441F03E8960064A159 /* AccountTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountTypeCollectionViewCell.xib; path = Views/XIBs/Accounts/AccountTypeCollectionViewCell.xib; sourceTree = "<group>"; };
 		CE62B7471F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountTypeCollectionViewCell.swift; path = Views/Class/Accounts/AccountTypeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -478,7 +478,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4FC0801F0C8FF40016437D /* TransactionsTableViewController.swift */,
-				CE5BD7631F0E274800CCFD11 /* TransactionsListDataSource+SwipeTableViewCell.swift */,
+				CE5BD7631F0E274800CCFD11 /* TransactionsTableViewController+SwipeTableViewCell.swift */,
 				CE248BA21F0E424D00A5453A /* TodayViewController.swift */,
 				CEC0988F1F10F40B00D5E7B0 /* NewTransactionViewController.swift */,
 			);
@@ -1106,7 +1106,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE5BD7641F0E274800CCFD11 /* TransactionsListDataSource+SwipeTableViewCell.swift in Sources */,
+				CE5BD7641F0E274800CCFD11 /* TransactionsTableViewController+SwipeTableViewCell.swift in Sources */,
 				CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */,
 				CE5BD7601F0DDA2D00CCFD11 /* TransactionTableViewCell.swift in Sources */,
 				CE2C7DFD1EE56B61002AB5DC /* RealmLogoutInteractor.swift in Sources */,
@@ -1356,7 +1356,7 @@
 				);
 				INFOPLIST_FILE = mtrckr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -warn-long-function-bodies=50";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -warn-long-function-bodies=500";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				PRODUCT_MODULE_NAME = mtrckr;
 				PRODUCT_NAME = "$(TARGET_NAME)-$(BUILD_CONFIG_NAME)";
@@ -1378,7 +1378,7 @@
 				DEVELOPMENT_TEAM = DXH96DDY7G;
 				INFOPLIST_FILE = mtrckr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -warn-long-function-bodies=50";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -warn-long-function-bodies=500";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

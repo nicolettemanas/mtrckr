@@ -74,17 +74,23 @@ class NewTransactionViewController: FormViewController {
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
     }
+    
+    deinit {
+        print("[VIEW CONTROLLER] Deallocating \(self)")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupForm()
         accountsPresenter = AccountsPresenter(interactor: AccountsInteractor(with: RealmAuthConfig()))
         accounts = accountsPresenter?.accounts()
         
-        if transaction != nil {
-            setupTransaction()
-        }
+//        if transaction != nil {
+//            setupTransaction()
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -173,61 +179,62 @@ class NewTransactionViewController: FormViewController {
     private func setupForm() {
         setupDefaultRows()
         form
-        +++ TextRow {
-            $0.title = NSLocalizedString("Name", comment: "Title for Name field")
-            $0.placeholder = NSLocalizedString("(Eg.: Lunch, Bus ticket home)",
+        +++ TextRow { [unowned self] row in
+            row.title = NSLocalizedString("Name", comment: "Title for Name field")
+            row.placeholder = NSLocalizedString("(Eg.: Lunch, Bus ticket home)",
                                                comment: "Placeholder for name field. Gives examples of possible values")
-            $0.add(rule: RuleRequired())
-            $0.tag = nameTag
+            row.add(rule: RuleRequired())
+            row.tag = self.nameTag
             }
                 
-            <<< DateRow {
-                $0.title = NSLocalizedString("Date", comment: "Title for Date field")
-                $0.value = Date()
-                $0.tag = dateTag
+            <<< DateRow { [unowned self] row in
+                row.title = NSLocalizedString("Date", comment: "Title for Date field")
+                row.value = Date()
+                row.tag = self.dateTag
             }
             
-            <<< DecimalRow {
-                $0.title = NSLocalizedString("Amount", comment: "Title for Amount field")
-                $0.placeholder = NSLocalizedString("0.00", comment: "Default placeholder for amount field")
-                $0.add(rule: RuleRequired())
-                $0.tag = amountTag
+            <<< DecimalRow {[unowned self] row in
+                row.title = NSLocalizedString("Amount", comment: "Title for Amount field")
+                row.placeholder = NSLocalizedString("0.00", comment: "Default placeholder for amount field")
+                row.add(rule: RuleRequired())
+                row.tag = self.amountTag
             }
             
-        +++ SegmentedRow<TransactionType> {
-            $0.tag = typeTag
-            $0.options = [TransactionType.expense, TransactionType.income, TransactionType.transfer]
-            $0.value = TransactionType.expense
-            }
-            .onChange({ (row) in
-                self.catRow?.updateSelection(forType: row.value!)
-            })
+        +++ SegmentedRow<TransactionType> { [unowned self] row in
+        row.tag = self.typeTag
+        row.options = [TransactionType.expense, TransactionType.income, TransactionType.transfer]
+        row.value = TransactionType.expense
+        }
+        .onChange({ [unowned self] row in
+            self.catRow?.updateSelection(forType: row.value!)
+        })
             
-            <<< AccountsSelectorRow(fromTag) {
+            <<< AccountsSelectorRow(fromTag) { [unowned self] in
                 let ruleMustNotMatch = RuleClosure<Account> { rowValue in
                     return (rowValue == self.toRow?.value) ?
                         ValidationError(msg: "Must source account and destination account must not be the same") : nil
                 }
-                $0.tag = fromTag
+
+                $0.tag = self.fromTag
                 $0.title = NSLocalizedString("From", comment: "Title for From Account field")
                 $0.selectorTitle = NSLocalizedString("My Accounts", comment: "Title for list of accounts")
                 $0.noValueDisplayText = NSLocalizedString("Select account", comment: "Value of placeholder if no account is selected")
-                $0.options = self.getAccounts(without: toRow?.value)
+                $0.options = self.getAccounts(without: self.toRow?.value)
                 $0.add(rule: RuleRequired())
                 $0.add(rule: ruleMustNotMatch)
                 $0.validationOptions = .validatesOnDemand
                 }
             
-            <<< AccountsSelectorRow(toTag) {
+            <<< AccountsSelectorRow(toTag) { [unowned self] in
                 let ruleMustNotMatch = RuleClosure<Account> { rowValue in
                     return (rowValue == self.fromRow?.value) ?
                         ValidationError(msg: "Must source account and destination account must not be the same") : nil
                 }
-                $0.tag = toTag
+                $0.tag = self.toTag
                 $0.hidden = Condition.function([self.typeTag], { (_) -> Bool in
                     return self.typeRow?.value != TransactionType.transfer
                 })
-                
+
                 $0.title = NSLocalizedString("To", comment: "Title for to account field")
                 $0.selectorTitle = NSLocalizedString("My Accounts", comment: "Title for list of accounts")
                 $0.noValueDisplayText = NSLocalizedString("Select account",
@@ -235,15 +242,15 @@ class NewTransactionViewController: FormViewController {
                 $0.add(rule: RuleRequired())
                 $0.add(rule: ruleMustNotMatch)
                 $0.validationOptions = .validatesOnDemand
-                $0.options = self.getAccounts(without: fromRow?.value)
+                $0.options = self.getAccounts(without: self.fromRow?.value)
                 }
             
-        +++ Section("Category", { (section) in
-            section.tag = catSectionTag
+            +++ Section("Category", { [unowned self] section in
+            section.tag = self.catSectionTag
             section.hidden = Condition.function([self.typeTag], { (form) -> Bool in
                 return (form.rowBy(tag: self.typeTag) as? SegmentedRow)?.value == TransactionType.transfer
             }) })
-            
+        
             <<< CategoryRow(tag: catTag).cellSetup({ (cell, row) in
                 cell.height = { 255 }
                 row.validationOptions = .validatesOnDemand

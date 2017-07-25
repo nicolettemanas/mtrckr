@@ -21,12 +21,12 @@ class TransactionsChartCollectionViewCell: UICollectionViewCell {
     
     func setValues(of transactions: Results<Transaction>?, centerText: String) {
         var dataEntries: [PieChartDataEntry] = []
-        guard let trnsctns = transactions else {
+        guard let trnsctns: Results<Transaction> = transactions else {
             return
         }
         
         for trans in trnsctns {
-            let a = PieChartDataEntry(value: trans.amount)
+            let a: PieChartDataEntry = PieChartDataEntry(value: trans.amount)
             dataEntries.append(a)
         }
         

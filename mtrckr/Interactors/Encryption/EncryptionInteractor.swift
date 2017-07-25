@@ -29,7 +29,7 @@ class EncryptionInteractor: EncryptionInteractorProtocol {
                     fatalError("No IV and KEY found in bundle")
             }
             
-            let aes = try AES(key: key, iv: iv, blockMode: .CBC)
+            let aes: AES = try AES(key: key, iv: iv, blockMode: .CBC)
             let ciphertext = try aes.encrypt(Array(str.utf8))
             return ciphertext.toHexString()
         } catch let error as NSError {

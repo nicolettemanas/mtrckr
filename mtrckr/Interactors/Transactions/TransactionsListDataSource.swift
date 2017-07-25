@@ -17,12 +17,11 @@ enum TransactionsFilter {
 
 protocol TransactionsListDataSourceDelegate: class {
     func didUpdateTransactions()
-    func editTransaction(transaction: Transaction)
-    func confirmDeletTransaction(transaction: Transaction)
+    func didReceiveChanges(changes: RealmCollectionChange<Results<Transaction>>)
 }
 
 protocol TransactionsListDataSourceProtocol: UITableViewDelegate, UITableViewDataSource {
-    init(authConfig: AuthConfig, parentVC pVC: TransactionsTableViewControllerProtocol?, tableView: UITableView, filterBy filter: TransactionsFilter)
+    init(authConfig: AuthConfig, delegate: TransactionsListDataSourceDelegate?, filterBy filter: TransactionsFilter)
     var filterBy: TransactionsFilter { get set }
     var accountsFilter: [Account] { get set }
     var dateFilter: Date { get set }
@@ -31,6 +30,7 @@ protocol TransactionsListDataSourceProtocol: UITableViewDelegate, UITableViewDat
     func reloadByDate(with date: Date)
     func reloadByAccounts(with accounts: [Account])
     func sumOfDate(date: Date, account: [Account]) -> (String, String)
+    func transaction(at indexPath: IndexPath) -> Transaction?
 }
 
 class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtocol {
@@ -38,17 +38,19 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     var accountsFilter: [Account] = []
     var dateFilter: Date = Date()
     
-    private weak var parentVC: TransactionsTableViewControllerProtocol?
     private var notifToken: NotificationToken?
     private var monthSections: [(Date, Date)] = []
     private var transactions: Results<Transaction>?
     
-    weak var transactionsTable: UITableView?
     weak var delegate: TransactionsListDataSourceDelegate?
     
     var currency: String = ""
     var sectionTitles: [String] = []
-    var filterBy: TransactionsFilter
+    var filterBy: TransactionsFilter {
+        didSet {
+            setupTransactions()
+        }
+    }
     
     deinit {
             notifToken?.stop()
@@ -56,8 +58,8 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     
     // MARK: - Initializers
     required init(authConfig: AuthConfig,
-                  parentVC pVC: TransactionsTableViewControllerProtocol?,
-                  tableView: UITableView, filterBy filter: TransactionsFilter) {
+                  delegate del: TransactionsListDataSourceDelegate?,
+                  filterBy filter: TransactionsFilter) {
         
         filterBy = filter
         dateFilter = Date()
@@ -65,9 +67,8 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         
         super.init(with: authConfig)
         
-        parentVC = pVC
-        transactionsTable = tableView
-        
+        delegate = del
+
         if filterBy == .byDate {
             dateFilter = Date()
         } else {
@@ -75,7 +76,6 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         }
         
         currency = realmContainer!.currency()
-        setupTransactions()
     }
     
     // MARK: - TransactionsListDataSourceProtocol methods
@@ -101,6 +101,10 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         return ("", "")
     }
     
+    func transaction(at indexPath: IndexPath) -> Transaction? {
+        return transactions?[indexPath.row] ?? nil
+    }
+    
     // MARK: - UITableViewDataSource and UITableViewDelegate methods
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if filterBy == .byDate {
@@ -123,7 +127,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if filterBy == .byDate {
-            return 10
+            return 0
         }
         return 30
     }
@@ -142,19 +146,8 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         
         let t = transactions![indexPath.row]
         cell.setValues(ofTransaction: t, withCurrency: currency)
-        cell.delegate = parentVC as? SwipeTableViewCellDelegate
+        cell.delegate = delegate as? SwipeTableViewCellDelegate
         return cell
-    }
-    
-    // MARK: - Action methods
-    func confirmDelete(atIndex indexPath: IndexPath) {
-        guard let trans = self.transactions else { return }
-        delegate?.confirmDeletTransaction(transaction: trans[indexPath.row])
-    }
-    
-    func editTransaction(atIndex indexPath: IndexPath) {
-        guard let trans = self.transactions else { return }
-        delegate?.editTransaction(transaction: trans[indexPath.row])
     }
     
     // MARK: - Other methods
@@ -175,15 +168,17 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         DispatchQueue.main.async {
             switch self.filterBy {
                 case .byAccount:
-                    self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, fromAccount: self.accountsFilter[0])
+                    self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, fromAccounts: self.accountsFilter)
                     self.sectionTitles = self.generateTitles()
                 case .byDate:
                     self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, onDate: self.dateFilter)
             }
             
-            self.notifToken = self.transactions?.addNotificationBlock({ (change) in
-                self.transactionsTable!.applyChanges(changes: change)
-                self.delegate?.didUpdateTransactions()
+            self.notifToken?.stop()
+            self.notifToken = self.transactions?.addNotificationBlock({ [weak self] change in
+                guard let strongSelf = self else { return }
+                strongSelf.delegate?.didReceiveChanges(changes: change)
+                strongSelf.delegate?.didUpdateTransactions()
             })
         }
     }

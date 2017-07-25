@@ -131,7 +131,7 @@ class RealmAuthPresenter: RealmAuthPresenterProtocol, RealmRegInteractorOutput,
     ///
     /// - Parameter user: The `MTSyncUser` logged in
     func didLogin(user: MTSyncUser) {
-        print(":: did login \(user)")
+//        print(":: did login \(user)")
         DispatchQueue.main.async {
             self.output?.showSuccessfulLogin?(ofUser: user)
         }

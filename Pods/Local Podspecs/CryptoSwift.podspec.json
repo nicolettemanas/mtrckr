@@ -23,5 +23,9 @@
     "tvos": "9.0"
   },
   "source_files": "Sources/CryptoSwift/**/*.swift",
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "3.0",
+    "SWIFT_OPTIMIZATION_LEVEL": "-Owholemodule"
+  },
   "requires_arc": true
 }

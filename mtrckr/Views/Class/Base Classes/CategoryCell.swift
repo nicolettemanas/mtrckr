@@ -35,6 +35,7 @@ class CategoryCell: Cell<Category>, CellType, CategoryDataSourceDelegate {
         collectionView.register(UINib(nibName: "CategoryCollectionCell", bundle: Bundle.main),
                                 forCellWithReuseIdentifier: "CategoryCollectionCell")
         collectionView.backgroundColor = .clear
+        bringSubview(toFront: collectionView)
     }
     
     override func update() {

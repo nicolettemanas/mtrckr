@@ -30,3 +30,44 @@ class NewTransactionPresenter: NewTransactionPresenterProtocol {
         presentingVC.present(nav, animated: true, completion: nil)
     }
 }
+
+protocol DeleteTransactionSheetPresenterProtocol {
+    weak var alert: UIAlertController? { get }
+    var action: UIAlertAction.Type { get set }
+    
+    func displayDeleteSheet(toDelete transaction: Transaction, presentingVC: TodayViewControllerProtocol)
+}
+
+class DeleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol {
+    
+    var action: UIAlertAction.Type = UIAlertAction.self
+    weak var alert: UIAlertController?
+    
+    func displayDeleteSheet(toDelete transaction: Transaction,
+                            presentingVC: TodayViewControllerProtocol) {
+        let deleteConfirmation: UIAlertController = UIAlertController(title: nil,
+                                                   message: NSLocalizedString("Are you sure you want to delete this transaction? " +
+                                                    "This cannot be undone.",
+                                                  comment: "A warning that indicates the deletion of the transaction." +
+                                                    " Asks for user's confirmation."),
+                                                   preferredStyle: .actionSheet)
+        
+        let cancel = action.makeActionWithTitle(title: NSLocalizedString("Don't delete!", comment: "Spiel telling the user to not delete"),
+                                                style: .cancel) { (_) in
+                                                    deleteConfirmation.dismiss(animated: true, completion: nil)
+        }
+        
+        let delete = action.makeActionWithTitle(title: NSLocalizedString("Yes, please.",
+                                                                         comment: "Spiel telling the user to proceed deletion"),
+                                                style: .destructive) { (_) in
+                                                    presentingVC.shouldDeleteTransaction(transaction: transaction)
+        }
+        
+        deleteConfirmation.addAction(cancel)
+        deleteConfirmation.addAction(delete)
+        
+        alert = deleteConfirmation
+        
+        (presentingVC as? UIViewController)?.present(deleteConfirmation, animated: true, completion: nil)
+    }
+}

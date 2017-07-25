@@ -35,9 +35,10 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         collectionView = cv
         realm = realmContainer?.userRealm
         types = AccountType.all(in: realm!)
-        notifToken = realm!.addNotificationBlock({ (_, realm) in
-            self.types = AccountType.all(in: realm)
-            self.collectionView?.reloadData()
+        notifToken = realm!.addNotificationBlock({ [weak self] _, realm in
+            guard let strongSelf = self else { return }
+            strongSelf.types = AccountType.all(in: realm)
+            strongSelf.collectionView?.reloadData()
         })
         
         collectionView?.register(UINib(nibName: "AccountTypeCollectionViewCell", bundle: Bundle.main),
