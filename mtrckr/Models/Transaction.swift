@@ -232,6 +232,20 @@ class Transaction: Object {
             .filter("transactionDate > %@ AND transactionDate < %@", date.start(of: .day), date.end(of: .day))
             .sorted(byKeyPath: "transactionDate", ascending: false)
     }
+    
+    static func all(in realm: Realm, between startDate: Date, and endDate: Date,
+                    inAccounts accounts: [Account]) -> Results<Transaction> {
+        if accounts.count == 0 {
+            return realm.objects(Transaction.self)
+                .filter("transactionDate > %@ AND transactionDate < %@", startDate.start(of: .day), endDate.end(of: .day))
+                .sorted(byKeyPath: "transactionDate", ascending: false)
+        } else {
+            return realm.objects(Transaction.self)
+                .filter("transactionDate > %@ AND transactionDate < %@", startDate.start(of: .day), endDate.end(of: .day))
+                .filter("fromAccount in %@", accounts)
+                .sorted(byKeyPath: "transactionDate", ascending: false)
+        }
+    }
 
     // MARK: - associated account methods
     /// :nodoc:

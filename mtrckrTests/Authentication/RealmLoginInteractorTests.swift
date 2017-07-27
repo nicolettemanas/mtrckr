@@ -55,7 +55,7 @@ class RealmLoginInteractorTests: QuickSpec {
                 
                 context("User chooses to append data", {
                     beforeEach {
-                        let customCat = mtrckr.Category(id: "customCategory1", type: .expense, name: "Expense1", icon: "")
+                        let customCat = mtrckr.Category(id: "customCategory1", type: .expense, name: "Expense1", icon: "", color: "")
                         customCat.save(toRealm: self.offlineRealm!)
                         
                         self.loginInteractor?.login(withEmail: "sample@gmail.com",
@@ -76,7 +76,7 @@ class RealmLoginInteractorTests: QuickSpec {
                 
                 context("User chooses to disregard offline data", {
                     beforeEach {
-                        let customCat = mtrckr.Category(id: "customCategory1", type: .expense, name: "Expense1", icon: "")
+                        let customCat = mtrckr.Category(id: "customCategory1", type: .expense, name: "Expense1", icon: "", color: "")
                         customCat.save(toRealm: self.offlineRealm!)
                         
                         self.loginInteractor?.login(withEmail: "sample@gmail.com",

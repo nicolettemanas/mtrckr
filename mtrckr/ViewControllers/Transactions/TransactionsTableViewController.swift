@@ -12,62 +12,66 @@ import RealmSwift
 protocol TransactionsTableViewControllerProtocol: class {
     var accounts: [Account] { get set }
     var date: Date? { get set }
-    var transactionDataSource: TransactionsListDataSourceProtocol? { get set }
     var transTableView: UITableView? { get set }
-    var filterBy: TransactionsFilter? { get set }
+    var filter: TransactionsFilter! { get set }
+    var config: AuthConfig! { get set }
+    
+    func reloadTableBy(date: Date?, accounts: [Account])
 }
 
-class TransactionsTableViewController: MTTableViewController, TransactionsTableViewControllerProtocol, TransactionsListDataSourceDelegate {
+class TransactionsTableViewControllerFactory {
+    private var storyboard: UIStoryboard
+    
+    init(with storyboard: UIStoryboard) {
+        self.storyboard = storyboard
+    }
+    
+    func createTransactionsTableView(filterBy filter: TransactionsFilter, config: AuthConfig) -> TransactionsTableViewControllerProtocol {
+        guard let tvc = self.storyboard.instantiateViewController(withIdentifier: "TransactionsTableViewController")
+            as? TransactionsTableViewControllerProtocol else {
+                fatalError("TransactionsTableViewController does not conform to protocol TransactionsTableViewControllerProtocol")
+        }
+        tvc.filter = filter
+        tvc.config = config
+        return tvc
+    }
+}
+
+class TransactionsTableViewController: MTTableViewController, TransactionsTableViewControllerProtocol {
     
     private var currency: String?
     private var observer: ObserverProtocol?
     private var emptytransactionDataSource: EmptyTransactionsDataSource?
+    private var transactionsDataSource: TransactionsListDataSourceProtocol?
     
     // MARK: - TransactionsTableViewControllerProtocol properties
     internal var accounts: [Account] = []
     internal var date: Date?
-    internal var transactionDataSource: TransactionsListDataSourceProtocol?
     internal var transTableView: UITableView?
-    internal var filterBy: TransactionsFilter? {
-        didSet {
-            transactionDataSource?.filterBy = filterBy!
-        }
-    }
+    internal var config: AuthConfig!
+    internal var filter: TransactionsFilter!
     
     var presenter: TransactionsPresenterProtocol?
     
-    internal static func instantiate(with filter: TransactionsFilter) -> TransactionsTableViewController {
-        
-        guard let transVC: TransactionsTableViewController = UIStoryboard(name: "Today", bundle: Bundle.main)
-            .instantiateViewController(withIdentifier: "TransactionsTableViewController")
-            as? TransactionsTableViewController else {
-                fatalError("Cannot find TransactionsTableViewController")
-        }
-        transVC.filterBy = filter
-        transVC.transactionDataSource = TransactionsListDataSource(authConfig: RealmAuthConfig(),
-                                                                   delegate: transVC,
-                                                                   filterBy: filter)
-        return transVC
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if accounts.count == 1 {
-            title = accounts[0].name
-        }
-        
+        setupTransactionsDatasource()
+    }
+    
+    func setupTransactionsDatasource() {
+        transactionsDataSource = TransactionsListDataSource(authConfig: config!,
+                                                            delegate: self,
+                                                            filterBy: filter!)
         currency = presenter?.currency()
         
         tableView.register(UINib(nibName: "TransactionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "TransactionTableViewCell")
         tableView.allowsSelection = false
         
-        if filterBy == nil {
-            filterBy = .byAccount
-        }
+        tableView.delegate = transactionsDataSource
+        tableView.dataSource = transactionsDataSource
         
-        tableView.delegate = transactionDataSource
-        tableView.dataSource = transactionDataSource
+        tableView.separatorColor = MTColors.lightBg
+        
         transTableView = tableView
         
         emptytransactionDataSource = EmptyTransactionsDataSource()
@@ -75,22 +79,32 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
         tableView.emptyDataSetDelegate = emptytransactionDataSource
     }
     
+    func reloadTableBy(date: Date?, accounts: [Account]) {
+        guard let reloadDate = date else {
+            transactionsDataSource?.reloadByAccounts(with: accounts)
+            return
+        }
+        
+        transactionsDataSource?.reloadByDate(with: reloadDate)
+    }
+    
     // MARK: - Swipe cell handler methods
     func editTransaction(atIndex index: IndexPath) {
         guard let parentVC = parent as? TodayViewControllerProtocol,
-            let trans = transactionDataSource?.transaction(at: index) else { return }
+            let trans = transactionsDataSource?.transaction(at: index) else { return }
         parentVC.editTransaction(transaction: trans)
     }
     
     func confirmDelete(atIndex index: IndexPath) {
         guard let parentVC = parent as? TodayViewControllerProtocol,
-            let trans = transactionDataSource?.transaction(at: index) else { return }
+            let trans = transactionsDataSource?.transaction(at: index) else { return }
         parentVC.confirmDeletTransaction(transaction: trans)
     }
-    
-    // MARK: - TransactionsListDataSourceDelegate
+}
+
+extension TransactionsTableViewController: TransactionsListDataSourceDelegate {
     func didUpdateTransactions() {
-        (parent as? TodayViewController)?.calendar.reloadData()
+        
     }
     
     func didReceiveChanges(changes: RealmCollectionChange<Results<Transaction>>) {

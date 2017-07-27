@@ -37,7 +37,7 @@ class TransactionTests: QuickSpec {
             var cashAccountType: AccountType!
 
             beforeEach {
-                category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
+                category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg", color: "")
                 cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
                 account = Account(value: ["id": "accnt1",
                                           "name": "My Cash",
@@ -85,7 +85,7 @@ class TransactionTests: QuickSpec {
             beforeEach {
                 currency = Currency(id: "Curr1", isoCode: "USD", symbol: "`$", state: "USA")
                 user = User(id: "user1", name: "", email: "", image: "", currency: currency)
-                category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
+                category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg", color: "")
                 cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
                 account = Account(value: ["id": "accnt1",
                                           "name": "My Cash",
@@ -151,7 +151,7 @@ class TransactionTests: QuickSpec {
 
                 context("transaction is of type income", {
                     it("should add to account's total income and add to current amount", closure: {
-                        let newCategory = Category(id: "cat1", type: .income, name: "Income", icon: "income.jpg")
+                        let newCategory = Category(id: "cat1", type: .income, name: "Income", icon: "income.jpg", color: "")
                         transaction = Transaction(type: .income, name: "Salary", image: nil, description: "January Salary", amount: 10000,
                                                   category: newCategory, from: account, to: account, date: transDate)
                         transaction.save(toRealm: self.testRealm)
@@ -206,7 +206,7 @@ class TransactionTests: QuickSpec {
                                                      "totalIncome": 0.0,
                                                      "color": "#AAAAAA",
                                                      "dateOpened": Date()])
-                    newCategory = Category(id: "cat1", type: .income, name: "Income", icon: "income.jpg")
+                    newCategory = Category(id: "cat1", type: .income, name: "Income", icon: "income.jpg", color: "")
                     transDate = Date()
                 }
 
@@ -356,12 +356,12 @@ class TransactionTests: QuickSpec {
             })
 
             describe("all() of account", {
-                it("returns all Transactions of given account sorted by transactionDate", closure: {
+                it("returns all Transactions of given account sorted descending by transactionDate", closure: {
                     self.createTransactions(n: 3)
                     let transactions = Transaction.all(in: self.testRealm, fromAccount: account)
                     expect(transactions.count) == 3
-                    expect(transactions[0].transactionDate) < transactions[1].transactionDate
-                    expect(transactions[1].transactionDate) < transactions[2].transactionDate
+                    expect(transactions[0].transactionDate) > transactions[1].transactionDate
+                    expect(transactions[1].transactionDate) > transactions[2].transactionDate
                     expect(transactions[0].toAccount) == account
                     expect(transactions[1].toAccount) == account
                     expect(transactions[2].toAccount) == account
@@ -369,12 +369,12 @@ class TransactionTests: QuickSpec {
             })
 
             describe("all() of category", {
-                it("returns all Transactions of given category sorted by transactionDate", closure: {
+                it("returns all Transactions of given category sorted descending by transactionDate", closure: {
                     self.createTransactions(n: 3)
                     let transactions = Transaction.all(in: self.testRealm, underCategory: category)
                     expect(transactions.count) == 3
-                    expect(transactions[0].transactionDate) < transactions[1].transactionDate
-                    expect(transactions[1].transactionDate) < transactions[2].transactionDate
+                    expect(transactions[0].transactionDate) > transactions[1].transactionDate
+                    expect(transactions[1].transactionDate) > transactions[2].transactionDate
                     expect(transactions[0].category) == category
                     expect(transactions[1].category) == category
                     expect(transactions[2].category) == category
@@ -399,7 +399,7 @@ class TransactionTests: QuickSpec {
                                                  "color": "#AAAAAA",
                                                  "dateOpened": Date()])
 
-                    let incomeCategory = Category(id: "cat1", type: .income, name: "Salary", icon: "salary.jpg")
+                    let incomeCategory = Category(id: "cat1", type: .income, name: "Salary", icon: "salary.jpg", color: "")
 
                     expenseTransaction = Transaction(type: .expense, name: "Transaction", image: nil,
                                                      description: "Desc", amount: 100, category: category,

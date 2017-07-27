@@ -76,6 +76,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         }
         
         currency = realmContainer!.currency()
+        setupTransactions()
     }
     
     // MARK: - TransactionsListDataSourceProtocol methods

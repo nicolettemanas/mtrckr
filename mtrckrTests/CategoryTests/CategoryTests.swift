@@ -39,11 +39,12 @@ class CategoryTests: QuickSpec {
         describe("Model Category") {
             describe("initializa with id, type, name, icon", {
                 it("initializes and assign properties correctly ", closure: {
-                    let cat = Category(id: "cat1", type: .expense, name: "Food", icon: "food.jpg")
+                    let cat = Category(id: "cat1", type: .expense, name: "Food", icon: "food.jpg", color: "color1")
                     expect(cat.id) == "cat1"
                     expect(cat.type) == CategoryType.expense.rawValue
                     expect(cat.name) == "Food"
                     expect(cat.icon) == "food.jpg"
+                    expect(cat.color) == "color1"
                 })
             })
         }
@@ -53,7 +54,7 @@ class CategoryTests: QuickSpec {
 
                 context("normal category", {
                     it("saves object to database correctly", closure: {
-                        let cat = Category(id: "cat1", type: .expense, name: "Food", icon: "food.jpg")
+                        let cat = Category(id: "cat1", type: .expense, name: "Food", icon: "food.jpg", color: "color1")
                         cat.save(toRealm: self.testRealm)
 
                         let catFromDatabase = self.testRealm.objects(Category.self).last
@@ -61,13 +62,14 @@ class CategoryTests: QuickSpec {
                         expect(catFromDatabase?.type) == CategoryType.expense.rawValue
                         expect(catFromDatabase?.name) == "Food"
                         expect(catFromDatabase?.icon) == "food.jpg"
+                        expect(catFromDatabase?.color) == "color1"
                     })
                 })
 
                 context("custom category", {
 
                     beforeEach {
-                        let cat = Category(type: .expense, name: "Personal", icon: "person.jpg")
+                        let cat = Category(type: .expense, name: "Personal", icon: "person.jpg", color: "")
                         cat.save(toRealm: self.testRealm)
                     }
 
@@ -89,11 +91,11 @@ class CategoryTests: QuickSpec {
 
             describe("update()", {
                 it("updates values if object already exists", closure: {
-                    let cat = Category(id: "cat1", type: .expense, name: "Food", icon: "food.jpg")
+                    let cat = Category(id: "cat1", type: .expense, name: "Food", icon: "food.jpg", color: "color1")
                     cat.save(toRealm: self.testRealm)
 
                     let catFromDatabase = self.testRealm.objects(Category.self).last
-                    let updatedCategory = Category(id: "cat1", type: .income, name: "Salary", icon: "salary.jpg")
+                    let updatedCategory = Category(id: "cat1", type: .income, name: "Salary", icon: "salary.jpg", color: "color1")
                     catFromDatabase?.update(to: updatedCategory, in: self.testRealm)
 
                     let categories = Category.all(in: self.testRealm)
@@ -232,20 +234,20 @@ class CategoryTests: QuickSpec {
 
     func createIncomes(n: Int) {
         for i in 10..<n+10 {
-            Category(id: "cat\(i)", type: .income, name: "cat \(i)", icon: "icon \(i)").save(toRealm: self.testRealm)
+            Category(id: "cat\(i)", type: .income, name: "cat \(i)", icon: "icon \(i)", color: "color\(i)").save(toRealm: self.testRealm)
         }
     }
 
     func createExpenses(n: Int) {
         for i in 20..<n+20 {
-            Category(id: "cat\(i)", type: .expense, name: "cat \(i)", icon: "icon \(i)").save(toRealm: self.testRealm)
+            Category(id: "cat\(i)", type: .expense, name: "cat \(i)", icon: "icon \(i)", color: "color\(i)").save(toRealm: self.testRealm)
         }
     }
 
     func createCustomCategories(n: Int, for user: User) -> [mtrckr.Category] {
         var cat: [mtrckr.Category] = []
         for i in 30..<n+30 {
-            let c = mtrckr.Category(type: .expense, name: "Custom category \(i)", icon: "custom\(i).jpg")
+            let c = mtrckr.Category(type: .expense, name: "Custom category \(i)", icon: "custom\(i).jpg", color: "color\(i)")
             c.save(toRealm: self.testRealm)
             cat.append(c)
         }

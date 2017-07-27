@@ -20,11 +20,12 @@ struct MTColors {
     static let placeholderText = UIColor("#A3A5B7FF")
     static let lightBg = UIColor("#EEEEEEFF")
     
-    static let mainBlue = UIColor("#64ABDAFF")
+    static let mainBlue = UIColor("#00A7E1FF")
     static let mainRed = UIColor("#F45A5DFF")
     static let mainGreen = UIColor("#45CB85FF")
     static let mainOrange = UIColor("#F5AC72FF")
     static let subRed = UIColor("#F4E3E3FF")
+    static let subBlue = UIColor("#CBF4FFFF")
     
     static let colors: [UIColor] = [UIColor("#F49A50FF"), // orange
                                     UIColor("#F47072FF"), // red orange

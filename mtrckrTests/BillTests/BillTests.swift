@@ -32,7 +32,7 @@ class BillTests: QuickSpec {
         describe("Model Bill") {
             describe("initialize with values", {
                 it("initializes and assign properties correctly", closure: {
-                    let category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
+                    let category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg", color: "")
                     let startDate = Date()
 
                     let bill = Bill(value: ["id": "bill0",
@@ -70,7 +70,7 @@ class BillTests: QuickSpec {
 
             beforeEach {
                 currency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
-                category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
+                category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg", color: "")
                 user = User(id: "user0", name: "", email: "", image: "", currency: currency)
                 startDate = Date()
 
@@ -162,7 +162,7 @@ class BillTests: QuickSpec {
                     beforeEach {
                         bill.save(toRealm: self.testRealm)
 
-                        anotherCategory = Category(id: "cat1", type: .expense, name: "Utilities2", icon: "util2.jpg")
+                        anotherCategory = Category(id: "cat1", type: .expense, name: "Utilities2", icon: "util2.jpg", color: "")
                         billFromDatabase = self.testRealm.objects(Bill.self).last
                         billFromDatabase!.update(amount: 2000, name: "Postpaid bill2", postDueReminder: .threeDays,
                                                  preDueReminder: .never, category: anotherCategory, in: self.testRealm)
@@ -259,7 +259,7 @@ class BillTests: QuickSpec {
     }
 
     func createBills(n: Int, for user: User) {
-        let category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
+        let category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg", color: "")
 
         for i in 0..<n {
             Bill(value: [

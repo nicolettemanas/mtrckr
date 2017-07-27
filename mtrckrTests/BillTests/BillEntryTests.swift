@@ -35,7 +35,7 @@ class BillEntryTests: QuickSpec {
             var billEntry: BillEntry!
 
             beforeEach {
-                let category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
+                let category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg", color: "")
 
                 dueDate = Date()
                 bill = Bill(value: ["id": "bill0",
@@ -111,7 +111,7 @@ class BillEntryTests: QuickSpec {
 
             beforeEach {
                 currency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
-                category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
+                category = Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg", color: "")
                 user = User(id: "user0", name: "", email: "", image: "", currency: currency)
                 dueDate = Date()
                 bill = Bill(value: ["id": "bill0",

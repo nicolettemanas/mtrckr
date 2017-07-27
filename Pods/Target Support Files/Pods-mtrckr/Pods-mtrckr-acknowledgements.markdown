@@ -283,9 +283,11 @@ SOFTWARE.
 
 
 
-## FSCalendar
+## Hero
 
-Copyright (c) 2013-2016 FSCalendar (https://github.com/WenchaoD/FSCalendar)
+The MIT License (MIT)
+
+Copyright (c) 2015 Luke Zhao <me@lkzhao.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -306,11 +308,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-## Hero
+## JTAppleCalendar
 
-The MIT License (MIT)
-
-Copyright (c) 2015 Luke Zhao <me@lkzhao.com>
+Copyright (c) 2016 JayT <patchthecode@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

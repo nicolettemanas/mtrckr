@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let holder = RealmContainer(withConfig: RealmAuthConfig())
             _ = holder.userRealm
         }
-        
+
         return true
     }
 

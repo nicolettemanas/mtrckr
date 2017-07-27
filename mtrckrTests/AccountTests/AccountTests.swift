@@ -212,11 +212,11 @@ class AccountTests: QuickSpec {
                 })
 
                 it("deletes transactions under deleted account", closure: {
-                    let category = mtrckr.Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
+                    let category = mtrckr.Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg", color: "")
                     let transactions = Transaction.all(in: self.testRealm, underCategory: category)
                     expect(transactions.count) == 2
-                    expect(transactions[0].name) == "trans 1"
-                    expect(transactions[1].name) == "trans 2"
+                    expect(transactions[0].name) == "trans 2"
+                    expect(transactions[1].name) == "trans 1"
                 })
             })
         }
@@ -224,7 +224,7 @@ class AccountTests: QuickSpec {
 
     func createAccounts(n: Int, for user: User) {
         let cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
-        let category = mtrckr.Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg")
+        let category = mtrckr.Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg", color: "")
         for i in 0..<n {
             let acc = Account(value: ["id": "accnt\(i)",
                             "name": "Account \(i)",

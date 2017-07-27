@@ -25,7 +25,7 @@ class AccountsPresenterTests: QuickSpec {
             self.mockAccountsInteractor?.realmContainer = MockRealmContainer(memoryIdentifier: self.identifier)
             self.mockAccountsInteractor?.realmContainer?.setDefaultRealm(to: .offline)
             
-            self.accountsPresenter = AccountsPresenter(interactor: self.mockAccountsInteractor)
+            self.accountsPresenter = AccountsPresenter(interactor: self.mockAccountsInteractor!)
         }
         
         describe("AccountsPresenter") {

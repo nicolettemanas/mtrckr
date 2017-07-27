@@ -146,7 +146,7 @@ class UserTests: QuickSpec {
         for i in 0..<n {
             let user = User(id: "user\(i)", name: "User \(i)", email: "email\(i)1@sample.com",
                 image: "/img\(i).jpg", currency: newCurrency)
-            let category = mtrckr.Category(type: .expense, name: "Category \(i)", icon: "")
+            let category = mtrckr.Category(type: .expense, name: "Category \(i)", icon: "", color: "")
             let account = Account(value: ["id": "accnt\(i)",
                 "name": "Account \(i)",
                 "type": cashAccountType,

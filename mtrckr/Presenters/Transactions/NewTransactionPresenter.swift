@@ -35,7 +35,7 @@ protocol DeleteTransactionSheetPresenterProtocol {
     weak var alert: UIAlertController? { get }
     var action: UIAlertAction.Type { get set }
     
-    func displayDeleteSheet(toDelete transaction: Transaction, presentingVC: TodayViewControllerProtocol)
+    func displayDeleteSheet(toDelete transaction: Transaction, presentingVC: CalendarViewControllerProtocol)
 }
 
 class DeleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol {
@@ -44,7 +44,7 @@ class DeleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol {
     weak var alert: UIAlertController?
     
     func displayDeleteSheet(toDelete transaction: Transaction,
-                            presentingVC: TodayViewControllerProtocol) {
+                            presentingVC: CalendarViewControllerProtocol) {
         let deleteConfirmation: UIAlertController = UIAlertController(title: nil,
                                                    message: NSLocalizedString("Are you sure you want to delete this transaction? " +
                                                     "This cannot be undone.",

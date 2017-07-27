@@ -6,8 +6,8 @@ PODS:
   - DateToolsSwift (2.0.3)
   - DZNEmptyDataSet (1.8.1)
   - Eureka (3.0.0)
-  - FSCalendar (2.7.9)
   - Hero (0.3.6)
+  - JTAppleCalendar (7.0.5)
   - Mockingjay (2.0.0):
     - Mockingjay/Core (= 2.0.0)
     - Mockingjay/XCTest (= 2.0.0)
@@ -35,8 +35,8 @@ DEPENDENCIES:
   - DateToolsSwift (~> 2.0.3)
   - DZNEmptyDataSet
   - Eureka (from `https://github.com/xmartlabs/Eureka.git`, branch `feature/Xcode9-Swift3_2`)
-  - FSCalendar (~> 2.7.9)
   - Hero (~> 0.3.6)
+  - JTAppleCalendar
   - Mockingjay (~> 2.0.0)
   - Nimble (~> 7.0.1)
   - NVActivityIndicatorView (~> 3.6.1)
@@ -75,8 +75,8 @@ SPEC CHECKSUMS:
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
-  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
+  JTAppleCalendar: e01efccbf51cb6b3606f6cbcaa448befffed9582
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
   NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
@@ -89,6 +89,6 @@ SPEC CHECKSUMS:
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: 9c92060ee8ad682ed62626616c800cb950573ba0
+PODFILE CHECKSUM: c15d569c1ff14b0ac59f840579dd49dcadbb4149
 
 COCOAPODS: 1.1.1
