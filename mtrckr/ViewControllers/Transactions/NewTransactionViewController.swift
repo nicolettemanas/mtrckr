@@ -12,6 +12,8 @@ import RealmSwift
 protocol NewTransactionViewControllerDelegate: class {
     func shouldSaveTransaction(with name: String, amount: Double, type: TransactionType, date: Date, category: Category?,
                                from sourceAcc: Account, to destAccount: Account)
+    func update(transaction: Transaction, withValues name: String, amount: Double, type: TransactionType, date: Date, category: Category?,
+                from sourceAcc: Account, to destAccount: Account)
 }
 
 class NewTransactionViewController: FormViewController {
@@ -61,21 +63,12 @@ class NewTransactionViewController: FormViewController {
     @IBAction func saveBtnPressed(_ sender: Any) {
         let errors = form.validate()
         if errors.isEmpty {
-            var toAcc = toRow?.value
-            if typeRow?.value! != .transfer {
-                toAcc = fromRow!.value!
-            }
-            delegate?.shouldSaveTransaction(with: nameRow!.value!, amount: amountRow!.value!,
-                                            type: typeRow!.value!, date: dateRow!.value!,
-                                            category: catRow?.value, from: fromRow!.value!,
-                                            to: toAcc!)
-            dismiss(animated: true)
+            saveTransaction()
         }
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
         navigationController?.dismiss(animated: true, completion: nil)
-//        dismiss(animated: true, completion: nil)
     }
     
     deinit {
@@ -88,9 +81,9 @@ class NewTransactionViewController: FormViewController {
         accountsPresenter = AccountsPresenter(interactor: AccountsInteractor(with: RealmAuthConfig()))
         accounts = accountsPresenter?.accounts()
         
-//        if transaction != nil {
-//            setupTransaction()
-//        }
+        if transaction != nil {
+            setupTransaction()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,15 +96,40 @@ class NewTransactionViewController: FormViewController {
         navigationItem.title = ""
     }
     
+    private func saveTransaction() {
+        var toAcc = toRow?.value
+        if typeRow?.value! != .transfer {
+            toAcc = fromRow!.value!
+        }
+        
+        if transaction != nil {
+            delegate?.update(transaction: transaction!,
+                             withValues: nameRow!.value!, amount: amountRow!.value!,
+                             type: typeRow!.value!, date: dateRow!.value!,
+                             category: catRow?.value, from: fromRow!.value!,
+                             to: toAcc!)
+        } else {
+            delegate?.shouldSaveTransaction(with: nameRow!.value!, amount: amountRow!.value!,
+                                            type: typeRow!.value!, date: dateRow!.value!,
+                                            category: catRow?.value, from: fromRow!.value!,
+                                            to: toAcc!)
+        }
+        dismiss(animated: true)
+    }
+    
     private func setupTransaction() {
         guard let trans = self.transaction else { return }
         typeRow?.value = TransactionType(rawValue: trans.type)
         nameRow?.value = trans.name
         amountRow?.value = trans.amount
         dateRow?.value = trans.transactionDate
+        
         fromRow?.value = trans.fromAccount
-        toRow?.value = trans.toAccount
-//        categoryRow?.value = trans.category
+        if trans.type == TransactionType.transfer.rawValue {
+            toRow?.value = trans.toAccount
+        }
+        
+        catRow?.value = trans.category
     }
     
     private func setupDefaultRows() {
@@ -191,6 +209,7 @@ class NewTransactionViewController: FormViewController {
                 row.title = NSLocalizedString("Date", comment: "Title for Date field")
                 row.value = Date()
                 row.tag = self.dateTag
+                row.dateFormatter?.timeZone = TimeZone.current
             }
             
             <<< DecimalRow {[unowned self] row in

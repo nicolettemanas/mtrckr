@@ -15,9 +15,7 @@ protocol AccountsTableViewControllerProtocol {
     var presenter: AccountsPresenterProtocol? { get set }
 }
 
-class AccountsTableViewController: MTTableViewController, AccountsTableViewControllerProtocol,
-                                    NewAccountViewControllerDelegate, UserObserver, DZNEmptyDataSetSource,
-                                    DZNEmptyDataSetDelegate {
+class AccountsTableViewController: MTTableViewController, AccountsTableViewControllerProtocol, UserObserver {
     
     // MARK: - Properties
     var presenter: AccountsPresenterProtocol?
@@ -131,8 +129,9 @@ class AccountsTableViewController: MTTableViewController, AccountsTableViewContr
         transactionsPresenter?.presentTransactions(ofAccount: accounts![indexPath.row], presentingVC: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    // MARK: - NewAccountViewControllerDelegate methods
+}
+
+extension AccountsTableViewController: NewAccountViewControllerDelegate {
     func shouldCreateAccount(withId id: String?, name: String, type: AccountType,
                              initBalance: Double, dateOpened: Date,
                              color: UIColor) {

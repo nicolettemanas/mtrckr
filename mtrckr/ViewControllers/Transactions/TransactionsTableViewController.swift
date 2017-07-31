@@ -61,7 +61,9 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
     func setupTransactionsDatasource() {
         transactionsDataSource = TransactionsListDataSource(authConfig: config!,
                                                             delegate: self,
-                                                            filterBy: filter!)
+                                                            filterBy: filter!,
+                                                            date: date,
+                                                            accounts: accounts)
         currency = presenter?.currency()
         
         tableView.register(UINib(nibName: "TransactionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "TransactionTableViewCell")
@@ -70,13 +72,16 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
         tableView.delegate = transactionsDataSource
         tableView.dataSource = transactionsDataSource
         
-        tableView.separatorColor = MTColors.lightBg
-        
         transTableView = tableView
         
         emptytransactionDataSource = EmptyTransactionsDataSource()
         tableView.emptyDataSetSource = emptytransactionDataSource
         tableView.emptyDataSetDelegate = emptytransactionDataSource
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.separatorColor = MTColors.lightBg
     }
     
     func reloadTableBy(date: Date?, accounts: [Account]) {
@@ -90,13 +95,13 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
     
     // MARK: - Swipe cell handler methods
     func editTransaction(atIndex index: IndexPath) {
-        guard let parentVC = parent as? TodayViewControllerProtocol,
+        guard let parentVC = parent as? CalendarViewController,
             let trans = transactionsDataSource?.transaction(at: index) else { return }
         parentVC.editTransaction(transaction: trans)
     }
     
     func confirmDelete(atIndex index: IndexPath) {
-        guard let parentVC = parent as? TodayViewControllerProtocol,
+        guard let parentVC = parent as? CalendarViewController,
             let trans = transactionsDataSource?.transaction(at: index) else { return }
         parentVC.confirmDeletTransaction(transaction: trans)
     }

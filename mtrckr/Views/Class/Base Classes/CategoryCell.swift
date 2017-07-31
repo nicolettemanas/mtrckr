@@ -29,6 +29,7 @@ class CategoryCell: Cell<Category>, CellType, CategoryDataSourceDelegate {
     override func setup() {
         super.setup()
         dataSource = CategoryDataSource(with: RealmAuthConfig(), ofType: .expense, collectionView: collectionView)
+        dataSource?.value = row.value
         dataSource?.delegate = self
         collectionView.dataSource = dataSource as? UICollectionViewDataSource
         collectionView.delegate = dataSource as? UICollectionViewDelegate
@@ -60,6 +61,7 @@ class CategoryCell: Cell<Category>, CellType, CategoryDataSourceDelegate {
 protocol CategoryDataSourceProtocol {
     var categories: Results<Category>? { get }
     var collectionView: UICollectionView? { get set }
+    var value: Category? { get set }
     var delegate: CategoryDataSourceDelegate? { get set }
     func selectItem(at indexPath: IndexPath)
     func updateSelection(forType type: TransactionType)
@@ -73,6 +75,8 @@ class CategoryDataSource: RealmHolder, CategoryDataSourceProtocol,
 UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var categories: Results<Category>?
+    var value: Category?
+    
     weak var collectionView: UICollectionView?
     weak var delegate: CategoryDataSourceDelegate?
     
@@ -130,8 +134,10 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         cell.icon.image = UIImage(named: cat.icon)
         cell.label.text = cat.name
         
+        if cat == value {
+            cell.isSelected = true
+        }
         cell.setSelected(selected: cell.isSelected, category: cat)
-        
         return cell
     }
     

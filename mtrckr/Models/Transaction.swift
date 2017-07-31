@@ -119,6 +119,7 @@ class Transaction: Object {
         do {
             try realm.write {
                 self.willSave()
+                print("Transaction: \(self.id) \(self.transactionDate)")
                 realm.add(self)
             }
         } catch let error as NSError {
@@ -155,6 +156,22 @@ class Transaction: Object {
 
                 newTransaction.willSave()
                 realm.add(newTransaction)
+            }
+        } catch let error as NSError {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func updateTo(transaction: Transaction, inRealm realm: Realm) {
+        if Transaction.with(key: self.id, inRealm: realm) == nil { return }
+        if self.id != transaction.id { fatalError("Trying to update the wrong Transaction.") }
+        do {
+            try realm.write {
+                self.willDelete(inRealm: realm)
+                realm.delete(self)
+                
+                transaction.willSave()
+                realm.add(transaction)
             }
         } catch let error as NSError {
             fatalError(error.localizedDescription)

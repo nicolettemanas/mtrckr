@@ -21,10 +21,14 @@ protocol TransactionsListDataSourceDelegate: class {
 }
 
 protocol TransactionsListDataSourceProtocol: UITableViewDelegate, UITableViewDataSource {
-    init(authConfig: AuthConfig, delegate: TransactionsListDataSourceDelegate?, filterBy filter: TransactionsFilter)
+    init(authConfig: AuthConfig,
+         delegate del: TransactionsListDataSourceDelegate?,
+         filterBy filter: TransactionsFilter,
+         date: Date?,
+         accounts: [Account])
     var filterBy: TransactionsFilter { get set }
     var accountsFilter: [Account] { get set }
-    var dateFilter: Date { get set }
+    var dateFilter: Date? { get set }
     var delegate: TransactionsListDataSourceDelegate? { get set }
     
     func reloadByDate(with date: Date)
@@ -36,7 +40,7 @@ protocol TransactionsListDataSourceProtocol: UITableViewDelegate, UITableViewDat
 class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtocol {
     
     var accountsFilter: [Account] = []
-    var dateFilter: Date = Date()
+    var dateFilter: Date?
     
     private var notifToken: NotificationToken?
     private var monthSections: [(Date, Date)] = []
@@ -59,20 +63,24 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     // MARK: - Initializers
     required init(authConfig: AuthConfig,
                   delegate del: TransactionsListDataSourceDelegate?,
-                  filterBy filter: TransactionsFilter) {
+                  filterBy filter: TransactionsFilter,
+                  date: Date?,
+                  accounts: [Account]) {
         
         filterBy = filter
         dateFilter = Date()
         accountsFilter = []
+        dateFilter = date
+        accountsFilter = accounts
         
         super.init(with: authConfig)
         
         delegate = del
 
-        if filterBy == .byDate {
-            dateFilter = Date()
-        } else {
+        if filterBy == .byAccount && accountsFilter.count == 0 {
             accountsFilter = Array(Account.all(in: realmContainer!.userRealm!))
+        } else if filterBy == .byDate && dateFilter == nil {
+            dateFilter = Date()
         }
         
         currency = realmContainer!.currency()
@@ -172,7 +180,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
                     self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, fromAccounts: self.accountsFilter)
                     self.sectionTitles = self.generateTitles()
                 case .byDate:
-                    self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, onDate: self.dateFilter)
+                    self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, onDate: self.dateFilter!)
             }
             
             self.notifToken?.stop()

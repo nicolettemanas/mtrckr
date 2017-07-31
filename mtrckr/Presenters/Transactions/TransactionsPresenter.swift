@@ -19,6 +19,8 @@ protocol TransactionsPresenterProtocol {
     func deleteTransaction(transaction: Transaction)
     func createTransaction(with name: String, amount: Double, type: TransactionType, date: Date,
                            category: Category?, from sourceAcc: Account, to destAccount: Account)
+    func update(transaction: Transaction, withValues name: String, amount: Double, type: TransactionType, date: Date,
+                           category: Category?, from sourceAcc: Account, to destAccount: Account)
 }
 
 class TransactionsPresenter: TransactionsPresenterProtocol {
@@ -51,9 +53,23 @@ class TransactionsPresenter: TransactionsPresenterProtocol {
     
     func createTransaction(with name: String, amount: Double, type: TransactionType, date: Date,
                            category: Category?, from sourceAcc: Account, to destAccount: Account) {
+        
         let transaction = Transaction(type: type, name: name, image: nil, description: nil,
                                       amount: amount, category: category, from: sourceAcc,
                                       to: destAccount, date: date)
         interactor.saveTransaction(transaction: transaction)
+    }
+    
+    func update(transaction: Transaction, withValues name: String, amount: Double, type: TransactionType,
+                date: Date, category: Category?, from sourceAcc: Account, to destAccount: Account) {
+        let updatedTrans = Transaction(type: type, name: name, image: nil, description: nil,
+                                      amount: amount, category: category, from: sourceAcc,
+                                      to: destAccount, date: date)
+        updatedTrans.id = transaction.id
+        do {
+            try interactor.editTransaction(transaction: updatedTrans)
+        } catch {
+            fatalError("Failed to update Transaction \(transaction.id)")
+        }
     }
 }

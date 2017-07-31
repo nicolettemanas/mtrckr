@@ -69,6 +69,7 @@
 		CE76C99E1F022E6000877C0E /* AccountsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76C99D1F022E6000877C0E /* AccountsTableViewControllerTests.swift */; };
 		CE811DFE1F17524300D96918 /* NewTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE811DFD1F17524300D96918 /* NewTransactionPresenter.swift */; };
 		CE987AF21F064E8C0048C5A1 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE987AF11F064E8C0048C5A1 /* AccountTableViewCell.xib */; };
+		CE9AEF5C1F29F5DA00EDD54B /* Date+Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEF5B1F29F5DA00EDD54B /* Date+Converter.swift */; };
 		CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */; };
 		CE9E73CE1F28864F00883E17 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E73CD1F28864F00883E17 /* MainTabbarViewController.swift */; };
 		CEA05C121EE0DFCC0091414F /* MTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA05C111EE0DFCC0091414F /* MTTextField.swift */; };
@@ -209,6 +210,7 @@
 		CE76C99D1F022E6000877C0E /* AccountsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTableViewControllerTests.swift; sourceTree = "<group>"; };
 		CE811DFD1F17524300D96918 /* NewTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewTransactionPresenter.swift; path = Presenters/Transactions/NewTransactionPresenter.swift; sourceTree = "<group>"; };
 		CE987AF11F064E8C0048C5A1 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountTableViewCell.xib; path = Views/XIBs/Accounts/AccountTableViewCell.xib; sourceTree = "<group>"; };
+		CE9AEF5B1F29F5DA00EDD54B /* Date+Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+Converter.swift"; path = "Utils/Date+Converter.swift"; sourceTree = "<group>"; };
 		CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntry.swift; path = Models/BillEntry.swift; sourceTree = "<group>"; };
 		CE9E73CD1F28864F00883E17 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabbarViewController.swift; path = ViewControllers/Tabs/MainTabbarViewController.swift; sourceTree = "<group>"; };
 		CEA05C111EE0DFCC0091414F /* MTTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTTextField.swift; path = "Views/Class/Base Classes/MTTextField.swift"; sourceTree = "<group>"; };
@@ -607,6 +609,7 @@
 				CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */,
 				CE3A3F2E1F0A419C0079D38F /* UserObserver.swift */,
 				CE5BD7611F0E24C900CCFD11 /* MTNumberFormatter.swift */,
+				CE9AEF5B1F29F5DA00EDD54B /* Date+Converter.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1137,6 +1140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9AEF5C1F29F5DA00EDD54B /* Date+Converter.swift in Sources */,
 				CE5BD7641F0E274800CCFD11 /* TransactionsTableViewController+SwipeTableViewCell.swift in Sources */,
 				CEB1A8E21ECF008D000F786B /* RealmHolder.swift in Sources */,
 				CE5BD7601F0DDA2D00CCFD11 /* TransactionTableViewCell.swift in Sources */,

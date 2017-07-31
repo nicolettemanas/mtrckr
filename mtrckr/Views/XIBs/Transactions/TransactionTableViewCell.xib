@@ -54,16 +54,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apr 23, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uC-ed-l8C">
-                        <rect key="frame" x="65" y="31.5" width="85" height="19.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="85" id="B5X-UU-hbS"/>
-                        </constraints>
+                        <rect key="frame" x="65" y="31.5" width="143.5" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.42352941176470588" green="0.43529411764705883" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Account" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rh5-ui-8Pi">
-                        <rect key="frame" x="160" y="35" width="202" height="18"/>
+                        <rect key="frame" x="218.5" y="35" width="143.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.42352941176470588" green="0.43529411764705883" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -84,6 +81,7 @@
                     <constraint firstItem="rh5-ui-8Pi" firstAttribute="leading" secondItem="0uC-ed-l8C" secondAttribute="trailing" constant="10" id="PEb-7R-Ybk"/>
                     <constraint firstAttribute="trailing" secondItem="G4R-ie-nOq" secondAttribute="trailing" constant="10" id="VlB-Co-frN"/>
                     <constraint firstItem="eZ2-98-upK" firstAttribute="leading" secondItem="G3d-9A-845" secondAttribute="leading" constant="15" id="aEd-ek-Qvc"/>
+                    <constraint firstItem="0uC-ed-l8C" firstAttribute="width" secondItem="rh5-ui-8Pi" secondAttribute="width" id="gEN-hE-3SF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

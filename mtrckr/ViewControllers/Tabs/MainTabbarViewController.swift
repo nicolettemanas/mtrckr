@@ -34,10 +34,10 @@ class MainTabbarViewController: UITabBarController {
                               width: 64,
                               height: 64)
         addBtn.layer.cornerRadius = 32
-        addBtn.layer.borderWidth = 5
-        addBtn.layer.borderColor = MTColors.mainBlue.cgColor
+        addBtn.layer.borderWidth = 1
+        addBtn.layer.borderColor = MTColors.lightBg.cgColor
         tabBar.shadowImage = UIImage.colorForNavBar(color: MTColors.lightBg)
-        tabBar.backgroundImage = UIImage.colorForNavBar(color: MTColors.mainBlue)
+        tabBar.backgroundImage = UIImage.colorForNavBar(color: .white)
         tabBar.tintColor = .white
     }
     
@@ -49,6 +49,12 @@ class MainTabbarViewController: UITabBarController {
 }
 
 extension MainTabbarViewController: NewTransactionViewControllerDelegate {
+    func update(transaction: Transaction, withValues name: String, amount: Double,
+                type: TransactionType, date: Date, category: Category?, from sourceAcc: Account,
+                to destAccount: Account) {
+        fatalError("Tabbar shouldn't receive udpdate transaction")
+    }
+    
     func shouldSaveTransaction(with name: String, amount: Double, type: TransactionType,
                                date: Date, category: Category?, from sourceAcc: Account, to destAccount: Account) {
         transactionsPresenter?.createTransaction(with: name, amount: amount, type: type, date: date,

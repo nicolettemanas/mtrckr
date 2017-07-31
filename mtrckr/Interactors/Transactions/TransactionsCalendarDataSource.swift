@@ -32,14 +32,18 @@ class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourc
         super.init(with: RealmAuthConfig())
         calendar = cal
         delegate = del
-        
-        self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, between: initialMonth.start(of: .month),
-                                       and: initialMonth.end(of: .month), inAccounts: [])
+        setupTransactions(initialDate: initialMonth)
+    }
+    
+    func setupTransactions(initialDate: Date) {
+        let startDate = initialDate.subtract(3.months)
+        let endDate = initialDate.add(3.months)
+        self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, between: startDate.start(of: .month),
+                                            and: endDate.end(of: .month), inAccounts: [])
         self.notificationToken = self.transactions?.addNotificationBlock({ [unowned self] collectionChange in
             self.delegate?.didReceiveChanges(changes: collectionChange)
         })
     }
-    
     
     func reloadDates(dates: [Date]) {
         for date in dates {
@@ -48,8 +52,9 @@ class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourc
                 let resolvedTransactions: Results<Transaction>? = self.realmContainer!.userRealm!.resolve(safeTransactions)
                 let filteredTransactions: Results<Transaction>? = self.filter(transactions: resolvedTransactions, for: date)
                 let transSum = self.sum(of: filteredTransactions)
-                self.transactionDict[date] = transSum
+                self.transactionDict[date.start(of: .day)] = transSum
                 DispatchQueue.main.async {
+//                    print("Reloaded date \(date.start(of: .day))")
                     self.calendar?.reloadDates(dates)
                 }
             }
@@ -80,65 +85,6 @@ class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourc
                                      date.start(of: .day),
                                      date.end(of: .day))
     }
-    
-//
-//    // MARK: - FSCalendarDelegate methods
-//    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
-//        return nil
-////        return transactionsDataSource?.sumOfDate(date: date, account: []).0
-//    }
-//
-//    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
-////        configure(cell: cell, for: date, at: monthPosition)
-//    }
-//
-//    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-//        transactionsDataSource?.reloadByDate(with: date)
-//        configureCells()
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-//        configureCells()
-//    }
-//
-//    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
-//        guard let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position) as? TransactionCalendarCell
-//            else { fatalError("TransactionCalendarCell not registered") }
-//        return cell
-//    }
-//
-//    // MARK: - Private calendar methods
-//    private func configureCells() {
-//        calendar?.visibleCells().forEach { (cell) in
-//            guard   let date = calendar?.date(for: cell),
-//                    let position = calendar?.monthPosition(for: cell) else { return }
-//            self.configure(cell: cell, for: date, at: position)
-//        }
-//    }
-//
-//    private func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
-//        guard let customCell = (cell as? TransactionCalendarCell) else { return }
-//        if customCell.isSelected {
-//            customCell.customSelectionView.isHidden = false
-//        } else {
-//            customCell.customSelectionView.isHidden = true
-//        }
-//
-//        customCell.subtitleLabel.isHidden = false
-//        customCell.incomeSubtitleLabel?.isHidden = false
-//
-//        if cell.dateIsToday {
-//            customCell.customSelectionView.isHidden = true
-//            customCell.selectionLayer.isHidden = false
-//            customCell.titleLabel.textColor = MTColors.mainText
-//        } else {
-//            customCell.selectionLayer.isHidden = true
-//        }
-//
-//        let sum = transactionsDataSource?.sumOfDate(date: date, account: [])
-//        customCell.subtitleLabel?.text = sum?.0
-//        customCell.incomeSubtitleLabel?.text = sum?.1
-//    }
 }
 
 extension TransactionsCalendarDataSource: JTAppleCalendarViewDataSource {
@@ -160,6 +106,7 @@ extension TransactionsCalendarDataSource: JTAppleCalendarViewDelegate {
             as? CustomCalendarCell else { fatalError("Cannot find cell with identifier customCalendarCell") }
         cell.dateLabel.text = cellState.text
         cell.configureCell(cellState: cellState)
+//        print("Reloading cell date \(date)")
         
         if let transSum = transactionDict[date] {
             cell.expensesLabel.text = transSum.0
@@ -189,10 +136,13 @@ extension TransactionsCalendarDataSource: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         guard let validCell = cell as? CustomCalendarCell else { return }
+        print("Didselect cell date \(date)")
         calendar.visibleDates({ [unowned self] datesInfo in
             if datesInfo.monthDates.first?.date.month != date.month {
                 self.calendar?.scrollToDate(date)
+                print("Scroll to \(date)")
             } else {
+                print("Configure cell \(date)")
                 validCell.configureCell(cellState: cellState)
             }
         })
@@ -205,6 +155,11 @@ extension TransactionsCalendarDataSource: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+        let date = (visibleDates.monthDates[5].date)
+        print("Did scroll to \(date)")
+        setupTransactions(initialDate: date)
         delegate?.didScrollto(dateSegmentWith: visibleDates)
+        print("Will select \(visibleDates.monthDates[5].date)")
+        calendar.selectDates([date], triggerSelectionDelegate: true, keepSelectionIfMultiSelectionAllowed: true)
     }
 }

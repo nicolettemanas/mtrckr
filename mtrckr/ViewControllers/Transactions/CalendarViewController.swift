@@ -97,15 +97,15 @@ class CalendarViewController: MTViewController {
             }
         }
     }
-    
-//    func setupTrasactionDataSource() {
-//        transactionDataSource = TransactionsListDataSource(authConfig: RealmAuthConfig(),
-//                                                           delegate: nil,
-//                                                           filterBy: .byDate)
-//    }
 }
 
 extension CalendarViewController: NewTransactionViewControllerDelegate {
+    func update(transaction: Transaction, withValues name: String, amount: Double, type: TransactionType,
+                date: Date, category: Category?, from sourceAcc: Account, to destAccount: Account) {
+        transactionsPresenter?.update(transaction: transaction, withValues: name, amount: amount, type: type,
+                                      date: date, category: category, from: sourceAcc, to: destAccount)
+    }
+    
     func shouldSaveTransaction(with name: String, amount: Double, type: TransactionType, date: Date, category: Category?,
                                from sourceAcc: Account, to destAccount: Account) {
         transactionsPresenter?.createTransaction(with: name, amount: amount, type: type, date: date,
@@ -139,15 +139,22 @@ extension CalendarViewController: TransactionsCalendarDataSourceDelegate {
         case .initial:
             calendar.reloadData()
             break
-        case .update(let updates, _, _, _):
+        case .update(let updates, let deletions, _, _):
             var datesToReload: [Date] = []
+            var startDates: [Date] = []
             for trans in updates {
-                if !datesToReload.contains(trans.transactionDate.start(of: .day)) {
-                    datesToReload.append(trans.transactionDate.start(of: .day))
+                print("Updated: \(trans.id) \(trans.transactionDate)")
+                if !startDates.contains(trans.transactionDate.start(of: .day)) {
+                    datesToReload.append(trans.transactionDate)
+                    startDates.append(trans.transactionDate.start(of: .day))
                 }
             }
             print("dates to reload: \(datesToReload)")
-            calendarDataSource?.reloadDates(dates: datesToReload)
+            if datesToReload.isEmpty && !deletions.isEmpty {
+                calendar.reloadData()
+            } else {
+                calendarDataSource?.reloadDates(dates: datesToReload)
+            }
         case .error(let error): fatalError("\(error)")
         }
     }

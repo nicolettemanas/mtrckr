@@ -34,16 +34,7 @@ class TransactionsInteractor: RealmHolder, TransactionsInteractorProtocol {
     func editTransaction(transaction: Transaction) throws {
         let realm = realmContainer!.userRealm!
         if let old = Transaction.with(key:  transaction.id, inRealm: realm) {
-            old.update(type: TransactionType(rawValue: transaction.type)!,
-                       name: transaction.name,
-                       image: nil,
-                       description: nil,
-                       amount: transaction.amount,
-                       category: transaction.category,
-                       from: transaction.fromAccount!,
-                       to: transaction.toAccount!,
-                       date: transaction.transactionDate,
-                       inRealm: realm)
+            old.updateTo(transaction: transaction, inRealm: realm)
         } else {
             throw NSLocalizedString("Oops, something went wrong while updating. Please try again.",
                                     comment: "Tells the user that something failed while updating and to try again.")

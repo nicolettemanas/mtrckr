@@ -13,14 +13,10 @@ protocol AccountTransactionsPresenterProtocol {
 
 class AccountTransactionsPresenter: AccountTransactionsPresenterProtocol {
     func presentTransactions(ofAccount account: Account, presentingVC: AccountsTableViewController) {
-        let nav = UIStoryboard(name: "Accounts", bundle: Bundle.main)
-            .instantiateViewController(withIdentifier: "TransactionsNavigationController")
-        guard let vc = (nav as? UINavigationController)?.topViewController
-            as? TransactionsTableViewController else {
-                return
-        }
-        
-        vc.accounts = [account]
+        let transTableFactory = TransactionsTableViewControllerFactory(with: presentingVC.storyboard!)
+        let transVC = transTableFactory.createTransactionsTableView(filterBy: .byAccount, config: RealmAuthConfig())
+        transVC.accounts = [account]
+        guard let vc = transVC as? UIViewController else { return }
         presentingVC.navigationController?.pushViewController(vc, animated: true)
     }
 }
