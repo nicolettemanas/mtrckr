@@ -11,7 +11,14 @@ protocol AccountTransactionsPresenterProtocol {
     func presentTransactions(ofAccount account: Account, presentingVC: AccountsTableViewController)
 }
 
+/// Class responsible for presenting `TransactionsTableViewController`
 class AccountTransactionsPresenter: AccountTransactionsPresenterProtocol {
+    
+    /// Presents `TransactionsTableViewController` with a given `Account` filter
+    ///
+    /// - Parameters:
+    ///   - account: The `Account` where to fetch the `Transactions` from
+    ///   - presentingVC: The presenting `ViewController`
     func presentTransactions(ofAccount account: Account, presentingVC: AccountsTableViewController) {
         let transTableFactory = TransactionsTableViewControllerFactory(with: presentingVC.storyboard!)
         let transVC = transTableFactory.createTransactionsTableView(filterBy: .byAccount, config: RealmAuthConfig())

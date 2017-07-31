@@ -11,6 +11,10 @@ import RealmSwift
 import SwipeCellKit
 import DateToolsSwift
 
+/// Filter types for presenting a list of `Transactions` in `TransactionsTableViewController`
+///
+/// - `.byAccount`: Transaction type when `Transactions` should be filtered by `Accounts`
+/// - `.byDate`: Transaction type when `Transactions` should be filtered by Date
 enum TransactionsFilter {
     case byAccount, byDate
 }
@@ -37,9 +41,13 @@ protocol TransactionsListDataSourceProtocol: UITableViewDelegate, UITableViewDat
     func transaction(at indexPath: IndexPath) -> Transaction?
 }
 
+/// The datasource of `TransactionsTableViewController`
 class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtocol {
     
+    /// Array of `Accounts` as filter
     var accountsFilter: [Account] = []
+    
+    /// Date as filter
     var dateFilter: Date?
     
     private var notifToken: NotificationToken?
@@ -50,6 +58,8 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     
     var currency: String = ""
     var sectionTitles: [String] = []
+    
+    /// Type of Transaction filter
     var filterBy: TransactionsFilter {
         didSet {
             setupTransactions()
@@ -60,7 +70,6 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
             notifToken?.stop()
     }
     
-    // MARK: - Initializers
     required init(authConfig: AuthConfig,
                   delegate del: TransactionsListDataSourceDelegate?,
                   filterBy filter: TransactionsFilter,
@@ -87,19 +96,26 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         setupTransactions()
     }
     
-    // MARK: - TransactionsListDataSourceProtocol methods
+    
+    /// Reload the datasource by date
+    ///
+    /// - Parameter date: Date filter
     func reloadByDate(with date: Date) {
         filterBy = .byDate
         dateFilter = date
         setupTransactions()
     }
     
+    /// Reload the datasource by `Accounts`
+    ///
+    /// - Parameter accounts: `Accounts` filter
     func reloadByAccounts(with accounts: [Account]) {
         filterBy = .byAccount
         accountsFilter = accounts
         setupTransactions()
     }
     
+    /// :nodoc:
     func sumOfDate(date: Date, account: [Account]) -> (String, String) {
         if account.count == 0 {
             let trns = Transaction.all(in: realmContainer!.userRealm!, onDate: date)
@@ -110,11 +126,12 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         return ("", "")
     }
     
+    /// :nodoc:
     func transaction(at indexPath: IndexPath) -> Transaction? {
         return transactions?[indexPath.row] ?? nil
     }
     
-    // MARK: - UITableViewDataSource and UITableViewDelegate methods
+    /// :nodoc:
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if filterBy == .byDate {
             return nil
@@ -122,6 +139,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         return sectionTitles[section]
     }
     
+    /// :nodoc:
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if filterBy == .byDate {
             return transactions?.count ?? 0
@@ -130,10 +148,12 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         return rowsForSection(section: section)
     }
     
+    /// :nodoc:
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65
     }
     
+    /// :nodoc:
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if filterBy == .byDate {
             return 0
@@ -141,6 +161,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         return 30
     }
     
+    /// :nodoc:
     func numberOfSections(in tableView: UITableView) -> Int {
         if filterBy == .byDate {
             return 1
@@ -148,6 +169,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         return sectionTitles.count
     }
     
+    /// :nodoc:
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell") as? TransactionTableViewCell else {
             fatalError("Cannot initialize TransactionTableViewCell")
@@ -159,7 +181,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         return cell
     }
     
-    // MARK: - Other methods
+    
     private func sum(of transactions: Results<Transaction>) -> (Double, Double) {
         var expenses: Double = 0
         var income: Double = 0

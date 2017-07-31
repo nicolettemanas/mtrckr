@@ -12,10 +12,18 @@ protocol NewTransactionPresenterProtocol {
                                  delegate: NewTransactionViewControllerDelegate)
 }
 
+
+/// Class responsible for presenting `NewTransactionViewController`
 class NewTransactionPresenter: NewTransactionPresenterProtocol {
     
     weak var delegate: NewTransactionViewControllerDelegate?
     
+    /// Presents the `NewTransactionViewController`
+    ///
+    /// - Parameters:
+    ///   - transaction: The `Transaction` to be edited if available
+    ///   - presentingVC: The presenting `ViewController`
+    ///   - delegate: The delegate of `NewTransactionViewController`
     func presentNewTransactionVC(with transaction: Transaction?, presentingVC: UIViewController,
                                  delegate: NewTransactionViewControllerDelegate) {
         let nav = UIStoryboard(name: "Today", bundle: Bundle.main)
@@ -31,7 +39,12 @@ class NewTransactionPresenter: NewTransactionPresenterProtocol {
     }
 }
 
-protocol DeleteTransactionSheetPresenterDelegate {
+/// Protocol for the delegate methods of `DeleteTransactionSheetPresenter`
+protocol DeleteTransactionSheetPresenterDelegate: class {
+    
+    /// Triggered when a `Transaction` is confirmed to be deleted
+    ///
+    /// - Parameter transaction: The `Transaction` to be deleted
     func shouldDeleteTransaction(transaction: Transaction)
 }
 
@@ -42,11 +55,17 @@ protocol DeleteTransactionSheetPresenterProtocol {
     func displayDeleteSheet(toDelete transaction: Transaction, presentingVC: DeleteTransactionSheetPresenterDelegate)
 }
 
+/// Class responsible for presenting the Delete `UIAlertController` for confirmation
 class DeleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol {
     
     var action: UIAlertAction.Type = UIAlertAction.self
     weak var alert: UIAlertController?
     
+    /// Displays a `UIAlertController` confirming the deletion of a `Transaction`
+    ///
+    /// - Parameters:
+    ///   - transaction: The `Transaction` to be deleted
+    ///   - presentingVC: The presenting `ViewController`
     func displayDeleteSheet(toDelete transaction: Transaction,
                             presentingVC: DeleteTransactionSheetPresenterDelegate) {
         let deleteConfirmation: UIAlertController = UIAlertController(title: nil,

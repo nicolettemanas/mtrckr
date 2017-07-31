@@ -21,7 +21,6 @@
 		CE130B481EE12F68007C6979 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE130B471EE12F68007C6979 /* RegistrationViewController.swift */; };
 		CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */; };
 		CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31051E9B2AAB0022CA57 /* Transaction.swift */; };
-		CE248BA31F0E424D00A5453A /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE248BA21F0E424D00A5453A /* TodayViewController.swift */; };
 		CE248BA51F0E42E500A5453A /* TransactionsChartCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE248BA41F0E42E500A5453A /* TransactionsChartCollectionViewCell.xib */; };
 		CE248BA71F0E449000A5453A /* TransactionsChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE248BA61F0E449000A5453A /* TransactionsChartCollectionViewCell.swift */; };
 		CE2775BB1F1E00E10014251F /* EmptyTransactionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2775BA1F1E00E10014251F /* EmptyTransactionsDataSource.swift */; };
@@ -126,7 +125,6 @@
 		CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22C81E94FD9F00867CDA /* Account.swift */; };
 		CEFB22D21E95087600867CDA /* AccountTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22D11E95087600867CDA /* AccountTypeTests.swift */; };
 		CEFB22DA1E95419200867CDA /* CurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB22D91E95419200867CDA /* CurrencyTests.swift */; };
-		CEFDCFB71F1CE537008860AB /* TransactionCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFDCFB61F1CE537008860AB /* TransactionCalendarCell.swift */; };
 		CEFECF481F111C9B001F7E59 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFECF471F111C9B001F7E59 /* CategoryCell.swift */; };
 		CEFECF4B1F111D03001F7E59 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFECF4A1F111D03001F7E59 /* CategoryCell.xib */; };
 		CEFECF4D1F111EE6001F7E59 /* CategoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFECF4C1F111EE6001F7E59 /* CategoryCollectionCell.xib */; };
@@ -162,7 +160,6 @@
 		CE130B471EE12F68007C6979 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = ViewControllers/Authentication/RegistrationViewController.swift; sourceTree = "<group>"; };
 		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE1F31051E9B2AAB0022CA57 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Models/Transaction.swift; sourceTree = "<group>"; };
-		CE248BA21F0E424D00A5453A /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodayViewController.swift; path = ViewControllers/Transactions/TodayViewController.swift; sourceTree = "<group>"; };
 		CE248BA41F0E42E500A5453A /* TransactionsChartCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionsChartCollectionViewCell.xib; path = Views/XIBs/Transactions/TransactionsChartCollectionViewCell.xib; sourceTree = "<group>"; };
 		CE248BA61F0E449000A5453A /* TransactionsChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionsChartCollectionViewCell.swift; path = Views/Class/Transactions/TransactionsChartCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE2775BA1F1E00E10014251F /* EmptyTransactionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyTransactionsDataSource.swift; path = Interactors/Transactions/EmptyTransactionsDataSource.swift; sourceTree = "<group>"; };
@@ -273,7 +270,6 @@
 		CEFB22C81E94FD9F00867CDA /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		CEFB22D11E95087600867CDA /* AccountTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountTypeTests.swift; path = AccountTypeTests/AccountTypeTests.swift; sourceTree = "<group>"; };
 		CEFB22D91E95419200867CDA /* CurrencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CurrencyTests.swift; path = CurrencyTests/CurrencyTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		CEFDCFB61F1CE537008860AB /* TransactionCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionCalendarCell.swift; path = Views/Class/Transactions/TransactionCalendarCell.swift; sourceTree = "<group>"; };
 		CEFECF471F111C9B001F7E59 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryCell.swift; path = "Views/Class/Base Classes/CategoryCell.swift"; sourceTree = "<group>"; };
 		CEFECF4A1F111D03001F7E59 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CategoryCell.xib; path = Views/XIBs/CategoryCell.xib; sourceTree = "<group>"; };
 		CEFECF4C1F111EE6001F7E59 /* CategoryCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CategoryCollectionCell.xib; path = Views/XIBs/CategoryCollectionCell.xib; sourceTree = "<group>"; };
@@ -492,7 +488,6 @@
 			children = (
 				CE4FC0801F0C8FF40016437D /* TransactionsTableViewController.swift */,
 				CE5BD7631F0E274800CCFD11 /* TransactionsTableViewController+SwipeTableViewCell.swift */,
-				CE248BA21F0E424D00A5453A /* TodayViewController.swift */,
 				CEC0988F1F10F40B00D5E7B0 /* NewTransactionViewController.swift */,
 				CEA6ABC51F274B61006F15B0 /* CalendarViewController.swift */,
 			);
@@ -520,7 +515,6 @@
 			children = (
 				CE5BD75F1F0DDA2D00CCFD11 /* TransactionTableViewCell.swift */,
 				CE248BA61F0E449000A5453A /* TransactionsChartCollectionViewCell.swift */,
-				CEFDCFB61F1CE537008860AB /* TransactionCalendarCell.swift */,
 				CEA6ABC31F27476A006F15B0 /* CustomCalendarCell.swift */,
 			);
 			name = Transactions;
@@ -1178,7 +1172,6 @@
 				CE4FC0831F0CB8090016437D /* TransactionsPresenter.swift in Sources */,
 				CEF044CC1EDFF44000486EAC /* MTSettingsTableViewCell.swift in Sources */,
 				CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */,
-				CE248BA31F0E424D00A5453A /* TodayViewController.swift in Sources */,
 				CE62B7481F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift in Sources */,
 				CE03C22B1EC3652A009A6AB0 /* MTButton.swift in Sources */,
 				CE2775BB1F1E00E10014251F /* EmptyTransactionsDataSource.swift in Sources */,
@@ -1189,7 +1182,6 @@
 				CEB0D1E21F0B71A00044A433 /* AccountsTableViewController+SwipeTableViewCell.swift in Sources */,
 				CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */,
 				CE3CDAFE1F06406800D4A054 /* AccountsInteractor.swift in Sources */,
-				CEFDCFB71F1CE537008860AB /* TransactionCalendarCell.swift in Sources */,
 				CEEC83741F178BB50009626C /* AccountsSelectionViewController.swift in Sources */,
 				CEB403C21EF3647F0013CB3C /* SettingsPresenter.swift in Sources */,
 				CEFECF4F1F11202A001F7E59 /* CategoryCollectionCell.swift in Sources */,

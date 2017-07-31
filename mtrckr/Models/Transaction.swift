@@ -162,6 +162,11 @@ class Transaction: Object {
         }
     }
     
+    /// Updates the `Transaction` to the given `Transaction`
+    ///
+    /// - Parameters:
+    ///   - transaction: The updated `Transaction`
+    ///   - realm: The `Realm` where the updated will be saved
     func updateTo(transaction: Transaction, inRealm realm: Realm) {
         if Transaction.with(key: self.id, inRealm: realm) == nil { return }
         if self.id != transaction.id { fatalError("Trying to update the wrong Transaction.") }
@@ -214,6 +219,12 @@ class Transaction: Object {
             .sorted(byKeyPath: "transactionDate", ascending: false)
     }
     
+    /// Returns all `Transactions` from the given `Accounts`
+    ///
+    /// - Parameters:
+    ///   - realm: The `Realm` to fetch the `Transactions` from
+    ///   - accounts: The `Accounts` to fetch the `Transactions` from
+    /// - Returns: The `Transactions` fetched
     static func all(in realm: Realm, fromAccounts accounts: [Account]) -> Results<Transaction> {
         return realm.objects(Transaction.self)
             .filter("fromAccount in %@", accounts)
@@ -244,12 +255,26 @@ class Transaction: Object {
             .sorted(byKeyPath: "transactionDate", ascending: false)
     }
     
+    /// Returns all `Transactions` from the given date
+    ///
+    /// - Parameters:
+    ///   - realm: The `Realm` to fetch the `Transactions` from
+    ///   - date: The date filter
+    /// - Returns: The `Transactions` fetched
     static func all(in realm: Realm, onDate date: Date) -> Results<Transaction> {
         return realm.objects(Transaction.self)
             .filter("transactionDate > %@ AND transactionDate < %@", date.start(of: .day), date.end(of: .day))
             .sorted(byKeyPath: "transactionDate", ascending: false)
     }
     
+    /// Returns all `Transactions` from the given date period under the `Accounts` given
+    ///
+    /// - Parameters:
+    ///   - realm: The `Realm` to fetch the `Transactions` from
+    ///   - startDate: The start date filter
+    ///   - endDate: The end date filter
+    ///   - accounts: The `Accounts` filter
+    /// - Returns: The `Transactions` fetched
     static func all(in realm: Realm, between startDate: Date, and endDate: Date,
                     inAccounts accounts: [Account]) -> Results<Transaction> {
         if accounts.count == 0 {

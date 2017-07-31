@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// :nodoc:
 extension Date {
     func toUTC() -> Date {
         let dateFormatter = DateFormatter()

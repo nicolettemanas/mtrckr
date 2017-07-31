@@ -8,6 +8,13 @@
 import UIKit
 
 extension NumberFormatter {
+    
+    /// Returns a string currency version of a given `Double`
+    ///
+    /// - Parameters:
+    ///   - currency: The currency to be displayed
+    ///   - amount: The amount to be converted to currency
+    /// - Returns: The currency-formatted string
     static func currencyStr(withCurrency currency: String, amount: Double) -> String? {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -15,6 +22,13 @@ extension NumberFormatter {
         return formatter.string(from: NSNumber(value: amount))
     }
     
+    /// Returns a short string currency version of a given `Double`.
+    /// Eg.: 1.2K, 34M, 23.3K
+    ///
+    /// - Parameters:
+    ///   - currency: The currency to be displayed
+    ///   - amount: The amount to be converted to currency
+    /// - Returns: The currency-formatted string
     static func currencyKString(withCurrency currency: String, amount: Double) -> String? {
         if abs(amount) >= 1000 {
             if abs(amount) >= 1000000 {

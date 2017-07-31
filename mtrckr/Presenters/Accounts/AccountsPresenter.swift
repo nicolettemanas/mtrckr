@@ -35,8 +35,6 @@ class AccountsPresenter: AccountsPresenterProtocol {
         interactor = ai
     }
     
-    /// MARK: - Event handlers
-    
     /// Passes the `Account` to delete to the interactor
     ///
     /// - Parameter account: The `Account` to delete
