@@ -283,23 +283,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WwU-ZT-sLp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1966" y="699"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="jw0-7T-PvR">
-            <objects>
-                <navigationController storyboardIdentifier="TransactionsNavigationController" id="6xX-SV-kTM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XSo-FY-BIj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="I81-JG-rkd" kind="relationship" relationship="rootViewController" id="QHV-Yp-HxI"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iqF-fM-OMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1305" y="699"/>
+            <point key="canvasLocation" x="348" y="707"/>
         </scene>
         <!--Accounts-->
         <scene sceneID="Te1-cP-z1B">

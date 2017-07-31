@@ -31,11 +31,15 @@ class NewTransactionPresenter: NewTransactionPresenterProtocol {
     }
 }
 
+protocol DeleteTransactionSheetPresenterDelegate {
+    func shouldDeleteTransaction(transaction: Transaction)
+}
+
 protocol DeleteTransactionSheetPresenterProtocol {
     weak var alert: UIAlertController? { get }
     var action: UIAlertAction.Type { get set }
     
-    func displayDeleteSheet(toDelete transaction: Transaction, presentingVC: CalendarViewControllerProtocol)
+    func displayDeleteSheet(toDelete transaction: Transaction, presentingVC: DeleteTransactionSheetPresenterDelegate)
 }
 
 class DeleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol {
@@ -44,7 +48,7 @@ class DeleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol {
     weak var alert: UIAlertController?
     
     func displayDeleteSheet(toDelete transaction: Transaction,
-                            presentingVC: CalendarViewControllerProtocol) {
+                            presentingVC: DeleteTransactionSheetPresenterDelegate) {
         let deleteConfirmation: UIAlertController = UIAlertController(title: nil,
                                                    message: NSLocalizedString("Are you sure you want to delete this transaction? " +
                                                     "This cannot be undone.",

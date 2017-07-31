@@ -20,7 +20,7 @@ protocol TransactionsPresenterProtocol {
     func createTransaction(with name: String, amount: Double, type: TransactionType, date: Date,
                            category: Category?, from sourceAcc: Account, to destAccount: Account)
     func update(transaction: Transaction, withValues name: String, amount: Double, type: TransactionType, date: Date,
-                           category: Category?, from sourceAcc: Account, to destAccount: Account)
+                category: Category?, from sourceAcc: Account, to destAccount: Account)
 }
 
 class TransactionsPresenter: TransactionsPresenterProtocol {

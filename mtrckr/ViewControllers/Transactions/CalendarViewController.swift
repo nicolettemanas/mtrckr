@@ -11,10 +11,7 @@ import DateToolsSwift
 import RealmSwift
 
 protocol CalendarViewControllerProtocol {
-    func editTransaction(transaction: Transaction)
-    func confirmDeletTransaction(transaction: Transaction)
     func shouldDeleteTransaction(transaction: Transaction)
-    
     var deleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol? { get set }
 }
 
@@ -23,10 +20,6 @@ class CalendarViewController: MTViewController {
     @IBOutlet weak var calendar: JTAppleCalendarView!
     @IBOutlet weak var monthyearLabel: UILabel!
     @IBOutlet weak var transactionsTableContainer: UIView!
-    
-    var newTransPresenter: NewTransactionPresenterProtocol?
-    var transactionsPresenter: TransactionsPresenter?
-    var deleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol?
     
     var observer: ObserverProtocol?
     var transactionsTableVC: TransactionsTableViewControllerProtocol?
@@ -38,7 +31,6 @@ class CalendarViewController: MTViewController {
         setupCalendarView()
         setupTransactionsTable()
         setupObserver()
-//        setupTrasactionDataSource()
         setupCalendarDataSource()
     }
     
@@ -68,10 +60,6 @@ class CalendarViewController: MTViewController {
             transactionsTableContainer.addSubview(transVC.view)
             transVC.didMove(toParentViewController: self)
         }
-        
-        newTransPresenter = NewTransactionPresenter()
-        deleteTransactionSheetPresenter = DeleteTransactionSheetPresenter()
-        transactionsPresenter = TransactionsPresenter(with: TransactionsInteractor(with: RealmAuthConfig()))
     }
     
     func setupCalendarDataSource() {
@@ -96,36 +84,6 @@ class CalendarViewController: MTViewController {
                 self.calendar.reloadData()
             }
         }
-    }
-}
-
-extension CalendarViewController: NewTransactionViewControllerDelegate {
-    func update(transaction: Transaction, withValues name: String, amount: Double, type: TransactionType,
-                date: Date, category: Category?, from sourceAcc: Account, to destAccount: Account) {
-        transactionsPresenter?.update(transaction: transaction, withValues: name, amount: amount, type: type,
-                                      date: date, category: category, from: sourceAcc, to: destAccount)
-    }
-    
-    func shouldSaveTransaction(with name: String, amount: Double, type: TransactionType, date: Date, category: Category?,
-                               from sourceAcc: Account, to destAccount: Account) {
-        transactionsPresenter?.createTransaction(with: name, amount: amount, type: type, date: date,
-                                                 category: category, from: sourceAcc, to: destAccount)
-    }
-}
-
-extension CalendarViewController: CalendarViewControllerProtocol {
-    func shouldDeleteTransaction(transaction: Transaction) {
-        transactionsPresenter?.deleteTransaction(transaction: transaction)
-    }
-    
-    func editTransaction(transaction: Transaction) {
-        newTransPresenter?.presentNewTransactionVC(with: transaction, presentingVC: self,
-                                                   delegate: self)
-    }
-    
-    func confirmDeletTransaction(transaction: Transaction) {
-        deleteTransactionSheetPresenter?.displayDeleteSheet(toDelete: transaction,
-                                                            presentingVC: self)
     }
 }
 

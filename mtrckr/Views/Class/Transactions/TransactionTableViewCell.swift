@@ -55,7 +55,7 @@ class TransactionTableViewCell: SwipeTableViewCell {
         self.itemPrice.text = prefix + NumberFormatter.currencyStr(withCurrency: curr,
                                                                    amount: transaction.amount)!
         let dFormatter: DateFormatter = DateFormatter()
-        dFormatter.dateFormat = "MMddyyyy hh:mm aa"
+        dFormatter.dateFormat = "MMM dd, yyyy hh:mm aa"
         self.dateOfTransaction.text = dFormatter.string(from: transaction.transactionDate)
         
     }

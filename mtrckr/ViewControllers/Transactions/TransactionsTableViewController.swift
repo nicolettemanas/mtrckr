@@ -9,6 +9,11 @@ import UIKit
 import Realm
 import RealmSwift
 
+protocol TransactionsTableCellProtocol {
+    func editTransaction(transaction: Transaction)
+    func confirmDeletTransaction(transaction: Transaction)
+}
+
 protocol TransactionsTableViewControllerProtocol: class {
     var accounts: [Account] { get set }
     var date: Date? { get set }
@@ -44,6 +49,10 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
     private var emptytransactionDataSource: EmptyTransactionsDataSource?
     private var transactionsDataSource: TransactionsListDataSourceProtocol?
     
+    var newTransPresenter: NewTransactionPresenterProtocol?
+    var deleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol?
+    var transactionsPresenter: TransactionsPresenter?
+    
     // MARK: - TransactionsTableViewControllerProtocol properties
     internal var accounts: [Account] = []
     internal var date: Date?
@@ -66,7 +75,8 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
                                                             accounts: accounts)
         currency = presenter?.currency()
         
-        tableView.register(UINib(nibName: "TransactionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "TransactionTableViewCell")
+        tableView.register(UINib(nibName: "TransactionTableViewCell", bundle: Bundle.main),
+                           forCellReuseIdentifier: "TransactionTableViewCell")
         tableView.allowsSelection = false
         
         tableView.delegate = transactionsDataSource
@@ -77,6 +87,10 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
         emptytransactionDataSource = EmptyTransactionsDataSource()
         tableView.emptyDataSetSource = emptytransactionDataSource
         tableView.emptyDataSetDelegate = emptytransactionDataSource
+        
+        newTransPresenter = NewTransactionPresenter()
+        deleteTransactionSheetPresenter = DeleteTransactionSheetPresenter()
+        transactionsPresenter = TransactionsPresenter(with: TransactionsInteractor(with: RealmAuthConfig()))
     }
     
     override func viewDidLayoutSubviews() {
@@ -95,15 +109,45 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
     
     // MARK: - Swipe cell handler methods
     func editTransaction(atIndex index: IndexPath) {
-        guard let parentVC = parent as? CalendarViewController,
-            let trans = transactionsDataSource?.transaction(at: index) else { return }
-        parentVC.editTransaction(transaction: trans)
+        guard let trans = transactionsDataSource?.transaction(at: index) else { return }
+        editTransaction(transaction: trans)
     }
     
     func confirmDelete(atIndex index: IndexPath) {
-        guard let parentVC = parent as? CalendarViewController,
-            let trans = transactionsDataSource?.transaction(at: index) else { return }
-        parentVC.confirmDeletTransaction(transaction: trans)
+        guard let trans = transactionsDataSource?.transaction(at: index) else { return }
+        confirmDeletTransaction(transaction: trans)
+    }
+}
+
+extension TransactionsTableViewController: TransactionsTableCellProtocol {
+    func editTransaction(transaction: Transaction) {
+        newTransPresenter?.presentNewTransactionVC(with: transaction, presentingVC: self,
+                                                   delegate: self)
+    }
+    
+    func confirmDeletTransaction(transaction: Transaction) {
+        deleteTransactionSheetPresenter?.displayDeleteSheet(toDelete: transaction,
+                                                            presentingVC: self)
+    }
+}
+
+extension TransactionsTableViewController: DeleteTransactionSheetPresenterDelegate {
+    func shouldDeleteTransaction(transaction: Transaction) {
+        transactionsPresenter?.deleteTransaction(transaction: transaction)
+    }
+}
+
+extension TransactionsTableViewController: NewTransactionViewControllerDelegate {
+    func update(transaction: Transaction, withValues name: String, amount: Double, type: TransactionType,
+                date: Date, category: Category?, from sourceAcc: Account, to destAccount: Account) {
+        transactionsPresenter?.update(transaction: transaction, withValues: name, amount: amount, type: type,
+                                      date: date, category: category, from: sourceAcc, to: destAccount)
+    }
+
+    func shouldSaveTransaction(with name: String, amount: Double, type: TransactionType, date: Date, category: Category?,
+                               from sourceAcc: Account, to destAccount: Account) {
+        transactionsPresenter?.createTransaction(with: name, amount: amount, type: type, date: date,
+                                                 category: category, from: sourceAcc, to: destAccount)
     }
 }
 
