@@ -13,7 +13,7 @@ extension TransactionsTableViewController: SwipeTableViewCellDelegate {
                    for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         
         if orientation == .right {
-            let edit: SwipeAction = SwipeAction(style: .default, title: nil) { _, _ in
+            let edit: SwipeAction = SwipeAction(style: .default, title: nil) { [unowned self] _, _ in
                 self.editTransaction(atIndex: indexPath)
             }
             
@@ -22,7 +22,7 @@ extension TransactionsTableViewController: SwipeTableViewCellDelegate {
             edit.backgroundColor = MTColors.mainBlue
             edit.textColor = .white
             
-            let delete: SwipeAction = SwipeAction(style: .destructive, title: nil, handler: { (_, _) in
+            let delete: SwipeAction = SwipeAction(style: .destructive, title: nil, handler: { [unowned self] _, _ in
                 self.confirmDelete(atIndex: indexPath)
             })
             

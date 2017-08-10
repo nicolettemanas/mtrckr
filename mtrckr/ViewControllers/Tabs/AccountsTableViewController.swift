@@ -87,8 +87,8 @@ class AccountsTableViewController: MTTableViewController, AccountsTableViewContr
     }
     
     func setupResults() {
+        self.accounts = self.presenter?.accounts()
         DispatchQueue.main.async {
-            self.accounts = self.presenter?.accounts()
             self.notifToken = self.accounts?.addNotificationBlock(self.tableView.applyChanges)
             self.tableView.reloadData()
         }
@@ -126,7 +126,7 @@ class AccountsTableViewController: MTTableViewController, AccountsTableViewContr
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        transactionsPresenter?.presentTransactions(ofAccount: accounts![indexPath.row], presentingVC: self)
+        self.transactionsPresenter?.presentTransactions(presentingVC: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

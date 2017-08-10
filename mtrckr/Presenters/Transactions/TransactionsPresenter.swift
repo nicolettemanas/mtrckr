@@ -14,7 +14,7 @@ protocol TransactionsPresenterProtocol {
     func currency() -> String
     func transactions(from date: Date) -> Results<Transaction>
     func transactions(fromAccounts account: [Account]) -> Results<Transaction>
-    func editTransaction(transaction: Transaction) throws
+//    func editTransaction(transaction: Transaction) throws
     func deleteTransaction(transaction: Transaction)
     func createTransaction(with name: String, amount: Double, type: TransactionType, date: Date,
                            category: Category?, from sourceAcc: Account, to destAccount: Account)
@@ -57,10 +57,9 @@ class TransactionsPresenter: TransactionsPresenterProtocol {
     ///
     /// - Parameter transaction: The updated `Transaction`
     /// - Throws: Throws an error if the `Transaction` is not found in the `Realm`
-    func editTransaction(transaction: Transaction) throws {
-        try interactor.editTransaction(transaction: transaction)
-    }
-    
+//    func editTransaction(transaction: Transaction) throws {
+//        try interactor.editTransaction(transaction: transaction)
+//    }
     
     /// Event handler for deleting a `Transaction`
     ///
@@ -88,7 +87,6 @@ class TransactionsPresenter: TransactionsPresenterProtocol {
                                       to: destAccount, date: date)
         interactor.saveTransaction(transaction: transaction)
     }
-    
     
     /// Event handler for updating a `Transaction`
     ///

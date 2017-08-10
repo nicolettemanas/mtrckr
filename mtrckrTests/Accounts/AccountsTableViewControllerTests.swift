@@ -18,7 +18,7 @@ class AccountsTableViewControllerTests: QuickSpec {
     
     var mockPresenter: MockAccountsPresenter?
     var mockInteractor: MockAccountsInteractor?
-    var mockTransactionsInteractor: MockTransactionsInteractor?
+    
     var mockNewAccountPresenter: MockNewAccountPresenter?
     var mockDeleteSheetPresenter: MockDeleteSheetPresenter?
     var mockAccountsTransactionsPresenter: MockAccountTransactionsPresenter?
@@ -35,7 +35,8 @@ class AccountsTableViewControllerTests: QuickSpec {
     
         describe("AccountsTableViewController") {
             var realm: Realm?
-            
+            var account: Account!
+
             beforeEach {
                 var config = Realm.Configuration()
                 config.inMemoryIdentifier = self.identifier
@@ -47,7 +48,6 @@ class AccountsTableViewControllerTests: QuickSpec {
                 self.mockInteractor = MockAccountsInteractor(with: RealmAuthConfig())
                 self.mockInteractor?.realmContainer = MockRealmContainer(memoryIdentifier: self.identifier)
                 self.mockInteractor?.realmContainer?.setDefaultRealm(to: .offline)
-                self.mockTransactionsInteractor = MockTransactionsInteractor(with: RealmAuthConfig())
                 
                 self.mockPresenter = MockAccountsPresenter(interactor: self.mockInteractor!)
                 self.mockNewAccountPresenter = MockNewAccountPresenter()
@@ -59,20 +59,9 @@ class AccountsTableViewControllerTests: QuickSpec {
                 self.accountsVC?.deleteSheetPresenter = self.mockDeleteSheetPresenter
                 self.accountsVC?.transactionsPresenter = self.mockAccountsTransactionsPresenter
                 
-                let cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
-                let dateOpened = Date()
-                
-                let account = Account(value: ["id": "accnt1",
-                                              "name": "My Cash",
-                                              "type": cashAccountType,
-                                              "initialAmount": 10.0,
-                                              "currentAmount": 20.0,
-                                              "totalExpenses": 100.0,
-                                              "totalIncome": 30.0,
-                                              "color": "#AAAAAA",
-                                              "dateOpened": dateOpened
-                    ])
+                account = FakeModels().account()
                 account.save(toRealm: realm!)
+                
                 self.accountsVC?.accounts = Account.all(in: realm!)
                 self.accountsVC?.tableView.reloadData()
             }
@@ -95,7 +84,7 @@ class AccountsTableViewControllerTests: QuickSpec {
                 it("Presents edit account form") {
                     self.accountsVC?.editAccount(atIndex: IndexPath(row: 0, section: 0))
                     expect(self.mockNewAccountPresenter!.didCallPresent) == true
-                    expect(self.mockNewAccountPresenter!.didReceiveId) == "accnt1"
+                    expect(self.mockNewAccountPresenter!.didReceiveId) == account.id
                 }
             }
             
@@ -117,8 +106,7 @@ class AccountsTableViewControllerTests: QuickSpec {
                     }
                     
                     it("Tells presenter to display transactions under selected account", closure: {
-//                        expect(self.mockTransactionsPresenter?.didPresent) == true
-//                        expect(self.mockTransactionsPresenter?.didPresentId) == "accnt1"
+                        expect(self.mockAccountsTransactionsPresenter?.didPresent) == true
                     })
                 })
                 
@@ -134,7 +122,7 @@ class AccountsTableViewControllerTests: QuickSpec {
                         let deleteAction = controller.actions[1] as! MockAlertAction
                         deleteAction.mockHandler!(deleteAction)
                         expect(self.mockPresenter?.didDelete) == true
-                        expect(self.mockPresenter?.deleteAccountId) == "accnt1"
+                        expect(self.mockPresenter?.deleteAccountId) == account.id
                     })
                 })
                 

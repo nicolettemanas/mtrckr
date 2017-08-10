@@ -26,7 +26,6 @@ protocol TransactionsListDataSourceDelegate: class {
 
 protocol TransactionsListDataSourceProtocol: UITableViewDelegate, UITableViewDataSource {
     init(authConfig: AuthConfig,
-         delegate del: TransactionsListDataSourceDelegate?,
          filterBy filter: TransactionsFilter,
          date: Date?,
          accounts: [Account])
@@ -34,10 +33,10 @@ protocol TransactionsListDataSourceProtocol: UITableViewDelegate, UITableViewDat
     var accountsFilter: [Account] { get set }
     var dateFilter: Date? { get set }
     var delegate: TransactionsListDataSourceDelegate? { get set }
+    var transactions: Results<Transaction>? { get set }
     
     func reloadByDate(with date: Date)
     func reloadByAccounts(with accounts: [Account])
-    func sumOfDate(date: Date, account: [Account]) -> (String, String)
     func transaction(at indexPath: IndexPath) -> Transaction?
 }
 
@@ -52,7 +51,9 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     
     private var notifToken: NotificationToken?
     private var monthSections: [(Date, Date)] = []
-    private var transactions: Results<Transaction>?
+    
+    /// `Transactions` displayed
+    var transactions: Results<Transaction>?
     
     weak var delegate: TransactionsListDataSourceDelegate?
     
@@ -67,11 +68,10 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     }
     
     deinit {
-            notifToken?.stop()
+        notifToken?.stop()
     }
     
     required init(authConfig: AuthConfig,
-                  delegate del: TransactionsListDataSourceDelegate?,
                   filterBy filter: TransactionsFilter,
                   date: Date?,
                   accounts: [Account]) {
@@ -83,8 +83,6 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         accountsFilter = accounts
         
         super.init(with: authConfig)
-        
-        delegate = del
 
         if filterBy == .byAccount && accountsFilter.count == 0 {
             accountsFilter = Array(Account.all(in: realmContainer!.userRealm!))
@@ -95,7 +93,6 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         currency = realmContainer!.currency()
         setupTransactions()
     }
-    
     
     /// Reload the datasource by date
     ///
@@ -113,17 +110,6 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         filterBy = .byAccount
         accountsFilter = accounts
         setupTransactions()
-    }
-    
-    /// :nodoc:
-    func sumOfDate(date: Date, account: [Account]) -> (String, String) {
-        if account.count == 0 {
-            let trns = Transaction.all(in: realmContainer!.userRealm!, onDate: date)
-            let transSum = sum(of: trns)
-            return (transSum.0 > 0 ? (NumberFormatter.currencyKString(withCurrency: currency, amount: transSum.0) ?? "") : "",
-                    transSum.1 > 0 ? (NumberFormatter.currencyKString(withCurrency: currency, amount: transSum.1) ?? "") : "")
-        }
-        return ("", "")
     }
     
     /// :nodoc:
@@ -181,7 +167,6 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         return cell
     }
     
-    
     private func sum(of transactions: Results<Transaction>) -> (Double, Double) {
         var expenses: Double = 0
         var income: Double = 0
@@ -196,25 +181,25 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     }
     
     private func setupTransactions() {
-        DispatchQueue.main.async {
-            switch self.filterBy {
-                case .byAccount:
-                    self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, fromAccounts: self.accountsFilter)
-                    self.sectionTitles = self.generateTitles()
-                case .byDate:
-                    self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, onDate: self.dateFilter!)
-            }
-            
-            self.notifToken?.stop()
-            self.notifToken = self.transactions?.addNotificationBlock({ [weak self] change in
-                guard let strongSelf = self else { return }
-                strongSelf.delegate?.didReceiveChanges(changes: change)
-                strongSelf.delegate?.didUpdateTransactions()
-            })
+        switch self.filterBy {
+            case .byAccount:
+                self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, fromAccounts: self.accountsFilter)
+                self.sectionTitles = self.generateTitles()
+            case .byDate:
+                self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, onDate: self.dateFilter!)
         }
+        
+        self.notifToken?.stop()
+        self.notifToken = self.transactions?.addNotificationBlock({ [weak self] change in
+            guard let strongSelf = self else { return }
+            strongSelf.delegate?.didReceiveChanges(changes: change)
+            strongSelf.delegate?.didUpdateTransactions()
+        })
     }
     
     private func rowsForSection(section: Int) -> Int {
+        if monthSections.count < 1 { return 0 }
+        
         let sDate = monthSections[section].0
         let eDate = monthSections[section].1
         let trans = transactions?.filter("transactionDate >= %@ AND transactionDate <= %@", sDate, eDate)

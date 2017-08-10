@@ -50,12 +50,9 @@ class CalendarViewController: MTViewController {
     }
     
     func setupTransactionsTable() {
-        let transTableViewFactory = TransactionsTableViewControllerFactory(with: self.storyboard!)
-        if let transVC = transTableViewFactory.createTransactionsTableView(filterBy: .byDate,
-                                                                           config: RealmAuthConfig())
-            as? TransactionsTableViewController {
-            transVC.view.frame = transactionsTableContainer.bounds
+        if let transVC = ViewControllerResolvers().transactionTableViewController(filterType: .byDate) {
             transactionsTableVC = transVC
+            transVC.view.frame = transactionsTableContainer.bounds
             addChildViewController(transVC)
             transactionsTableContainer.addSubview(transVC.view)
             transVC.didMove(toParentViewController: self)

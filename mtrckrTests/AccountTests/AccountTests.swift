@@ -88,7 +88,7 @@ class AccountTests: QuickSpec {
                     account.save(toRealm: self.testRealm)
                 }
                 
-                itBehavesLike("can be found in database") { ["account": account, "realm": self.testRealm] }
+                itBehavesLike("account can be found in database") { ["account": account, "realm": self.testRealm] }
             })
 
             describe("update()", {
@@ -245,7 +245,7 @@ class AccountTests: QuickSpec {
 
 class SharedAccountsBehavior: QuickConfiguration {
     override class func configure(_ configuration: Configuration) {
-        sharedExamples("can be found in database") { (context: @escaping SharedExampleContext) in
+        sharedExamples("account can be found in database") { (context: @escaping SharedExampleContext) in
             var account: Account?
             var realm: Realm?
             
@@ -255,7 +255,7 @@ class SharedAccountsBehavior: QuickConfiguration {
             }
             
             it("saves object to database correctly", closure: {
-                let accountFromDatabase = realm?.objects(Account.self).last
+                let accountFromDatabase = Account.with(key: account!.id, inRealm: realm!)
                 expect(accountFromDatabase?.id) == account?.id
                 expect(accountFromDatabase?.name) == account?.name
                 expect(accountFromDatabase?.type) == account?.type
@@ -268,7 +268,7 @@ class SharedAccountsBehavior: QuickConfiguration {
             })
         }
         
-        sharedExamples("cannot be found in database") { (context: @escaping SharedExampleContext) in
+        sharedExamples("account cannot be found in database") { (context: @escaping SharedExampleContext) in
             var account: Account?
             var realm: Realm?
             

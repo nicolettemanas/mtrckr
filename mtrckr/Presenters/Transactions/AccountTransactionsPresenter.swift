@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AccountTransactionsPresenterProtocol {
-    func presentTransactions(ofAccount account: Account, presentingVC: AccountsTableViewController)
+    func presentTransactions(presentingVC: AccountsTableViewController)
 }
 
 /// Class responsible for presenting `TransactionsTableViewController`
@@ -19,11 +19,11 @@ class AccountTransactionsPresenter: AccountTransactionsPresenterProtocol {
     /// - Parameters:
     ///   - account: The `Account` where to fetch the `Transactions` from
     ///   - presentingVC: The presenting `ViewController`
-    func presentTransactions(ofAccount account: Account, presentingVC: AccountsTableViewController) {
-        let transTableFactory = TransactionsTableViewControllerFactory(with: presentingVC.storyboard!)
-        let transVC = transTableFactory.createTransactionsTableView(filterBy: .byAccount, config: RealmAuthConfig())
-        transVC.accounts = [account]
-        guard let vc = transVC as? UIViewController else { return }
-        presentingVC.navigationController?.pushViewController(vc, animated: true)
+    func presentTransactions(presentingVC: AccountsTableViewController) {
+        
+        guard let transVC = ViewControllerResolvers().transactionTableViewController(filterType: .byAccount) else {
+            fatalError("Cannot resolve transactionTableViewController with name byAccount")
+        }
+        presentingVC.navigationController?.pushViewController(transVC, animated: true)
     }
 }

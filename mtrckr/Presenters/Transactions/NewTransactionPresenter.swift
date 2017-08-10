@@ -12,7 +12,6 @@ protocol NewTransactionPresenterProtocol {
                                  delegate: NewTransactionViewControllerDelegate)
 }
 
-
 /// Class responsible for presenting `NewTransactionViewController`
 class NewTransactionPresenter: NewTransactionPresenterProtocol {
     

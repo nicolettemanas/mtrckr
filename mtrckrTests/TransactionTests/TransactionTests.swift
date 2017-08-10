@@ -106,26 +106,16 @@ class TransactionTests: QuickSpec {
             }
 
             describe("save()", {
-
-                var transactionSaved: Transaction!
-
-                it("saves object to database correctly", closure: {
-                    transaction = Transaction(type: .expense, name: "Breakfast", image: nil, description: "Subway: Spicy Italian", amount: 99.0,
-                                              category: category, from: account, to: account, date: transDate)
-                    transaction.save(toRealm: self.testRealm)
-
-                    transactionSaved = self.testRealm.objects(Transaction.self).last!
-                    expect(transactionSaved.type) == TransactionType.expense.rawValue
-                    expect(transactionSaved.name) == "Breakfast"
-                    expect(transactionSaved.image).to(beNil())
-                    expect(transactionSaved.desc) == "Subway: Spicy Italian"
-                    expect(transactionSaved.amount) == 99
-                    expect(transactionSaved.category) == category
-                    expect(transactionSaved.fromAccount) == account
-                    expect(transactionSaved.toAccount) == account
-                    expect(transactionSaved.transactionDate) == transDate
+                describe("saving a transactions", {
+                    beforeEach {
+                        transaction = Transaction(type: .expense, name: "Breakfast", image: nil, description: "Subway: Spicy Italian", amount: 99.0,
+                                                  category: category, from: account, to: account, date: transDate)
+                        transaction.save(toRealm: self.testRealm)
+                    }
+                    itBehavesLike("transaction can be found in database") { ["transaction": transaction,
+                                                                             "realm": self.testRealm] }
                 })
-
+                
                 it("should reflect under account", closure: {
                     transaction = Transaction(type: .expense, name: "Breakfast", image: nil, description: "Subway: Spicy Italian", amount: 99.0,
                                               category: category, from: account, to: account, date: transDate)
@@ -418,7 +408,7 @@ class TransactionTests: QuickSpec {
                     incomeTransaction.delete(in: self.testRealm)
                     transferTransaction.delete(in: self.testRealm)
                 }
-
+                
                 it("deletes entry from database", closure: {
                     let transactions = self.testRealm.objects(Transaction.self)
                     expect(transactions.count) == 0
@@ -503,6 +493,47 @@ class TransactionTests: QuickSpec {
                                           description: "Desc \(i)", amount: 100, category: category,
                                           from: account, to: account, date: Date())
             transaction.save(toRealm: self.testRealm)
+        }
+    }
+}
+
+class SharedTransactionsBehavior: QuickConfiguration {
+    override class func configure(_ configuration: Configuration) {
+        sharedExamples("transaction can be found in database") { (context: @escaping SharedExampleContext) in
+            var transaction: Transaction?
+            var realm: Realm?
+            
+            beforeEach {
+                transaction = context()["transaction"] as? Transaction
+                realm = context()["realm"] as? Realm
+            }
+            
+            it("saves object to database correctly", closure: {
+                let transactionFromDatabase = Transaction.with(key: transaction!.id, inRealm: realm!)
+                expect(transactionFromDatabase?.id) == transaction?.id
+                expect(transactionFromDatabase?.type) == transaction?.type
+                expect(transactionFromDatabase?.name) == transaction?.name
+                expect(transactionFromDatabase?.amount) == transaction?.amount
+                expect(transactionFromDatabase?.category) == transaction?.category
+                expect(transactionFromDatabase?.fromAccount) == transaction?.fromAccount
+                expect(transactionFromDatabase?.toAccount) == transaction?.toAccount
+                expect(transactionFromDatabase?.transactionDate) == transaction?.transactionDate
+            })
+        }
+        
+        sharedExamples("transaction cannot be found in database") { (context: @escaping SharedExampleContext) in
+            var transaction: Transaction?
+            var realm: Realm?
+            
+            beforeEach {
+                transaction = context()["transaction"] as? Transaction
+                realm = context()["realm"] as? Realm
+            }
+            
+            it("must be nil", closure: {
+                let transactionFromDatabase = Transaction.with(key: transaction!.id, inRealm: realm!)
+                expect(transactionFromDatabase).to(beNil())
+            })
         }
     }
 }

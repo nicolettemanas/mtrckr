@@ -8,6 +8,7 @@
 import UIKit
 import Realm
 import RealmSwift
+import Swinject
 
 protocol TransactionsTableCellProtocol {
     func editTransaction(transaction: Transaction)
@@ -15,65 +16,68 @@ protocol TransactionsTableCellProtocol {
 }
 
 protocol TransactionsTableViewControllerProtocol: class {
-    var accounts: [Account] { get set }
-    var date: Date? { get set }
     var transTableView: UITableView? { get set }
-    var filter: TransactionsFilter! { get set }
-    var config: AuthConfig! { get set }
+    var transactionsDataSource: TransactionsListDataSourceProtocol? { get set }
+    var newTransPresenter: NewTransactionPresenterProtocol? { get set }
+    var deleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol? { get set }
+    var transactionsPresenter: TransactionsPresenterProtocol? { get set }
+    var emptytransactionDataSource: EmptyTransactionsDataSource? { get set }
     
     func reloadTableBy(date: Date?, accounts: [Account])
-}
-
-class TransactionsTableViewControllerFactory {
-    private var storyboard: UIStoryboard
-    
-    init(with storyboard: UIStoryboard) {
-        self.storyboard = storyboard
-    }
-    
-    func createTransactionsTableView(filterBy filter: TransactionsFilter, config: AuthConfig) -> TransactionsTableViewControllerProtocol {
-        guard let tvc = self.storyboard.instantiateViewController(withIdentifier: "TransactionsTableViewController")
-            as? TransactionsTableViewControllerProtocol else {
-                fatalError("TransactionsTableViewController does not conform to protocol TransactionsTableViewControllerProtocol")
-        }
-        tvc.filter = filter
-        tvc.config = config
-        return tvc
-    }
 }
 
 class TransactionsTableViewController: MTTableViewController, TransactionsTableViewControllerProtocol {
     
     private var currency: String?
     private var observer: ObserverProtocol?
-    private var emptytransactionDataSource: EmptyTransactionsDataSource?
-    private var transactionsDataSource: TransactionsListDataSourceProtocol?
-    
-    var newTransPresenter: NewTransactionPresenterProtocol?
-    var deleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol?
-    var transactionsPresenter: TransactionsPresenter?
     
     // MARK: - TransactionsTableViewControllerProtocol properties
-    internal var accounts: [Account] = []
-    internal var date: Date?
-    internal var transTableView: UITableView?
-    internal var config: AuthConfig!
-    internal var filter: TransactionsFilter!
+    var newTransPresenter: NewTransactionPresenterProtocol?
+    var deleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol?
+    var transactionsPresenter: TransactionsPresenterProtocol?
+    var emptytransactionDataSource: EmptyTransactionsDataSource?
+    var transTableView: UITableView?
+    var transactionsDataSource: TransactionsListDataSourceProtocol? {
+        didSet {
+            transactionsDataSource?.delegate = self
+        }
+    }
     
-    var presenter: TransactionsPresenterProtocol?
+    // MARK: - Static initializer for dependencies
+    static func initWith(dataSource: TransactionsListDataSourceProtocol?,
+                         newTransPresenter: NewTransactionPresenterProtocol?,
+                         deleteTransPresenter: DeleteTransactionSheetPresenterProtocol?,
+                         transactionsPresenter: TransactionsPresenterProtocol?,
+                         emptyDataSource: EmptyTransactionsDataSource?) -> TransactionsTableViewController {
+        let storyboard = UIStoryboard(name: "Today", bundle: Bundle.main)
+        guard let tvc = storyboard.instantiateViewController(withIdentifier: "TransactionsTableViewController")
+            as? TransactionsTableViewController else {
+                fatalError("TransactionsTableViewController does not conform to protocol TransactionsTableViewControllerProtocol")
+        }
+        
+        tvc.transactionsDataSource = dataSource
+        tvc.newTransPresenter = newTransPresenter
+        tvc.deleteTransactionSheetPresenter = deleteTransPresenter
+        tvc.emptytransactionDataSource = emptyDataSource
+        tvc.transactionsPresenter = transactionsPresenter
+        
+        return tvc
+    }
     
+    // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTransactionsDatasource()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.separatorColor = MTColors.lightBg
+    }
+    
+    // MARK: - Data methods
     func setupTransactionsDatasource() {
-        transactionsDataSource = TransactionsListDataSource(authConfig: config!,
-                                                            delegate: self,
-                                                            filterBy: filter!,
-                                                            date: date,
-                                                            accounts: accounts)
-        currency = presenter?.currency()
+        currency = transactionsPresenter?.currency()
         
         tableView.register(UINib(nibName: "TransactionTableViewCell", bundle: Bundle.main),
                            forCellReuseIdentifier: "TransactionTableViewCell")
@@ -83,19 +87,8 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
         tableView.dataSource = transactionsDataSource
         
         transTableView = tableView
-        
-        emptytransactionDataSource = EmptyTransactionsDataSource()
         tableView.emptyDataSetSource = emptytransactionDataSource
         tableView.emptyDataSetDelegate = emptytransactionDataSource
-        
-        newTransPresenter = NewTransactionPresenter()
-        deleteTransactionSheetPresenter = DeleteTransactionSheetPresenter()
-        transactionsPresenter = TransactionsPresenter(with: TransactionsInteractor(with: RealmAuthConfig()))
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.separatorColor = MTColors.lightBg
     }
     
     func reloadTableBy(date: Date?, accounts: [Account]) {

@@ -54,7 +54,6 @@ class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourc
                 let transSum = self.sum(of: filteredTransactions)
                 self.transactionDict[date.start(of: .day)] = transSum
                 DispatchQueue.main.async {
-//                    print("Reloaded date \(date.start(of: .day))")
                     self.calendar?.reloadDates(dates)
                 }
             }
@@ -106,7 +105,6 @@ extension TransactionsCalendarDataSource: JTAppleCalendarViewDelegate {
             as? CustomCalendarCell else { fatalError("Cannot find cell with identifier customCalendarCell") }
         cell.dateLabel.text = cellState.text
         cell.configureCell(cellState: cellState)
-//        print("Reloading cell date \(date)")
         
         if let transSum = transactionDict[date] {
             cell.expensesLabel.text = transSum.0

@@ -10,7 +10,8 @@ import UIKit
 
 class MockAccountTransactionsPresenter: AccountTransactionsPresenter {
     var didPresent = false
-    override func presentTransactions(ofAccount account: Account, presentingVC: AccountsTableViewController) {
+    
+    override func presentTransactions(presentingVC: AccountsTableViewController) {
         didPresent = true
     }
 }

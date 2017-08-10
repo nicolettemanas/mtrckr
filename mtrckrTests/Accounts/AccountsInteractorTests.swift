@@ -85,7 +85,7 @@ class AccountsInteractorTests: QuickSpec {
                             try? self.accountsInteractor?.createAccount(account: account!)
                         }
                         
-                        itBehavesLike("can be found in database") { ["account": account!, "realm": realm!] }
+                        itBehavesLike("account can be found in database") { ["account": account!, "realm": realm!] }
                     })
                     
                     context("account id already exists", {
@@ -107,7 +107,7 @@ class AccountsInteractorTests: QuickSpec {
                             try? self.accountsInteractor?.createAccount(account: newAccount!)
                         }
                         
-                        itBehavesLike("can be found in database") { ["account": newAccount!, "realm": realm!] }
+                        itBehavesLike("account can be found in database") { ["account": newAccount!, "realm": realm!] }
                     })
                 })
             })
@@ -135,12 +135,12 @@ class AccountsInteractorTests: QuickSpec {
                                               "color": "#AAAAAA",
                                               "dateOpened": dateOpened ])
                 }
-                itBehavesLike("cannot be found in database") { ["account": account!,
+                itBehavesLike("account cannot be found in database") { ["account": account!,
                                                                 "realm": realm!] }
             })
             
             context("when asked to retrieve used currency", {
-                it("callse container.currency", closure: {
+                it("calls container.currency", closure: {
                     _ = self.accountsInteractor?.currency()
                     expect((self.accountsInteractor?.realmContainer as? MockRealmContainer)?
                         .didCallCurrency) == true
