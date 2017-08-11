@@ -64,6 +64,17 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
         return tvc
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        let resolver = ViewControllerResolvers()
+        self.newTransPresenter = resolver.container.resolve(NewTransactionPresenter.self)
+        self.deleteTransactionSheetPresenter = resolver.container.resolve(DeleteTransactionSheetPresenter.self)
+        self.emptytransactionDataSource = resolver.container.resolve(EmptyTransactionsDataSource.self)
+        self.transactionsPresenter = resolver.container.resolve(TransactionsPresenter.self)
+        self.transactionsDataSource = resolver.container.resolve(TransactionsListDataSource.self,
+                                                                 arguments: TransactionsFilter.byDate, Date())
+    }
+    
     // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()

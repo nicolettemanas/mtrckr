@@ -18,18 +18,57 @@ protocol AccountsTableViewControllerProtocol {
 class AccountsTableViewController: MTTableViewController, AccountsTableViewControllerProtocol, UserObserver {
     
     // MARK: - Properties
-    var presenter: AccountsPresenterProtocol?
+    
     var accounts: Results<Account>?
     var currency: String?
     var notifToken: NotificationToken?
     var observer: ObserverProtocol?
     
+    var presenter: AccountsPresenterProtocol?
     var emptyDatasource: EmptyAccountsDataSource?
+    var transactionsDataSource: TransactionsListDataSourceProtocol?
     var newAccountPresenter: NewAccountPresenterProtocol?
     var deleteSheetPresenter: DeleteSheetPresenterProtocol?
     var transactionsPresenter: AccountTransactionsPresenterProtocol?
     
     @IBOutlet weak var addBtn: UIBarButtonItem!
+    
+    // MARK: - Static initializer for dependencies
+    static func initWith(presenter: AccountsPresenterProtocol?,
+                         emptyDataSource: EmptyAccountsDataSource?,
+                         transactionsDataSource: TransactionsListDataSourceProtocol?,
+                         newAccountPresenter: NewAccountPresenterProtocol?,
+                         deleteSheetPresenter: DeleteSheetPresenterProtocol?,
+                         transactionsPresenter: AccountTransactionsPresenterProtocol?)
+        -> AccountsTableViewController {
+            
+        let storyboard = UIStoryboard(name: "Accounts", bundle: Bundle.main)
+        guard let avc = storyboard.instantiateViewController(withIdentifier: "MTAccountsTableViewController")
+            as? AccountsTableViewController else {
+                fatalError("AccountsTableViewController does not conform to protocol AccountsTableViewControllerProtocol")
+        }
+            
+        avc.presenter = presenter
+        avc.emptyDatasource = emptyDataSource
+        avc.transactionsDataSource = transactionsDataSource
+        avc.newAccountPresenter = newAccountPresenter
+        avc.deleteSheetPresenter = deleteSheetPresenter
+        avc.transactionsPresenter = transactionsPresenter
+        
+        return avc
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        let resolver = ViewControllerResolvers()
+        self.presenter = resolver.container.resolve(AccountsPresenter.self)
+        self.emptyDatasource = resolver.container.resolve(EmptyAccountsDataSource.self)
+        self.newAccountPresenter = resolver.container.resolve(NewAccountPresenter.self)
+        self.deleteSheetPresenter = resolver.container.resolve(DeleteSheetPresenter.self)
+        self.transactionsPresenter = resolver.container.resolve(AccountTransactionsPresenter.self)
+        self.transactionsDataSource = resolver.container.resolve(TransactionsListDataSource.self,
+                                                                 arguments: TransactionsFilter.byAccount, [Account]())
+    }
     
     // MARK: - Life cycle
     deinit {
@@ -43,12 +82,8 @@ class AccountsTableViewController: MTTableViewController, AccountsTableViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let interactor = AccountsInteractor(with: RealmAuthConfig())
-        presenter = AccountsPresenter(interactor: interactor)
-        
-        tableView.register(UINib(nibName: "AccountTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "AccountTableViewCell")
-        
-        emptyDatasource = EmptyAccountsDataSource()
+        tableView.register(UINib(nibName: "AccountTableViewCell", bundle: Bundle.main),
+                           forCellReuseIdentifier: "AccountTableViewCell")
         tableView.emptyDataSetSource = emptyDatasource
         tableView.emptyDataSetDelegate = emptyDatasource
         
@@ -58,10 +93,6 @@ class AccountsTableViewController: MTTableViewController, AccountsTableViewContr
         observer?.setDidChangeUserBlock {
             self.setupResults()
         }
-        
-        newAccountPresenter = NewAccountPresenter()
-        deleteSheetPresenter = DeleteSheetPresenter()
-        transactionsPresenter = AccountTransactionsPresenter()
     }
 
     override func didReceiveMemoryWarning() {
@@ -126,7 +157,10 @@ class AccountsTableViewController: MTTableViewController, AccountsTableViewContr
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.transactionsPresenter?.presentTransactions(presentingVC: self)
+        guard let dataSource = self.transactionsDataSource,
+        let accnts = self.accounts else { return }
+        dataSource.accountsFilter = [accnts[indexPath.row]]
+        self.transactionsPresenter?.presentTransactions(presentingVC: self, dataSource: dataSource)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

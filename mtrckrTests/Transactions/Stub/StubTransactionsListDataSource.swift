@@ -9,13 +9,20 @@ import UIKit
 @testable import mtrckr
 
 class StubTransactionsListDataSource: TransactionsListDataSource {
+    var didReloadAccounts = false
+    var accountsReloaded = [Account]()
+    
+    var didReloadDate = false
+    var dateReloaded: Date?
     
     override func reloadByDate(with date: Date) {
-        
+        didReloadDate = true
+        dateReloaded = date
     }
     
     override func reloadByAccounts(with accounts: [Account]) {
-        
+        didReloadAccounts = true
+        accountsReloaded = accounts
     }
     
     override func transaction(at indexPath: IndexPath) -> Transaction? {

@@ -76,6 +76,7 @@
 		CE7A66E61F372D5600B14A22 /* FakeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A66E51F372D5600B14A22 /* FakeModels.swift */; };
 		CE7A66E81F3749F100B14A22 /* TransactionTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A66E71F3749F100B14A22 /* TransactionTableViewControllerTests.swift */; };
 		CE811DFE1F17524300D96918 /* NewTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE811DFD1F17524300D96918 /* NewTransactionPresenter.swift */; };
+		CE95CA961F3D887B008DAAAD /* AccountTransactionsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CA951F3D887B008DAAAD /* AccountTransactionsPresenterTests.swift */; };
 		CE987AF21F064E8C0048C5A1 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE987AF11F064E8C0048C5A1 /* AccountTableViewCell.xib */; };
 		CE9AEF5C1F29F5DA00EDD54B /* Date+Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEF5B1F29F5DA00EDD54B /* Date+Converter.swift */; };
 		CE9C619E1E99029A00BC1FE3 /* BillEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */; };
@@ -224,6 +225,7 @@
 		CE7A66E51F372D5600B14A22 /* FakeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FakeModels.swift; path = Fakes/FakeModels.swift; sourceTree = "<group>"; };
 		CE7A66E71F3749F100B14A22 /* TransactionTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewControllerTests.swift; sourceTree = "<group>"; };
 		CE811DFD1F17524300D96918 /* NewTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewTransactionPresenter.swift; path = Presenters/Transactions/NewTransactionPresenter.swift; sourceTree = "<group>"; };
+		CE95CA951F3D887B008DAAAD /* AccountTransactionsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountTransactionsPresenterTests.swift; path = mtrckrTests/Accounts/AccountTransactionsPresenterTests.swift; sourceTree = SOURCE_ROOT; };
 		CE987AF11F064E8C0048C5A1 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountTableViewCell.xib; path = Views/XIBs/Accounts/AccountTableViewCell.xib; sourceTree = "<group>"; };
 		CE9AEF5B1F29F5DA00EDD54B /* Date+Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+Converter.swift"; path = "Utils/Date+Converter.swift"; sourceTree = "<group>"; };
 		CE9C619D1E99029A00BC1FE3 /* BillEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillEntry.swift; path = Models/BillEntry.swift; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				CEB0D1EB1F0BA1AF0044A433 /* MockAccountsInteractor.swift */,
 				CE4FC07A1F0C8DA10016437D /* MockTransactionsPresenter.swift */,
 				CE5A249B1F29DB6F002E6DFE /* MockAccountTransactionsPresenter.swift */,
+				CE95CA951F3D887B008DAAAD /* AccountTransactionsPresenterTests.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1280,6 +1283,7 @@
 				CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */,
 				CEB0D1E61F0B75570044A433 /* MockNewAccountPresenter.swift in Sources */,
 				CEF1E5C31F010E8F00B57C71 /* MockRegInteractor.swift in Sources */,
+				CE95CA961F3D887B008DAAAD /* AccountTransactionsPresenterTests.swift in Sources */,
 				CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */,
 				CE4FC07B1F0C8DA10016437D /* MockTransactionsPresenter.swift in Sources */,
 				CE44F4111EFA743C00E035C7 /* TestableLoginInteractor.swift in Sources */,

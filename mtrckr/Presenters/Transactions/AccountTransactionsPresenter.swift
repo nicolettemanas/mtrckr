@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AccountTransactionsPresenterProtocol {
-    func presentTransactions(presentingVC: AccountsTableViewController)
+    func presentTransactions(presentingVC: AccountsTableViewController, dataSource: TransactionsListDataSourceProtocol)
 }
 
 /// Class responsible for presenting `TransactionsTableViewController`
@@ -17,13 +17,14 @@ class AccountTransactionsPresenter: AccountTransactionsPresenterProtocol {
     /// Presents `TransactionsTableViewController` with a given `Account` filter
     ///
     /// - Parameters:
-    ///   - account: The `Account` where to fetch the `Transactions` from
+    ///   - account: An array of `Accounts` where to fetch the `Transactions` from
     ///   - presentingVC: The presenting `ViewController`
-    func presentTransactions(presentingVC: AccountsTableViewController) {
-        
-        guard let transVC = ViewControllerResolvers().transactionTableViewController(filterType: .byAccount) else {
-            fatalError("Cannot resolve transactionTableViewController with name byAccount")
+    func presentTransactions(presentingVC: AccountsTableViewController, dataSource: TransactionsListDataSourceProtocol) {
+        guard let transVC = ViewControllerResolvers().container.resolve(TransactionsTableViewController.self, argument: dataSource) else {
+            fatalError("Cannot resolve transactionTableViewController")
         }
+        
+        transVC.transactionsDataSource?.reloadByAccounts(with: dataSource.accountsFilter)
         presentingVC.navigationController?.pushViewController(transVC, animated: true)
     }
 }

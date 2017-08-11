@@ -13,12 +13,17 @@ class ViewControllerResolvers {
     var authConfig = RealmAuthConfig()
     
     init() {
-        container.register(TransactionsTableViewController.self) { (resolver, filter: TransactionsFilter) in
-            TransactionsTableViewController.initWith(dataSource: resolver.resolve(TransactionsListDataSource.self, argument: filter),
-            newTransPresenter: NewTransactionPresenter(),
-            deleteTransPresenter: DeleteTransactionSheetPresenter(),
-            transactionsPresenter: resolver.resolve(TransactionsPresenter.self),
-            emptyDataSource: EmptyTransactionsDataSource())
+        registerTransactions()
+        registerAccounts()
+    }
+    
+    func registerTransactions() {
+        container.register(TransactionsTableViewController.self) { (resolver, dataSource: TransactionsListDataSourceProtocol) in
+            TransactionsTableViewController.initWith(dataSource: dataSource,
+                                                     newTransPresenter: resolver.resolve(NewTransactionPresenter.self),
+                                                     deleteTransPresenter: resolver.resolve(DeleteTransactionSheetPresenter.self),
+                                                     transactionsPresenter: resolver.resolve(TransactionsPresenter.self),
+                                                     emptyDataSource: resolver.resolve(EmptyTransactionsDataSource.self))
         }
         
         container.register(TransactionsInteractor.self) { _ in
@@ -29,15 +34,66 @@ class ViewControllerResolvers {
             TransactionsPresenter(with: resolver.resolve(TransactionsInteractor.self)!)
         }
         
-        container.register(TransactionsListDataSource.self) { (_, filter: TransactionsFilter) in
+        container.register(TransactionsListDataSource.self) { (_, filter: TransactionsFilter, accounts: [Account]) in
             TransactionsListDataSource(authConfig: self.authConfig,
-                                              filterBy: filter,
-                                              date: nil,
-                                              accounts: [Account]())
+                                       filterBy: filter,
+                                       date: nil,
+                                       accounts: accounts)
+        }
+        
+        container.register(TransactionsListDataSource.self) { (_, filter: TransactionsFilter, date: Date) in
+            TransactionsListDataSource(authConfig: self.authConfig,
+                                       filterBy: filter,
+                                       date: date,
+                                       accounts: [Account]())
+        }
+        
+        container.register(NewTransactionPresenter.self) { _ in
+            NewTransactionPresenter()
+        }
+        
+        container.register(DeleteTransactionSheetPresenter.self) { _ in
+            DeleteTransactionSheetPresenter()
+        }
+        
+        container.register(EmptyTransactionsDataSource.self) { _ in
+            EmptyTransactionsDataSource()
         }
     }
     
-    func transactionTableViewController(filterType: TransactionsFilter) -> TransactionsTableViewController? {
-        return self.container.resolve(TransactionsTableViewController.self, argument: filterType)
+    func registerAccounts() {
+        container.register(AccountsTableViewController.self) { (resolver, dataSource: TransactionsListDataSourceProtocol) in
+            AccountsTableViewController.initWith(presenter: resolver.resolve(AccountsPresenter.self),
+                                                 emptyDataSource: EmptyAccountsDataSource(),
+                                                 transactionsDataSource: dataSource,
+                                                 newAccountPresenter: NewAccountPresenter(),
+                                                 deleteSheetPresenter: DeleteSheetPresenter(),
+                                                 transactionsPresenter: AccountTransactionsPresenter())
+            
+        }
+        
+        container.register(AccountsPresenter.self) { resolver in
+            AccountsPresenter(interactor: resolver.resolve(AccountsInteractor.self)!)
+        }
+        
+        container.register(AccountsInteractor.self) { _ in
+            AccountsInteractor(with: self.authConfig)
+        }
+        
+        container.register(EmptyAccountsDataSource.self) { _ in
+            EmptyAccountsDataSource()
+        }
+        
+        container.register(NewAccountPresenter.self) { _ in
+            NewAccountPresenter()
+        }
+        
+        container.register(DeleteSheetPresenter.self) { _ in
+            DeleteSheetPresenter()
+        }
+        
+        container.register(AccountTransactionsPresenter.self) { _ in
+            AccountTransactionsPresenter()
+        }
     }
 }

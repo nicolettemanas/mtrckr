@@ -38,6 +38,7 @@ class TransactionsListDataSourceTests: QuickSpec {
             
             let resolver = StubViewControllerResolvers()
             mockTableViewController = resolver.container.resolve(TransactionsTableViewController.self,
+                                                                 name: "stub",
                                                                  argument: TransactionsFilter.byAccount)
             dataSource?.delegate = mockTableViewController
             mockTableViewController?.transactionsDataSource = dataSource

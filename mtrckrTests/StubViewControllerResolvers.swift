@@ -15,10 +15,10 @@ class StubViewControllerResolvers: ViewControllerResolvers {
         container.register(TransactionsTableViewController.self, name: "stub") { (resolver, filter: TransactionsFilter) in
             TransactionsTableViewController.initWith(dataSource: resolver.resolve(TransactionsListDataSource.self, name: "stub",
                                                                                   argument: filter),
-             newTransPresenter: NewTransactionPresenter(),
-             deleteTransPresenter: DeleteTransactionSheetPresenter(),
+             newTransPresenter: resolver.resolve(NewTransactionPresenter.self),
+             deleteTransPresenter: resolver.resolve(DeleteTransactionSheetPresenter.self),
              transactionsPresenter: resolver.resolve(TransactionsPresenter.self),
-             emptyDataSource: EmptyTransactionsDataSource())
+             emptyDataSource: resolver.resolve(EmptyTransactionsDataSource.self))
         }
         
         container.register(TransactionsListDataSource.self, name: "stub") { (_, filter: TransactionsFilter) in

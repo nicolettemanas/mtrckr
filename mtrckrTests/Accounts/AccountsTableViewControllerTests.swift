@@ -27,9 +27,10 @@ class AccountsTableViewControllerTests: QuickSpec {
     
     override func spec() {
         beforeEach {
-            self.storyboard = UIStoryboard(name: "Accounts", bundle: Bundle.main)
-            self.accountsVC = self.storyboard?.instantiateViewController(withIdentifier: "MTAccountsTableViewController")
-                                as? AccountsTableViewController
+            let resolver = ViewControllerResolvers()
+            let transDataSource: TransactionsListDataSourceProtocol = StubViewControllerResolvers().container
+                .resolve(TransactionsListDataSource.self, name: "stub", argument: TransactionsFilter.byAccount)!
+            self.accountsVC = resolver.container.resolve(AccountsTableViewController.self, argument: transDataSource)
             expect(self.accountsVC?.view).toNot(beNil())
         }
     
@@ -69,8 +70,8 @@ class AccountsTableViewControllerTests: QuickSpec {
             it("Displays same number of accounts returned by presenter") {
                 let accounts = self.mockPresenter?.accounts()
                 expect(self.accountsVC?.tableView(self.accountsVC!.tableView!,
-                                                  numberOfRowsInSection: 0))
-                    == accounts?.count ?? 0
+                                                  numberOfRowsInSection: 0)) == accounts?.count ?? 0
+                expect(self.accountsVC?.transactionsDataSource).toNot(beNil())
             }
             
             context("Taps + button to create account") {
@@ -107,6 +108,7 @@ class AccountsTableViewControllerTests: QuickSpec {
                     
                     it("Tells presenter to display transactions under selected account", closure: {
                         expect(self.mockAccountsTransactionsPresenter?.didPresent) == true
+                        expect(self.mockAccountsTransactionsPresenter?.didPresentId) == self.accountsVC?.accounts?.first?.id
                     })
                 })
                 

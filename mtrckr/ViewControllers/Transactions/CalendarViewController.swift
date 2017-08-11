@@ -50,7 +50,10 @@ class CalendarViewController: MTViewController {
     }
     
     func setupTransactionsTable() {
-        if let transVC = ViewControllerResolvers().transactionTableViewController(filterType: .byDate) {
+        let resolver = ViewControllerResolvers()
+        let dataSource: TransactionsListDataSourceProtocol = resolver.container.resolve(TransactionsListDataSource.self,
+                                                                                        arguments: TransactionsFilter.byDate, Date())!
+        if let transVC = resolver.container.resolve(TransactionsTableViewController.self, argument: dataSource) {
             transactionsTableVC = transVC
             transVC.view.frame = transactionsTableContainer.bounds
             addChildViewController(transVC)
