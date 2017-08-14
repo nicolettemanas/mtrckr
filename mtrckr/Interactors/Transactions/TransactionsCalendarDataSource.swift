@@ -16,7 +16,9 @@ protocol TransactionsCalendarDataSourceDelegate: class {
 }
 
 protocol TransactionsCalendarDataSourceProtocol: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
+    func reloadCalendar(with accounts: [Account], initialDate: Date)
     func reloadDates(dates: [Date])
+    func allAccounts() -> [Account]
 }
 
 class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourceProtocol {
@@ -32,14 +34,14 @@ class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourc
         super.init(with: RealmAuthConfig())
         calendar = cal
         delegate = del
-        setupTransactions(initialDate: initialMonth)
+        setupTransactions(initialDate: initialMonth, accounts: [])
     }
     
-    func setupTransactions(initialDate: Date) {
+    func setupTransactions(initialDate: Date, accounts: [Account]) {
         let startDate = initialDate.subtract(3.months)
         let endDate = initialDate.add(3.months)
         self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, between: startDate.start(of: .month),
-                                            and: endDate.end(of: .month), inAccounts: [])
+                                            and: endDate.end(of: .month), inAccounts: accounts)
         self.notificationToken = self.transactions?.addNotificationBlock({ [unowned self] collectionChange in
             self.delegate?.didReceiveChanges(changes: collectionChange)
         })
@@ -60,6 +62,16 @@ class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourc
         }
     }
     
+    func reloadCalendar(with accounts: [Account], initialDate: Date) {
+        self.transactionDict = [:]
+        setupTransactions(initialDate: initialDate, accounts: accounts)
+        self.calendar?.reloadData()
+    }
+    
+    func allAccounts() -> [Account] {
+        return Array(Account.all(in: self.realmContainer!.userRealm!))
+    }
+    
     func sum(of transactions: Results<Transaction>?) -> (String, String) {
         guard let trans = transactions else { return ("", "") }
         
@@ -68,6 +80,7 @@ class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourc
         let currency = realmContainer!.currency()
         
         for tran in trans {
+            
             if tran.type == TransactionType.expense.rawValue {
                 expenses += tran.amount
             } else if tran.type == TransactionType.income.rawValue {
@@ -155,7 +168,7 @@ extension TransactionsCalendarDataSource: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         let date = (visibleDates.monthDates[5].date)
         print("Did scroll to \(date)")
-        setupTransactions(initialDate: date)
+        setupTransactions(initialDate: date, accounts: [])
         delegate?.didScrollto(dateSegmentWith: visibleDates)
         print("Will select \(visibleDates.monthDates[5].date)")
         calendar.selectDates([date], triggerSelectionDelegate: true, keepSelectionIfMultiSelectionAllowed: true)

@@ -103,12 +103,13 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
     }
     
     func reloadTableBy(date: Date?, accounts: [Account]) {
-        guard let reloadDate = date else {
+        if date != nil && accounts.count > 0 {
+            transactionsDataSource?.reloadBy(accounts: accounts, date: date!)
+        } else if date != nil {
+            transactionsDataSource?.reloadByDate(with: date!)
+        } else {
             transactionsDataSource?.reloadByAccounts(with: accounts)
-            return
         }
-        
-        transactionsDataSource?.reloadByDate(with: reloadDate)
     }
     
     // MARK: - Swipe cell handler methods

@@ -17,14 +17,21 @@ protocol CalendarViewControllerProtocol {
 
 class CalendarViewController: MTViewController {
     
+    // MARK: - IBOutlets/IBActions
     @IBOutlet weak var calendar: JTAppleCalendarView!
     @IBOutlet weak var monthyearLabel: UILabel!
     @IBOutlet weak var transactionsTableContainer: UIView!
     
+    @IBAction func didPressFilter(sender: UIButton) {
+        guard let dataSource = calendarDataSource else { fatalError("CalendarDataSource is nil") }
+        filterPresenter?.presentSelection(accounts: dataSource.allAccounts(), presentingVC: self)
+    }
+    
     var observer: ObserverProtocol?
     var transactionsTableVC: TransactionsTableViewControllerProtocol?
-
     var calendarDataSource: TransactionsCalendarDataSourceProtocol?
+    var filterPresenter: AccountsFilterPresenterProtocol?
+    var accounts = [Account]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +75,7 @@ class CalendarViewController: MTViewController {
                                                             initialMonth: Date())
         calendar.ibCalendarDataSource = calendarDataSource
         calendar.ibCalendarDelegate = calendarDataSource
+        filterPresenter = AccountsFilterPresenter()
     }
     
     func setupVisibleDates() {
@@ -118,6 +126,14 @@ extension CalendarViewController: TransactionsCalendarDataSourceDelegate {
     }
     
     func didSelect(date: Date) {
-        transactionsTableVC?.reloadTableBy(date: date, accounts: [])
+        transactionsTableVC?.reloadTableBy(date: date, accounts: accounts)
+    }
+}
+
+extension CalendarViewController: AccountsFilterViewControllerDelegate {
+    func didSelectAccounts(accounts: [Account]) {
+        self.accounts = accounts
+        self.calendarDataSource?.reloadCalendar(with: accounts, initialDate: Date())
+        self.transactionsTableVC?.reloadTableBy(date: Date(), accounts: accounts)
     }
 }

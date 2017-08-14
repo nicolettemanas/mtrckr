@@ -16,7 +16,7 @@ import DateToolsSwift
 /// - `.byAccount`: Transaction type when `Transactions` should be filtered by `Accounts`
 /// - `.byDate`: Transaction type when `Transactions` should be filtered by Date
 enum TransactionsFilter {
-    case byAccount, byDate
+    case byAccount, byDate, both
 }
 
 protocol TransactionsListDataSourceDelegate: class {
@@ -37,6 +37,7 @@ protocol TransactionsListDataSourceProtocol: UITableViewDelegate, UITableViewDat
     
     func reloadByDate(with date: Date)
     func reloadByAccounts(with accounts: [Account])
+    func reloadBy(accounts: [Account], date: Date)
     func transaction(at indexPath: IndexPath) -> Transaction?
 }
 
@@ -88,6 +89,9 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
             accountsFilter = Array(Account.all(in: realmContainer!.userRealm!))
         } else if filterBy == .byDate && dateFilter == nil {
             dateFilter = Date()
+        } else {
+            accountsFilter = Array(Account.all(in: realmContainer!.userRealm!))
+            dateFilter = Date()
         }
         
         currency = realmContainer!.currency()
@@ -98,18 +102,27 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     ///
     /// - Parameter date: Date filter
     func reloadByDate(with date: Date) {
-        filterBy = .byDate
         dateFilter = date
-        setupTransactions()
+        filterBy = .byDate
     }
     
     /// Reload the datasource by `Accounts`
     ///
     /// - Parameter accounts: `Accounts` filter
     func reloadByAccounts(with accounts: [Account]) {
-        filterBy = .byAccount
         accountsFilter = accounts
-        setupTransactions()
+        filterBy = .byAccount
+    }
+    
+    /// Reload the datasource by `Accounts` and by date
+    ///
+    /// - Parameters:
+    ///   - accounts: `Accounts` filter
+    ///   - date: Date filter
+    func reloadBy(accounts: [Account], date: Date) {
+        accountsFilter = accounts
+        dateFilter = date
+        filterBy = .both
     }
     
     /// :nodoc:
@@ -119,7 +132,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     
     /// :nodoc:
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if filterBy == .byDate {
+        if filterBy == .byDate || filterBy == .both {
             return nil
         }
         return sectionTitles[section]
@@ -127,7 +140,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     
     /// :nodoc:
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if filterBy == .byDate {
+        if filterBy == .byDate || filterBy == .both {
             return transactions?.count ?? 0
         }
         
@@ -141,7 +154,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     
     /// :nodoc:
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if filterBy == .byDate {
+        if filterBy == .byDate || filterBy == .both {
             return 0
         }
         return 30
@@ -149,7 +162,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     
     /// :nodoc:
     func numberOfSections(in tableView: UITableView) -> Int {
-        if filterBy == .byDate {
+        if filterBy == .byDate || filterBy == .both {
             return 1
         }
         return sectionTitles.count
@@ -181,12 +194,18 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     }
     
     private func setupTransactions() {
+
         switch self.filterBy {
             case .byAccount:
                 self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, fromAccounts: self.accountsFilter)
                 self.sectionTitles = self.generateTitles()
             case .byDate:
                 self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, onDate: self.dateFilter!)
+            case .both:
+                self.transactions = Transaction.all(in: self.realmContainer!.userRealm!,
+                                                    between: self.dateFilter!.start(of: .day),
+                                                    and: self.dateFilter!.end(of: .day),
+                                                    inAccounts: self.accountsFilter)
         }
         
         self.notifToken?.stop()

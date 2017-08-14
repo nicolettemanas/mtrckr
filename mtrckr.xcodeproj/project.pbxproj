@@ -61,6 +61,7 @@
 		CE5BD7601F0DDA2D00CCFD11 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BD75F1F0DDA2D00CCFD11 /* TransactionTableViewCell.swift */; };
 		CE5BD7621F0E24C900CCFD11 /* MTNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BD7611F0E24C900CCFD11 /* MTNumberFormatter.swift */; };
 		CE5BD7641F0E274800CCFD11 /* TransactionsTableViewController+SwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5BD7631F0E274800CCFD11 /* TransactionsTableViewController+SwipeTableViewCell.swift */; };
+		CE610A5C1F4147B000DCECE2 /* AccountsFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE610A5B1F4147B000DCECE2 /* AccountsFilterViewController.swift */; };
 		CE62B7421F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B7411F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift */; };
 		CE62B7451F03E8960064A159 /* AccountTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE62B7441F03E8960064A159 /* AccountTypeCollectionViewCell.xib */; };
 		CE62B7481F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B7471F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift */; };
@@ -210,6 +211,7 @@
 		CE5BD75F1F0DDA2D00CCFD11 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionTableViewCell.swift; path = Views/Class/Transactions/TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		CE5BD7611F0E24C900CCFD11 /* MTNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MTNumberFormatter.swift; path = Utils/MTNumberFormatter.swift; sourceTree = "<group>"; };
 		CE5BD7631F0E274800CCFD11 /* TransactionsTableViewController+SwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TransactionsTableViewController+SwipeTableViewCell.swift"; path = "ViewControllers/Transactions/TransactionsTableViewController+SwipeTableViewCell.swift"; sourceTree = "<group>"; };
+		CE610A5B1F4147B000DCECE2 /* AccountsFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountsFilterViewController.swift; path = ViewControllers/Accounts/AccountsFilterViewController.swift; sourceTree = "<group>"; };
 		CE62B7411F03E0FB0064A159 /* AccountTypeCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountTypeCollectionDataSource.swift; path = Interactors/Accounts/AccountTypeCollectionDataSource.swift; sourceTree = "<group>"; };
 		CE62B7441F03E8960064A159 /* AccountTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountTypeCollectionViewCell.xib; path = Views/XIBs/Accounts/AccountTypeCollectionViewCell.xib; sourceTree = "<group>"; };
 		CE62B7471F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountTypeCollectionViewCell.swift; path = Views/Class/Accounts/AccountTypeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -944,6 +946,7 @@
 			isa = PBXGroup;
 			children = (
 				CEFF80721F03BC3100FF65EC /* NewAccountViewController.swift */,
+				CE610A5B1F4147B000DCECE2 /* AccountsFilterViewController.swift */,
 				CEB0D1E11F0B71A00044A433 /* AccountsTableViewController+SwipeTableViewCell.swift */,
 				CEEC83731F178BB50009626C /* AccountsSelectionViewController.swift */,
 			);
@@ -1203,6 +1206,7 @@
 				CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */,
 				CEFB22C71E94FD8B00867CDA /* Category.swift in Sources */,
 				CE43EE491F1DBAF6001B394B /* TransactionsCalendarDataSource.swift in Sources */,
+				CE610A5C1F4147B000DCECE2 /* AccountsFilterViewController.swift in Sources */,
 				CE3A3F2F1F0A419C0079D38F /* UserObserver.swift in Sources */,
 				CE03C22F1EC365F3009A6AB0 /* MTTextInputTableViewCell.swift in Sources */,
 				CE3CDAFC1F0638AC00D4A054 /* ColorsCollectionDataSource.swift in Sources */,
