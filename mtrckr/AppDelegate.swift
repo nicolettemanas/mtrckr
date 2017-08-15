@@ -32,11 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = MTColors.barBg
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        
-        InitialRealmGenerator.generateInitRealm { (_) in
-            let holder = RealmContainer(withConfig: RealmAuthConfig())
-            _ = holder.userRealm
-        }
 
         return true
     }

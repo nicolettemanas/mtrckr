@@ -131,7 +131,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if isFilteringAllAccounts() == false {
+        if isFilteringAllAccounts() == false && filterBy != .byAccount {
             guard let header = Bundle.main.loadNibNamed("AccountsFilterHeaderView", owner: self, options: nil)?
                 .first as? AccountsFilterHeaderView else { return nil }
             header.sectionHeader.text = getHeader(accounts: accountsFilter)

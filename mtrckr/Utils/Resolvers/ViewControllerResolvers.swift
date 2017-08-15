@@ -13,8 +13,18 @@ class ViewControllerResolvers {
     var authConfig = RealmAuthConfig()
     
     init() {
-        registerTransactions()
-        registerAccounts()
+        let filePath = RealmAuthConfig().offlineRealmFileName
+        if !FileManager.default.fileExists(atPath: filePath) {
+            InitialRealmGenerator.generateInitRealm { (_) in
+                let holder = RealmContainer(withConfig: RealmAuthConfig())
+                _ = holder.userRealm
+                registerTransactions()
+                registerAccounts()
+            }
+        } else {
+            registerTransactions()
+            registerAccounts()
+        }
     }
     
     func registerTransactions() {
