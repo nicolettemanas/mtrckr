@@ -31,8 +31,7 @@ class AccountsFilterViewController: FormViewController {
             for row in selectedRows {
                 selectedAccounts.append(row.value!)
             }
-            print("selected accounts \(selectedAccounts)")
-            delegate?.didSelectAccounts(accounts: selectedAccounts)
+            delegate?.didSelectAccounts(accounts: selectedAccounts.count == accounts.count ? [] : selectedAccounts)
         }
         
         dismiss(animated: true, completion: nil)

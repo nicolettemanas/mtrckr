@@ -103,10 +103,10 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
     }
     
     func reloadTableBy(date: Date?, accounts: [Account]) {
-        if date != nil && accounts.count > 0 {
+        if date != nil {
             transactionsDataSource?.reloadBy(accounts: accounts, date: date!)
-        } else if date != nil {
-            transactionsDataSource?.reloadByDate(with: date!)
+//        } else if date != nil {
+//            transactionsDataSource?.reloadByDate(with: date!)
         } else {
             transactionsDataSource?.reloadByAccounts(with: accounts)
         }

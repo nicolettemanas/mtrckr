@@ -106,6 +106,8 @@
 		CEBC0BB11F04F56C0080DBC9 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBC0BB01F04F56C0080DBC9 /* ColorCollectionViewCell.swift */; };
 		CEC0988E1F0F8AF500D5E7B0 /* TransactionsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0988D1F0F8AF500D5E7B0 /* TransactionsListDataSource.swift */; };
 		CEC098901F10F40B00D5E7B0 /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0988F1F10F40B00D5E7B0 /* NewTransactionViewController.swift */; };
+		CEC8694F1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC8694E1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib */; };
+		CEC869511F42B30000A2FCAA /* AccountsFilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC869501F42B30000A2FCAA /* AccountsFilterHeaderView.swift */; };
 		CED88E431EE90EEE00D147B9 /* UIFont+AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED88E421EE90EEE00D147B9 /* UIFont+AppFont.swift */; };
 		CEEC83741F178BB50009626C /* AccountsSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC83731F178BB50009626C /* AccountsSelectionViewController.swift */; };
 		CEEE21D71F0E372800442E9F /* TransactionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE21D61F0E372800442E9F /* TransactionsInteractor.swift */; };
@@ -256,6 +258,8 @@
 		CEBC0BB01F04F56C0080DBC9 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorCollectionViewCell.swift; path = Views/Class/Accounts/ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEC0988D1F0F8AF500D5E7B0 /* TransactionsListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionsListDataSource.swift; path = Interactors/Transactions/TransactionsListDataSource.swift; sourceTree = "<group>"; };
 		CEC0988F1F10F40B00D5E7B0 /* NewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewTransactionViewController.swift; path = ViewControllers/Transactions/NewTransactionViewController.swift; sourceTree = "<group>"; };
+		CEC8694E1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountsFilterHeaderView.xib; path = Views/XIBs/Accounts/AccountsFilterHeaderView.xib; sourceTree = "<group>"; };
+		CEC869501F42B30000A2FCAA /* AccountsFilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountsFilterHeaderView.swift; path = Views/Class/Accounts/AccountsFilterHeaderView.swift; sourceTree = "<group>"; };
 		CED88E421EE90EEE00D147B9 /* UIFont+AppFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIFont+AppFont.swift"; path = "Sources/Extensions/UIFont+AppFont.swift"; sourceTree = "<group>"; };
 		CEEC83731F178BB50009626C /* AccountsSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountsSelectionViewController.swift; path = ViewControllers/Accounts/AccountsSelectionViewController.swift; sourceTree = "<group>"; };
 		CEEE21D61F0E372800442E9F /* TransactionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionsInteractor.swift; path = Interactors/Transactions/TransactionsInteractor.swift; sourceTree = "<group>"; };
@@ -584,6 +588,7 @@
 				CE62B7471F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift */,
 				CEBC0BB01F04F56C0080DBC9 /* ColorCollectionViewCell.swift */,
 				CE4D35C01F065415008146AF /* AccountTableViewCell.swift */,
+				CEC869501F42B30000A2FCAA /* AccountsFilterHeaderView.swift */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -617,6 +622,7 @@
 			children = (
 				CE7208A51F0DD45300A062B5 /* TransactionTableViewCell.xib */,
 				CE248BA41F0E42E500A5453A /* TransactionsChartCollectionViewCell.xib */,
+				CEC8694E1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib */,
 			);
 			name = Transactions;
 			sourceTree = "<group>";
@@ -1059,6 +1065,7 @@
 				CEF044BE1EDFEA3100486EAC /* Main.storyboard in Resources */,
 				CEFB22A91E94FC2100867CDA /* LaunchScreen.storyboard in Resources */,
 				CEF044B91EDEADE800486EAC /* Category.json in Resources */,
+				CEC8694F1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib in Resources */,
 				CEF044C81EDFEF4B00486EAC /* Summary.storyboard in Resources */,
 				CEF044C21EDFEE6C00486EAC /* Today.storyboard in Resources */,
 				CE43954F1EE92BCB00C05E4A /* SFText-Light.otf in Resources */,
@@ -1246,6 +1253,7 @@
 				CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */,
 				CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */,
 				CEA6ABC61F274B61006F15B0 /* CalendarViewController.swift in Sources */,
+				CEC869511F42B30000A2FCAA /* AccountsFilterHeaderView.swift in Sources */,
 				CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */,
 				CEB0D1E01F0B567D0044A433 /* EmptyAccountsDataSource.swift in Sources */,
 				CEF044DC1EE0211500486EAC /* LoginViewController.swift in Sources */,

@@ -130,6 +130,16 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         return transactions?[indexPath.row] ?? nil
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if isFilteringAllAccounts() == false {
+            guard let header = Bundle.main.loadNibNamed("AccountsFilterHeaderView", owner: self, options: nil)?
+                .first as? AccountsFilterHeaderView else { return nil }
+            header.sectionHeader.text = getHeader(accounts: accountsFilter)
+            return header
+        }
+        return nil
+    }
+    
     /// :nodoc:
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if filterBy == .byDate || filterBy == .both {
@@ -155,7 +165,8 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     /// :nodoc:
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if filterBy == .byDate || filterBy == .both {
-            return 0
+            if isFilteringAllAccounts() { return 0 }
+            return 20
         }
         return 30
     }
@@ -170,7 +181,8 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     
     /// :nodoc:
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell") as? TransactionTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell")
+            as? TransactionTableViewCell else {
             fatalError("Cannot initialize TransactionTableViewCell")
         }
         
@@ -178,6 +190,15 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         cell.setValues(ofTransaction: t, withCurrency: currency)
         cell.delegate = delegate as? SwipeTableViewCellDelegate
         return cell
+    }
+    
+    private func getHeader(accounts: [Account]) -> String? {
+        if isFilteringAllAccounts() == true { return nil }
+        var header = "Filter: \(accounts.first!.name)"
+        for account in accounts.dropFirst() {
+            header = "\(header), \(account.name)"
+        }
+        return header
     }
     
     private func sum(of transactions: Results<Transaction>) -> (Double, Double) {
@@ -197,10 +218,12 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
 
         switch self.filterBy {
             case .byAccount:
-                self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, fromAccounts: self.accountsFilter)
+                self.transactions = Transaction.all(in: self.realmContainer!.userRealm!,
+                                                    fromAccounts: self.accountsFilter)
                 self.sectionTitles = self.generateTitles()
             case .byDate:
-                self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, onDate: self.dateFilter!)
+                self.transactions = Transaction.all(in: self.realmContainer!.userRealm!,
+                                                    onDate: self.dateFilter!)
             case .both:
                 self.transactions = Transaction.all(in: self.realmContainer!.userRealm!,
                                                     between: self.dateFilter!.start(of: .day),
@@ -246,5 +269,14 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
             }
         }
         return titles
+    }
+    
+    private func isFilteringAllAccounts() -> Bool {
+        if accountsFilter.count == 0 ||
+            accountsFilter.count == Account.all(in:
+                self.realmContainer!.userRealm!).count {
+            return true
+        }
+        return false
     }
 }
