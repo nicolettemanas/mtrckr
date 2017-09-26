@@ -27,7 +27,7 @@ class MTTableViewController: UITableViewController {
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back-tab")
         
         tableView.separatorStyle = .singleLine
-        tableView.separatorColor = MTColors.placeholderText
+        tableView.separatorColor = MTColors.separatorColor
         tableView.tableFooterView = UIView()
         tableView.allowsSelection = true
     }
@@ -63,6 +63,22 @@ extension UITableView {
             let fromRow = { (row: Int) in return IndexPath(row: row, section: 0) }
             
             beginUpdates()
+            insertRows(at: insertions.map(fromRow), with: .automatic)
+            reloadRows(at: updates.map(fromRow), with: .automatic)
+            deleteRows(at: deletions.map(fromRow), with: .automatic)
+            endUpdates()
+        case .error(let error): fatalError("\(error)")
+        }
+    }
+    
+    func applyChanges<T>(forSection index: Int, changes: RealmCollectionChange<T>, inserting: Bool) {
+        switch changes {
+        case .initial: reloadData()
+        case .update(_, let deletions, let insertions, let updates):
+            let fromRow = { (row: Int) in return IndexPath(row: row, section: index) }
+
+            beginUpdates()
+            if inserting { insertSections([index], with: .automatic) }
             insertRows(at: insertions.map(fromRow), with: .automatic)
             reloadRows(at: updates.map(fromRow), with: .automatic)
             deleteRows(at: deletions.map(fromRow), with: .automatic)

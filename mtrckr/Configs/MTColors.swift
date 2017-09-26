@@ -12,7 +12,7 @@ import UIColor_Hex_Swift
 struct MTColors {
     static let mainBg = UIColor("#FFFFFFFF")
     static let barBg = UIColor("#FFFFFFFF")
-    static let separatorColor = UIColor("#DDDDDDFF")
+    static let separatorColor = UIColor("#EEEEEEFF")
     static let emptyDataSetBg = UIColor("#EDEDF1FF")
     
     static let mainText = UIColor("#34374BFF")
@@ -25,6 +25,7 @@ struct MTColors {
     static let mainGreen = UIColor("#45CB85FF")
     static let mainOrange = UIColor("#F5AC72FF")
     static let subRed = UIColor("#F4E3E3FF")
+    static let subOrange = UIColor("#F4CBA8FF")
     static let subBlue = UIColor("#CBF4FFFF")
     
     static let colors: [UIColor] = [UIColor("#F49A50FF"), // orange

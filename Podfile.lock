@@ -1,8 +1,4 @@
 PODS:
-  - Charts (3.0.2):
-    - Charts/Core (= 3.0.2)
-  - Charts/Core (3.0.2)
-  - CryptoSwift (0.6.9)
   - DateToolsSwift (2.0.3)
   - DZNEmptyDataSet (1.8.1)
   - Eureka (3.0.0)
@@ -24,14 +20,12 @@ PODS:
   - RealmSwift (2.8.3):
     - Realm (= 2.8.3)
   - SwiftLint (0.18.1)
-  - Swinject (2.1.0)
+  - Swinject (2.1.1)
   - SwipeCellKit (1.9.0)
   - UIColor_Hex_Swift (3.0.2)
   - URITemplate (2.0.0)
 
 DEPENDENCIES:
-  - Charts (~> 3.0.2)
-  - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift.git`, branch `develop`)
   - DateToolsSwift (~> 2.0.3)
   - DZNEmptyDataSet
   - Eureka (from `https://github.com/xmartlabs/Eureka.git`, branch `feature/Xcode9-Swift3_2`)
@@ -43,35 +37,21 @@ DEPENDENCIES:
   - Quick (~> 1.1.0)
   - RealmSwift (~> 2.8.3)
   - SwiftLint (~> 0.18.1)
-  - Swinject (from `https://github.com/Swinject/Swinject.git`, branch `swift4`)
+  - Swinject (~> 2.1.0)
   - SwipeCellKit
   - UIColor_Hex_Swift (~> 3.0.2)
 
 EXTERNAL SOURCES:
-  CryptoSwift:
-    :branch: develop
-    :git: https://github.com/krzyzanowskim/CryptoSwift.git
   Eureka:
     :branch: feature/Xcode9-Swift3_2
     :git: https://github.com/xmartlabs/Eureka.git
-  Swinject:
-    :branch: swift4
-    :git: https://github.com/Swinject/Swinject.git
 
 CHECKOUT OPTIONS:
-  CryptoSwift:
-    :commit: 1d9af96d1f9745308acebcde4f664fc833decd64
-    :git: https://github.com/krzyzanowskim/CryptoSwift.git
   Eureka:
     :commit: ca16432dde9b94b3b5335cd9287f1cc57ebbebc4
     :git: https://github.com/xmartlabs/Eureka.git
-  Swinject:
-    :commit: 4b3d047cd6745a276d20e5e2fe6ded7fd6b4454e
-    :git: https://github.com/Swinject/Swinject.git
 
 SPEC CHECKSUMS:
-  Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
-  CryptoSwift: 138d0ffbc0c5ee40f7b7fc7b073c0f41e5d36dba
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
@@ -84,11 +64,11 @@ SPEC CHECKSUMS:
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   SwiftLint: b467d08f5b25dc3b3cfed243d8e1b74b91714c67
-  Swinject: 4793342bed1bed528c7e97d5bae3e7a60e3bdcac
+  Swinject: afea49fd95f392b41171669f165842879c48fad6
   SwipeCellKit: 893661973276ae3512a84ac0a47055923b10731e
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: c15d569c1ff14b0ac59f840579dd49dcadbb4149
+PODFILE CHECKSUM: 0265d00520ccb7dfaccedeb74ece1880baaa3d24
 
 COCOAPODS: 1.1.1

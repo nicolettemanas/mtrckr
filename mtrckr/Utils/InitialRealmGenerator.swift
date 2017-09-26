@@ -43,15 +43,12 @@ class InitialRealmGenerator {
                     fatalError("Missing \(lookup).json for initial values")
                 }
                 
-                let jsonData: Data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.dataReadingMapped)
-                let jsonResult = try JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
-                if let array: [Any] = jsonResult as? [Any] {
-                    try initialRealm.write({
-                        for item: Any in array {
-                            initialRealm.dynamicCreate(lookup, value: item, update: true)
-                        }
-                    })
-                }
+                let array = try readJSONFile(at: URL(fileURLWithPath: path))
+                try initialRealm.write({
+                    for item: Any in array {
+                        initialRealm.dynamicCreate(lookup, value: item, update: true)
+                    }
+                })
                 
             } catch let error as NSError {
                 fatalError("Error in reading file \(lookup).json: \(error)")
@@ -71,5 +68,12 @@ class InitialRealmGenerator {
         } else {
             try? fileManager.createDirectory(at: realmDir, withIntermediateDirectories: true, attributes: nil)
         }
+    }
+    
+    private static func readJSONFile(at url: URL) throws -> [Any] {
+        let jsonData: Data = try Data(contentsOf: url, options: NSData.ReadingOptions.dataReadingMapped)
+        let jsonResult = try JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
+        guard let result = jsonResult as? [Any] else { fatalError("Cannot convert to array") }
+        return result
     }
 }

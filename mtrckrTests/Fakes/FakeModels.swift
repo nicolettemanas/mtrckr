@@ -23,7 +23,7 @@ class FakeModels {
         container.register(Account.self) { r in
             Account(value: ["id": "ACC-\(NSUUID().uuidString)",
                             "name": "name",
-                            "type": r.resolve(AccountType.self)!,
+                            "type": r.resolve(AccountType.self, argument: 0)!,
                             "initialAmount": 0,
                             "currentAmount": 0,
                             "totalExpenses": 0,
@@ -39,12 +39,40 @@ class FakeModels {
                         from: r.resolve(Account.self)!, to: r.resolve(Account.self)!,
                         date: Date())
         }
-        container.register(AccountType.self) { _ in
-            AccountType(typeId: 0, name: "name", icon: "icon")
+        container.register(AccountType.self) { (_, id: Int) in
+            AccountType(typeId: id, name: "name", icon: "icon")
         }
         container.register(Category.self) { _ in
             mtrckr.Category(id: "CAT-\(NSUUID().uuidString)", type: .expense, name: "name",
                             icon: "icon", color: "color")
+        }
+        
+        container.register(mtrckr.Category.self) { _ in
+            mtrckr.Category(id: "CAT-\(NSUUID().uuidString)",
+                type: CategoryType.expense,
+                name: "name",
+                icon: "icon",
+                color: "#FFFFFF")
+        }
+        container.register(Bill.self) { resolver in
+            Bill(value: ["id": "BILL-\(NSUUID().uuidString)",
+                "amount": 2500,
+                "name": "Postpaid Bill",
+                "postDueReminder": "never",
+                "preDueReminder": "oneDay",
+                "repeatSchedule": "monthly",
+                "startDate": Date(),
+                "category": resolver.resolve(mtrckr.Category.self)!])
+        }
+        container.register(BillEntry.self) { (_, bill: Bill, date: Date) in
+            BillEntry(dueDate: date, for: bill)
+        }
+        container.register(User.self) { resolver in
+            User(id: "USR-\(NSUUID().uuidString)",
+                name: "username",
+                email: "email",
+                image: "",
+                currency: resolver.resolve(Currency.self)!)
         }
     }
     
@@ -61,8 +89,21 @@ class FakeModels {
     }
     
     func accountType(id: Int) -> AccountType {
-        let type = self.container.resolve(AccountType.self)
-        type?.typeId = id
-        return type!
+        return self.container.resolve(AccountType.self, argument: id)!
+    }
+    
+    func bill() -> Bill {
+        return self.container.resolve(Bill.self)!
+    }
+    
+    func billEntry(for bill: Bill, date: Date) -> BillEntry {
+        return self.container.resolve(BillEntry.self, arguments: bill, date)!
+    }
+    
+    func user() -> User {
+        return self.container.resolve(User.self)!
+    }
+    func currency() -> Currency {
+        return self.container.resolve(Currency.self)!
     }
 }

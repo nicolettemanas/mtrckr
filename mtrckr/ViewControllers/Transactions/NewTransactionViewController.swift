@@ -16,7 +16,7 @@ protocol NewTransactionViewControllerDelegate: class {
                 from sourceAcc: Account, to destAccount: Account)
 }
 
-class NewTransactionViewController: FormViewController {
+class NewTransactionViewController: MTFormViewController {
     
     weak var delegate: NewTransactionViewControllerDelegate?
     var transaction: Transaction?
@@ -69,10 +69,6 @@ class NewTransactionViewController: FormViewController {
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
         navigationController?.dismiss(animated: true, completion: nil)
-    }
-    
-    deinit {
-        print("[VIEW CONTROLLER] Deallocating \(self)")
     }
     
     override func viewDidLoad() {
@@ -132,59 +128,6 @@ class NewTransactionViewController: FormViewController {
         catRow?.value = trans.category
     }
     
-    private func setupDefaultRows() {
-        
-        TextRow.defaultCellSetup = { cell, row in
-            cell.height = { 55 }
-            cell.titleLabel?.font = UIFont.myBoldSystemFont(ofSize: 14)
-            cell.titleLabel?.textColor = MTColors.mainText
-            cell.textField.font = UIFont.mySystemFont(ofSize: 13)
-            cell.textField.textColor = MTColors.subText
-            row.validationOptions = .validatesOnDemand
-            row.add(rule: RuleRequired())
-            row.cellUpdate({ (ce, ro) in
-                if !ro.isValid {
-                    ce.titleLabel?.textColor = MTColors.mainRed
-                    ce.backgroundColor = MTColors.subRed
-                } else {
-                    ce.backgroundColor = .white
-                }
-            })
-        }
-        
-        TextRow.defaultOnCellHighlightChanged = { cell, _ in
-            cell.titleLabel?.textColor = MTColors.mainBlue
-        }
-        
-        DecimalRow.defaultCellSetup = { cell, row in
-            cell.height = { 55 }
-            cell.titleLabel?.font = UIFont.myBoldSystemFont(ofSize: 14)
-            cell.titleLabel?.textColor = MTColors.mainText
-            cell.textField.font = UIFont.mySystemFont(ofSize: 13)
-            cell.textField.textColor = MTColors.subText
-            row.validationOptions = .validatesOnDemand
-            row.add(rule: RuleRequired())
-            row.cellUpdate({ (ce, ro) in
-                if !ro.isValid {
-                    ce.titleLabel?.textColor = MTColors.mainRed
-                    ce.backgroundColor = MTColors.subRed
-                } else {
-                    ce.backgroundColor = .white
-                }
-            })
-        }
-        
-        DateRow.defaultCellSetup = { cell, row in
-            cell.height = { 55 }
-            cell.textLabel?.font = UIFont.myBoldSystemFont(ofSize: 14)
-            cell.textLabel?.textColor = MTColors.mainText
-        }
-        
-        DateRow.defaultOnCellHighlightChanged = {cell, _ in
-            cell.textLabel?.textColor = MTColors.mainBlue
-        }
-    }
-    
     private func getAccounts(without account: Account?) -> [Account] {
         guard accounts != nil else { return [] }
         guard account != nil else { return Array(accounts!) }
@@ -195,7 +138,6 @@ class NewTransactionViewController: FormViewController {
     }
     
     private func setupForm() {
-        setupDefaultRows()
         form
         +++ TextRow { [unowned self] row in
             row.title = NSLocalizedString("Name", comment: "Title for Name field")

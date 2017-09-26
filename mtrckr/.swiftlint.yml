@@ -13,6 +13,12 @@ function_parameter_count:
   - 11
   - 15
 
+nesting_rule:
+  - 2
+  - null
+  - 5
+  - null
+
 disabled_rules:
  - force_try
  - trailing_whitespace

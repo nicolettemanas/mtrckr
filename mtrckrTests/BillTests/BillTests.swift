@@ -52,7 +52,6 @@ class BillTests: QuickSpec {
                     expect(bill.preDueReminder) == "oneDay"
                     expect(bill.repeatSchedule) == "monthly"
                     expect(bill.startDate) == startDate
-//                    expect(bill.user) == user
                     expect(bill.category) == category
                 })
             })
@@ -100,25 +99,14 @@ class BillTests: QuickSpec {
                     expect(billFromDatabase.preDueReminder) == "oneDay"
                     expect(billFromDatabase.repeatSchedule) == "monthly"
                     expect(billFromDatabase.startDate) == startDate
-//                    expect(billFromDatabase.user) == user
                     expect(billFromDatabase.category) == category
                 })
-
-//                it("reflects as Bill under user", closure: {
-//                    let user = User.with(key: user.id, inRealm: self.testRealm)
-//                    expect(user?.bills.count) == 1
-//                    expect(user?.bills[0].id) == "bill0"
-//                })
 
                 it("reflects in bills under category", closure: {
                     let category = mtrckr.Category.with(key: category.id, inRealm: self.testRealm)
                     expect(category?.bills.count) == 1
                     expect(category?.bills[0].id) == "bill0"
                 })
-
-//                it("creates billEntries from startDate to currentDate") {
-//                    
-//                }
             })
 
             describe("update()", {
@@ -149,7 +137,6 @@ class BillTests: QuickSpec {
                         expect(updatedBills[0].preDueReminder) == "never"
                         expect(updatedBills[0].repeatSchedule) == "weekly"
                         expect(updatedBills[0].startDate) == startDate
-//                        expect(updatedBills[0].user) == user
                         expect(updatedBills[0].category) == category
                     })
                 })
@@ -177,7 +164,6 @@ class BillTests: QuickSpec {
                         expect(updatedBills[0].name) == "Postpaid bill2"
                         expect(updatedBills[0].postDueReminder) == "threeDays"
                         expect(updatedBills[0].preDueReminder) == "never"
-//                        expect(updatedBills[0].user) == user
                         expect(updatedBills[0].category) == anotherCategory
                     })
                 })
@@ -209,7 +195,6 @@ class BillTests: QuickSpec {
                         expect(bill.preDueReminder) == "oneDay"
                         expect(bill.repeatSchedule) == "monthly"
                         expect(bill.startDate) == startDate
-//                        expect(bill.user) == user
                         expect(bill.category) == category
                     })
                 }
@@ -247,13 +232,6 @@ class BillTests: QuickSpec {
                     expect(entries.count) == 0
 
                 })
-
-//                it("should be deleted from the user it belongs to", closure: {
-//                    let user = User.with(key: user.id, inRealm: self.testRealm)
-//                    expect(user?.bills.count) == 2
-//                    expect(user?.bills[0].id) == "bill1"
-//                    expect(user?.bills[1].id) == "bill2"
-//                })
             })
         }
     }

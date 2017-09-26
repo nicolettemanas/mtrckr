@@ -21,6 +21,9 @@ import Realm
 /// - `.twoWeeks`: Remind two weeks before/after the due date
 enum BillDueReminder: String {
     case never, onDate, oneDay, twoDays, threeDays, oneWeek, twoWeeks
+    static let allValues = [never, onDate, oneDay, twoDays, threeDays, oneWeek, twoWeeks]
+    static let allRawValues = [never.rawValue, onDate.rawValue, oneDay.rawValue, twoDays.rawValue,
+                               threeDays.rawValue, oneWeek.rawValue, twoWeeks.rawValue]
 }
 
 /// Repeat schedule options of the `Bill`
@@ -31,6 +34,8 @@ enum BillDueReminder: String {
 /// - `.yearly`: Repeat the bill yearly
 enum BillRepeatSchedule: String {
     case never, weekly, monthly, yearly
+    static let allValues = [never, weekly, monthly, yearly]
+    static let allRawValues = [never.rawValue, weekly.rawValue, monthly.rawValue, yearly.rawValue]
 }
 
 /// A Realm `Object` that represents a scheduled transaction

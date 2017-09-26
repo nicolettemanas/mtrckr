@@ -67,7 +67,7 @@ class TransactionsListDataSourceTests: QuickSpec {
                 let accountType1 = fakeModels.accountType(id: 100)
                 let accountType2 = fakeModels.accountType(id: 101)
                 
-                date1 = Date(dateString: "08-10-2017 10:00AM", format: "MM-dd-yyyy hh:mmaa")
+                date1 = Date(dateString: "09-11-2017 1:00PM", format: "MM-dd-yyyy hh:mmaa")
                 date2 = date1.add(2.days)
                 date3 = date1.add(2.hours)
                 

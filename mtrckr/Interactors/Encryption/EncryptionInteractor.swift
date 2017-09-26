@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CryptoSwift
+//import CryptoSwift
 
 /// :nodoc:
 protocol EncryptionInteractorProtocol {
@@ -22,18 +22,19 @@ class EncryptionInteractor: EncryptionInteractorProtocol {
     /// - Parameter str: The string to be encrypted
     /// - Returns: The encrypted string
     func encrypt(str: String) -> String {
-//        TODO: CryptoSwift & Swinject not in 'master' branch due to Swift4 compatibilities
-        do {
-            guard let iv = Bundle.main.object(forInfoDictionaryKey: "CRYPT_IV") as? String,
-                let key = Bundle.main.object(forInfoDictionaryKey: "CRYPT_KEY") as? String else {
-                    fatalError("No IV and KEY found in bundle")
-            }
-            
-            let aes: AES = try AES(key: key, iv: iv, blockMode: .CBC)
-            let ciphertext = try aes.encrypt(Array(str.utf8))
-            return ciphertext.toHexString()
-        } catch let error as NSError {
-            fatalError("Failed to encrypt text \(error)")
-        }
+//        TODO: Encrypt this
+        return str
+//        do {
+//            guard let iv = Bundle.main.object(forInfoDictionaryKey: "CRYPT_IV") as? String,
+//                let key = Bundle.main.object(forInfoDictionaryKey: "CRYPT_KEY") as? String else {
+//                    fatalError("No IV and KEY found in bundle")
+//            }
+//
+//            let aes: AES = try AES(key: key, iv: iv, blockMode: .CBC)
+//            let ciphertext = try aes.encrypt(Array(str.utf8))
+//            return ciphertext.toHexString()
+//        } catch let error as NSError {
+//            fatalError("Failed to encrypt text \(error)")
+//        }
     }
 }

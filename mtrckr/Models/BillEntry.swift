@@ -41,6 +41,18 @@ class BillEntry: Object {
     
     /// The `Bill` where the `BillEntry` is from
     dynamic var bill: Bill?
+    
+    /// The custom name to be saved when converted to a `Transaction`
+    dynamic var customName: String?
+    
+    /// Reminder custom option after the due date in raw value. See `BillDueReminder`
+    dynamic var customPostDueReminder: String?
+    
+    /// Reminder custom option before the due date in raw value. See `BillDueReminder`
+    dynamic var customPreDueReminder: String?
+    
+    /// The custom `Category` to be saved when converted to a `Transaction`
+    dynamic var customCategory: Category?
 
     override static func primaryKey() -> String? {
         return "id"
@@ -77,6 +89,16 @@ class BillEntry: Object {
             fatalError(error.localizedDescription)
         }
     }
+    
+    func update(toEntry entry: BillEntry, inRealm realm: Realm) {
+        do {
+            try realm.write {
+                realm.add(entry, update: true)
+            }
+        } catch let error as NSError {
+            fatalError(error.localizedDescription)
+        }
+    }
 
     /// Updates the properties of the `BillEntry` to the values given
     ///
@@ -90,6 +112,38 @@ class BillEntry: Object {
         do {
             try realm.write {
                 self.amount = amount
+                realm.add(self, update: true)
+            }
+        } catch let error as NSError {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func update(amount: Double, dueDate: Date, inRealm realm: Realm) {
+        guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
+        
+        do {
+            try realm.write {
+                self.amount = amount
+                self.dueDate = dueDate
+                realm.add(self, update: true)
+            }
+        } catch let error as NSError {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func updateCustom(amount: Double, name: String, preDueReminder: String, postDueReminder: String,
+                      category: Category, inRealm realm: Realm) {
+        guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
+        
+        do {
+            try realm.write {
+                self.amount = amount
+                self.customName = name
+                self.customPreDueReminder = preDueReminder
+                self.customPostDueReminder = postDueReminder
+                self.customCategory = category
                 realm.add(self, update: true)
             }
         } catch let error as NSError {
@@ -178,6 +232,26 @@ class BillEntry: Object {
     /// - Returns: The `BillEntries` fetched
     static func all(in realm: Realm, for bill: Bill) -> Results<BillEntry> {
         return realm.objects(BillEntry.self).filter("bill.id == %@", bill.id).sorted(byKeyPath: "dueDate")
+    }
+    
+    static func allAfter(date: Date, in realm: Realm, for bill: Bill) -> Results<BillEntry> {
+        return realm.objects(BillEntry.self)
+            .filter("bill.id == %@", bill.id)
+            .filter("dueDate <= %@", date)
+            .sorted(byKeyPath: "dueDate", ascending: false)
+    }
+    
+    static func allUnpaid(in realm: Realm, for bills: [Bill]) -> Results<BillEntry> {
+        return realm.objects(BillEntry.self)
+            .filter("bill in %@", bills)
+            .filter("status == %@", BillEntryStatus.unpaid.rawValue)
+            .sorted(byKeyPath: "dueDate", ascending: true)
+    }
+    
+    static func allUnpaid(in realm: Realm) -> Results<BillEntry> {
+        return realm.objects(BillEntry.self)
+            .filter("status == %@", BillEntryStatus.unpaid.rawValue)
+            .sorted(byKeyPath: "dueDate", ascending: false)
     }
 
     /// :nodoc:

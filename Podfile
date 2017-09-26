@@ -10,13 +10,13 @@ def commonPods
 end
 
 target "mtrckr" do
-    pod 'CryptoSwift', '~> 0.6.9'
+#    pod 'CryptoSwift', '~> 0.6.9'
     pod 'Hero', '~> 0.3.6'
     pod 'NVActivityIndicatorView', '~> 3.6.1'
     pod 'UIColor_Hex_Swift', '~> 3.0.2'
     pod 'SwipeCellKit'
     pod 'DZNEmptyDataSet'
-    pod 'Charts', '~> 3.0.2'
+#    pod 'Charts', '~> 3.0.2'
     pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git', :branch => 'feature/Xcode9-Swift3_2'
     pod 'JTAppleCalendar'
 

@@ -81,11 +81,6 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
         setupTransactionsDatasource()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.separatorColor = MTColors.lightBg
-    }
-    
     // MARK: - Data methods
     func setupTransactionsDatasource() {
         currency = transactionsPresenter?.currency()
