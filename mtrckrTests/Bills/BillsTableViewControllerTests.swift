@@ -20,18 +20,18 @@ class BillsTableViewControllerTests: QuickSpec {
         var mockPresenter: MockBillsPresenter?
         var realm: Realm!
         let fakeModels = FakeModels()
-        
+
         let identifier = "BillsTableViewControllerTests"
-        
+
         beforeEach {
             let resolvers = ViewControllerResolvers()
             let mockResolvers = StubViewControllerResolvers()
-            
+
             mockNewBillPresenter = mockResolvers.container.resolve(NewBillPresenter.self, name: "mock") as? MockNewBillPresenter
             mockDeleteBillPresenter = mockResolvers.container.resolve(DeleteBillPresenter.self, name: "mock") as? MockDeleteBillPresenter
             billInteractor = mockResolvers.container.resolve(BillsInteractor.self, name: "stub", argument: identifier)
             mockPresenter = mockResolvers.container.resolve(BillsPresenter.self, name: "mock") as? MockBillsPresenter
-            
+
             billsViewController = resolvers.container.resolve(BillsTableViewController.self)
             billsViewController.newBillPresenter = mockNewBillPresenter
             billsViewController.deleteBillPresenter = mockDeleteBillPresenter
@@ -39,29 +39,29 @@ class BillsTableViewControllerTests: QuickSpec {
             billsViewController.dataSource?.delegate = billsViewController
             billsViewController.presenter = mockPresenter
             expect(billsViewController.view).toNot(beNil())
-            
+
             realm = (billInteractor as! BillsInteractor).realmContainer!.userRealm!
             try! realm.write {
                 realm.deleteAll()
             }
         }
-        
+
         describe("BillsTableViewController") {
             beforeEach {
                 billInteractor?.saveBill(bill: fakeModels.bill())
                 billInteractor?.saveBill(bill: fakeModels.bill())
                 billInteractor?.saveBill(bill: fakeModels.bill())
-                
+
                 billsViewController.dataSource?.refresh()
             }
-            
+
             context("Taps + button to create a bill", {
                 it("Presents new bill form") {
                     billsViewController.createBillbtnPressed(sender: nil)
                     expect(mockNewBillPresenter?.didPresent) == true
                     expect(mockNewBillPresenter?.didReceiveId).to(beNil())
                 }
-                
+
                 context("receives new values", {
                     it("pass values to presenter", closure: {
                         let date = Date()
@@ -80,32 +80,32 @@ class BillsTableViewControllerTests: QuickSpec {
                     })
                 })
             })
-            
+
             context("chooses to edit the first BillEntry displayed", {
                 beforeEach {
                     billsViewController.editBillEntry(atIndex: IndexPath(item: 0, section: 0))
                 }
-                
+
                 it("presents edit form", closure: {
                     let index = IndexPath(row: 0, section: 0)
                     billsViewController.editBillEntry(atIndex: index)
                     expect(mockNewBillPresenter?.didPresent) == true
                     expect(mockNewBillPresenter?.didReceiveId) == billsViewController.dataSource?.entry(at: index)?.id
                 })
-                
+
                 context("receives edited values/confirm to edit", {
                     context("edit current bill entry", {
                         let date = Date()
                         let bill = fakeModels.bill()
                         let entryToEdit = fakeModels.billEntry(for: bill, date: date)
                         let cat = fakeModels.category()
-                        
+
                         beforeEach {
                             billsViewController.edit(billEntry: entryToEdit, amount: 99.0, name: "New Entry Name",
                                                      post: BillDueReminder.never.rawValue, pre: BillDueReminder.onDate.rawValue,
                                                      repeatSchedule: BillRepeatSchedule.weekly.rawValue, startDate: date, category: cat)
                         }
-                        
+
                         it("passes values to edit to presenter", closure: {
                             expect(mockPresenter?.didEdit) == true
                             expect(mockPresenter?.didEditEntry) == entryToEdit
@@ -117,7 +117,7 @@ class BillsTableViewControllerTests: QuickSpec {
                             expect(mockPresenter?.didEditEntryCategory) == cat
                         })
                     })
-                    
+
                     context("for edit all proceeding bills", {
                         let date = Date().subtract(1.days)
                         let proceedingDate = Date()
@@ -129,7 +129,7 @@ class BillsTableViewControllerTests: QuickSpec {
                                                      repeatSchedule: BillRepeatSchedule.weekly.rawValue, startDate: date,
                                                      category: cat, proceedingDate: proceedingDate)
                         }
-                        
+
                         it("passes values to edit to presenter", closure: {
                             expect(mockPresenter?.didEdit) == true
                             expect(mockPresenter?.didEditBill) == bill
@@ -145,57 +145,57 @@ class BillsTableViewControllerTests: QuickSpec {
                     })
                 })
             })
-            
+
             context("chooses to delete the first BillEntry displayed", {
                 let indexToDelete = IndexPath(row: 0, section: 0)
                 beforeEach {
                     billsViewController.deleteBillEntry(atIndex: indexToDelete)
                 }
-                
+
                 it("Displays delete action sheet options", closure: {
                     let controller: UIAlertController? = billsViewController!.deleteBillPresenter!.alert
                     expect(controller).toNot(beNil())
                     expect(mockDeleteBillPresenter!.didPresentDeleteSheet) == true
                     expect(mockDeleteBillPresenter?.billEntryToDelete) == billsViewController.dataSource?.entry(at: indexToDelete)
                 })
-                
+
                 context("user chooses to delete bill entry", {
                     var entry: BillEntry!
-                    
+
                     beforeEach {
                         entry = billsViewController.dataSource?.entry(at: indexToDelete)
                     }
-                    
+
                     context("only delete current entry", {
                         it("tells presenter to delete the current bill entry", closure: {
                             let controller: UIAlertController = billsViewController!.deleteBillPresenter!.alert!
                             let deleteAction = controller.actions[1] as! MockAlertAction
                             deleteAction.mockHandler!(deleteAction)
-                            
+
                             expect(mockPresenter?.didDelete) == true
                             expect(mockPresenter?.didDeleteEntry) == entry
                             expect(mockPresenter?.deleteType) == .currentBill
                         })
                     })
-                    
+
                     context("delete all proceeding entries", {
                         it("tells presenter to delete all proceeding bills", closure: {
                             let controller: UIAlertController = billsViewController!.deleteBillPresenter!.alert!
                             let deleteAction = controller.actions[2] as! MockAlertAction
                             deleteAction.mockHandler!(deleteAction)
-                            
+
                             expect(mockPresenter?.didDelete) == true
                             expect(mockPresenter?.didDeleteEntry) == entry
                             expect(mockPresenter?.deleteType) == .allBills
                         })
                     })
                 })
-                
+
                 context("user chooses to cancel deletion", {
-                    
+
                 })
             })
-            
+
             context("user taps a bill entry", {
                 it("presents its payment history", closure: {
                     let index = IndexPath(row: 0, section: 0)
@@ -205,7 +205,7 @@ class BillsTableViewControllerTests: QuickSpec {
                     expect(mockPresenter?.didShowHistoryOf) == entry
                 })
             })
-            
+
             context("user taps 'pay' on an unpaid bill", {
                 it("presents form to create transaction with pre-filled values", closure: {
                     let index = IndexPath(row: 0, section: 0)

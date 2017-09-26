@@ -52,6 +52,13 @@ class BillsDataSource: RealmHolder, BillsDataSourceProtocol {
     var displayedSectionStack: [BillSections.RawValue] = []
     weak var delegate: BillsDataSourceDelegate?
     
+    deinit {
+        notifToken?.stop()
+        overDueToken?.stop()
+        sevenDaysToken?.stop()
+        thirtyDaysToken?.stop()
+    }
+    
     override init(with config: AuthConfig) {
         super.init(with: config)
         currency = realmContainer?.currency() ?? "₱"
@@ -103,26 +110,28 @@ class BillsDataSource: RealmHolder, BillsDataSourceProtocol {
     }
     
     private func setTokens() {
-        self.overDueToken = self.overDue?.addNotificationBlock({ [unowned self] (changes) in
-            self.refreshBillEntries()
-            self.sortEntries()
-            self.delegate?.didUpdateOverdues(withChanges: changes, inserting:
-                !self.displayedSectionStack.contains(BillSections.overdue.rawValue))
-        })
-        
-        sevenDaysToken = sevenDays?.addNotificationBlock({ [unowned self] (changes) in
-            self.refreshBillEntries()
-            self.sortEntries()
-            self.delegate?.didUpdateSevenDays(withChanges: changes, inserting:
-                !self.displayedSectionStack.contains(BillSections.sevenDays.rawValue))
-        })
-        
-        thirtyDaysToken = thirtyDays?.addNotificationBlock({ [unowned self] (changes) in
-            self.refreshBillEntries()
-            self.sortEntries()
-            self.delegate?.didUpdateThirtyDays(withChanges: changes, inserting:
-                !self.displayedSectionStack.contains(BillSections.thirtyDays.rawValue))
-        })
+        DispatchQueue.main.async {
+            self.overDueToken = self.overDue?.addNotificationBlock({ [unowned self] (changes) in
+                self.refreshBillEntries()
+                self.sortEntries()
+                self.delegate?.didUpdateOverdues(withChanges: changes, inserting:
+                    !self.displayedSectionStack.contains(BillSections.overdue.rawValue))
+            })
+            
+            self.sevenDaysToken = self.sevenDays?.addNotificationBlock({ [unowned self] (changes) in
+                self.refreshBillEntries()
+                self.sortEntries()
+                self.delegate?.didUpdateSevenDays(withChanges: changes, inserting:
+                    !self.displayedSectionStack.contains(BillSections.sevenDays.rawValue))
+            })
+            
+            self.thirtyDaysToken = self.thirtyDays?.addNotificationBlock({ [unowned self] (changes) in
+                self.refreshBillEntries()
+                self.sortEntries()
+                self.delegate?.didUpdateThirtyDays(withChanges: changes, inserting:
+                    !self.displayedSectionStack.contains(BillSections.thirtyDays.rawValue))
+            })
+        }
     }
     
     func index(ofSection sectionHeader: String) -> Int? {

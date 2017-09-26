@@ -66,7 +66,7 @@ class BillsPresenter: BillsPresenterProtocol {
         newBillEntry.customName = name
         newBillEntry.customPostDueReminder = post
         newBillEntry.customPreDueReminder = pre
-        newBillEntry.dueDate = startDate
+        newBillEntry.dueDate = startDate.start(of: .day)
         newBillEntry.customCategory = category
         
         interactor?.updateBillEntry(entry: billEntry, toEntry: newBillEntry)

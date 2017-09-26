@@ -69,7 +69,7 @@ class BillEntry: Object {
         self.init()
         self.id = "\(bill.id)-\(NSUUID().uuidString)"
         self.amount = bill.amount
-        self.dueDate = dueDate
+        self.dueDate = dueDate.start(of: .day)
         self.datePaid = nil
         self.status = BillEntryStatus.unpaid.rawValue
         self.bill = bill
@@ -125,7 +125,7 @@ class BillEntry: Object {
         do {
             try realm.write {
                 self.amount = amount
-                self.dueDate = dueDate
+                self.dueDate = dueDate.start(of: .day)
                 realm.add(self, update: true)
             }
         } catch let error as NSError {
