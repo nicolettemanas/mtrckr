@@ -57,6 +57,8 @@ class TransactionsListDataSourceTests: QuickSpec {
             var trans2: Transaction!
             var trans3: Transaction!
             var trans4: Transaction!
+            var trans5: Transaction!
+            var trans6: Transaction!
             
             var date1: Date!
             var date2: Date!
@@ -90,6 +92,8 @@ class TransactionsListDataSourceTests: QuickSpec {
                 trans2 = fakeModels.transaction()
                 trans3 = fakeModels.transaction()
                 trans4 = fakeModels.transaction()
+                trans5 = fakeModels.transaction()
+                trans6 = fakeModels.transaction()
                 
                 trans1.fromAccount = account1
                 trans1.toAccount = account1
@@ -103,26 +107,50 @@ class TransactionsListDataSourceTests: QuickSpec {
                 trans4.fromAccount = account3
                 trans4.toAccount = account3
                 trans4.transactionDate = date3.add(1.hours)
+                trans5.fromAccount = account1
+                trans5.toAccount = account1
+                trans5.transactionDate = date1.subtract(1.months).add(1.minutes)
+                trans6.fromAccount = account1
+                trans6.toAccount = account1
+                trans6.transactionDate = date1.subtract(1.months)
                 
                 trans1.save(toRealm: realm)
                 trans2.save(toRealm: realm)
                 trans3.save(toRealm: realm)
                 trans4.save(toRealm: realm)
+                trans5.save(toRealm: realm)
+                trans6.save(toRealm: realm)
             }
             
             context("filtered by account", {
-                it("displays transactions (sorted latest first) that belongs to the given account", closure: {
+                beforeEach {
                     dataSource?.accountsFilter = [account1]
                     dataSource?.filterBy = .byAccount
                     dataSource?.reloadByAccounts(with: [account1])
+                }
+                
+                it("displays transactions (sorted latest first) that belongs to the given account", closure: {
                     let numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
                                                                numberOfRowsInSection: 0)
-                    expect(numOfRows).toEventually(equal(2))
-                    let t1 = dataSource?.transactions?.first
-                    let t2 = dataSource?.transactions?.last
+                    expect(numOfRows) == 2
                     
-                    expect(trans1) == t2
-                    expect(trans2) == t1
+                    let rows = dataSource?.groupedTransactions[trans1.transactionDate.format(with: "MMM")]
+                    
+                    expect(trans2) == rows!![0]
+                    expect(trans1) == rows!![1]
+                })
+                
+                it("sections table by month", closure: {
+                    let numOfSections = dataSource?.numberOfSections(in: mockTableViewController!.tableView)
+                    let numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
+                                                          numberOfRowsInSection: 1)
+                    expect(numOfSections) == 2
+                    expect(numOfRows) == 2
+                    
+                    let rows = dataSource?.groupedTransactions[trans5.transactionDate.format(with: "MMM")]
+                    
+                    expect(trans5) == rows!![0]
+                    expect(trans6) == rows!![1]
                 })
             })
             

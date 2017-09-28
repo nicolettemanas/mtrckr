@@ -151,7 +151,7 @@ extension TransactionsTableViewController: NewTransactionViewControllerDelegate 
 
 extension TransactionsTableViewController: TransactionsListDataSourceDelegate {
     func didUpdateTransactions() {
-        
+        tableView.reloadData()
     }
     
     func didReceiveChanges(changes: RealmCollectionChange<Results<Transaction>>) {

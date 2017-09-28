@@ -56,6 +56,9 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     /// `Transactions` displayed
     var transactions: Results<Transaction>?
     
+    /// :nodoc:
+    var groupedTransactions: [String: Results<Transaction>?] = [:]
+    
     weak var delegate: TransactionsListDataSourceDelegate?
     
     var currency: String = ""
@@ -154,7 +157,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
             return transactions?.count ?? 0
         }
         
-        return rowsForSection(section: section)
+        return rowsCountSection(section: section)
     }
     
     /// :nodoc:
@@ -186,7 +189,12 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
             fatalError("Cannot initialize TransactionTableViewCell")
         }
         
-        let t = transactions![indexPath.row]
+        var t = transactions![indexPath.row]
+        if filterBy == .byAccount {
+            guard let rows = rowsForSection(section: indexPath.section)
+            else { fatalError("Invalid section") }
+            t = rows[indexPath.row]
+        }
         cell.setValues(ofTransaction: t, withCurrency: currency)
         cell.delegate = delegate as? SwipeTableViewCellDelegate
         return cell
@@ -215,12 +223,12 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     }
     
     private func setupTransactions() {
-
         switch self.filterBy {
             case .byAccount:
                 self.transactions = Transaction.all(in: self.realmContainer!.userRealm!,
                                                     fromAccounts: self.accountsFilter)
                 self.sectionTitles = self.generateTitles()
+                self.groupTransactions()
             case .byDate:
                 self.transactions = Transaction.all(in: self.realmContainer!.userRealm!,
                                                     onDate: self.dateFilter!)
@@ -232,20 +240,34 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         }
         
         self.notifToken?.stop()
-        self.notifToken = self.transactions?.addNotificationBlock({ [weak self] change in
-            guard let strongSelf = self else { return }
-            strongSelf.delegate?.didReceiveChanges(changes: change)
-            strongSelf.delegate?.didUpdateTransactions()
+        self.notifToken = self.transactions?.addNotificationBlock({ [unowned self] change in
+            if self.filterBy == TransactionsFilter.byAccount {
+                self.delegate?.didUpdateTransactions()
+            } else {
+                self.delegate?.didReceiveChanges(changes: change)
+            }
         })
     }
     
-    private func rowsForSection(section: Int) -> Int {
-        if monthSections.count < 1 { return 0 }
-        
-        let sDate = monthSections[section].0
-        let eDate = monthSections[section].1
-        let trans = transactions?.filter("transactionDate >= %@ AND transactionDate <= %@", sDate, eDate)
-        return trans?.count ?? 0
+    private func groupTransactions() {
+        for i in 0..<sectionTitles.count {
+            if monthSections.count < 1 { return }
+            
+            let sDate = monthSections[i].0
+            let eDate = monthSections[i].1
+            let trans = transactions?.filter("transactionDate >= %@ AND transactionDate <= %@", sDate, eDate)
+            groupedTransactions[monthSections[i].0.format(with: "MMM")] = trans
+        }
+    }
+    
+    private func rowsCountSection(section: Int) -> Int {
+        let monthIndex = monthSections[section].0.format(with: "MMM")
+        return groupedTransactions[monthIndex]??.count ?? 0
+    }
+    
+    private func rowsForSection(section: Int) -> Results<Transaction>? {
+        let monthIndex = monthSections[section].0.format(with: "MMM")
+        return groupedTransactions[monthIndex]!
     }
     
     private func generateTitles() -> [String] {

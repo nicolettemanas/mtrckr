@@ -63,11 +63,11 @@ class BillsInteractorTests: QuickSpec {
                     expect(entries2.count) == 1
                     expect(entries3.count) == 3
                     
-                    expect(entries1[0].dueDate) == bill1.startDate
-                    expect(entries2[0].dueDate) == bill2.startDate
-                    expect(entries3[0].dueDate) == bill3.startDate
-                    expect(entries3[1].dueDate) == bill3.startDate.add(1.months)
-                    expect(entries3[2].dueDate) == bill3.startDate.add(2.months)
+                    expect(entries1[0].dueDate) == bill1.startDate.start(of: .day)
+                    expect(entries2[0].dueDate) == bill2.startDate.start(of: .day)
+                    expect(entries3[0].dueDate) == bill3.startDate.start(of: .day)
+                    expect(entries3[1].dueDate) == bill3.startDate.add(1.months).start(of: .day)
+                    expect(entries3[2].dueDate) == bill3.startDate.add(2.months).start(of: .day)
                 })
             })
             
@@ -171,7 +171,7 @@ class BillsInteractorTests: QuickSpec {
                         expect(updatedEntries[1].customPostDueReminder) == BillDueReminder.never.rawValue
                         expect(updatedEntries[1].customPreDueReminder) == BillDueReminder.never.rawValue
                         expect(updatedEntries[1].customCategory) == oldCategory
-                        expect(updatedEntries[1].dueDate) == newDate
+                        expect(updatedEntries[1].dueDate) == newDate.start(of: .day)
                         
                         expect(updatedEntries[2].amount) == 100
                         expect(updatedEntries[2].status) == BillEntryStatus.unpaid.rawValue
@@ -179,7 +179,7 @@ class BillsInteractorTests: QuickSpec {
                         expect(updatedEntries[2].customPostDueReminder) == BillDueReminder.never.rawValue
                         expect(updatedEntries[2].customPreDueReminder) == BillDueReminder.never.rawValue
                         expect(updatedEntries[2].customCategory) == oldCategory
-                        expect(updatedEntries[2].dueDate) == newDate.add(1.weeks)
+                        expect(updatedEntries[2].dueDate) == newDate.add(1.weeks).start(of: .day)
                         
                         expect(updatedEntries[3].amount) == 100
                         expect(updatedEntries[3].status) == BillEntryStatus.unpaid.rawValue
@@ -187,7 +187,7 @@ class BillsInteractorTests: QuickSpec {
                         expect(updatedEntries[3].customPostDueReminder) == BillDueReminder.never.rawValue
                         expect(updatedEntries[3].customPreDueReminder) == BillDueReminder.never.rawValue
                         expect(updatedEntries[3].customCategory) == oldCategory
-                        expect(updatedEntries[3].dueDate) == newDate.add(2.weeks)
+                        expect(updatedEntries[3].dueDate) == newDate.add(2.weeks).start(of: .day)
                     })
                 })
             })

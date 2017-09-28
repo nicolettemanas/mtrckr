@@ -87,7 +87,7 @@ class BillsPresenterTests: QuickSpec {
                                                 startDate: date, category: cat)
 
                         expect(mockInteractor?.newEntry?.amount) == 999
-                        expect(mockInteractor?.newEntry?.dueDate) == date
+                        expect(mockInteractor?.newEntry?.dueDate) == date.start(of: .day)
                         expect(mockInteractor?.newEntry?.customName) == "New Bill Name"
                         expect(mockInteractor?.newEntry?.customPostDueReminder) == BillDueReminder.threeDays.rawValue
                         expect(mockInteractor?.newEntry?.customPreDueReminder) == BillDueReminder.twoDays.rawValue

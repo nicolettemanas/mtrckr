@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1D2-ct-mTF">
-                        <rect key="frame" x="60" y="36.5" width="35.5" height="12"/>
+                        <rect key="frame" x="60" y="36.5" width="35.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -40,10 +40,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postpaid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOO-Jx-eMs">
-                        <rect key="frame" x="60" y="16.5" width="224" height="12"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="12" id="Roo-GW-F7H"/>
-                        </constraints>
+                        <rect key="frame" x="60" y="13.5" width="224" height="18"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -68,7 +65,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4B-wv-xid">
-                        <rect key="frame" x="100.5" y="34.5" width="30.5" height="17"/>
+                        <rect key="frame" x="100.5" y="37.5" width="30.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -78,7 +75,7 @@
                     <constraint firstAttribute="trailing" secondItem="Pea-DR-6Nq" secondAttribute="trailing" constant="8" id="G6e-KR-AO0"/>
                     <constraint firstItem="tYX-Vc-PCU" firstAttribute="centerY" secondItem="bB9-Tz-c7G" secondAttribute="centerY" id="GA7-2I-rPY"/>
                     <constraint firstItem="tYX-Vc-PCU" firstAttribute="leading" secondItem="bB9-Tz-c7G" secondAttribute="leading" constant="10" id="KcE-EM-3IH"/>
-                    <constraint firstItem="1D2-ct-mTF" firstAttribute="top" secondItem="sOO-Jx-eMs" secondAttribute="bottom" constant="8" id="PAq-oS-e6b"/>
+                    <constraint firstItem="1D2-ct-mTF" firstAttribute="top" secondItem="sOO-Jx-eMs" secondAttribute="bottom" constant="5" id="PAq-oS-e6b"/>
                     <constraint firstItem="Y4B-wv-xid" firstAttribute="centerY" secondItem="1D2-ct-mTF" secondAttribute="centerY" id="SdR-YV-HP8"/>
                     <constraint firstItem="Pea-DR-6Nq" firstAttribute="leading" secondItem="sOO-Jx-eMs" secondAttribute="trailing" constant="8" id="Tfz-N7-nXV"/>
                     <constraint firstItem="Pea-DR-6Nq" firstAttribute="centerY" secondItem="bB9-Tz-c7G" secondAttribute="centerY" id="fG1-uO-rID"/>

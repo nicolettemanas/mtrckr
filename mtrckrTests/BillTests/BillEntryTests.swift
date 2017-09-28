@@ -57,7 +57,7 @@ class BillEntryTests: QuickSpec {
                 }
 
                 it("initializes and assign properties correctly", closure: {
-                    expect(billEntry.dueDate) == dueDate
+                    expect(billEntry.dueDate) == dueDate.start(of: .day)
                     expect(billEntry.bill) == bill
                 })
 
@@ -138,7 +138,7 @@ class BillEntryTests: QuickSpec {
                 }
 
                 it("saves object to database correctly", closure: {
-                    expect(billEntry.dueDate) == dueDate
+                    expect(billEntry.dueDate) == dueDate.start(of: .day)
                     expect(billEntry.bill) == bill
                     expect(billEntry.status) == BillEntryStatus.unpaid.rawValue
                     expect(billEntry.datePaid).to(beNil())
@@ -230,8 +230,8 @@ class BillEntryTests: QuickSpec {
 
                     let entries = BillEntry.all(in: self.testRealm, for: bill)
                     expect(entries.count) == 3
-                    expect(entries[0].dueDate) < entries[1].dueDate
-                    expect(entries[1].dueDate) < entries[2].dueDate
+                    expect(entries[0].dueDate) <= entries[1].dueDate.start(of: .day)
+                    expect(entries[1].dueDate) <= entries[2].dueDate.start(of: .day)
                 })
             })
 
