@@ -24,6 +24,8 @@
 	<string>${IV}</string>
 	<key>CRYPT_KEY</key>
 	<string>${KEY}</string>
+	<key>DOMAIN</key>
+	<string>${DOMAIN}</string>
 	<key>ENCRYPTION_KEY</key>
 	<string>${ENCRYPTION_KEY}</string>
 	<key>LSRequiresIPhoneOS</key>

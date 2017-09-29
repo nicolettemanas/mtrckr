@@ -118,8 +118,8 @@ class AccountsTableViewController: MTTableViewController, AccountsTableViewContr
     }
     
     func setupResults() {
-        self.accounts = self.presenter?.accounts()
         DispatchQueue.main.async {
+            self.accounts = self.presenter?.accounts()
             self.notifToken = self.accounts?.addNotificationBlock(self.tableView.applyChanges)
             self.tableView.reloadData()
         }

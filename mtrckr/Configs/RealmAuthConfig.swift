@@ -11,7 +11,7 @@ import Realm
 import RealmSwift
 
 let buildConfig = Bundle.main.object(forInfoDictionaryKey: "BUILD_CONFIG_NAME") as? String
-//let buildConfig = "dev"
+let domain = Bundle.main.object(forInfoDictionaryKey: "DOMAIN") as? String
 
 /// Protocol to conform to when making a Realm Authentication Configuration
 /// Used by instances of `RealmHolder`
@@ -49,11 +49,10 @@ protocol AuthConfig {
 }
 
 struct RealmAuthConfig: AuthConfig {
-    var initRealmFileName: String = "mtrckr-\(buildConfig!)-init-db"
-    var offlineRealmFileName: String = "mtrckr-\(buildConfig!)"
+    var initRealmFileName: String = "mtrckr-\(buildConfig ?? "dev")-init-db"
+    var offlineRealmFileName: String = "mtrckr-\(buildConfig ?? "dev")"
     
-//    var domainHost: String = "localhost:9080"
-    var domainHost: String = "ec2-52-68-176-73.ap-northeast-1.compute.amazonaws.com:9080"
+    var domainHost: String = "\(domain ?? "localhost"):9443"
     var serverURL: URL
     var realmDomainURL: URL
     var userRealmPath: URL
@@ -68,12 +67,9 @@ struct RealmAuthConfig: AuthConfig {
         
         self.initialRealm = URL(fileURLWithPath: docsDir).appendingPathComponent("initRealm/\(initRealmFileName).realm")
         self.offlineRealm = URL(fileURLWithPath: docsDir).appendingPathComponent("initRealm/\(offlineRealmFileName).realm")
-        self.serverURL = URL(string: "http://\(domainHost)/")!
-        self.realmDomainURL = URL(string: "realm://\(domainHost)")!
-        guard let config = buildConfig  else {
-            fatalError("Cannor read build configuration")
-        }
-        
+        self.serverURL = URL(string: "https://\(domainHost)/")!
+        self.realmDomainURL = URL(string: "realms://\(domainHost)")!
+        guard let config = buildConfig else { fatalError("Cannot identify build configuration") }
         self.userRealmPath = URL(string: "\(self.realmDomainURL)/~/mtrckr-\(config)")!
     }
 }

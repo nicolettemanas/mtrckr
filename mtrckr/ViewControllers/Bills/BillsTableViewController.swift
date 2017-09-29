@@ -7,7 +7,6 @@
 
 import UIKit
 import RealmSwift
-import DZNEmptyDataSet
 
 enum ModifyBillType: String {
     case allBills, currentBill
@@ -153,49 +152,5 @@ extension BillsTableViewController: NewBillPresenterDelegate {
     
     func proceedEditProceedingEntries(ofBillAtIndexPath index: IndexPath, fromDate date: Date) {
         
-    }
-}
-
-class EmptyBillsDataSource: NSObject, DZNEmptyDataSetSource {
-    
-    struct LocalizableStrings {
-        static let emptyBillsTitle = NSLocalizedString("There are currently no saved bills.",
-                   comment: "The title shown when there are no bills registered.")
-        static let emptyBillsBody = NSLocalizedString("Tap the '+' button to add one.",
-                  comment: "The description shown when there are no bills registered. Instructs user how to add a bill.")
-    }
-    
-    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return MTColors.emptyDataSetBg
-    }
-    
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = LocalizableStrings.emptyBillsTitle
-        let style = NSMutableParagraphStyle()
-        style.lineBreakMode = .byWordWrapping
-        style.alignment = .center
-        let attr = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
-                    NSForegroundColorAttributeName: MTColors.placeholderText,
-                    NSParagraphStyleAttributeName: style]
-        return NSAttributedString(string: str, attributes: attr)
-    }
-    
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = LocalizableStrings.emptyBillsBody
-        let style = NSMutableParagraphStyle()
-        style.lineBreakMode = .byWordWrapping
-        style.alignment = .center
-        let attr = [NSFontAttributeName: UIFont.systemFont(ofSize: 16),
-                    NSForegroundColorAttributeName: MTColors.placeholderText,
-                    NSParagraphStyleAttributeName: style]
-        return NSAttributedString(string: str, attributes: attr)
-    }
-    
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return #imageLiteral(resourceName: "atype-cash")
-    }
-    
-    func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return MTColors.placeholderText
     }
 }
