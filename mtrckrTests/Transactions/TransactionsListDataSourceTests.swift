@@ -69,7 +69,7 @@ class TransactionsListDataSourceTests: QuickSpec {
                 let accountType1 = fakeModels.accountType(id: 100)
                 let accountType2 = fakeModels.accountType(id: 101)
                 
-                date1 = Date(dateString: "09-11-2017 1:00PM", format: "MM-dd-yyyy hh:mmaa")
+                date1 = Date().start(of: .day)
                 date2 = date1.add(2.days)
                 date3 = date1.add(2.hours)
                 
@@ -146,9 +146,9 @@ class TransactionsListDataSourceTests: QuickSpec {
                                                           numberOfRowsInSection: 1)
                     expect(numOfSections) == 2
                     expect(numOfRows) == 2
-                    
+
                     let rows = dataSource?.groupedTransactions[trans5.transactionDate.format(with: "MMM")]
-                    
+
                     expect(trans5) == rows!![0]
                     expect(trans6) == rows!![1]
                 })
@@ -157,7 +157,6 @@ class TransactionsListDataSourceTests: QuickSpec {
             context("when filtered by date", {
                 it("displays transactions (sorted latest first) that was recorded at the given date", closure: {
                     dataSource?.dateFilter = date1
-                    dataSource?.filterBy = .byDate
                     dataSource?.reloadByDate(with: date1)
                     let numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
                                                           numberOfRowsInSection: 0)
@@ -165,7 +164,7 @@ class TransactionsListDataSourceTests: QuickSpec {
                     let t1 = dataSource?.transactions?[0]
                     let t2 = dataSource?.transactions?[1]
                     let t3 = dataSource?.transactions?[2]
-                    
+
                     expect(t1) == trans4
                     expect(t2) == trans3
                     expect(t3) == trans1
@@ -176,14 +175,13 @@ class TransactionsListDataSourceTests: QuickSpec {
                 it("displays transactions (sorted latest first) that was recorded at the given date and belongs to the given accounts", closure: {
                     dataSource?.dateFilter = date1
                     dataSource?.accountsFilter = [account1, account3]
-                    dataSource?.filterBy = .both
                     dataSource?.reloadBy(accounts: [account1, account3], date: date1)
                     let numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
                                                           numberOfRowsInSection: 0)
                     expect(numOfRows).toEventually(equal(2))
                     let t1 = dataSource?.transactions?.first
                     let t2 = dataSource?.transactions?.last
-                    
+
                     expect(t1) == trans4
                     expect(t2) == trans1
                 })
