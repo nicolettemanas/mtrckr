@@ -30,8 +30,8 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
         static let kEditConfirm = NSLocalizedString("Do you want to edit only this bill or all proceeding bills?",
                                             comment: "Asks whether user edit applies to current bill or all proceeding bills.")
         static let kCancel      = NSLocalizedString("Cancel", comment: "Spiel telling the user to cancel")
-        static let kThisBill    = NSLocalizedString("This bill only.", comment: "Spiel telling the user to proceed edit of the current bill only.")
-        static let kAllBills    = NSLocalizedString("All proceeding bills.",
+        static let kThisBill    = NSLocalizedString("This bill only", comment: "Spiel telling the user to proceed edit of the current bill only.")
+        static let kAllBills    = NSLocalizedString("All proceeding bills",
                                                     comment: "Spiel telling the user to proceed edit of all proceeding bills.")
         
         struct Form {
@@ -73,33 +73,13 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
     }
     
     // MARK: - Form fields
-    var nameRow: TextRow {
-        return form.rowBy(tag: FormTags.name)!
-    }
-    
-    var amountRow: DecimalRow {
-        return form.rowBy(tag: FormTags.amount)!
-    }
-    
-    var dueDateRow: DateRow {
-        return form.rowBy(tag: FormTags.dueDate)!
-    }
-    
-    var repeatRow: SegmentedRow<String> {
-        return form.rowBy(tag: FormTags.billRepeat)!
-    }
-    
-    var preRow: PushRow<String> {
-        return form.rowBy(tag: FormTags.pre)!
-    }
-    
-    var postRow: PushRow<String> {
-        return form.rowBy(tag: FormTags.post)!
-    }
-    
-    var categoryRow: CategoryRow {
-        return form.rowBy(tag: FormTags.category)!
-    }
+    var nameRow: TextRow { return form.rowBy(tag: FormTags.name)! }
+    var amountRow: DecimalRow { return form.rowBy(tag: FormTags.amount)! }
+    var dueDateRow: DateRow { return form.rowBy(tag: FormTags.dueDate)! }
+    var repeatRow: SegmentedRow<String> { return form.rowBy(tag: FormTags.billRepeat)! }
+    var preRow: PushRow<String> { return form.rowBy(tag: FormTags.pre)! }
+    var postRow: PushRow<String> { return form.rowBy(tag: FormTags.post)! }
+    var categoryRow: CategoryRow { return form.rowBy(tag: FormTags.category)! }
     
     // MARK: - NewBillViewControllerProtocol properties
     weak var delegate: NewBillViewControllerDelegate?
@@ -127,6 +107,7 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
     override func viewDidLoad() {
         super.viewDidLoad()
         setupForm()
+        if billEntry != nil { fillInBillEntry() }
     }
 
     override func didReceiveMemoryWarning() {
@@ -172,8 +153,17 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
         editOption.addAction(allBills)
 
         alert = editOption
-
-        (delegate as? UIViewController)?.present(editOption, animated: true, completion: nil)
+        present(editOption, animated: true, completion: nil)
+    }
+    
+    private func fillInBillEntry() {
+        nameRow.value = billEntry?.customName ?? billEntry?.bill?.name
+        amountRow.value = billEntry?.amount
+        dueDateRow.value = billEntry?.dueDate
+        repeatRow.value = billEntry?.bill?.repeatSchedule
+        preRow.value = billEntry?.bill?.preDueReminder
+        postRow.value = billEntry?.bill?.postDueReminder
+        categoryRow.value = billEntry?.customCategory ?? billEntry?.bill?.category
     }
     
     private func setupForm() {

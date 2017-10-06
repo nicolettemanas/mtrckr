@@ -36,14 +36,14 @@ class DeleteBillPresenter: DeleteBillPresenterProtocol {
                                                     deleteConfirmation.dismiss(animated: true, completion: nil)
         }
         
-        let thisBillOnly = action.makeActionWithTitle(title: NSLocalizedString("This bill only.",
+        let thisBillOnly = action.makeActionWithTitle(title: NSLocalizedString("This bill only",
                                                                                comment: "Spiel telling the user to proceed" +
                                                                                 " deletion of the current bill only."),
                                                 style: .destructive) { (_) in
                                                     presentingVC.proceedDeleteEntry(entry: entry, type: .currentBill)
         }
         
-        let allBills = action.makeActionWithTitle(title: NSLocalizedString("All proceeding bills.",
+        let allBills = action.makeActionWithTitle(title: NSLocalizedString("All proceeding bills",
                                                                                comment: "Spiel telling the user to proceed" +
                                                                                 " deletion of all proceeding bills."),
                                                       style: .destructive) { (_) in

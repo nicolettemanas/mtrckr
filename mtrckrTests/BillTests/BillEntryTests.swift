@@ -168,6 +168,22 @@ class BillEntryTests: QuickSpec {
                         expect(entries[0].amount) == 3000
                     })
                 })
+                
+                describe("updating other customizable values", {
+                    it("updates values in custom properties if object already exists", closure: {
+                        billEntry.update(amount: 1234, name: "1234", preDueReminder: BillDueReminder.never.rawValue,
+                                         postDueReminder: BillDueReminder.onDate.rawValue, category: nil,
+                                         dueDate: Date().start(of: .day), inRealm: self.testRealm)
+                        let entries = self.testRealm.objects(BillEntry.self)
+                        expect(entries.count) == 1
+                        expect(entries[0].amount) == 1234
+                        expect(entries[0].customName) == "1234"
+                        expect(entries[0].customPreDueReminder) == BillDueReminder.never.rawValue
+                        expect(entries[0].customPostDueReminder) == BillDueReminder.onDate.rawValue
+                        expect(entries[0].customCategory).to(beNil())
+                        expect(entries[0].dueDate) == Date().start(of: .day)
+                    })
+                })
 
                 describe("paying a bill entry") {
 

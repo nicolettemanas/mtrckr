@@ -12,7 +12,8 @@ import DateToolsSwift
 protocol BillsInteractorProtocol {
     func saveBill(bill: Bill)
     func deleteBill(bill: BillEntry, type: ModifyBillType)
-    func updateBillEntry(entry: BillEntry, toEntry: BillEntry)
+    func updateBillEntry(entry: BillEntry, amount: Double, name: String?, preDueReminder: String?,
+                         postDueReminder: String?, category: Category?, dueDate: Date)
     func update(oldBill: Bill, toBill newBill: Bill)
 }
 
@@ -26,8 +27,10 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
         bill.save(toRealm: self.realmContainer!.userRealm!)
     }
     
-    func updateBillEntry(entry: BillEntry, toEntry newEntry: BillEntry) {
-        entry.update(toEntry: newEntry, inRealm: realmContainer!.userRealm!)
+    func updateBillEntry(entry: BillEntry, amount: Double, name: String?, preDueReminder: String?,
+                         postDueReminder: String?, category: Category?, dueDate: Date) {
+        entry.update(amount: amount, name: name, preDueReminder: preDueReminder, postDueReminder: postDueReminder,
+                     category: category, dueDate: dueDate, inRealm: self.realmContainer!.userRealm!)
     }
     
     func update(oldBill: Bill, toBill newBill: Bill) {
@@ -62,8 +65,8 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
         createEntries(forBill: bill, startDate: start!, repeatSched: repeatSchedule)
         unpaidEntries = BillEntry.allUnpaid(in: realmContainer!.userRealm!, for: [bill])
         for entry in unpaidEntries {
-            entry.updateCustom(amount: amount, name: name, preDueReminder: pre, postDueReminder: post,
-                               category: category, inRealm: realmContainer!.userRealm!)
+            entry.update(amount: amount, name: name, preDueReminder: pre, postDueReminder: post,
+                         category: category, dueDate: entry.dueDate, inRealm: realmContainer!.userRealm!)
         }
     }
     

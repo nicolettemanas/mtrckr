@@ -38,7 +38,6 @@ class BillsTableViewControllerTests: QuickSpec {
             billsViewController.dataSource = mockResolvers.container.resolve(BillsDataSource.self, name: "mock", argument: identifier)
             billsViewController.dataSource?.delegate = billsViewController
             billsViewController.presenter = mockPresenter
-            expect(billsViewController.view).toNot(beNil())
 
             realm = (billInteractor as! BillsInteractor).realmContainer!.userRealm!
             try! realm.write {
@@ -52,7 +51,7 @@ class BillsTableViewControllerTests: QuickSpec {
                 billInteractor?.saveBill(bill: fakeModels.bill())
                 billInteractor?.saveBill(bill: fakeModels.bill())
 
-                billsViewController.dataSource?.refresh()
+                expect(billsViewController.view).toNot(beNil())
             }
 
             context("Taps + button to create a bill", {

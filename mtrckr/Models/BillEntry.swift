@@ -119,22 +119,34 @@ class BillEntry: Object {
         }
     }
     
-    func update(amount: Double, dueDate: Date, inRealm realm: Realm) {
-        guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
-        
-        do {
-            try realm.write {
-                self.amount = amount
-                self.dueDate = dueDate.start(of: .day)
-                realm.add(self, update: true)
-            }
-        } catch let error as NSError {
-            fatalError(error.localizedDescription)
-        }
-    }
+//    func update(amount: Double, dueDate: Date, inRealm realm: Realm) {
+//        guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
+//
+//        do {
+//            try realm.write {
+//                self.amount = amount
+//                self.dueDate = dueDate.start(of: .day)
+//                realm.add(self, update: true)
+//            }
+//        } catch let error as NSError {
+//            fatalError(error.localizedDescription)
+//        }
+//    }
     
-    func updateCustom(amount: Double, name: String, preDueReminder: String, postDueReminder: String,
-                      category: Category, inRealm realm: Realm) {
+    /// Updates the properties of the `BillEntry` to the values given.
+    /// Updates are stored in customed properties to be used if non-nil instead of
+    /// corresponding `Bill` properties
+    ///
+    /// - Parameters:
+    ///   - amount: The new amount of the `BillEntry`
+    ///   - name: The new name of the `BillEntry`
+    ///   - preDueReminder: The customized pre due reminder of the `BillEntry`
+    ///   - postDueReminder: The customized post due reminder of the `BillEntry`
+    ///   - category: The customized `Category` of the `BillEntry`
+    ///   - dueDate: The new due date of the `BillEntry`
+    ///   - realm: The `Realm` to save the updated `BillEntry` to
+    func update(amount: Double, name: String?, preDueReminder: String?, postDueReminder: String?,
+                category: Category?, dueDate: Date, inRealm realm: Realm) {
         guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
         
         do {
@@ -144,6 +156,7 @@ class BillEntry: Object {
                 self.customPreDueReminder = preDueReminder
                 self.customPostDueReminder = postDueReminder
                 self.customCategory = category
+                self.dueDate = dueDate
                 realm.add(self, update: true)
             }
         } catch let error as NSError {
@@ -251,7 +264,7 @@ class BillEntry: Object {
     static func allUnpaid(in realm: Realm) -> Results<BillEntry> {
         return realm.objects(BillEntry.self)
             .filter("status == %@", BillEntryStatus.unpaid.rawValue)
-            .sorted(byKeyPath: "dueDate", ascending: false)
+            .sorted(byKeyPath: "dueDate")
     }
 
     /// :nodoc:

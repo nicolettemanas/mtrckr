@@ -60,16 +60,8 @@ class BillsPresenter: BillsPresenterProtocol {
     
     func editBillEntry(billEntry: BillEntry, amount: Double, name: String, post: String,
                        pre: String, startDate: Date, category: Category) {
-        
-        let newBillEntry = billEntry
-        newBillEntry.amount = amount
-        newBillEntry.customName = name
-        newBillEntry.customPostDueReminder = post
-        newBillEntry.customPreDueReminder = pre
-        newBillEntry.dueDate = startDate.start(of: .day)
-        newBillEntry.customCategory = category
-        
-        interactor?.updateBillEntry(entry: billEntry, toEntry: newBillEntry)
+        interactor?.updateBillEntry(entry: billEntry, amount: amount, name: name, preDueReminder: pre,
+                                    postDueReminder: post, category: category, dueDate: startDate)
     }
     
     func editBillAndEntries(bill: Bill, amount: Double, name: String, post: String, pre: String,

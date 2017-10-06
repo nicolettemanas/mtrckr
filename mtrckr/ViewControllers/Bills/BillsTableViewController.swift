@@ -27,6 +27,7 @@ class BillsTableViewController: MTTableViewController, BillsTableViewControllerP
     var newBillPresenter: NewBillPresenterProtocol?
     var deleteBillPresenter: DeleteBillPresenterProtocol?
     var presenter: BillsPresenterProtocol?
+    weak var billsTableView: UITableView?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -65,6 +66,7 @@ class BillsTableViewController: MTTableViewController, BillsTableViewControllerP
         tableView.emptyDataSetSource = emptyDataSource
         tableView.register(UINib(nibName: "BillsCell", bundle: Bundle.main),
                            forCellReuseIdentifier: "BillsCell")
+        billsTableView = tableView
         dataSource?.refresh()
     }
     
@@ -114,24 +116,6 @@ extension BillsTableViewController: BillsDataSourceDelegate {
     
     func didPressPayBill(entry: BillEntry) {
         presenter?.payEntry(entry: entry)
-    }
-    
-    func didUpdateOverdues(withChanges changes: RealmCollectionChange<Results<BillEntry>>, inserting: Bool) {
-        print("UPDATED: Overdue BillEntries")
-        guard let index = dataSource?.index(ofSection: BillSections.overdue.rawValue) else { return }
-        tableView.applyChanges(forSection: index, changes: changes, inserting: inserting)
-    }
-    
-    func didUpdateSevenDays(withChanges changes: RealmCollectionChange<Results<BillEntry>>, inserting: Bool) {
-        print("UPDATED: 7 Days BillEntries")
-        guard let index = dataSource?.index(ofSection: BillSections.sevenDays.rawValue) else { return }
-        tableView.applyChanges(forSection: index, changes: changes, inserting: inserting)
-    }
-    
-    func didUpdateThirtyDays(withChanges changes: RealmCollectionChange<Results<BillEntry>>, inserting: Bool) {
-        print("UPDATED: 30 Days BillEntries")
-        guard let index = dataSource?.index(ofSection: BillSections.thirtyDays.rawValue) else { return }
-        tableView.applyChanges(forSection: index, changes: changes, inserting: inserting)
     }
 }
 

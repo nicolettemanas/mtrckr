@@ -193,7 +193,30 @@ class BillsInteractorTests: QuickSpec {
             })
             
             context("asked to edit a bill entry", {
+                var bill: Bill!
+                var entrytoEdit: BillEntry!
+                let date = Date()
                 
+                beforeEach {
+                    bill = fakeModels.bill()
+                    entrytoEdit = fakeModels.billEntry(for: bill, date: date)
+                    
+                    interactor.saveBill(bill: bill)
+                    entrytoEdit = BillEntry.all(in: realm, for: bill).first
+                    
+                    interactor.updateBillEntry(entry: entrytoEdit, amount: 1233, name: "new name", preDueReminder: BillDueReminder.twoDays.rawValue,
+                                               postDueReminder: BillDueReminder.twoDays.rawValue, category: nil, dueDate: date)
+                }
+                
+                it("saves updated properties to custom properties if applicable", closure: {
+                    let updatedEntry = BillEntry.all(in: realm, for: bill).first
+                    expect(updatedEntry?.amount) == 1233
+                    expect(updatedEntry?.customName) == "new name"
+                    expect(updatedEntry?.customPreDueReminder) == BillDueReminder.twoDays.rawValue
+                    expect(updatedEntry?.customPostDueReminder) == BillDueReminder.twoDays.rawValue
+                    expect(updatedEntry?.customCategory).to(beNil())
+                    expect(updatedEntry?.dueDate) == date
+                })
             })
             
             context("asked to delete a bill", {

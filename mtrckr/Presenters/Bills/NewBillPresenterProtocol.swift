@@ -29,6 +29,7 @@ class NewBillPresenter: NewBillPresenterProtocol {
         }
         
         newBillVC.delegate = presenter
+        newBillVC.billEntry = billEntry
         (presenter as? UIViewController)?.present(nav, animated: true, completion: nil)
     }
 }

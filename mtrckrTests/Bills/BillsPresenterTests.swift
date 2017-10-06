@@ -86,12 +86,12 @@ class BillsPresenterTests: QuickSpec {
                                                 post: BillDueReminder.threeDays.rawValue, pre: BillDueReminder.twoDays.rawValue,
                                                 startDate: date, category: cat)
 
-                        expect(mockInteractor?.newEntry?.amount) == 999
-                        expect(mockInteractor?.newEntry?.dueDate) == date.start(of: .day)
-                        expect(mockInteractor?.newEntry?.customName) == "New Bill Name"
-                        expect(mockInteractor?.newEntry?.customPostDueReminder) == BillDueReminder.threeDays.rawValue
-                        expect(mockInteractor?.newEntry?.customPreDueReminder) == BillDueReminder.twoDays.rawValue
-                        expect(mockInteractor?.newEntry?.customCategory) == cat
+                        expect(mockInteractor?.updatedAmount) == 999
+                        expect(mockInteractor?.updatedDate) == date
+                        expect(mockInteractor?.updatedName) == "New Bill Name"
+                        expect(mockInteractor?.updatedPost) == BillDueReminder.threeDays.rawValue
+                        expect(mockInteractor?.updatedPre) == BillDueReminder.twoDays.rawValue
+                        expect(mockInteractor?.updatedCat) == cat
                     })
                 })
                 context("update all proceeding bill entries", {

@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DateToolsSwift/DateToolsSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Dwifft/Dwifft.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Eureka/Eureka.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Hero/Hero.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JTAppleCalendar/JTAppleCalendar.framework"
@@ -99,6 +100,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DateToolsSwift/DateToolsSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Dwifft/Dwifft.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Eureka/Eureka.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Hero/Hero.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JTAppleCalendar/JTAppleCalendar.framework"

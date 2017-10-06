@@ -43,7 +43,6 @@ class BillsDataSourceTests: QuickSpec {
 
             fakeModels = FakeModels()
             realm = dataSource.realmContainer!.userRealm!
-            expect(mockBillsTableViewController?.view).toNot(beNil())
         }
 
         describe("BillsDataSource") {
@@ -66,21 +65,17 @@ class BillsDataSourceTests: QuickSpec {
                 interactor.saveBill(bill: bill2)
                 interactor.saveBill(bill: bill3)
                 interactor.saveBill(bill: bill4)
-                dataSource.refresh()
+                
+                expect(mockBillsTableViewController?.view).toNot(beNil())
             }
 
             it("displays all unpaid bill entry counterparts sorted to latest due date first", closure: {
                 let numOfSections = dataSource.numberOfSections(in: mockBillsTableViewController!.tableView)
                 expect(numOfSections) == 3
 
-                expect(dataSource.bills?[0]) == bill1
-                expect(dataSource.bills?[1]) == bill2
-                expect(dataSource.bills?[2]) == bill3
-                expect(dataSource.bills?[3]) == bill4
-
                 expect(dataSource.billEntries!.count) == 6
-                expect(dataSource.billEntries![0].dueDate) > dataSource.billEntries![1].dueDate
-                expect(dataSource.billEntries![1].dueDate) > dataSource.billEntries![2].dueDate
+                expect(dataSource.billEntries![0].dueDate) <= dataSource.billEntries![1].dueDate
+                expect(dataSource.billEntries![1].dueDate) <= dataSource.billEntries![2].dueDate
             })
 
             it("grouped according to due date: overdue, next 7 days, next month", closure: {
