@@ -49,7 +49,7 @@ protocol DeleteTransactionSheetPresenterDelegate: class {
 
 protocol DeleteTransactionSheetPresenterProtocol {
     weak var alert: UIAlertController? { get }
-    var action: UIAlertAction.Type { get set }
+    var action: MTAlertAction.Type { get set }
     
     func displayDeleteSheet(toDelete transaction: Transaction, presentingVC: DeleteTransactionSheetPresenterDelegate)
 }
@@ -57,7 +57,7 @@ protocol DeleteTransactionSheetPresenterProtocol {
 /// Class responsible for presenting the Delete `UIAlertController` for confirmation
 class DeleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol {
     
-    var action: UIAlertAction.Type = UIAlertAction.self
+    var action: MTAlertAction.Type = MTAlertAction.self
     weak var alert: UIAlertController?
     
     /// Displays a `UIAlertController` confirming the deletion of a `Transaction`

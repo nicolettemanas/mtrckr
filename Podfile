@@ -16,7 +16,6 @@ target "mtrckr" do
     pod 'UIColor_Hex_Swift', '~> 3.0.2'
     pod 'SwipeCellKit', '~> 1.9.1'
     pod 'DZNEmptyDataSet'
-#    pod 'Charts', '~> 3.0.2'
     pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git', :branch => 'feature/Xcode9-Swift3_2'
     pod 'JTAppleCalendar'
     pod 'Dwifft'

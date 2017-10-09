@@ -155,7 +155,7 @@ extension BillsDataSource: UITableViewDelegate, UITableViewDataSource {
             view.backgroundColor = MTColors.lightBg
         }
 
-        let attributes = [NSFontAttributeName: UIFont.italicSystemFont(ofSize: 12)]
+        let attributes = [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 12)]
         label.attributedText = NSAttributedString(string: headerStr, attributes: attributes)
         if !displayedSectionStack.contains(headerStr) { displayedSectionStack.insert(headerStr, at: section) }
         return view

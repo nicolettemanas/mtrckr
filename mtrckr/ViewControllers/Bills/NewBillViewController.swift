@@ -21,7 +21,7 @@ protocol NewBillViewControllerProtocol {
     func saveBill()
     var delegate: NewBillViewControllerDelegate? { get set }
     var billEntry: BillEntry? { get set }
-    var action: UIAlertAction.Type { get set }
+    var action: MTAlertAction.Type { get set }
     weak var alert: UIAlertController? { get set }
 }
 
@@ -85,11 +85,11 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
     weak var delegate: NewBillViewControllerDelegate?
     weak var alert: UIAlertController?
     var billEntry: BillEntry?
-    var action: UIAlertAction.Type
+    var action: MTAlertAction.Type
     
     // MARK: - Initializers
     required init?(coder aDecoder: NSCoder) {
-        action = UIAlertAction.self
+        action = MTAlertAction.self
         super.init(coder: aDecoder)
     }
     
@@ -99,7 +99,7 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
             .instantiateViewController(withIdentifier: "NewBillViewController")
                 as? NewBillViewController else { fatalError("Cannot convert to NewBillViewController") }
         vc.delegate = delegate
-        vc.action = UIAlertAction.self
+        vc.action = MTAlertAction.self
         return vc
     }
     

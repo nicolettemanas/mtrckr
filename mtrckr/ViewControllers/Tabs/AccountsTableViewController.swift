@@ -18,7 +18,7 @@ protocol AccountsTableViewControllerProtocol {
 class AccountsTableViewController: MTTableViewController, AccountsTableViewControllerProtocol, UserObserver {
     
     // MARK: - Properties
-    
+    // TODO: Implement Dwifft
     var accounts: Results<Account>?
     var currency: String?
     var notifToken: NotificationToken?
@@ -180,7 +180,7 @@ extension AccountsTableViewController: NewAccountViewControllerDelegate {
     
     private func showError(msg: String) {
         let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
-        let ok = UIAlertAction(title: NSLocalizedString("Ok", comment: "'Ok' action of an alert"),
+        let ok = MTAlertAction(title: NSLocalizedString("Ok", comment: "'Ok' action of an alert"),
                                style: .default,
                                handler: nil)
         alert.addAction(ok)

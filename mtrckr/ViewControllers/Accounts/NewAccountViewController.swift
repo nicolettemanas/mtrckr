@@ -151,11 +151,11 @@ AccountTypeCollectionDelegate, ColorsCollectionDelegate {
         
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "en")
-        let bal = formatter.number(from: startingBalanceTxtField.text!)
+        guard let bal = formatter.number(from: startingBalanceTxtField.text!) else { return }
         delegate?.shouldCreateAccount(withId: account?.id,
                                       name: nameTxtField.text!,
                                       type: selectedType!,
-                                      initBalance: Double(bal!),
+                                      initBalance: bal.doubleValue,
                                       dateOpened: date,
                                       color: selectedColor!)
     }

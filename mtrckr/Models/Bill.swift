@@ -43,28 +43,28 @@ class Bill: Object {
 
     // MARK: - Properties
     /// The unique identifier of the `Bill`
-    dynamic var id: String = ""
+    @objc dynamic var id: String = ""
     
     /// The amount to be paid
-    dynamic var amount: Double = 0.0
+    @objc dynamic var amount: Double = 0.0
     
     /// The name of the `Bill`
-    dynamic var name: String = ""
+    @objc dynamic var name: String = ""
     
     /// Reminder option after the due date in raw value. See `BillDueReminder`
-    dynamic var postDueReminder: String = ""
+    @objc dynamic var postDueReminder: String = ""
     
     /// Reminder option before the due date in raw value. See `BillDueReminder`
-    dynamic var preDueReminder: String = ""
+    @objc dynamic var preDueReminder: String = ""
     
     /// The repeat option of the `Bill`. See `BillRepeatSchedule`
-    dynamic var repeatSchedule: String = ""
+    @objc dynamic var repeatSchedule: String = ""
     
     /// The date when the `Bill` starts
-    dynamic var startDate: Date = Date()
+    @objc dynamic var startDate: Date = Date()
     
     /// The `Category` of the `Bill`
-    dynamic var category: Category?
+    @objc dynamic var category: Category?
 
     /// The entries under this `Bill`
     let entries = LinkingObjects(fromType: BillEntry.self, property: "bill")

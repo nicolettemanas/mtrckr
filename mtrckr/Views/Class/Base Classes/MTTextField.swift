@@ -67,7 +67,7 @@ class MTTextField: UITextField {
         self.textColor = MTColors.mainText
         if let p = self.placeholder {
             self.attributedPlaceholder = NSAttributedString(string: p,
-                                                            attributes: [NSForegroundColorAttributeName:
+                                                            attributes: [NSAttributedStringKey.foregroundColor:
                                                                 MTColors.placeholderText])
         }
         

@@ -15,31 +15,31 @@ class Account: Object {
 
     // MARK: - Properties
     /// The unique identifier of the Account
-    dynamic var id: String = ""
+    @objc dynamic var id: String = ""
     
     /// The name of the account
-    dynamic var name: String = ""
+    @objc dynamic var name: String = ""
     
     /// The type of the account. See `AccountType`
-    dynamic var type: AccountType?
+    @objc dynamic var type: AccountType?
     
     /// The initial amount of the account when created
-    dynamic var initialAmount: Double = 0.0
+    @objc dynamic var initialAmount: Double = 0.0
     
     /// The current acmount in the account
-    dynamic var currentAmount: Double = 0.0
+    @objc dynamic var currentAmount: Double = 0.0
     
     /// The overall total of exptenses transactions
-    dynamic var totalExpenses: Double = 0.0
+    @objc dynamic var totalExpenses: Double = 0.0
     
     /// The overall total of income transactions
-    dynamic var totalIncome: Double = 0.0
+    @objc dynamic var totalIncome: Double = 0.0
     
     /// The preferred color of the account
-    dynamic var color: String = ""
+    @objc dynamic var color: String = ""
     
     /// The date the account opened
-    dynamic var dateOpened: Date = Date()
+    @objc dynamic var dateOpened: Date = Date()
 
     /// Collection of transactions with the destination account is the instance account
     var transactionsToSelf = LinkingObjects(fromType: Transaction.self, property: "toAccount")

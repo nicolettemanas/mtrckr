@@ -48,15 +48,15 @@ class LoginViewController: MTViewController, RealmAuthPresenterOutput {
                                              message: "Looks like you have some unsaved data. Do you want to add these to your account?",
                                              preferredStyle: .actionSheet)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        let cancelAction = MTAlertAction(title: "Cancel", style: .cancel) { _ in
             loginOptions.dismiss(animated: true, completion: nil)
         }
         
-        let OKAction = UIAlertAction(title: "Yes, please", style: .default) { _ in
+        let OKAction = MTAlertAction(title: "Yes, please", style: .default) { _ in
             self.loginWithOption(option: .append)
         }
         
-        let destroyAction = UIAlertAction(title: "No, delete them", style: .destructive) { _ in
+        let destroyAction = MTAlertAction(title: "No, delete them", style: .destructive) { _ in
             self.loginWithOption(option: .useRemote)
         }
         

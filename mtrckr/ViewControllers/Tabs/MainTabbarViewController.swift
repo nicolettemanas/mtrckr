@@ -41,7 +41,7 @@ class MainTabbarViewController: UITabBarController {
         tabBar.tintColor = .white
     }
     
-    func addBtnPressed() {
+    @objc func addBtnPressed() {
         newTransactionPresenter?.presentNewTransactionVC(with: nil,
                                                          presentingVC: self,
                                                          delegate: self)

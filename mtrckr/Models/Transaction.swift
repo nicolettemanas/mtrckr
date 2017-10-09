@@ -26,38 +26,38 @@ class Transaction: Object {
     // MARK: - Properties
 
     /// The unique identifier of the `Transaction`
-    dynamic var id: String = ""
+    @objc dynamic var id: String = ""
     
     /// The type of the `Transaction` in raw value. See `TransactionType`.
-    dynamic var type: String = ""
+    @objc dynamic var type: String = ""
     
     /// The name or title of the `Transaction`
-    dynamic var name: String = ""
+    @objc dynamic var name: String = ""
     
     /// The image of the `Transaction`
-    dynamic var image: String?
+    @objc dynamic var image: String?
     
     /// The description details of the `Transaction`
-    dynamic var desc: String?
+    @objc dynamic var desc: String?
     
     /// The cost or amount of the `Transaction`
-    dynamic var amount: Double = 0.0
+    @objc dynamic var amount: Double = 0.0
     
     /// The date of the `Transaction`
-    dynamic var transactionDate: Date = Date()
+    @objc dynamic var transactionDate: Date = Date()
 
     /// The `Account` from where the `Transaction` is recorded
-    dynamic var fromAccount: Account?
+    @objc dynamic var fromAccount: Account?
     
     /// The `Account` to where the `Transaction` is recorded. If the `Transaction` is of type `.expense`
     /// or `.income`, `toAccount` and `fromAccount` is of the same value.
-    dynamic var toAccount: Account?
+    @objc dynamic var toAccount: Account?
     
     /// The `Category` of the `Transaction`. See `Category`.
-    dynamic var category: Category?
+    @objc dynamic var category: Category?
 
     /// The `BillEntry` associated with the `Transaction` if available
-    dynamic var billEntry: BillEntry?
+    @objc dynamic var billEntry: BillEntry?
 
     override static func primaryKey() -> String? {
         return "id"

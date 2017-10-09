@@ -13,13 +13,13 @@ protocol DeleteBillPresenterDelegate: class {
 }
 
 protocol DeleteBillPresenterProtocol {
-    var action: UIAlertAction.Type { get set }
+    var action: MTAlertAction.Type { get set }
     weak var alert: UIAlertController? { get set }
     func presentDeleteSheet(presentingVC: DeleteBillPresenterDelegate, forBillEntry entry: BillEntry)
 }
 
 class DeleteBillPresenter: DeleteBillPresenterProtocol {
-    var action: UIAlertAction.Type = UIAlertAction.self
+    var action: MTAlertAction.Type = MTAlertAction.self
     weak var alert: UIAlertController?
     
     func presentDeleteSheet(presentingVC: DeleteBillPresenterDelegate, forBillEntry entry: BillEntry) {

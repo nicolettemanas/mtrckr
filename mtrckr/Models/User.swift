@@ -15,19 +15,19 @@ class User: Object {
 
     // MARK: - Properties
     /// The unique identifier of the `User`
-    dynamic var id: String = ""
+    @objc dynamic var id: String = ""
     
     /// The name of the `User`
-    dynamic var name: String = ""
+    @objc dynamic var name: String = ""
     
     /// The email of the `User`
-    dynamic var email: String = ""
+    @objc dynamic var email: String = ""
     
     /// The image of the `User`
-    dynamic var image: String = ""
+    @objc dynamic var image: String = ""
     
     /// The `Currency` currently used by the `User`
-    dynamic var currency: Currency?
+    @objc dynamic var currency: Currency?
 
     override static func primaryKey() -> String? {
         return "id"

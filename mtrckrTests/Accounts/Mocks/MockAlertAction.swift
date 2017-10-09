@@ -8,7 +8,7 @@
 import UIKit
 @testable import mtrckr
 
-class MockAlertAction: UIAlertAction {
+class MockAlertAction: MTAlertAction {
     typealias Handler = ((UIAlertAction) -> Void)
     var mockHandler: Handler?
     var mockTitle: String?

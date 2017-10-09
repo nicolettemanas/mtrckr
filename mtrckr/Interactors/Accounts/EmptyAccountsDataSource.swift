@@ -20,9 +20,9 @@ class EmptyAccountsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetD
         let style = NSMutableParagraphStyle()
         style.lineBreakMode = .byWordWrapping
         style.alignment = .center
-        let attr = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
-                    NSForegroundColorAttributeName: MTColors.placeholderText,
-                    NSParagraphStyleAttributeName: style]
+        let attr = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),
+                    NSAttributedStringKey.foregroundColor: MTColors.placeholderText,
+                    NSAttributedStringKey.paragraphStyle: style]
         return NSAttributedString(string: str, attributes: attr)
     }
     
@@ -34,9 +34,9 @@ class EmptyAccountsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetD
         let style = NSMutableParagraphStyle()
         style.lineBreakMode = .byWordWrapping
         style.alignment = .center
-        let attr = [NSFontAttributeName: UIFont.systemFont(ofSize: 16),
-                    NSForegroundColorAttributeName: MTColors.placeholderText,
-                    NSParagraphStyleAttributeName: style]
+        let attr = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16),
+                    NSAttributedStringKey.foregroundColor: MTColors.placeholderText,
+                    NSAttributedStringKey.paragraphStyle: style]
         return NSAttributedString(string: str, attributes: attr)
     }
     

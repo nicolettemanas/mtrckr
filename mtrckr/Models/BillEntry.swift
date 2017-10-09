@@ -23,36 +23,36 @@ enum BillEntryStatus: String {
 class BillEntry: Object {
 
     /// The unique identifier of the `BillEntry`
-    dynamic var id: String = ""
+    @objc dynamic var id: String = ""
     
     /// The amount of the to-be `Transaction` of the `BillEntry`.
     /// This may differ from the amount of the `Bill`
-    dynamic var amount: Double = 0.0
+    @objc dynamic var amount: Double = 0.0
     
     /// The date of the payment of the `BillEntry`. The value is `nil`
     /// when the `BillEntry` is unpaid.
-    dynamic var datePaid: Date?
+    @objc dynamic var datePaid: Date?
     
     /// The due date of the `BillEntry`
-    dynamic var dueDate: Date = Date()
+    @objc dynamic var dueDate: Date = Date()
     
     /// The status of the `BillEntry` in raw value. See `BillEntryStatus`
-    dynamic var status: String = ""
+    @objc dynamic var status: String = ""
     
     /// The `Bill` where the `BillEntry` is from
-    dynamic var bill: Bill?
+    @objc dynamic var bill: Bill?
     
     /// The custom name to be saved when converted to a `Transaction`
-    dynamic var customName: String?
+    @objc dynamic var customName: String?
     
     /// Reminder custom option after the due date in raw value. See `BillDueReminder`
-    dynamic var customPostDueReminder: String?
+    @objc dynamic var customPostDueReminder: String?
     
     /// Reminder custom option before the due date in raw value. See `BillDueReminder`
-    dynamic var customPreDueReminder: String?
+    @objc dynamic var customPreDueReminder: String?
     
     /// The custom `Category` to be saved when converted to a `Transaction`
-    dynamic var customCategory: Category?
+    @objc dynamic var customCategory: Category?
 
     override static func primaryKey() -> String? {
         return "id"

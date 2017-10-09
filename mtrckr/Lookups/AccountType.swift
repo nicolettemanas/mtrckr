@@ -14,13 +14,13 @@ import Realm
 class AccountType: Object {
 
     /// The unique identifier of the `AccountType`
-    dynamic var typeId: Int = 0
+    @objc dynamic var typeId: Int = 0
     
     /// The name of the `AccountType`
-    dynamic var name: String = ""
+    @objc dynamic var name: String = ""
     
     /// The icon path url of the `AccountType`
-    dynamic var icon: String = ""
+    @objc dynamic var icon: String = ""
 //    let accounts = LinkingObjects(fromType: Account.self, property: "type")
 
     override static func primaryKey() -> String? {

@@ -80,7 +80,7 @@ class MTViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification) {
         if self.scrollView != nil {
             var userInfo = notification.userInfo!
             guard let keyboardFrameValue: NSValue = userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue
@@ -97,7 +97,7 @@ class MTViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         if self.scrollView != nil {
             let contentInset: UIEdgeInsets = UIEdgeInsets.zero
             self.scrollView!.contentInset = contentInset
