@@ -178,5 +178,4 @@ class Bill: Object {
         return realm.objects(Bill.self)
             .sorted(byKeyPath: "name")
     }
-
 }

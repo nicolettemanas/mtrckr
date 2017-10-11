@@ -40,6 +40,7 @@ class BillsDataSource: RealmHolder, BillsDataSourceProtocol {
         didSet {
             guard let entries = sortedEntries else { return }
             diffCalculator?.sectionedValues = entries
+            relaodVisibleCells()
         }
     }
     
@@ -91,6 +92,15 @@ class BillsDataSource: RealmHolder, BillsDataSourceProtocol {
         if thirtyDays.count > 0 { mutable.append((BillSections.thirtyDays.rawValue, Array(thirtyDays))) }
         
         self.sortedEntries = SectionedValues(mutable)
+    }
+    
+    private func relaodVisibleCells() {
+        delegate?.billsTableView?.visibleCells.forEach({ [unowned self] (cell) in
+            guard let billCell = cell as? BillsCell else { return }
+            guard let index = self.delegate?.billsTableView?.indexPath(for: billCell) else { return }
+            guard let calculator = self.diffCalculator else { return }
+            billCell.setValue(of: calculator.value(atIndexPath: index), currency: self.currency ?? "₱")
+        })
     }
 }
 
