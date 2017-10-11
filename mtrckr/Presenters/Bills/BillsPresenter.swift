@@ -15,7 +15,7 @@ protocol BillsPresenterProtocol {
     func editBillEntry(billEntry: BillEntry, amount: Double, name: String, post: String,
                        pre: String, startDate: Date, category: Category)
     func editBillAndEntries(bill: Bill, amount: Double, name: String, post: String, pre: String,
-                            repeatSchedule: String, startDate: Date, category: Category, proceedingDate: Date)
+                            repeatSchedule: String, startDate: Date, category: Category)
     func showHistory(of entry: BillEntry)
     func payEntry(entry: BillEntry)
     
@@ -60,22 +60,18 @@ class BillsPresenter: BillsPresenterProtocol {
     
     func editBillEntry(billEntry: BillEntry, amount: Double, name: String, post: String,
                        pre: String, startDate: Date, category: Category) {
-        interactor?.updateBillEntry(entry: billEntry, amount: amount, name: name, preDueReminder: pre,
-                                    postDueReminder: post, category: category, dueDate: startDate)
+        guard let preReminder = BillDueReminder(rawValue: pre) else { return }
+        guard let postReminder = BillDueReminder(rawValue: post) else { return }
+        interactor?.updateBillEntry(entry: billEntry, amount: amount, name: name, preDueReminder: preReminder,
+                                    postDueReminder: postReminder, category: category, dueDate: startDate)
     }
     
     func editBillAndEntries(bill: Bill, amount: Double, name: String, post: String, pre: String,
-                            repeatSchedule: String, startDate: Date, category: Category, proceedingDate: Date) {
-        
-        let newBill = bill
-        newBill.amount = amount
-        newBill.name = name
-        newBill.postDueReminder = post
-        newBill.preDueReminder = pre
-        newBill.repeatSchedule = repeatSchedule
-        newBill.startDate = startDate
-        newBill.category = category
-        
-        interactor?.update(oldBill: bill, toBill: newBill)
+                            repeatSchedule: String, startDate: Date, category: Category) {
+        guard let preReminder = BillDueReminder(rawValue: pre) else { return }
+        guard let postReminder = BillDueReminder(rawValue: post) else { return }
+        guard let repeatSched = BillRepeatSchedule(rawValue: repeatSchedule) else { return }
+        interactor?.update(bill: bill, amount: amount, name: name, postDueReminder: postReminder,
+                           preDueReminder: preReminder, category: category, startDate: startDate, repeatSchedule: repeatSched)
     }
 }

@@ -87,17 +87,12 @@ class BillsInteractorTests: QuickSpec {
                                     datePaid: Date(), inRealm: realm)
 
                     let billInDb = Bill.with(key: billtoEdit.id, inRealm: realm)
-                    // update bill
-                    let updatedBill = Bill(value: ["id": billInDb!.id,
-                                                   "amount": 100,
-                                                   "name": "Updated name",
-                                                   "postDueReminder": billInDb!.postDueReminder,
-                                                   "preDueReminder": BillDueReminder.never.rawValue,
-                                                   "repeatSchedule": billInDb!.repeatSchedule,
-                                                   "startDate": billInDb!.startDate,
-                                                   "category": billInDb!.category!
-                        ])
-                    interactor.update(oldBill: billInDb!, toBill: updatedBill)
+                    interactor.update(bill: billInDb!, amount: 100, name: "Updated name",
+                                      postDueReminder: BillDueReminder.never,
+                                      preDueReminder: BillDueReminder.never,
+                                      category: billInDb!.category!,
+                                      startDate: billInDb!.startDate,
+                                      repeatSchedule: BillRepeatSchedule.monthly)
                 }
                 
                 it("updates values in the database", closure: {
@@ -142,16 +137,12 @@ class BillsInteractorTests: QuickSpec {
                     beforeEach {
                         newDate = Date().subtract(2.weeks)
                         let billInDb = Bill.with(key: billtoEdit.id, inRealm: realm)
-                        let updatedBill = Bill(value: ["id": billInDb!.id,
-                                                       "amount": 100,
-                                                       "name": "Updated name",
-                                                       "postDueReminder": billInDb!.postDueReminder,
-                                                       "preDueReminder": BillDueReminder.never.rawValue,
-                                                       "repeatSchedule": BillRepeatSchedule.weekly.rawValue,
-                                                       "startDate": newDate,
-                                                       "category": billInDb!.category!
-                            ])
-                        interactor.update(oldBill: billInDb!, toBill: updatedBill)
+                        interactor.update(bill: billInDb!, amount: 100, name: "Updated name",
+                                          postDueReminder: BillDueReminder.never,
+                                          preDueReminder: BillDueReminder.never,
+                                          category: billInDb!.category!,
+                                          startDate: newDate,
+                                          repeatSchedule: BillRepeatSchedule.weekly)
                     }
                     
                     it("updates dueDate of unpaid entries", closure: {
@@ -204,8 +195,10 @@ class BillsInteractorTests: QuickSpec {
                     interactor.saveBill(bill: bill)
                     entrytoEdit = BillEntry.all(in: realm, for: bill).first
                     
-                    interactor.updateBillEntry(entry: entrytoEdit, amount: 1233, name: "new name", preDueReminder: BillDueReminder.twoDays.rawValue,
-                                               postDueReminder: BillDueReminder.twoDays.rawValue, category: nil, dueDate: date)
+                    interactor.updateBillEntry(entry: entrytoEdit, amount: 1233, name: "new name",
+                                               preDueReminder: BillDueReminder.twoDays,
+                                               postDueReminder: BillDueReminder.twoDays,
+                                               category: nil, dueDate: date)
                 }
                 
                 it("saves updated properties to custom properties if applicable", closure: {

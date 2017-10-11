@@ -107,14 +107,13 @@ class BillsTableViewController: MTTableViewController, BillsTableViewControllerP
     }
     
     func edit(bill: Bill, amount: Double, name: String, post: String, pre: String,
-              repeatSchedule: String, startDate: Date, category: Category, proceedingDate: Date) {
+              repeatSchedule: String, startDate: Date, category: Category) {
         if let cell = tableView.cellForRow(at: editingIndexPath!) as? SwipeTableViewCell {
             cell.hideSwipe(animated: true)
             editingIndexPath = nil
         }
         presenter?.editBillAndEntries(bill: bill, amount: amount, name: name, post: post, pre: pre,
-                                      repeatSchedule: repeatSchedule, startDate: startDate, category: category,
-                                      proceedingDate: proceedingDate)
+                                      repeatSchedule: repeatSchedule, startDate: startDate, category: category)
     }
 }
 

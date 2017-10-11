@@ -49,7 +49,7 @@ class MockBillsTableViewController: NewBillViewControllerDelegate {
     }
     
     func edit(bill: Bill, amount: Double, name: String, post: String, pre: String, repeatSchedule: String,
-              startDate: Date, category: mtrckr.Category, proceedingDate: Date) {
+              startDate: Date, category: mtrckr.Category) {
         
         didEditBill = bill
         self.amount = amount

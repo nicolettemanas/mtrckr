@@ -171,8 +171,8 @@ class BillEntryTests: QuickSpec {
                 
                 describe("updating other customizable values", {
                     it("updates values in custom properties if object already exists", closure: {
-                        billEntry.update(amount: 1234, name: "1234", preDueReminder: BillDueReminder.never.rawValue,
-                                         postDueReminder: BillDueReminder.onDate.rawValue, category: nil,
+                        billEntry.update(amount: 1234, name: "1234", preDueReminder: BillDueReminder.never,
+                                         postDueReminder: BillDueReminder.onDate, category: nil,
                                          dueDate: Date().start(of: .day), inRealm: self.testRealm)
                         let entries = self.testRealm.objects(BillEntry.self)
                         expect(entries.count) == 1

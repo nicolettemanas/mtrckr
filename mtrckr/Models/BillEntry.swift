@@ -145,7 +145,7 @@ class BillEntry: Object {
     ///   - category: The customized `Category` of the `BillEntry`
     ///   - dueDate: The new due date of the `BillEntry`
     ///   - realm: The `Realm` to save the updated `BillEntry` to
-    func update(amount: Double, name: String?, preDueReminder: String?, postDueReminder: String?,
+    func update(amount: Double, name: String?, preDueReminder: BillDueReminder?, postDueReminder: BillDueReminder?,
                 category: Category?, dueDate: Date, inRealm realm: Realm) {
         guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
         
@@ -153,8 +153,8 @@ class BillEntry: Object {
             try realm.write {
                 self.amount = amount
                 self.customName = name
-                self.customPreDueReminder = preDueReminder
-                self.customPostDueReminder = postDueReminder
+                self.customPreDueReminder = preDueReminder?.rawValue
+                self.customPostDueReminder = postDueReminder?.rawValue
                 self.customCategory = category
                 self.dueDate = dueDate
                 realm.add(self, update: true)

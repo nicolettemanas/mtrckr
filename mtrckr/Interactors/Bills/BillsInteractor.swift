@@ -12,9 +12,10 @@ import DateToolsSwift
 protocol BillsInteractorProtocol {
     func saveBill(bill: Bill)
     func deleteBill(bill: BillEntry, type: ModifyBillType)
-    func updateBillEntry(entry: BillEntry, amount: Double, name: String?, preDueReminder: String?,
-                         postDueReminder: String?, category: Category?, dueDate: Date)
-    func update(oldBill: Bill, toBill newBill: Bill)
+    func updateBillEntry(entry: BillEntry, amount: Double, name: String?, preDueReminder: BillDueReminder,
+                         postDueReminder: BillDueReminder, category: Category?, dueDate: Date)
+    func update(bill: Bill, amount: Double, name: String, postDueReminder: BillDueReminder,
+                preDueReminder: BillDueReminder, category: Category, startDate: Date, repeatSchedule: BillRepeatSchedule)
 }
 
 class BillsInteractor: RealmHolder, BillsInteractorProtocol {
@@ -23,54 +24,68 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
     }
     
     func saveBill(bill: Bill) {
-        createEntries(forBill: bill, startDate: bill.startDate, repeatSched: bill.repeatSchedule)
+        guard let sched = BillRepeatSchedule(rawValue: bill.repeatSchedule) else {
+            fatalError("Invalid repeat schedule '\(bill.repeatSchedule)'")
+        }
+        createEntries(forBill: bill, startDate: bill.startDate, repeatSched: sched)
         bill.save(toRealm: self.realmContainer!.userRealm!)
     }
     
-    func updateBillEntry(entry: BillEntry, amount: Double, name: String?, preDueReminder: String?,
-                         postDueReminder: String?, category: Category?, dueDate: Date) {
+    func updateBillEntry(entry: BillEntry, amount: Double, name: String?, preDueReminder: BillDueReminder,
+                         postDueReminder: BillDueReminder, category: Category?, dueDate: Date) {
         entry.update(amount: amount, name: name, preDueReminder: preDueReminder, postDueReminder: postDueReminder,
                      category: category, dueDate: dueDate, inRealm: self.realmContainer!.userRealm!)
     }
     
-    func update(oldBill: Bill, toBill newBill: Bill) {
-        updateUnpaidEntries(ofBill: oldBill, amount: newBill.amount, name: newBill.name,
-                            post: newBill.postDueReminder, pre: newBill.preDueReminder,
-                            category: newBill.category!,
-                            startDate: oldBill.startDate == newBill.startDate ? nil: newBill.startDate,
-                            repeatSchedule: newBill.repeatSchedule)
-        oldBill.update(to: newBill, in: realmContainer!.userRealm!)
+    func update(bill: Bill, amount: Double, name: String, postDueReminder: BillDueReminder,
+                preDueReminder: BillDueReminder, category: Category, startDate: Date, repeatSchedule: BillRepeatSchedule) {
+        updateUnpaidEntries(ofBill: bill, amount: amount, name: name,
+                            post: postDueReminder, pre: preDueReminder,
+                            category: category, startDate: startDate == bill.startDate ? nil: startDate,
+                            repeatSchedule: repeatSchedule)
+        bill.update(amount: amount, name: name, postDueReminder: postDueReminder,
+                    preDueReminder: preDueReminder, category: category, in: realmContainer!.userRealm!)
     }
     
     // MARK: - Private methods
     private func updateUnpaidEntries(ofBill bill: Bill, amount: Double, name: String,
-                                     post: String, pre: String, category: Category,
-                                     startDate: Date?, repeatSchedule: String) {
-        var unpaidEntries = BillEntry.allUnpaid(in: realmContainer!.userRealm!, for: [bill])
-        for entry in unpaidEntries {
-            entry.delete(in: realmContainer!.userRealm!)
-        }
+                                     post: BillDueReminder, pre: BillDueReminder, category: Category,
+                                     startDate: Date?, repeatSchedule: BillRepeatSchedule) {
         
-        let latestPaid = BillEntry.all(in: realmContainer!.userRealm!, for: bill)
-            .sorted(byKeyPath: "dueDate")
-            .filter(NSPredicate(format: "status == %@ OR status == %@",
-                                BillEntryStatus.paid.rawValue, BillEntryStatus.skipped.rawValue))
+        deleteAllUnpaid(for: bill)
         
-        var start = startDate
-        if start == nil {
-            start = latestPaid.first?.dueDate
-                .add(timeChunk(of: latestPaid.first!.bill!.repeatSchedule)) ?? bill.startDate
-        }
+        let latestPaid = latestPaidEntry(for: bill)
+        var start: Date!
+        if startDate == nil {
+            if let lPaid = latestPaid {
+                start = lPaid.dueDate.add(timeChunk(of: lPaid.bill!.repeatSchedule))
+            } else { start = bill.startDate }
+        } else { start = startDate }
         
-        createEntries(forBill: bill, startDate: start!, repeatSched: repeatSchedule)
-        unpaidEntries = BillEntry.allUnpaid(in: realmContainer!.userRealm!, for: [bill])
+        createEntries(forBill: bill, startDate: start, repeatSched: repeatSchedule)
+        let unpaidEntries = BillEntry.allUnpaid(in: realmContainer!.userRealm!, for: [bill])
         for entry in unpaidEntries {
             entry.update(amount: amount, name: name, preDueReminder: pre, postDueReminder: post,
                          category: category, dueDate: entry.dueDate, inRealm: realmContainer!.userRealm!)
         }
     }
     
-    private func createEntries(forBill bill: Bill, startDate: Date, repeatSched: String) {
+    private func deleteAllUnpaid(for bill: Bill) {
+        let unpaidEntries = BillEntry.allUnpaid(in: realmContainer!.userRealm!, for: [bill])
+        for entry in unpaidEntries {
+            entry.delete(in: realmContainer!.userRealm!)
+        }
+    }
+    
+    private func latestPaidEntry(for bill: Bill) -> BillEntry? {
+        return BillEntry.all(in: realmContainer!.userRealm!, for: bill)
+            .sorted(byKeyPath: "dueDate")
+            .filter(NSPredicate(format: "status == %@ OR status == %@",
+                                BillEntryStatus.paid.rawValue,
+                                BillEntryStatus.skipped.rawValue)).first
+    }
+    
+    private func createEntries(forBill bill: Bill, startDate: Date, repeatSched: BillRepeatSchedule) {
         var start = startDate
         var end = Date()
         
@@ -79,7 +94,7 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
             start = Date().isEarlier(than: end) ? bill.startDate : Date()
         }
         
-        let repeatTimeChunk = timeChunk(of: repeatSched)
+        let repeatTimeChunk = timeChunk(of: repeatSched.rawValue)
         while start.isEarlierThanOrEqual(to: end) {
             BillEntry(dueDate: start, for: bill)
                 .save(toRealm: self.realmContainer!.userRealm!)

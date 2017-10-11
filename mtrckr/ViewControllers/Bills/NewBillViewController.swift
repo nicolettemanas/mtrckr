@@ -14,7 +14,7 @@ protocol NewBillViewControllerDelegate: class {
     func edit(billEntry: BillEntry, amount: Double, name: String, post: String, pre: String,
               repeatSchedule: String, startDate: Date, category: Category)
     func edit(bill: Bill, amount: Double, name: String, post: String, pre: String,
-              repeatSchedule: String, startDate: Date, category: Category, proceedingDate: Date)
+              repeatSchedule: String, startDate: Date, category: Category)
 }
 
 protocol NewBillViewControllerProtocol {
@@ -31,8 +31,8 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
                                             comment: "Asks whether user edit applies to current bill or all proceeding bills.")
         static let kCancel      = NSLocalizedString("Cancel", comment: "Spiel telling the user to cancel")
         static let kThisBill    = NSLocalizedString("This bill only", comment: "Spiel telling the user to proceed edit of the current bill only.")
-        static let kAllBills    = NSLocalizedString("All proceeding bills",
-                                                    comment: "Spiel telling the user to proceed edit of all proceeding bills.")
+        static let kAllBills    = NSLocalizedString("All unpaid bills",
+                                                    comment: "Spiel telling the user to proceed edit of all unpaid bills.")
         
         struct Form {
             static let name     = NSLocalizedString("Name", comment: "Title for Name field")
@@ -144,7 +144,7 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
                                                   style: .destructive) { [unowned self] (_) in
             self.delegate?.edit(bill: self.billEntry!.bill!, amount: self.amountRow.value!, name: self.nameRow.value!,
                                 post: self.postRow.value!, pre: self.preRow.value!, repeatSchedule: self.repeatRow.value!,
-                                startDate: self.dueDateRow.value!, category: self.categoryRow.value!, proceedingDate: Date())
+                                startDate: self.dueDateRow.value!, category: self.categoryRow.value!)
             self.dismiss(animated: true, completion: nil)
         }
 

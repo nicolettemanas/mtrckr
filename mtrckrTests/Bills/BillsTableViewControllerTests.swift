@@ -119,14 +119,13 @@ class BillsTableViewControllerTests: QuickSpec {
 
                     context("for edit all proceeding bills", {
                         let date = Date().subtract(1.days)
-                        let proceedingDate = Date()
                         let bill = fakeModels.bill()
                         let cat = fakeModels.category()
                         beforeEach {
                             billsViewController.edit(bill: bill, amount: 99.0, name: "New Bill",
                                                      post: BillDueReminder.never.rawValue, pre: BillDueReminder.onDate.rawValue,
                                                      repeatSchedule: BillRepeatSchedule.weekly.rawValue, startDate: date,
-                                                     category: cat, proceedingDate: proceedingDate)
+                                                     category: cat)
                         }
 
                         it("passes values to edit to presenter", closure: {
@@ -139,7 +138,6 @@ class BillsTableViewControllerTests: QuickSpec {
                             expect(mockPresenter?.didEditBillRepeatSchedule) == BillRepeatSchedule.weekly.rawValue
                             expect(mockPresenter?.didEditBillStartDate) == date
                             expect(mockPresenter?.didEditBillCategory) == cat
-                            expect(mockPresenter?.didEditBillProceedingDate) == proceedingDate
                         })
                     })
                 })

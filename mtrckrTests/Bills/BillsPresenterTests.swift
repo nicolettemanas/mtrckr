@@ -89,8 +89,8 @@ class BillsPresenterTests: QuickSpec {
                         expect(mockInteractor?.updatedAmount) == 999
                         expect(mockInteractor?.updatedDate) == date
                         expect(mockInteractor?.updatedName) == "New Bill Name"
-                        expect(mockInteractor?.updatedPost) == BillDueReminder.threeDays.rawValue
-                        expect(mockInteractor?.updatedPre) == BillDueReminder.twoDays.rawValue
+                        expect(mockInteractor?.updatedPost) == BillDueReminder.threeDays
+                        expect(mockInteractor?.updatedPre) == BillDueReminder.twoDays
                         expect(mockInteractor?.updatedCat) == cat
                     })
                 })
@@ -99,20 +99,20 @@ class BillsPresenterTests: QuickSpec {
                         let bill = fakeModels.bill()
                         let cat = fakeModels.category()
                         let date = Date().add(2.days)
-                        let proceedingDAte = Date()
                         
                         presenter.editBillAndEntries(bill: bill, amount: 999, name: "New Bill Name",
                                                      post: BillDueReminder.threeDays.rawValue, pre: BillDueReminder.twoDays.rawValue,
                                                      repeatSchedule: BillRepeatSchedule.never.rawValue,
-                                                     startDate: date, category: cat, proceedingDate: proceedingDAte)
+                                                     startDate: date, category: cat)
 
-                        expect(mockInteractor?.updatedBill?.amount) == 999
-                        expect(mockInteractor?.updatedBill?.startDate) == date
-                        expect(mockInteractor?.updatedBill?.name) == "New Bill Name"
-                        expect(mockInteractor?.updatedBill?.postDueReminder) == BillDueReminder.threeDays.rawValue
-                        expect(mockInteractor?.updatedBill?.preDueReminder) == BillDueReminder.twoDays.rawValue
-                        expect(mockInteractor?.updatedBill?.repeatSchedule) == BillRepeatSchedule.never.rawValue
-                        expect(mockInteractor?.updatedBill?.category) == cat
+                        expect(mockInteractor?.billToUpdate) == bill
+                        expect(mockInteractor?.updatedAmount) == 999
+                        expect(mockInteractor?.updatedDate) == date
+                        expect(mockInteractor?.updatedName) == "New Bill Name"
+                        expect(mockInteractor?.updatedPost) == BillDueReminder.threeDays
+                        expect(mockInteractor?.updatedPre) == BillDueReminder.twoDays
+                        expect(mockInteractor?.updatedRepeat) == BillRepeatSchedule.never
+                        expect(mockInteractor?.updatedCat) == cat
                     })
                 })
             })
