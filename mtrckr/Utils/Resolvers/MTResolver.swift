@@ -30,14 +30,16 @@ class MTResolver {
     }
     
     private func registerTransactions() {
-        container.register(TransactionsTableViewController.self)
-        { (resolver, dataSource: TransactionsListDataSourceProtocol) in
+        container.register(TransactionsTableViewController.self) { (
+            resolver,
+            dataSource: TransactionsListDataSourceProtocol) in
+            
             TransactionsTableViewController
-                .initWith(dataSource: dataSource,
-                 newTransPresenter: resolver.resolve(NewTransactionPresenter.self),
-                 deleteTransPresenter: resolver.resolve(DeleteTransactionSheetPresenter.self),
-                 transactionsPresenter: resolver.resolve(TransactionsPresenter.self),
-                 emptyDataSource: resolver.resolve(EmptyTransactionsDataSource.self))
+                .initWith(dataSource    : dataSource,
+                 newTransPresenter      : resolver.resolve(NewTransactionPresenter.self),
+                 deleteTransPresenter   : resolver.resolve(DeleteTransactionSheetPresenter.self),
+                 transactionsPresenter  : resolver.resolve(TransactionsPresenter.self),
+                 emptyDataSource        : resolver.resolve(EmptyTransactionsDataSource.self))
         }
         
         container.register(TransactionsInteractor.self) { [unowned self] _ in
@@ -48,8 +50,11 @@ class MTResolver {
             TransactionsPresenter(with: resolver.resolve(TransactionsInteractor.self)!)
         }
         
-        container.register(TransactionsListDataSource.self)
-        { [unowned self] (_, filter: TransactionsFilter, accounts: [Account]) in
+        container.register(TransactionsListDataSource.self) { [unowned self] (
+            _,
+            filter: TransactionsFilter,
+            accounts: [Account]) in
+            
             TransactionsListDataSource
                 .init(authConfig    : self.authConfig,
                       filterBy      : filter,
@@ -57,8 +62,11 @@ class MTResolver {
                       accounts      : accounts)
         }
         
-        container.register(TransactionsListDataSource.self)
-        { [unowned self] (_, filter: TransactionsFilter, date: Date) in
+        container.register(TransactionsListDataSource.self) { [unowned self] (
+            _,
+            filter: TransactionsFilter,
+            date: Date) in
+            
             TransactionsListDataSource
                 .init(authConfig    : self.authConfig,
                       filterBy      : filter,
@@ -72,7 +80,10 @@ class MTResolver {
     }
     
     private func registerAccounts() {
-        container.register(AccountsTableViewController.self) { (resolver, dataSource: TransactionsListDataSourceProtocol) in
+        container.register(AccountsTableViewController.self) { (
+            resolver,
+            dataSource: TransactionsListDataSourceProtocol) in
+            
             AccountsTableViewController
                 .initWith(presenter             : resolver.resolve(AccountsPresenter.self),
                          emptyDataSource        : EmptyAccountsDataSource(),
@@ -110,17 +121,22 @@ class MTResolver {
             vc.dataSource?.delegate = vc
         }
         
-        container.register(PayBillViewController.self)
-        { (resolver, entry: BillEntry, delegate: PayBillPresenterDelegate) in
+        container.register(PayBillViewController.self) { (
+            _,
+            entry: BillEntry,
+            delegate: PayBillViewControllerDelegate) in
+            
             let vc = PayBillViewController
-                .initWith(billEntry : entry,
-                          accPrsntr : resolver.resolve(AccountsPresenter.self)!)
+                .initWith(billEntry: entry)
             vc.delegate = delegate
             return vc
         }
         
-        container.register(NewBillViewController.self)
-        { (_, delegate: NewBillViewControllerDelegate, entry: BillEntry?) in
+        container.register(NewBillViewController.self) { (
+            _,
+            delegate: NewBillViewControllerDelegate,
+            entry: BillEntry?) in
+            
             let vc = NewBillViewController.initWith(delegate: delegate)
             vc.billEntry = entry
             return vc

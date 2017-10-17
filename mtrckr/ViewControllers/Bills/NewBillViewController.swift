@@ -8,24 +8,7 @@
 import UIKit
 import Eureka
 
-protocol NewBillViewControllerDelegate: class {
-    func saveNewBill(amount: Double, name: String, post: String, pre: String,
-                     repeatSchedule: String, startDate: Date, category: Category)
-    func edit(billEntry: BillEntry, amount: Double, name: String, post: String, pre: String,
-              repeatSchedule: String, startDate: Date, category: Category)
-    func edit(bill: Bill, amount: Double, name: String, post: String, pre: String,
-              repeatSchedule: String, startDate: Date, category: Category)
-}
-
-protocol NewBillViewControllerProtocol {
-    func saveBill()
-    var delegate: NewBillViewControllerDelegate? { get set }
-    var billEntry: BillEntry? { get set }
-    var action: MTAlertAction.Type { get set }
-    weak var alert: UIAlertController? { get set }
-}
-
-class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol {
+class NewBillViewController: MTFormViewController {
     struct LocalizedStrings {
         static let kEditConfirm = NSLocalizedString("Do you want to edit only this bill or all proceeding bills?",
                                             comment: "Asks whether user edit applies to current bill or all proceeding bills.")
@@ -114,14 +97,6 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: Bill-related methods
-    func saveBill() {
-        delegate?.saveNewBill(amount: amountRow.value!, name: nameRow.value!,
-                              post: postRow.value!, pre: preRow.value!, repeatSchedule: repeatRow.value!,
-                              startDate: dueDateRow.value!, category: categoryRow.value!)
-        dismiss(animated: true, completion: nil)
-    }
-    
     private func presentEditBillSheet(billEntry entry: BillEntry) {
         let editOption = UIAlertController(title: nil, message: nil,
                                            preferredStyle: .actionSheet)
@@ -142,6 +117,7 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
         }
         let allBills = action.makeActionWithTitle(title: LocalizedStrings.kAllBills,
                                                   style: .destructive) { [unowned self] (_) in
+            assert(self.billEntry?.bill?.active == true)
             self.delegate?.edit(bill: self.billEntry!.bill!, amount: self.amountRow.value!, name: self.nameRow.value!,
                                 post: self.postRow.value!, pre: self.preRow.value!, repeatSchedule: self.repeatRow.value!,
                                 startDate: self.dueDateRow.value!, category: self.categoryRow.value!)
@@ -167,6 +143,11 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
     }
     
     private func setupForm() {
+        setupPrimarySection()
+        setupCetegory()
+    }
+    
+    private func setupPrimarySection() {
         form
         +++ TextRow { row in
             row.title = LocalizedStrings.Form.name
@@ -174,41 +155,44 @@ class NewBillViewController: MTFormViewController, NewBillViewControllerProtocol
             row.add(rule: RuleRequired())
             row.tag = FormTags.name
         }
+        
+        <<< DecimalRow { row in
+            row.title = LocalizedStrings.Form.amount
+            row.placeholder = LocalizedStrings.Form.amountPH
+            row.add(rule: RuleRequired())
+            row.tag = FormTags.amount
+        }
+        
+        <<< DateRow { row in
+            row.title = LocalizedStrings.Form.dueDate
+            row.value = Date()
+            row.tag = FormTags.dueDate
+            row.dateFormatter?.timeZone = TimeZone.current
+        }
+        
+        <<< SegmentedRow<String> { row in
+            row.tag = FormTags.billRepeat
+            row.options = BillRepeatSchedule.allRawValues
+            row.value = BillRepeatSchedule.never.rawValue
+        }
+        
+        <<< PushRow<String> { row in
+            row.tag = FormTags.pre
+            row.title = LocalizedStrings.Form.preDate
+            row.value = BillDueReminder.never.rawValue
+            row.options = BillDueReminder.allRawValues
+        }
+        
+        <<< PushRow<String> { row in
+            row.tag = FormTags.post
+            row.title = LocalizedStrings.Form.postDate
+            row.value = BillDueReminder.never.rawValue
+            row.options = BillDueReminder.allRawValues
+        }
+    }
     
-            <<< DecimalRow { row in
-                row.title = LocalizedStrings.Form.amount
-                row.placeholder = LocalizedStrings.Form.amountPH
-                row.add(rule: RuleRequired())
-                row.tag = FormTags.amount
-            }
-
-            <<< DateRow { row in
-                row.title = LocalizedStrings.Form.dueDate
-                row.value = Date()
-                row.tag = FormTags.dueDate
-                row.dateFormatter?.timeZone = TimeZone.current
-            }
-
-            <<< SegmentedRow<String> { row in
-                row.tag = FormTags.billRepeat
-                row.options = BillRepeatSchedule.allRawValues
-                row.value = BillRepeatSchedule.never.rawValue
-            }
-        
-            <<< PushRow<String> { row in
-                row.tag = FormTags.pre
-                row.title = LocalizedStrings.Form.preDate
-                row.value = BillDueReminder.never.rawValue
-                row.options = BillDueReminder.allRawValues
-            }
-            
-            <<< PushRow<String> { row in
-                row.tag = FormTags.post
-                row.title = LocalizedStrings.Form.postDate
-                row.value = BillDueReminder.never.rawValue
-                row.options = BillDueReminder.allRawValues
-            }
-        
+    private func setupCetegory() {
+        form
         +++ Section("Category", { section in
             section.tag = FormTags.categorySec
         })

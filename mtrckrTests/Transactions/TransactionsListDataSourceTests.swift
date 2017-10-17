@@ -30,16 +30,19 @@ class TransactionsListDataSourceTests: QuickSpec {
                 realm.deleteAll()
             }
             
-            dataSource = TransactionsListDataSource(authConfig: RealmAuthConfig(),
-                                                    filterBy: .byAccount,
-                                                    date: nil, accounts: [])
+            dataSource = TransactionsListDataSource(authConfig  : RealmAuthConfig(),
+                                                    filterBy    : .byAccount,
+                                                    date        : nil,
+                                                    accounts    : [])
+            
             dataSource?.realmContainer = MockRealmContainer(memoryIdentifier: identifier)
             dataSource?.realmContainer?.setDefaultRealm(to: .offline)
             
-            let resolver = StubViewControllerResolvers()
-            mockTableViewController = resolver.container.resolve(TransactionsTableViewController.self,
-                                                                 name: "stub",
-                                                                 argument: TransactionsFilter.byAccount)
+            let resolver = StubMTResolvers()
+            mockTableViewController = resolver.container
+                .resolve(TransactionsTableViewController.self,
+                         name       : "stub",
+                         argument   : TransactionsFilter.byAccount)
             dataSource?.delegate = mockTableViewController
             mockTableViewController?.transactionsDataSource = dataSource
             
@@ -149,6 +152,7 @@ class TransactionsListDataSourceTests: QuickSpec {
 
                     let rows = dataSource?.groupedTransactions[trans5.transactionDate.format(with: "MMM")]
 
+                    expect(rows??.count) == 2
                     expect(trans5) == rows!![0]
                     expect(trans6) == rows!![1]
                 })

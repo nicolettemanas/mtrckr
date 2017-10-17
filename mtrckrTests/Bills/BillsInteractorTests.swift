@@ -15,7 +15,7 @@ class BillsInteractorTests: QuickSpec {
     override func spec() {
         let identifier = "BillsInteractorTests"
         
-        var fakeModels: FakeModels!
+        let fakeModels = FakeModels()
         var realm: Realm!
         var interactor: BillsInteractor!
         
@@ -31,7 +31,6 @@ class BillsInteractorTests: QuickSpec {
             interactor?.realmContainer = MockRealmContainer(memoryIdentifier: identifier)
             interactor?.realmContainer?.setDefaultRealm(to: .offline)
             
-            fakeModels = FakeModels()
             realm = interactor.realmContainer!.userRealm!
         }
         
@@ -71,35 +70,55 @@ class BillsInteractorTests: QuickSpec {
                 })
             })
             
-            context("asked to edit a Bill", {
+            context("asked to pay a Bill Entry and edit a Bill", {
                 var billtoEdit: Bill!
                 var oldCategory: mtrckr.Category!
+                var entryToPay: BillEntry!
+                let datePaid = Date()
+                var account: Account!
+                var id: String!
                 
                 beforeEach {
+                    account = fakeModels.account()
+                    account.save(toRealm: realm)
                     billtoEdit = fakeModels.bill()
                     oldCategory = billtoEdit.category
                     billtoEdit.startDate = Date().subtract(2.months)
-                    // save bill
+
                     interactor.saveBill(bill: billtoEdit)
-                    let firstEntry = BillEntry.all(in: realm, for: billtoEdit).first
-                    // pay first entry
-                    firstEntry?.pay(amount: 200, description: "", fromAccount: Account(),
-                                    datePaid: Date(), inRealm: realm)
+                    entryToPay = BillEntry.all(in: realm, for: billtoEdit).first
+                    id = entryToPay.id
+                    
+                    interactor
+                        .payEntry(entry   : entryToPay,
+                                  amount  : 200,
+                                  account : account,
+                                  date    : datePaid)
 
                     let billInDb = Bill.with(key: billtoEdit.id, inRealm: realm)
-                    interactor.update(bill: billInDb!, amount: 100, name: "Updated name",
-                                      postDueReminder: BillDueReminder.never,
-                                      preDueReminder: BillDueReminder.never,
-                                      category: billInDb!.category!,
-                                      startDate: billInDb!.startDate,
-                                      repeatSchedule: BillRepeatSchedule.monthly)
+                    
+                    interactor
+                        .update(bill            : billInDb!,
+                                amount          : 100,
+                                name            : "Updated name",
+                                postDueReminder : BillDueReminder.never,
+                                preDueReminder  : BillDueReminder.never,
+                                category        : billInDb!.category!,
+                                startDate       : billInDb!.startDate,
+                                repeatSchedule  : BillRepeatSchedule.monthly)
                 }
+                
+                it("sets status of entry as paid", closure: {
+                    let paid = BillEntry.with(key: id, inRealm: realm)
+                    expect(paid?.status) == BillEntryStatus.paid.rawValue
+                    expect(paid?.datePaid) == datePaid
+                })
                 
                 it("updates values in the database", closure: {
                     let updatedBill = Bill.with(key: billtoEdit.id, inRealm: realm)
                     expect(updatedBill?.amount) == 100
-                    expect(updatedBill?.preDueReminder) == BillDueReminder.never.rawValue
                     expect(updatedBill?.name) == "Updated name"
+                    expect(updatedBill?.preDueReminder) == BillDueReminder.never.rawValue
                     expect(updatedBill?.postDueReminder) == billtoEdit.postDueReminder
                     expect(updatedBill?.repeatSchedule) == billtoEdit.repeatSchedule
                     expect(updatedBill?.startDate) == billtoEdit.startDate
@@ -137,12 +156,15 @@ class BillsInteractorTests: QuickSpec {
                     beforeEach {
                         newDate = Date().subtract(2.weeks)
                         let billInDb = Bill.with(key: billtoEdit.id, inRealm: realm)
-                        interactor.update(bill: billInDb!, amount: 100, name: "Updated name",
-                                          postDueReminder: BillDueReminder.never,
-                                          preDueReminder: BillDueReminder.never,
-                                          category: billInDb!.category!,
-                                          startDate: newDate,
-                                          repeatSchedule: BillRepeatSchedule.weekly)
+                        interactor
+                            .update(bill            : billInDb!,
+                                    amount          : 100,
+                                    name            : "Updated name",
+                                    postDueReminder : BillDueReminder.never,
+                                    preDueReminder  : BillDueReminder.never,
+                                    category        : billInDb!.category!,
+                                    startDate       : newDate,
+                                    repeatSchedule  : BillRepeatSchedule.weekly)
                     }
                     
                     it("updates dueDate of unpaid entries", closure: {
@@ -195,10 +217,14 @@ class BillsInteractorTests: QuickSpec {
                     interactor.saveBill(bill: bill)
                     entrytoEdit = BillEntry.all(in: realm, for: bill).first
                     
-                    interactor.updateBillEntry(entry: entrytoEdit, amount: 1233, name: "new name",
-                                               preDueReminder: BillDueReminder.twoDays,
-                                               postDueReminder: BillDueReminder.twoDays,
-                                               category: nil, dueDate: date)
+                    interactor
+                        .updateBillEntry(entry          : entrytoEdit,
+                                         amount         : 1233,
+                                         name           : "new name",
+                                         preDueReminder : BillDueReminder.twoDays,
+                                         postDueReminder: BillDueReminder.twoDays,
+                                         category       : nil,
+                                         dueDate        : date)
                 }
                 
                 it("saves updated properties to custom properties if applicable", closure: {
@@ -213,12 +239,55 @@ class BillsInteractorTests: QuickSpec {
             })
             
             context("asked to delete a bill", {
-                context("delete all future bills", {
+                context("delete all unpaid bills", {
+                    var bill: Bill!
+                    var paidEntry: BillEntry!
                     
+                    beforeEach {
+                        bill = fakeModels.bill()
+                        bill.startDate = Date().subtract(2.months)
+                        
+                        interactor.saveBill(bill: bill)
+                        paidEntry = bill.entries.first
+                        
+                        paidEntry?
+                            .pay(amount       : 1230,
+                                 description  : "",
+                                 fromAccount  : Account(),
+                                 datePaid     : Date(),
+                                 inRealm      : realm)
+                        
+                        interactor.delete(bill: bill)
+                    }
+                    
+                    it("tags the bill as inactive and deletes all unpaid entries of the bill", closure: {
+                        bill = Bill.with(key: bill.id, inRealm: realm)
+                        let entries = BillEntry.allUnpaid(in: realm, for: [bill])
+                        paidEntry = BillEntry.with(key: paidEntry.id, inRealm: realm)
+                        
+                        expect(bill.active) == false
+                        expect(entries.count) == 0
+                        expect(paidEntry).toNot(beNil())
+                    })
                 })
                 
-                context("delete all bills", {
+                context("delete current bill entry", {
+                    var bill: Bill!
+                    var entryToDelete: BillEntry!
                     
+                    beforeEach {
+                        bill = fakeModels.bill()
+                        bill.startDate = Date().subtract(2.months)
+                        
+                        interactor.saveBill(bill: bill)
+                        entryToDelete = bill.entries.first
+                        interactor.delete(billEntry: entryToDelete)
+                    }
+                    
+                    it("deletes the selected bill entry", closure: {
+                        let billEntries = BillEntry.all(in: realm, for: bill)
+                        expect(billEntries.count) == 2
+                    })
                 })
             })
         }

@@ -10,8 +10,8 @@ import UIKit
 
 class MockBillsInteractor: BillsInteractor {
     
-    var didDeleteBill: BillEntry?
-    var deleteType: ModifyBillType?
+    var didDeleteBillEntry: BillEntry?
+    var didDeleteBill: Bill?
     
     var createdBill: Bill?
     var updatedBill: Bill?
@@ -25,13 +25,21 @@ class MockBillsInteractor: BillsInteractor {
     var updatedDate: Date?
     var updatedRepeat: BillRepeatSchedule?
     
+    var entryToPay: BillEntry?
+    var payAccount: Account?
+    var payAmount: Double = 0
+    var payDate: Date?
+    
     override func saveBill(bill: Bill) {
         createdBill = bill
     }
     
-    override func deleteBill(bill: BillEntry, type: ModifyBillType) {
+    override func delete(bill: Bill) {
         didDeleteBill = bill
-        deleteType = type
+    }
+    
+    override func delete(billEntry: BillEntry) {
+        didDeleteBillEntry = billEntry
     }
     
     override func updateBillEntry(entry: BillEntry, amount: Double, name: String?, preDueReminder: BillDueReminder,
@@ -54,5 +62,12 @@ class MockBillsInteractor: BillsInteractor {
         updatedCat = category
         updatedDate = startDate
         updatedRepeat = repeatSchedule
+    }
+    
+    override func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date) {
+        entryToPay = entry
+        payAmount = amount
+        payAccount = account
+        payDate = date
     }
 }

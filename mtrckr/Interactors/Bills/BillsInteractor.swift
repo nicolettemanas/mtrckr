@@ -11,16 +11,31 @@ import DateToolsSwift
 
 protocol BillsInteractorProtocol {
     func saveBill(bill: Bill)
-    func deleteBill(bill: BillEntry, type: ModifyBillType)
+    func delete(billEntry: BillEntry)
+    func delete(bill: Bill)
+    func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date)
     func updateBillEntry(entry: BillEntry, amount: Double, name: String?, preDueReminder: BillDueReminder,
                          postDueReminder: BillDueReminder, category: Category?, dueDate: Date)
     func update(bill: Bill, amount: Double, name: String, postDueReminder: BillDueReminder,
                 preDueReminder: BillDueReminder, category: Category, startDate: Date, repeatSchedule: BillRepeatSchedule)
 }
 
+/// Class responsible for `Bill` and `BillEntry` modification methods
 class BillsInteractor: RealmHolder, BillsInteractorProtocol {
-    func deleteBill(bill: BillEntry, type: ModifyBillType) {
-        
+    
+    /// Deletes a `Bill` and corresponding unpaid `BillEntries`
+    ///
+    /// - Parameter bill: The `Bill` to be deleted
+    func delete(bill: Bill) {
+        deleteAllUnpaid(for: bill)
+        bill.deactivate(inRealm: realmContainer!.userRealm!)
+    }
+    
+    /// Deletes a single `BillEntry`
+    ///
+    /// - Parameter billEntry: The `BillEntry` to be deleted
+    func delete(billEntry: BillEntry) {
+        billEntry.delete(in: realmContainer!.userRealm!)
     }
     
     func saveBill(bill: Bill) {
@@ -29,6 +44,15 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
         }
         createEntries(forBill: bill, startDate: bill.startDate, repeatSched: sched)
         bill.save(toRealm: self.realmContainer!.userRealm!)
+    }
+    
+    func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date) {
+        entry
+            .pay(amount        : amount,
+                 description   : "",
+                 fromAccount   : account,
+                 datePaid      : date,
+                 inRealm       : realmContainer!.userRealm!)
     }
     
     func updateBillEntry(entry: BillEntry, amount: Double, name: String?, preDueReminder: BillDueReminder,
@@ -51,7 +75,7 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
     private func updateUnpaidEntries(ofBill bill: Bill, amount: Double, name: String,
                                      post: BillDueReminder, pre: BillDueReminder, category: Category,
                                      startDate: Date?, repeatSchedule: BillRepeatSchedule) {
-        
+        assert(bill.active == true)
         deleteAllUnpaid(for: bill)
         
         let latestPaid = latestPaidEntry(for: bill)
@@ -86,6 +110,7 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
     }
     
     private func createEntries(forBill bill: Bill, startDate: Date, repeatSched: BillRepeatSchedule) {
+        assert(bill.active == true)
         var start = startDate
         var end = Date()
         

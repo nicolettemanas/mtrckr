@@ -13,16 +13,17 @@ import Quick
 class NewBillViewControllerTests: QuickSpec {
     override func spec() {
         var newBillViewController: NewBillViewController?
-        var billsViewController: MockBillsTableViewController?
+        var billsViewController: (MockBillsTableViewController & NewBillViewControllerDelegate)?
 
-        let resolver = ViewControllerResolvers()
+        let resolver = MTResolver()
         let fakeModels = FakeModels()
 
         beforeEach {
             billsViewController = MockBillsTableViewController()
             newBillViewController = resolver.container
                 .resolve(NewBillViewController.self,
-                         argument: billsViewController as! NewBillViewControllerDelegate)
+                         arguments: billsViewController as! NewBillViewControllerDelegate,
+                         nil as BillEntry?)
             newBillViewController?.action = MockAlertAction.self
 
             expect(newBillViewController?.delegate).toNot(beNil())
@@ -146,44 +147,3 @@ class NewBillViewControllerTests: QuickSpec {
         }
     }
 }
-
-//                describe("confirming editing an entry", {
-//                    var controller: UIAlertController!
-//                    var entryToEdit: BillEntry!
-//
-//                    beforeEach {
-//                        billsViewController.newBillPresenter = ViewControllerResolvers().container
-//                            .resolve(NewBillPresenter.self)
-//                        billsViewController.newBillPresenter?.action = MockAlertAction.self
-//                        billsViewController.newBillPresenter?.delegate = billsViewController
-//                        billsViewController.editBillEntry(atIndex: IndexPath(item: 0, section: 0))
-//                        entryToEdit = billsViewController.dataSource?.entry(at: IndexPath(item: 0, section: 0))
-//                        controller = billsViewController!.newBillPresenter!.alert!
-//                    }
-//
-//                    context("user chooses to edit only current bill", {
-//                        it("presents form to edit a bill entry", closure: {
-//                            let currentBillAction = controller.actions[0] as! MockAlertAction
-//                            currentBillAction.mockHandler!(currentBillAction)
-////                            expect(mockPresenter?.didEdit) == true
-////                            expect(mockPresenter?.didEditEntry) == entryToEdit
-//                            expect(mockNewBillPresenter?.didPresent) == true
-//
-//                        })
-//                    })
-//
-//                    context("user chooses to edit all proceeding bill entries", {
-//                        it("presents form to edit the bill", closure: {
-//                            let currentBillAction = controller.actions[0] as! MockAlertAction
-//                            currentBillAction.mockHandler!(currentBillAction)
-//                            expect(mockPresenter?.didEdit) == true
-//                            expect(mockPresenter?.didEditEntry) == entryToEdit.bill
-//                        })
-//                    })
-//
-//                    context("user saves the edited values", {
-//                        it("tells presenter to save updated values", closure: {
-//
-//                        })
-//                    })
-//                })

@@ -281,7 +281,11 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
             var endDate = maxDate.end(of: .month)
             
             while minDate.isEarlierThanOrEqual(to: startDate) {
-                monthSections.append((startDate, endDate))
+                if monthSections.contains(where: { (arg) -> Bool in
+                    return arg.0 == startDate && arg.1 == endDate
+                }) == false {
+                    monthSections.append((startDate, endDate))
+                }
                 
                 let month = startDate.format(with: "MMM", timeZone: TimeZone.current)
                 titles.append("\(month) \(startDate.year)")

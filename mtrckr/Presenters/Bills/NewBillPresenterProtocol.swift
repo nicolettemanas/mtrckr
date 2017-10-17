@@ -12,11 +12,16 @@ protocol NewBillPresenterDelegate: class {
     func proceedEditProceedingEntries(ofBillAtIndexPath index: IndexPath, fromDate date: Date)
 }
 
-protocol NewBillPresenterProtocol {
-    func presentNewBill(presenter: NewBillViewControllerDelegate, billEntry: BillEntry?)
+protocol PayBillPresenterDelegate: class {
+    func proceedPayment(ofBill entry: BillEntry, amount: Double, account: Account, date: Date)
 }
 
-class NewBillPresenter: NewBillPresenterProtocol {
+protocol BillVCPresenterProtocol {
+    func presentNewBill(presenter: NewBillViewControllerDelegate, billEntry: BillEntry?)
+    func presentPayment(ofBill entry: BillEntry, presenter: PayBillPresenterDelegate)
+}
+
+class BillVCPresenter: BillVCPresenterProtocol {
     func presentNewBill(presenter: NewBillViewControllerDelegate, billEntry: BillEntry?) {
 
         guard let nav = UIStoryboard.init(name: "Bills", bundle: Bundle.main)
@@ -31,5 +36,9 @@ class NewBillPresenter: NewBillPresenterProtocol {
         newBillVC.delegate = presenter
         newBillVC.billEntry = billEntry
         (presenter as? UIViewController)?.present(nav, animated: true, completion: nil)
+    }
+    
+    func presentPayment(ofBill entry: BillEntry, presenter: PayBillPresenterDelegate) {
+        
     }
 }

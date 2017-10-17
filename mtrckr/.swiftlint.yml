@@ -22,3 +22,4 @@ nesting_rule:
 disabled_rules:
  - force_try
  - trailing_whitespace
+ - closure_parameter_position

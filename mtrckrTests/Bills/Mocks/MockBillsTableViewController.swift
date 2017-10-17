@@ -8,7 +8,7 @@
 import UIKit
 @testable import mtrckr
 
-class MockBillsTableViewController: NewBillViewControllerDelegate {
+class MockBillsTableViewController: NewBillViewControllerDelegate, PayBillViewControllerDelegate {
     
     var didSave = false
     var didEditBillEntry: BillEntry?
@@ -21,6 +21,11 @@ class MockBillsTableViewController: NewBillViewControllerDelegate {
     var repeatSchedule: String?
     var startDate: Date?
     var category: mtrckr.Category?
+    
+    var didPay = false
+    var didPayAmount: Double = 0
+    var didPayAccount: Account?
+    var didPayDate: Date?
 
     func saveNewBill(amount: Double, name: String, post: String, pre: String, repeatSchedule: String,
                      startDate: Date, category: mtrckr.Category) {
@@ -59,5 +64,12 @@ class MockBillsTableViewController: NewBillViewControllerDelegate {
         self.repeatSchedule = repeatSchedule
         self.startDate = startDate
         self.category = category
+    }
+    
+    func proceedPayment(ofBill entry: BillEntry, amount: Double, account: Account, date: Date) {
+        didPay = true
+        didPayAmount = amount
+        didPayAccount = account
+        didPayDate = date
     }
 }

@@ -11,7 +11,7 @@ import Nimble
 @testable import mtrckr
 
 class AccountTransactionsPresenterTests: QuickSpec {
-    var stubResolver: StubViewControllerResolvers!
+    var stubResolver: StubMTResolvers!
     override func spec() {
         describe("AccountTransactionsPresenter") {
             context("asked to present transaction view controller with accounts filter", closure: {
@@ -21,7 +21,7 @@ class AccountTransactionsPresenterTests: QuickSpec {
                 var dataSource: StubTransactionsListDataSource!
                 
                 beforeEach {
-                    self.stubResolver = StubViewControllerResolvers()
+                    self.stubResolver = StubMTResolvers()
                     presenter = AccountTransactionsPresenter()
                     dataSource = self.stubResolver.container.resolve(TransactionsListDataSource.self, name: "stub",
                                                                      argument: TransactionsFilter.byAccount)! as! StubTransactionsListDataSource

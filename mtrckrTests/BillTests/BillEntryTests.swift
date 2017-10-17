@@ -190,7 +190,6 @@ class BillEntryTests: QuickSpec {
                     let datePaid = Date()
 
                     beforeEach {
-
                         let cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
                         let account = Account(value: ["id": "accnt1",
                                                       "name": "My Cash",

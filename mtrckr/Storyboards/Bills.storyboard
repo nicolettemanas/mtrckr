@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -48,6 +48,7 @@
         <!--Navigation Controller-->
         <scene sceneID="e8Q-0v-QcA">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zDe-Yi-sB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="NewBillNavigationVController" id="UMY-zE-2WG" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YAY-Qf-Jv6">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -58,9 +59,55 @@
                         <segue destination="OjG-6O-05B" kind="relationship" relationship="rootViewController" id="LAG-km-F1X"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zDe-Yi-sB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="707" y="139"/>
+            <point key="canvasLocation" x="790" y="139"/>
+        </scene>
+        <!--Pay Bill-->
+        <scene sceneID="5ul-BK-3oa">
+            <objects>
+                <viewController storyboardIdentifier="PayBillViewController" id="k56-PP-EHP" customClass="PayBillViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="571-oC-hYn"/>
+                        <viewControllerLayoutGuide type="bottom" id="UTl-JZ-zRg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="l7m-yW-5eS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Pay Bill" id="J97-4c-vb2">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="x-tab" id="0li-zY-INN">
+                            <color key="tintColor" red="1" green="0.23356119789999999" blue="0.24633517799999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cancelWithSender:" destination="k56-PP-EHP" id="00u-mW-o10"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="check-tab" id="iRR-8v-ocO">
+                            <connections>
+                                <action selector="payBillWithSender:" destination="k56-PP-EHP" id="HuT-Ia-r0K"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hTx-wL-kaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1457" y="825"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="BMq-TE-Fid">
+            <objects>
+                <navigationController id="U8F-yR-hSp" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pb2-Sq-crb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="k56-PP-EHP" kind="relationship" relationship="rootViewController" id="QYf-aA-zAT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3fq-7q-45w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="790" y="825"/>
         </scene>
         <!--New Bill-->
         <scene sceneID="Oym-iV-IgA">
@@ -91,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bFc-GR-Zfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1123" y="139"/>
+            <point key="canvasLocation" x="1457" y="139"/>
         </scene>
         <!--Bills-->
         <scene sceneID="qgc-Sc-1zf">
@@ -111,7 +158,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AtZ-xo-hPM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-350" y="139"/>
+            <point key="canvasLocation" x="-535" y="139"/>
         </scene>
     </scenes>
     <resources>

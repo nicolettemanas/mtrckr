@@ -57,7 +57,7 @@ class CalendarViewController: MTViewController {
     }
     
     func setupTransactionsTable() {
-        let resolver = ViewControllerResolvers()
+        let resolver = MTResolver()
         let dataSource: TransactionsListDataSourceProtocol = resolver.container.resolve(TransactionsListDataSource.self,
                                                                                         arguments: TransactionsFilter.byDate, Date())!
         if let transVC = resolver.container.resolve(TransactionsTableViewController.self, argument: dataSource) {

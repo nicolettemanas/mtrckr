@@ -60,7 +60,7 @@ class AccountsTableViewController: MTTableViewController, AccountsTableViewContr
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let resolver = ViewControllerResolvers()
+        let resolver = MTResolver()
         self.presenter = resolver.container.resolve(AccountsPresenter.self)
         self.emptyDatasource = resolver.container.resolve(EmptyAccountsDataSource.self)
         self.newAccountPresenter = resolver.container.resolve(NewAccountPresenter.self)

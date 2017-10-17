@@ -27,6 +27,9 @@ class MockBillsPresenter: BillsPresenter {
     
     var didPayBill = false
     var didPayBillEntry: BillEntry?
+    var didPayAccount: Account?
+    var didPayAmount: Double = 0
+    var didPayDate: Date?
     
     var didEdit = false
     var didEditEntry: BillEntry?
@@ -97,8 +100,11 @@ class MockBillsPresenter: BillsPresenter {
         didShowHistoryOf = entry
     }
     
-    override func payEntry(entry: BillEntry) {
+    override func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date) {
         didPayBill = true
         didPayBillEntry = entry
+        didPayDate = date
+        didPayAmount = amount
+        didPayAccount = account
     }
 }

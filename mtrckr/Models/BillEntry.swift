@@ -168,6 +168,7 @@ class BillEntry: Object {
     ///
     /// - Parameter realm: The `Realm` to save the updated `BillEntry` to
     func unpay(inRealm realm: Realm) {
+        assert(self.bill?.active == true)
         let entry = BillEntry(dueDate: self.dueDate, for: self.bill!)
         self.delete(in: realm)
         entry.save(toRealm: realm)
@@ -197,10 +198,15 @@ class BillEntry: Object {
     ///   - account: The `Account` where the `Transaction` is from
     ///   - datePaid: The date of payment of the `BillEntry`
     ///   - realm: The `Realm` where the `Transaction` and `BillEntry` will be saved
-    func pay(amount: Double, description: String, fromAccount account: Account, datePaid: Date, inRealm realm: Realm) {
+    func pay(amount: Double, description: String, fromAccount account: Account,
+             datePaid: Date, inRealm realm: Realm) {
+        
         guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
-        self.generateTransaction(amount: amount, description: description,
-                                 account: account, datePaid: datePaid, inRealm: realm)
+        generateTransaction(amount      : amount,
+                            description : description,
+                            account     : account,
+                            datePaid    : datePaid,
+                            inRealm     : realm)
 
         do {
             try realm.write {
@@ -270,10 +276,18 @@ class BillEntry: Object {
     /// :nodoc:
     private func generateTransaction(amount: Double, description: String,
                                      account: Account, datePaid: Date, inRealm realm: Realm) {
-        let transaction = Transaction(type: .expense, name: self.bill!.name, image: nil,
-                                      description: description, amount: amount, category: self.bill?.category,
-                                      from: account, to: account, date: datePaid)
-        transaction.billEntry = self
-        transaction.save(toRealm: realm)
+        
+        assert(self.bill?.active == true)
+        let trans = Transaction(type          : .expense,
+                                name          : self.bill!.name,
+                                image         : nil,
+                                description   : description,
+                                amount        : amount,
+                                category      : self.bill?.category,
+                                from          : account,
+                                to            : account,
+                                date          : datePaid)
+        trans.billEntry = self
+        trans.save(toRealm: realm)
     }
 }

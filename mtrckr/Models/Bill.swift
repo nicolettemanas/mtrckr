@@ -66,6 +66,9 @@ class Bill: Object {
     /// The `Category` of the `Bill`
     @objc dynamic var category: Category?
 
+    /// Indicates whether a `Bill` is still active or not
+    @objc dynamic var active: Bool = true
+    
     /// The entries under this `Bill`
     let entries = LinkingObjects(fromType: BillEntry.self, property: "bill")
 
@@ -82,6 +85,21 @@ class Bill: Object {
         do {
             try realm.write {
                 realm.add(self)
+            }
+        } catch let error as NSError {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    
+    /// Sets the property active to false
+    ///
+    /// - Parameter realm: The realm to save the updated `Bill` to
+    func deactivate(inRealm realm: Realm) {
+        do {
+            try realm.write {
+                active = false
+                realm.add(self, update: true)
             }
         } catch let error as NSError {
             fatalError(error.localizedDescription)
