@@ -11,7 +11,7 @@ import DZNEmptyDataSet
 class EmptyBillsDataSource: NSObject, DZNEmptyDataSetSource {
     
     struct LocalizableStrings {
-        static let emptyBillsTitle = NSLocalizedString("There are currently no saved bills.",
+        static let emptyBillsTitle = NSLocalizedString("You have no scheduled bills.",
                                                        comment: "The title shown when there are no bills registered.")
         static let emptyBillsBody = NSLocalizedString("Tap the '+' button to add one.",
                                                       comment: """
@@ -47,7 +47,7 @@ class EmptyBillsDataSource: NSObject, DZNEmptyDataSetSource {
     }
     
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return #imageLiteral(resourceName: "atype-cash")
+        return #imageLiteral(resourceName: "bill")
     }
     
     func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {

@@ -98,14 +98,14 @@ class BillsInteractorTests: QuickSpec {
                     let billInDb = Bill.with(key: billtoEdit.id, inRealm: realm)
                     
                     interactor
-                        .update(bill            : billInDb!,
-                                amount          : 100,
-                                name            : "Updated name",
-                                postDueReminder : BillDueReminder.never,
-                                preDueReminder  : BillDueReminder.never,
-                                category        : billInDb!.category!,
-                                startDate       : billInDb!.startDate,
-                                repeatSchedule  : BillRepeatSchedule.monthly)
+                        .update(bill        : billInDb!,
+                                amount      : 100,
+                                name        : "Updated name",
+                                post        : BillDueReminder.never,
+                                preDue      : BillDueReminder.never,
+                                category    : billInDb!.category!,
+                                startDate   : billInDb!.startDate,
+                                repeatSched : BillRepeatSchedule.monthly)
                 }
                 
                 it("sets status of entry as paid", closure: {
@@ -157,50 +157,50 @@ class BillsInteractorTests: QuickSpec {
                         newDate = Date().subtract(2.weeks)
                         let billInDb = Bill.with(key: billtoEdit.id, inRealm: realm)
                         interactor
-                            .update(bill            : billInDb!,
-                                    amount          : 100,
-                                    name            : "Updated name",
-                                    postDueReminder : BillDueReminder.never,
-                                    preDueReminder  : BillDueReminder.never,
-                                    category        : billInDb!.category!,
-                                    startDate       : newDate,
-                                    repeatSchedule  : BillRepeatSchedule.weekly)
+                            .update(bill         : billInDb!,
+                                    amount       : 100,
+                                    name         : "Updated name",
+                                    post         : BillDueReminder.never,
+                                    preDue       : BillDueReminder.never,
+                                    category     : billInDb!.category!,
+                                    startDate    : newDate,
+                                    repeatSched  : BillRepeatSchedule.weekly)
                     }
                     
                     it("updates dueDate of unpaid entries", closure: {
-                        let updatedEntries = BillEntry.all(in: realm, for: billtoEdit)
-                        expect(updatedEntries.count) == 4
+                        let updated = BillEntry.all(in: realm, for: billtoEdit)
+                        expect(updated.count) == 4
                         
-                        expect(updatedEntries[0].amount) == 200
-                        expect(updatedEntries[0].status) == BillEntryStatus.paid.rawValue
-                        expect(updatedEntries[0].customName).to(beNil())
-                        expect(updatedEntries[0].customPostDueReminder).to(beNil())
-                        expect(updatedEntries[0].customPreDueReminder).to(beNil())
-                        expect(updatedEntries[0].customCategory).to(beNil())
+                        expect(updated[0].amount) == 200
+                        expect(updated[0].status) == BillEntryStatus.paid.rawValue
+                        expect(updated[0].customName).to(beNil())
+                        expect(updated[0].customPostDueReminder).to(beNil())
+                        expect(updated[0].customPreDueReminder).to(beNil())
+                        expect(updated[0].customCategory).to(beNil())
                         
-                        expect(updatedEntries[1].amount) == 100
-                        expect(updatedEntries[1].status) == BillEntryStatus.unpaid.rawValue
-                        expect(updatedEntries[1].customName) == "Updated name"
-                        expect(updatedEntries[1].customPostDueReminder) == BillDueReminder.never.rawValue
-                        expect(updatedEntries[1].customPreDueReminder) == BillDueReminder.never.rawValue
-                        expect(updatedEntries[1].customCategory) == oldCategory
-                        expect(updatedEntries[1].dueDate) == newDate.start(of: .day)
+                        expect(updated[1].amount) == 100
+                        expect(updated[1].status) == BillEntryStatus.unpaid.rawValue
+                        expect(updated[1].customName) == "Updated name"
+                        expect(updated[1].customPostDueReminder) == BillDueReminder.never.rawValue
+                        expect(updated[1].customPreDueReminder) == BillDueReminder.never.rawValue
+                        expect(updated[1].customCategory) == oldCategory
+                        expect(updated[1].dueDate) == newDate.start(of: .day)
                         
-                        expect(updatedEntries[2].amount) == 100
-                        expect(updatedEntries[2].status) == BillEntryStatus.unpaid.rawValue
-                        expect(updatedEntries[1].customName) == "Updated name"
-                        expect(updatedEntries[2].customPostDueReminder) == BillDueReminder.never.rawValue
-                        expect(updatedEntries[2].customPreDueReminder) == BillDueReminder.never.rawValue
-                        expect(updatedEntries[2].customCategory) == oldCategory
-                        expect(updatedEntries[2].dueDate) == newDate.add(1.weeks).start(of: .day)
+                        expect(updated[2].amount) == 100
+                        expect(updated[2].status) == BillEntryStatus.unpaid.rawValue
+                        expect(updated[1].customName) == "Updated name"
+                        expect(updated[2].customPostDueReminder) == BillDueReminder.never.rawValue
+                        expect(updated[2].customPreDueReminder) == BillDueReminder.never.rawValue
+                        expect(updated[2].customCategory) == oldCategory
+                        expect(updated[2].dueDate) == newDate.add(1.weeks).start(of: .day)
                         
-                        expect(updatedEntries[3].amount) == 100
-                        expect(updatedEntries[3].status) == BillEntryStatus.unpaid.rawValue
-                        expect(updatedEntries[3].customName) == "Updated name"
-                        expect(updatedEntries[3].customPostDueReminder) == BillDueReminder.never.rawValue
-                        expect(updatedEntries[3].customPreDueReminder) == BillDueReminder.never.rawValue
-                        expect(updatedEntries[3].customCategory) == oldCategory
-                        expect(updatedEntries[3].dueDate) == newDate.add(2.weeks).start(of: .day)
+                        expect(updated[3].amount) == 100
+                        expect(updated[3].status) == BillEntryStatus.unpaid.rawValue
+                        expect(updated[3].customName) == "Updated name"
+                        expect(updated[3].customPostDueReminder) == BillDueReminder.never.rawValue
+                        expect(updated[3].customPreDueReminder) == BillDueReminder.never.rawValue
+                        expect(updated[3].customCategory) == oldCategory
+                        expect(updated[3].dueDate) == newDate.add(2.weeks).start(of: .day)
                     })
                 })
             })
@@ -218,13 +218,13 @@ class BillsInteractorTests: QuickSpec {
                     entrytoEdit = BillEntry.all(in: realm, for: bill).first
                     
                     interactor
-                        .updateBillEntry(entry          : entrytoEdit,
-                                         amount         : 1233,
-                                         name           : "new name",
-                                         preDueReminder : BillDueReminder.twoDays,
-                                         postDueReminder: BillDueReminder.twoDays,
-                                         category       : nil,
-                                         dueDate        : date)
+                        .update(entry       : entrytoEdit,
+                                amount      : 1233,
+                                name        : "new name",
+                                preDue      : BillDueReminder.twoDays,
+                                postDue     : BillDueReminder.twoDays,
+                                category    : nil,
+                                dueDate     : date)
                 }
                 
                 it("saves updated properties to custom properties if applicable", closure: {
@@ -235,6 +235,27 @@ class BillsInteractorTests: QuickSpec {
                     expect(updatedEntry?.customPostDueReminder) == BillDueReminder.twoDays.rawValue
                     expect(updatedEntry?.customCategory).to(beNil())
                     expect(updatedEntry?.dueDate) == date
+                })
+            })
+            
+            context("asked to skip an entry", {
+                var bill: Bill!
+                var entry: BillEntry!
+                let date = Date()
+                
+                beforeEach {
+                    bill = fakeModels.bill()
+                    bill.startDate = Date().subtract(2.months)
+                    entry = fakeModels.billEntry(for: bill, date: date)
+                    
+                    interactor.saveBill(bill: bill)
+                    entry = BillEntry.all(in: realm, for: bill).first
+                    interactor.skip(entry: entry, date: date)
+                }
+                
+                it("marks the entry as skipped", closure: {
+                    let entry = BillEntry.with(key: entry.id, inRealm: realm)
+                    expect(entry?.status) == BillEntryStatus.skipped.rawValue
                 })
             })
             

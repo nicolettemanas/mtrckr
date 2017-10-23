@@ -9,15 +9,16 @@ import UIKit
 import RealmSwift
 
 protocol BillsPresenterProtocol {
+    func skip(entry: BillEntry)
+    func showHistory(of entry: BillEntry)
+    func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date)
+    func deleteBillEntry(entry: BillEntry, deleteType: ModifyBillType)
     func createBill(amount: Double, name: String, post: String, pre: String,
                     repeatSchedule: String, startDate: Date, category: Category)
-    func deleteBillEntry(entry: BillEntry, deleteType: ModifyBillType)
     func editBillEntry(billEntry: BillEntry, amount: Double, name: String, post: String,
                        pre: String, startDate: Date, category: Category)
     func editBillAndEntries(bill: Bill, amount: Double, name: String, post: String, pre: String,
                             repeatSchedule: String, startDate: Date, category: Category)
-    func showHistory(of entry: BillEntry)
-    func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date)
     
     var interactor: BillsInteractorProtocol? { get set }
 }
@@ -34,14 +35,14 @@ class BillsPresenter: BillsPresenterProtocol {
                     repeatSchedule: String, startDate: Date, category: Category) {
         
         let bill = Bill(value:
-            ["id"               : "BILL-\(NSUUID().uuidString)",
-            "amount"            : amount,
-            "name"              : name,
-            "postDueReminder"   : post,
-            "preDueReminder"    : pre,
-            "repeatSchedule"    : repeatSchedule,
-            "startDate"         : startDate,
-            "category"          : category
+            ["id": "BILL-\(NSUUID().uuidString)",
+            "amount": amount,
+            "name": name,
+            "postDueReminder": post,
+            "preDueReminder": pre,
+            "repeatSchedule": repeatSchedule,
+            "startDate": startDate,
+            "category": category
             ])
         
         interactor?.saveBill(bill: bill)
@@ -70,31 +71,37 @@ class BillsPresenter: BillsPresenterProtocol {
     
     func editBillEntry(billEntry: BillEntry, amount: Double, name: String, post: String,
                        pre: String, startDate: Date, category: Category) {
+        
         guard let preReminder = BillDueReminder(rawValue: pre) else { return }
         guard let postReminder = BillDueReminder(rawValue: post) else { return }
         interactor?
-            .updateBillEntry(entry              : billEntry,
-                             amount             : amount,
-                             name               : name,
-                             preDueReminder     : preReminder,
-                             postDueReminder    : postReminder,
-                             category           : category,
-                             dueDate            : startDate)
+            .update(entry      : billEntry,
+                    amount     : amount,
+                    name       : name,
+                    preDue     : preReminder,
+                    postDue    : postReminder,
+                    category   : category,
+                    dueDate    : startDate)
     }
     
     func editBillAndEntries(bill: Bill, amount: Double, name: String, post: String, pre: String,
                             repeatSchedule: String, startDate: Date, category: Category) {
+        
         guard let preReminder = BillDueReminder(rawValue: pre) else { return }
         guard let postReminder = BillDueReminder(rawValue: post) else { return }
         guard let repeatSched = BillRepeatSchedule(rawValue: repeatSchedule) else { return }
         interactor?
-            .update(bill            : bill,
-                    amount          : amount,
-                    name            : name,
-                    postDueReminder : postReminder,
-                    preDueReminder  : preReminder,
-                    category        : category,
-                    startDate       : startDate,
-                    repeatSchedule  : repeatSched)
+            .update(bill        : bill,
+                    amount      : amount,
+                    name        : name,
+                    post        : postReminder,
+                    preDue      : preReminder,
+                    category    : category,
+                    startDate   : startDate,
+                    repeatSched : repeatSched)
+    }
+    
+    func skip(entry: BillEntry) {
+        interactor?.skip(entry: entry, date: Date())
     }
 }

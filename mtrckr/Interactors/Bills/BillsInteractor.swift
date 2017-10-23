@@ -14,10 +14,11 @@ protocol BillsInteractorProtocol {
     func delete(billEntry: BillEntry)
     func delete(bill: Bill)
     func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date)
-    func updateBillEntry(entry: BillEntry, amount: Double, name: String?, preDueReminder: BillDueReminder,
-                         postDueReminder: BillDueReminder, category: Category?, dueDate: Date)
-    func update(bill: Bill, amount: Double, name: String, postDueReminder: BillDueReminder,
-                preDueReminder: BillDueReminder, category: Category, startDate: Date, repeatSchedule: BillRepeatSchedule)
+    func skip(entry: BillEntry, date: Date)
+    func update(entry: BillEntry, amount: Double, name: String?, preDue: BillDueReminder,
+                         postDue: BillDueReminder, category: Category?, dueDate: Date)
+    func update(bill: Bill, amount: Double, name: String, post: BillDueReminder,
+                preDue: BillDueReminder, category: Category, startDate: Date, repeatSched: BillRepeatSchedule)
 }
 
 /// Class responsible for `Bill` and `BillEntry` modification methods
@@ -38,14 +39,37 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
         billEntry.delete(in: realmContainer!.userRealm!)
     }
     
+    /// Saves a bill and generates corresponding bill entries
+    ///
+    /// - Parameter bill: The `Bill` to save
     func saveBill(bill: Bill) {
         guard let sched = BillRepeatSchedule(rawValue: bill.repeatSchedule) else {
             fatalError("Invalid repeat schedule '\(bill.repeatSchedule)'")
         }
-        createEntries(forBill: bill, startDate: bill.startDate, repeatSched: sched)
+        
+        createEntries(forBill       : bill,
+                      startDate     : bill.startDate,
+                      repeatSched   : sched)
+        
         bill.save(toRealm: self.realmContainer!.userRealm!)
     }
     
+    /// Marks the `BillEntry` as skipped
+    ///
+    /// - Parameters:
+    ///   - entry: The `BillEntry` to be modified
+    ///   - date: Date modified
+    func skip(entry: BillEntry, date: Date) {
+        entry.skip(inRealm: self.realmContainer!.userRealm!)
+    }
+    
+    /// Marks an entry as paid and generates associated `Transaction`
+    ///
+    /// - Parameters:
+    ///   - entry: The `BillEntry` to be marked as paid
+    ///   - amount: The amount paid
+    ///   - account: The `Account` where the `Transaction` will be recorded
+    ///   - date: The date of the `Transaction`
     func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date) {
         entry
             .pay(amount        : amount,
@@ -55,20 +79,37 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
                  inRealm       : realmContainer!.userRealm!)
     }
     
-    func updateBillEntry(entry: BillEntry, amount: Double, name: String?, preDueReminder: BillDueReminder,
-                         postDueReminder: BillDueReminder, category: Category?, dueDate: Date) {
-        entry.update(amount: amount, name: name, preDueReminder: preDueReminder, postDueReminder: postDueReminder,
-                     category: category, dueDate: dueDate, inRealm: self.realmContainer!.userRealm!)
+    func update(entry: BillEntry, amount: Double, name: String?,
+                preDue: BillDueReminder, postDue : BillDueReminder,
+                category: Category?, dueDate: Date) {
+        
+        entry.update(amount             : amount,
+                     name               : name,
+                     preDueReminder     : preDue,
+                     postDueReminder    : postDue,
+                     category           : category,
+                     dueDate            : dueDate,
+                     inRealm            : self.realmContainer!.userRealm!)
     }
     
-    func update(bill: Bill, amount: Double, name: String, postDueReminder: BillDueReminder,
-                preDueReminder: BillDueReminder, category: Category, startDate: Date, repeatSchedule: BillRepeatSchedule) {
-        updateUnpaidEntries(ofBill: bill, amount: amount, name: name,
-                            post: postDueReminder, pre: preDueReminder,
-                            category: category, startDate: startDate == bill.startDate ? nil: startDate,
-                            repeatSchedule: repeatSchedule)
-        bill.update(amount: amount, name: name, postDueReminder: postDueReminder,
-                    preDueReminder: preDueReminder, category: category, in: realmContainer!.userRealm!)
+    func update(bill: Bill, amount: Double, name: String, post: BillDueReminder,
+                preDue: BillDueReminder, category: Category, startDate: Date, repeatSched: BillRepeatSchedule) {
+        
+        updateUnpaidEntries(ofBill          : bill,
+                            amount          : amount,
+                            name            : name,
+                            post            : post,
+                            pre             : preDue,
+                            category        : category,
+                            startDate       : startDate == bill.startDate ? nil: startDate,
+                            repeatSchedule  : repeatSched)
+        
+        bill.update(amount          : amount,
+                    name            : name,
+                    postDueReminder : post,
+                    preDueReminder  : preDue,
+                    category        : category,
+                    in              : realmContainer!.userRealm!)
     }
     
     // MARK: - Private methods
@@ -89,8 +130,13 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
         createEntries(forBill: bill, startDate: start, repeatSched: repeatSchedule)
         let unpaidEntries = BillEntry.allUnpaid(in: realmContainer!.userRealm!, for: [bill])
         for entry in unpaidEntries {
-            entry.update(amount: amount, name: name, preDueReminder: pre, postDueReminder: post,
-                         category: category, dueDate: entry.dueDate, inRealm: realmContainer!.userRealm!)
+            entry.update(amount             : amount,
+                         name               : name,
+                         preDueReminder     : pre,
+                         postDueReminder    : post,
+                         category           : category,
+                         dueDate            : entry.dueDate,
+                         inRealm            : realmContainer!.userRealm!)
         }
     }
     

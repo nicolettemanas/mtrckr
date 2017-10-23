@@ -48,10 +48,6 @@
 		CE3A89BF1E97ED8900EBE809 /* BillEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */; };
 		CE3CDAFC1F0638AC00D4A054 /* ColorsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CDAFB1F0638AC00D4A054 /* ColorsCollectionDataSource.swift */; };
 		CE3CDAFE1F06406800D4A054 /* AccountsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CDAFD1F06406800D4A054 /* AccountsInteractor.swift */; };
-		CE43954F1EE92BCB00C05E4A /* SFText-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954B1EE92BCB00C05E4A /* SFText-Light.otf */; };
-		CE4395501EE92BCB00C05E4A /* SFText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954C1EE92BCB00C05E4A /* SFText-Regular.otf */; };
-		CE4395511EE92BCB00C05E4A /* SFText-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954D1EE92BCB00C05E4A /* SFText-RegularItalic.otf */; };
-		CE4395521EE92BCB00C05E4A /* SFText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954E1EE92BCB00C05E4A /* SFText-Semibold.otf */; };
 		CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395531EE93C3C00C05E4A /* MTColors.swift */; };
 		CE4395561EE93E7700C05E4A /* MTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395551EE93E7700C05E4A /* MTNavigationController.swift */; };
 		CE43EE491F1DBAF6001B394B /* TransactionsCalendarDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43EE481F1DBAF6001B394B /* TransactionsCalendarDataSource.swift */; };
@@ -231,10 +227,6 @@
 		CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillEntryTests.swift; path = BillTests/BillEntryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE3CDAFB1F0638AC00D4A054 /* ColorsCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorsCollectionDataSource.swift; path = Interactors/Accounts/ColorsCollectionDataSource.swift; sourceTree = "<group>"; };
 		CE3CDAFD1F06406800D4A054 /* AccountsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountsInteractor.swift; path = Interactors/Accounts/AccountsInteractor.swift; sourceTree = "<group>"; };
-		CE43954B1EE92BCB00C05E4A /* SFText-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Light.otf"; path = "Sources/Fonts/SFText-Light.otf"; sourceTree = "<group>"; };
-		CE43954C1EE92BCB00C05E4A /* SFText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Regular.otf"; path = "Sources/Fonts/SFText-Regular.otf"; sourceTree = "<group>"; };
-		CE43954D1EE92BCB00C05E4A /* SFText-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-RegularItalic.otf"; path = "Sources/Fonts/SFText-RegularItalic.otf"; sourceTree = "<group>"; };
-		CE43954E1EE92BCB00C05E4A /* SFText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Semibold.otf"; path = "Sources/Fonts/SFText-Semibold.otf"; sourceTree = "<group>"; };
 		CE4395531EE93C3C00C05E4A /* MTColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTColors.swift; path = Configs/MTColors.swift; sourceTree = "<group>"; };
 		CE4395551EE93E7700C05E4A /* MTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTNavigationController.swift; path = "ViewControllers/Base Class/MTNavigationController.swift"; sourceTree = "<group>"; };
 		CE43EE481F1DBAF6001B394B /* TransactionsCalendarDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionsCalendarDataSource.swift; path = Interactors/Transactions/TransactionsCalendarDataSource.swift; sourceTree = "<group>"; };
@@ -907,10 +899,6 @@
 		CED88E441EE910D400D147B9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				CE43954B1EE92BCB00C05E4A /* SFText-Light.otf */,
-				CE43954C1EE92BCB00C05E4A /* SFText-Regular.otf */,
-				CE43954D1EE92BCB00C05E4A /* SFText-RegularItalic.otf */,
-				CE43954E1EE92BCB00C05E4A /* SFText-Semibold.otf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -1225,12 +1213,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7208A61F0DD45300A062B5 /* TransactionTableViewCell.xib in Resources */,
-				CE4395501EE92BCB00C05E4A /* SFText-Regular.otf in Resources */,
-				CE4395511EE92BCB00C05E4A /* SFText-RegularItalic.otf in Resources */,
 				CEBC0BAF1F04F4730080DBC9 /* ColorCollectionViewCell.xib in Resources */,
 				CEF044BC1EDF0A9F00486EAC /* Settings.storyboard in Resources */,
 				CE03C2361EC3672F009A6AB0 /* MTDetailsTableViewCell.xib in Resources */,
-				CE4395521EE92BCB00C05E4A /* SFText-Semibold.otf in Resources */,
 				CEFECF4B1F111D03001F7E59 /* CategoryCell.xib in Resources */,
 				CE62B7451F03E8960064A159 /* AccountTypeCollectionViewCell.xib in Resources */,
 				CEF044B31EDEABC400486EAC /* Currency.json in Resources */,
@@ -1243,7 +1228,6 @@
 				CEC8694F1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib in Resources */,
 				CEF044C81EDFEF4B00486EAC /* Summary.storyboard in Resources */,
 				CEF044C21EDFEE6C00486EAC /* Today.storyboard in Resources */,
-				CE43954F1EE92BCB00C05E4A /* SFText-Light.otf in Resources */,
 				CEFB22A61E94FC2100867CDA /* Assets.xcassets in Resources */,
 				CEF044B51EDEACD700486EAC /* AccountType.json in Resources */,
 				CE987AF21F064E8C0048C5A1 /* AccountTableViewCell.xib in Resources */,

@@ -48,18 +48,19 @@ class CalendarViewController: MTViewController {
         calendar.allowsMultipleSelection = false
         calendar.cellSize = 0
         setupVisibleDates()
-        calendar.scrollToDate(Date(),
-                              triggerScrollToDateDelegate: false,
-                              animateScroll: false,
-                              preferredScrollPosition: .left,
-                              extraAddedOffset: 0,
-                              completionHandler: nil)
+        calendar
+            .scrollToDate(Date(),
+                          triggerScrollToDateDelegate   : false,
+                          animateScroll                 : false,
+                          preferredScrollPosition       : .left,
+                          extraAddedOffset              : 0,
+                          completionHandler             : nil)
     }
     
     func setupTransactionsTable() {
         let resolver = MTResolver()
-        let dataSource: TransactionsListDataSourceProtocol = resolver.container.resolve(TransactionsListDataSource.self,
-                                                                                        arguments: TransactionsFilter.byDate, Date())!
+        let dataSource: TransactionsListDataSourceProtocol
+            = resolver.container.resolve(TransactionsListDataSource.self, arguments: TransactionsFilter.byDate, Date())!
         if let transVC = resolver.container.resolve(TransactionsTableViewController.self, argument: dataSource) {
             transactionsTableVC = transVC
             transVC.view.frame = transactionsTableContainer.bounds
@@ -70,8 +71,8 @@ class CalendarViewController: MTViewController {
     }
     
     func setupCalendarDataSource() {
-        calendarDataSource = TransactionsCalendarDataSource(calendar: calendar,
-                                                            delegate: self,
+        calendarDataSource = TransactionsCalendarDataSource(calendar    : calendar,
+                                                            delegate    : self,
                                                             initialMonth: Date())
         calendar.ibCalendarDataSource = calendarDataSource
         calendar.ibCalendarDelegate = calendarDataSource

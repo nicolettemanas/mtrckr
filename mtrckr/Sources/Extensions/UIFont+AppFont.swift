@@ -12,9 +12,9 @@ import Foundation
 import UIKit
 
 struct AppFontName {
-    static let regular = "SFUIText-Regular"
-    static let bold = "SFUIText-Semibold"
-    static let italic = "SFUIText-Italic"
+    static let regular = "Helvetica-Light"
+    static let bold = "Helvetica-Bold"
+    static let italic = "Helvetica-Light"
 }
 
 extension UIFont {

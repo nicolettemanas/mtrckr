@@ -50,6 +50,8 @@ class MockBillsPresenter: BillsPresenter {
     var didEditBillStartDate: Date?
     var didEditBillCategory: mtrckr.Category?
     
+    var didSkipEntry: BillEntry?
+    
     override func createBill(amount: Double, name: String, post: String, pre: String,
                              repeatSchedule: String, startDate: Date, category: mtrckr.Category) {
         didCreate = true
@@ -106,5 +108,9 @@ class MockBillsPresenter: BillsPresenter {
         didPayDate = date
         didPayAmount = amount
         didPayAccount = account
+    }
+    
+    override func skip(entry: BillEntry) {
+        didSkipEntry = entry
     }
 }

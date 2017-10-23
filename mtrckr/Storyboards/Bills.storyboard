@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -48,7 +49,6 @@
         <!--Navigation Controller-->
         <scene sceneID="e8Q-0v-QcA">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zDe-Yi-sB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="NewBillNavigationVController" id="UMY-zE-2WG" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YAY-Qf-Jv6">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -59,6 +59,7 @@
                         <segue destination="OjG-6O-05B" kind="relationship" relationship="rootViewController" id="LAG-km-F1X"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zDe-Yi-sB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="790" y="139"/>
         </scene>
@@ -66,14 +67,11 @@
         <scene sceneID="5ul-BK-3oa">
             <objects>
                 <viewController storyboardIdentifier="PayBillViewController" id="k56-PP-EHP" customClass="PayBillViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="571-oC-hYn"/>
-                        <viewControllerLayoutGuide type="bottom" id="UTl-JZ-zRg"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l7m-yW-5eS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="GNc-NZ-M0S"/>
                     </view>
                     <navigationItem key="navigationItem" title="Pay Bill" id="J97-4c-vb2">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="x-tab" id="0li-zY-INN">
@@ -113,23 +111,20 @@
         <scene sceneID="Oym-iV-IgA">
             <objects>
                 <viewController storyboardIdentifier="NewBillViewController" id="OjG-6O-05B" customClass="NewBillViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Nza-z4-vbP"/>
-                        <viewControllerLayoutGuide type="bottom" id="xOA-Fc-jTf"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tzb-9T-OUL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="GSm-aH-ilI"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Bill" id="Low-fp-Tdg">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="x-tab" id="nkp-wg-FWA">
+                        <barButtonItem key="leftBarButtonItem" image="x-tab" id="nkp-wg-FWA">
                             <color key="tintColor" red="1" green="0.23356119789999999" blue="0.24633517799999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="didPressCancelWithSender:" destination="OjG-6O-05B" id="mB1-rs-DO1"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="check-tab" id="s5b-Zk-jDC">
+                        <barButtonItem key="rightBarButtonItem" image="check-tab" id="s5b-Zk-jDC">
                             <connections>
                                 <action selector="didPressSaveWithSender:" destination="OjG-6O-05B" id="gpl-3C-7V3"/>
                             </connections>
@@ -144,7 +139,7 @@
         <scene sceneID="qgc-Sc-1zf">
             <objects>
                 <navigationController storyboardIdentifier="BillsNavigationController" title="Bills" id="Vrv-ka-Y60" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="bill-dark" selectedImage="bill-dark" id="whI-2t-r9C">
+                    <tabBarItem key="tabBarItem" title="" image="bill-bar" id="whI-2t-r9C">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -163,8 +158,8 @@
     </scenes>
     <resources>
         <image name="add-tab" width="20" height="20"/>
-        <image name="bill-dark" width="37" height="37"/>
-        <image name="check-tab" width="20" height="20"/>
+        <image name="bill-bar" width="25" height="25"/>
+        <image name="check-tab" width="20" height="15"/>
         <image name="x-tab" width="15" height="15"/>
     </resources>
 </document>

@@ -263,6 +263,19 @@ class BillsTableViewControllerTests: QuickSpec {
                     expect(mockPresenter?.didPayDate) == date
                 })
             })
+            
+            context("user skips a bill entry", {
+                let firstIndex = IndexPath(row: 0, section: 0)
+                var entry: BillEntry!
+                beforeEach {
+                    billsViewController.skipBillEntry(atIndex: firstIndex)
+                    entry = billsViewController.dataSource?.entry(at: firstIndex)
+                }
+                
+                it("tells presenter to skip entry", closure: {
+                    expect(mockPresenter?.didSkipEntry) == entry
+                })
+            })
         }
     }
 }

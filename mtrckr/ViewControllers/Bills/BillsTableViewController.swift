@@ -17,8 +17,9 @@ protocol BillsTableViewControllerProtocol {
     var dataSource: BillsDataSourceProtocol? { get set }
     
     func editBillEntry(atIndex: IndexPath)
-    func createBillbtnPressed(sender: UIBarButtonItem?)
     func deleteBillEntry(atIndex: IndexPath)
+    func skipBillEntry(atIndex: IndexPath)
+    func createBillbtnPressed(sender: UIBarButtonItem?)
 }
 
 class BillsTableViewController: MTTableViewController {

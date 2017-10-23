@@ -86,6 +86,17 @@ class BillsPresenterTests: QuickSpec {
                 })
             })
             
+            context("skipping an entry", {
+                let bill = fakeModels.bill()
+                let entry = fakeModels.billEntry(for: bill, date: Date())
+                beforeEach {
+                    presenter.skip(entry: entry)
+                }
+                it("passes entry to skip to interactor", closure: {
+                    expect(mockInteractor?.entryToSkip) == entry
+                })
+            })
+            
             context("deleting a bill entry", {
                 context("delete only current bill", {
                     it("asks interactor to delete current bill", closure: {

@@ -28,7 +28,8 @@ struct MTColors {
     static let subOrange = UIColor("#F4CBA8FF")
     static let subBlue = UIColor("#CBF4FFFF")
     
-    static let colors: [UIColor] = [UIColor("#F49A50FF"), // orange
+    static let colors:
+        [UIColor] = [UIColor("#F49A50FF"), // orange
                                     UIColor("#F47072FF"), // red orange
                                     UIColor("#479ED8FF"), // dark blue
                                     UIColor("#CE2152FF"), // hot pink

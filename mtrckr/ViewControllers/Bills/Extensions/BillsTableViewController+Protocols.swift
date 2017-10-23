@@ -23,4 +23,9 @@ extension BillsTableViewController: BillsTableViewControllerProtocol {
         editingIndexPath = index
         deleteBillPresenter?.presentDeleteSheet(presentingVC: self, forBillEntry: entry)
     }
+    
+    func skipBillEntry(atIndex index: IndexPath) {
+        guard let entry = dataSource?.entry(at: index) else { return }
+        presenter?.skip(entry: entry)
+    }
 }
