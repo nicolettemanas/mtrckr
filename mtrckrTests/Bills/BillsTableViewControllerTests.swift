@@ -14,7 +14,7 @@ import RealmSwift
 class BillsTableViewControllerTests: QuickSpec {
     override func spec() {
         var billsViewController: BillsTableViewController!
-        var mockNewBillPresenter: MockBillVCPresenter?
+        var mockBillVCPresenter: MockBillVCPresenter?
         var mockDeleteBillPresenter: MockDeleteBillPresenter?
         var billInteractor: BillsInteractorProtocol?
         var mockPresenter: MockBillsPresenter?
@@ -27,7 +27,7 @@ class BillsTableViewControllerTests: QuickSpec {
             let resolvers = MTResolver()
             let mockResolvers = StubMTResolvers()
 
-            mockNewBillPresenter = mockResolvers.container
+            mockBillVCPresenter = mockResolvers.container
                 .resolve(BillVCPresenter.self, name: "mock") as? MockBillVCPresenter
             mockDeleteBillPresenter = mockResolvers.container
                 .resolve(DeleteBillPresenter.self, name: "mock") as? MockDeleteBillPresenter
@@ -40,7 +40,7 @@ class BillsTableViewControllerTests: QuickSpec {
             billsViewController.dataSource = mockResolvers.container
                 .resolve(BillsDataSource.self, name: "mock", argument: identifier)
             
-            billsViewController.billVCPresenter = mockNewBillPresenter
+            billsViewController.billVCPresenter = mockBillVCPresenter
             billsViewController.deleteBillPresenter = mockDeleteBillPresenter
             billsViewController.dataSource?.delegate = billsViewController
             billsViewController.presenter = mockPresenter
@@ -63,8 +63,8 @@ class BillsTableViewControllerTests: QuickSpec {
             context("Taps + button to create a bill", {
                 it("Presents new bill form") {
                     billsViewController.createBillbtnPressed(sender: nil)
-                    expect(mockNewBillPresenter?.didPresent) == true
-                    expect(mockNewBillPresenter?.didReceiveId).to(beNil())
+                    expect(mockBillVCPresenter?.didPresent) == true
+                    expect(mockBillVCPresenter?.didReceiveId).to(beNil())
                 }
 
                 context("receives new values", {
@@ -74,9 +74,9 @@ class BillsTableViewControllerTests: QuickSpec {
                         billsViewController
                             .saveNewBill(amount         : 100,
                                          name           : "New Bill",
-                                         post	        : BillDueReminder.never.rawValue,
-                                         pre	        : BillDueReminder.onDate.rawValue,
-                                         repeatSchedule : BillRepeatSchedule.weekly.rawValue,
+                                         post            : BillDueReminder.never.rawValue,
+                                         pre            : BillDueReminder.onDate.rawValue,
+                                         repeat : BillRepeatSchedule.weekly.rawValue,
                                          startDate      : date, category: cat)
                         
                         expect(mockPresenter?.didCreate) == true
@@ -99,8 +99,8 @@ class BillsTableViewControllerTests: QuickSpec {
                 it("presents edit form", closure: {
                     let index = IndexPath(row: 0, section: 0)
                     billsViewController.editBillEntry(atIndex: index)
-                    expect(mockNewBillPresenter?.didPresent) == true
-                    expect(mockNewBillPresenter?.didReceiveId) == billsViewController.dataSource?.entry(at: index)?.id
+                    expect(mockBillVCPresenter?.didPresent) == true
+                    expect(mockBillVCPresenter?.didReceiveId) == billsViewController.dataSource?.entry(at: index)?.id
                 })
 
                 context("receives edited values/confirm to edit", {
@@ -134,7 +134,7 @@ class BillsTableViewControllerTests: QuickSpec {
                         })
                     })
 
-                    context("for edit all proceeding bills", {
+                    context("for edit all unpaid bills", {
                         let date = Date().subtract(1.days)
                         let bill = fakeModels.bill()
                         let cat = fakeModels.category()
@@ -198,8 +198,8 @@ class BillsTableViewControllerTests: QuickSpec {
                         })
                     })
 
-                    context("delete all proceeding entries", {
-                        it("tells presenter to delete all proceeding bills", closure: {
+                    context("delete all unpaid entries", {
+                        it("tells presenter to delete all unpaid bills", closure: {
                             let controller: UIAlertController = billsViewController!.deleteBillPresenter!.alert!
                             let deleteAction = controller.actions[2] as! MockAlertAction
                             deleteAction.mockHandler!(deleteAction)
@@ -223,8 +223,8 @@ class BillsTableViewControllerTests: QuickSpec {
                         .tableView!(billsViewController.tableView, didSelectRowAt: index)
                     
                     let entry = billsViewController.dataSource?.entry(at: index)
-                    expect(mockPresenter?.didShowHistory) == true
-                    expect(mockPresenter?.didShowHistoryOf) == entry
+                    expect(mockBillVCPresenter?.didShowHistory) == true
+                    expect(mockBillVCPresenter?.didShowHistoryOf) == entry?.bill
                 })
             })
 
@@ -237,8 +237,8 @@ class BillsTableViewControllerTests: QuickSpec {
                     cell.payButtonDidPress(sender: cell.payButton)
                     let entry = billsViewController.dataSource?.entry(at: index)
                     
-                    expect(mockNewBillPresenter?.didPresent) == true
-                    expect(mockNewBillPresenter?.didReceiveId) == entry?.id
+                    expect(mockBillVCPresenter?.didPresent) == true
+                    expect(mockBillVCPresenter?.didReceiveId) == entry?.id
                 })
             })
             

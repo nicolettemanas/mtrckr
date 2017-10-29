@@ -53,6 +53,9 @@ class BillEntry: Object {
     
     /// The custom `Category` to be saved when converted to a `Transaction`
     @objc dynamic var customCategory: Category?
+    
+    /// The transaction generated when an entry is paid
+    @objc dynamic var transaction: Transaction?
 
     override static func primaryKey() -> String? {
         return "id"
@@ -118,20 +121,6 @@ class BillEntry: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
-//    func update(amount: Double, dueDate: Date, inRealm realm: Realm) {
-//        guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
-//
-//        do {
-//            try realm.write {
-//                self.amount = amount
-//                self.dueDate = dueDate.start(of: .day)
-//                realm.add(self, update: true)
-//            }
-//        } catch let error as NSError {
-//            fatalError(error.localizedDescription)
-//        }
-//    }
     
     /// Updates the properties of the `BillEntry` to the values given.
     /// Updates are stored in customed properties to be used if non-nil instead of
@@ -202,17 +191,17 @@ class BillEntry: Object {
              datePaid: Date, inRealm realm: Realm) {
         
         guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
-        generateTransaction(amount      : amount,
-                            description : description,
-                            account     : account,
-                            datePaid    : datePaid,
-                            inRealm     : realm)
-
+        let trans = generateTransaction(amount      : amount,
+                                        description : description,
+                                        account     : account,
+                                        datePaid    : datePaid,
+                                        inRealm     : realm)
         do {
             try realm.write {
                 self.amount = amount
                 self.datePaid = datePaid
                 self.status = BillEntryStatus.paid.rawValue
+                self.transaction = trans
                 realm.add(self, update: true)
             }
         } catch let error as NSError {
@@ -220,6 +209,13 @@ class BillEntry: Object {
         }
     }
 
+    func transaction(in realm: Realm) -> Transaction? {
+        assert(status != BillEntryStatus.unpaid.rawValue)
+        if status == BillEntryStatus.skipped.rawValue { return nil }
+        return realm.objects(Transaction.self)
+            .filter("billEntry.id == %@", id).first
+    }
+    
     /// Deletes the `BillEntry` from the given `Realm`
     ///
     /// - Parameter realm: The `Realm` to delete the `BillEntry` from
@@ -275,7 +271,7 @@ class BillEntry: Object {
 
     /// :nodoc:
     private func generateTransaction(amount: Double, description: String,
-                                     account: Account, datePaid: Date, inRealm realm: Realm) {
+                                     account: Account, datePaid: Date, inRealm realm: Realm) -> Transaction {
         
         assert(self.bill?.active == true)
         let trans = Transaction(type          : .expense,
@@ -288,6 +284,6 @@ class BillEntry: Object {
                                 to            : account,
                                 date          : datePaid)
         trans.billEntry = self
-        trans.save(toRealm: realm)
+        return trans
     }
 }

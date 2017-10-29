@@ -14,11 +14,12 @@ extension BillsTableViewController: BillsDataSourceDelegate {
     }
     
     func didSelect(entry: BillEntry) {
-        presenter?.showHistory(of: entry)
+        assert(entry.bill?.active == true)
+        guard let bill = entry.bill else { fatalError("Bill must not be nil") }
+        billVCPresenter?.presentHistory(ofBill: bill, presenter: self)
     }
     
     func didPressPayBill(entry: BillEntry) {
         billVCPresenter?.presentPayment(ofBill: entry, presenter: self)
-//        presenter?.payEntry(entry: entry)
     }
 }

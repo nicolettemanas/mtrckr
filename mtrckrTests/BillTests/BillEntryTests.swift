@@ -219,6 +219,10 @@ class BillEntryTests: QuickSpec {
                     it("generates corresponding transaction", closure: {
                         let transactionForBill = Transaction.all(in: self.testRealm, underBill: bill)
                         expect(transactionForBill.count) == 1
+                        
+                        let trans = transactionForBill.first
+                        expect(trans?.billEntry) == billEntry
+                        expect(billEntry.transaction) == trans
                     })
                 }
 

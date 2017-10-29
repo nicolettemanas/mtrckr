@@ -37,7 +37,7 @@ class NewBillViewControllerTests: QuickSpec {
                 
                 context("if some fields are left empty", {
                     beforeEach {
-                        newBillViewController?.didPressSave(sender: nil)
+                        newBillViewController?.didPressSave()
                     }
                     
                     it("will not proceed saving", closure: {
@@ -54,7 +54,7 @@ class NewBillViewControllerTests: QuickSpec {
                         newBillViewController?.preRow.value = BillDueReminder.threeDays.rawValue
                         newBillViewController?.postRow.value = BillDueReminder.oneWeek.rawValue
                         newBillViewController?.categoryRow.value = cat
-                        newBillViewController?.didPressSave(sender: nil)
+                        newBillViewController?.didPressSave()
                     }
                     
                     it("returns values to delegate and proceed creating bill", closure: {
@@ -84,7 +84,7 @@ class NewBillViewControllerTests: QuickSpec {
                 
                 context("if some fields are left empty", {
                     it("will not show confirmatioin sheet", closure: {
-                        newBillViewController?.didPressSave(sender: nil)
+                        newBillViewController?.didPressSave()
                         expect(newBillViewController?.alert).to(beNil())
                     })
                 })
@@ -98,7 +98,7 @@ class NewBillViewControllerTests: QuickSpec {
                         newBillViewController?.preRow.value = BillDueReminder.threeDays.rawValue
                         newBillViewController?.postRow.value = BillDueReminder.oneWeek.rawValue
                         newBillViewController?.categoryRow.value = cat
-                        newBillViewController?.didPressSave(sender: nil)
+                        newBillViewController?.didPressSave()
                     }
                     
                     it("displays confirmation sheet", closure: {
@@ -124,7 +124,7 @@ class NewBillViewControllerTests: QuickSpec {
                         })
                     })
                     
-                    context("chooses to edit all proceeding bill entries", {
+                    context("chooses to edit all unpaid bill entries", {
                         beforeEach {
                             let controller = newBillViewController?.alert
                             let allBillAction = controller!.actions[2] as! MockAlertAction

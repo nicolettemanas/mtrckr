@@ -10,15 +10,14 @@ import RealmSwift
 
 protocol BillsPresenterProtocol {
     func skip(entry: BillEntry)
-    func showHistory(of entry: BillEntry)
     func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date)
     func deleteBillEntry(entry: BillEntry, deleteType: ModifyBillType)
     func createBill(amount: Double, name: String, post: String, pre: String,
-                    repeatSchedule: String, startDate: Date, category: Category)
+                    repeat: String, startDate: Date, category: Category)
     func editBillEntry(billEntry: BillEntry, amount: Double, name: String, post: String,
                        pre: String, startDate: Date, category: Category)
     func editBillAndEntries(bill: Bill, amount: Double, name: String, post: String, pre: String,
-                            repeatSchedule: String, startDate: Date, category: Category)
+                            repeat: String, startDate: Date, category: Category)
     
     var interactor: BillsInteractorProtocol? { get set }
 }
@@ -32,7 +31,7 @@ class BillsPresenter: BillsPresenterProtocol {
     }
     
     func createBill(amount: Double, name: String, post: String, pre: String,
-                    repeatSchedule: String, startDate: Date, category: Category) {
+                    repeat repeatSchedule: String, startDate: Date, category: Category) {
         
         let bill = Bill(value:
             ["id": "BILL-\(NSUUID().uuidString)",
@@ -55,10 +54,6 @@ class BillsPresenter: BillsPresenterProtocol {
                 interactor?.delete(bill: entry.bill!)
             case .currentBill: interactor?.delete(billEntry: entry)
         }
-    }
-    
-    func showHistory(of entry: BillEntry) {
-        
     }
     
     func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date) {
@@ -85,7 +80,7 @@ class BillsPresenter: BillsPresenterProtocol {
     }
     
     func editBillAndEntries(bill: Bill, amount: Double, name: String, post: String, pre: String,
-                            repeatSchedule: String, startDate: Date, category: Category) {
+                            repeat repeatSchedule: String, startDate: Date, category: Category) {
         
         guard let preReminder = BillDueReminder(rawValue: pre) else { return }
         guard let postReminder = BillDueReminder(rawValue: post) else { return }

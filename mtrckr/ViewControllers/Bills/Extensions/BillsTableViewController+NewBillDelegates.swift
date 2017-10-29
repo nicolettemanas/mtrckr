@@ -10,7 +10,7 @@ import SwipeCellKit
 
 protocol NewBillViewControllerDelegate: class {
     func saveNewBill(amount: Double, name: String, post: String, pre: String,
-                     repeatSchedule: String, startDate: Date, category: Category)
+                     repeat: String, startDate: Date, category: Category)
     func edit(billEntry: BillEntry, amount: Double, name: String, post: String, pre: String,
               repeatSchedule: String, startDate: Date, category: Category)
     func edit(bill: Bill, amount: Double, name: String, post: String, pre: String,
@@ -23,15 +23,15 @@ protocol PayBillViewControllerDelegate: class {
 
 extension BillsTableViewController: NewBillViewControllerDelegate {
     func saveNewBill(amount: Double, name: String, post: String, pre: String,
-                     repeatSchedule: String, startDate: Date, category: Category) {
+                     repeat rep: String, startDate: Date, category: Category) {
         presenter?
-            .createBill(amount          : amount,
-                        name            : name,
-                        post            : post,
-                        pre             : pre,
-                        repeatSchedule  : repeatSchedule,
-                        startDate       : startDate,
-                        category        : category)
+            .createBill(amount      : amount,
+                        name        : name,
+                        post        : post,
+                        pre         : pre,
+                        repeat      : rep,
+                        startDate   : startDate,
+                        category    : category)
     }
     
     func edit(billEntry: BillEntry, amount: Double, name: String, post: String,
@@ -60,14 +60,14 @@ extension BillsTableViewController: NewBillViewControllerDelegate {
         }
         
         presenter?
-            .editBillAndEntries(bill: bill,
-                                amount          : amount,
-                                name            : name,
-                                post            : post,
-                                pre             : pre,
-                                repeatSchedule  : repeatSchedule,
-                                startDate       : startDate,
-                                category        : category)
+            .editBillAndEntries(bill        : bill,
+                                amount      : amount,
+                                name        : name,
+                                post        : post,
+                                pre         : pre,
+                                repeat      : repeatSchedule,
+                                startDate   : startDate,
+                                category    : category)
     }
 }
 

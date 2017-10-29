@@ -36,7 +36,7 @@ class PayBillViewControllerTests: QuickSpec {
         describe("submitting a payment") {
             context("if some fields are left empty", {
                 beforeEach {
-                    payBillVC?.payBill(sender: nil)
+                    payBillVC?.didPressPayBill()
                 }
                 
                 it("will not proceed payment", closure: {
@@ -52,7 +52,7 @@ class PayBillViewControllerTests: QuickSpec {
                     payBillVC?.accountRow.value = account
                     payBillVC?.payRow.value = 1000
                     payBillVC?.dateRow.value = datePaid
-                    payBillVC?.payBill(sender: nil)
+                    payBillVC?.didPressPayBill()
                 }
                 
                 it("returns values to delegate", closure: {

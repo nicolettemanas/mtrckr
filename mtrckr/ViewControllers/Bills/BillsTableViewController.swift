@@ -37,11 +37,11 @@ class BillsTableViewController: MTTableViewController {
         super.init(coder: aDecoder)
         let resolver = MTResolver()
         emptyDataSource = resolver.container.resolve(EmptyBillsDataSource.self)
-        dataSource = resolver.container.resolve(BillsDataSource.self)
-        dataSource?.delegate = self
         billVCPresenter = resolver.container.resolve(BillVCPresenter.self)
         deleteBillPresenter = resolver.container.resolve(DeleteBillPresenter.self)
         presenter = resolver.container.resolve(BillsPresenter.self)
+        dataSource = resolver.container.resolve(BillsDataSource.self)
+        dataSource?.delegate = self
     }
     
     static func initWith(dataSource: BillsDataSourceProtocol,
@@ -52,8 +52,10 @@ class BillsTableViewController: MTTableViewController {
         -> BillsTableViewController {
             
         let storyboard = UIStoryboard(name: "Bills", bundle: Bundle.main)
-        guard let vc: BillsTableViewController = storyboard.instantiateViewController(withIdentifier: "BillsTableViewController")
+        guard let vc: BillsTableViewController = storyboard
+            .instantiateViewController(withIdentifier: "BillsTableViewController")
             as? BillsTableViewController else { fatalError("Cannot convert to BillsTableViewController") }
+            
         vc.dataSource = dataSource
         vc.dataSource?.delegate = vc
         vc.emptyDataSource = emptyDataSource

@@ -9,9 +9,11 @@ import UIKit
 import Eureka
 
 class NewBillViewController: MTFormViewController {
+    static let nName = "NewBillViewController"
+    
     struct LocalizedStrings {
-        static let kEditConfirm = NSLocalizedString("Do you want to edit only this bill or all proceeding bills?",
-                                            comment: "Asks whether user edit applies to current bill or all proceeding bills.")
+        static let kEditConfirm = NSLocalizedString("Do you want to edit only this bill or all unpaid bills?",
+                                            comment: "Asks whether user edit applies to current bill or all unpaid bills.")
         static let kCancel      = NSLocalizedString("Cancel", comment: "Spiel telling the user to cancel")
         static let kThisBill    = NSLocalizedString("This bill only", comment: "Spiel telling the user to proceed edit of the current bill only.")
         static let kAllBills    = NSLocalizedString("All unpaid bills",
@@ -41,20 +43,6 @@ class NewBillViewController: MTFormViewController {
         static let categorySec  = "kBillCategorySectionTag"
     }
     
-    // MARK: - Outlets and Actions
-    @IBAction func didPressCancel(sender: UIBarButtonItem?) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func didPressSave(sender: UIBarButtonItem?) {
-        guard form.validate().isEmpty else { return }
-        guard let entry = billEntry else {
-            saveBill()
-            return
-        }
-        presentEditBillSheet(billEntry: entry)
-    }
-    
     // MARK: - Form fields
     var nameRow: TextRow { return form.rowBy(tag: FormTags.name)! }
     var amountRow: DecimalRow { return form.rowBy(tag: FormTags.amount)! }
@@ -68,68 +56,32 @@ class NewBillViewController: MTFormViewController {
     weak var delegate: NewBillViewControllerDelegate?
     weak var alert: UIAlertController?
     var billEntry: BillEntry?
-    var action: MTAlertAction.Type
+    var action: MTAlertAction.Type = MTAlertAction.self
     
     // MARK: - Initializers
     required init?(coder aDecoder: NSCoder) {
-        action = MTAlertAction.self
         super.init(coder: aDecoder)
     }
     
-    static func initWith(delegate: NewBillViewControllerDelegate) -> NewBillViewController {
-        let sboard = UIStoryboard(name: "Bills", bundle: Bundle.main)
-        guard let vc: NewBillViewController = sboard
-            .instantiateViewController(withIdentifier: "NewBillViewController")
-                as? NewBillViewController else { fatalError("Cannot convert to NewBillViewController") }
-        vc.delegate = delegate
-        vc.action = MTAlertAction.self
-        return vc
+    init(entry: BillEntry?, delegate del: NewBillViewControllerDelegate) {
+        delegate = del
+        billEntry = entry
+        super.init(nibName: NewBillViewController.nName, bundle: nil)
     }
     
     // MERK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupForm()
+        setupNavBar(title: "New Bill",
+                    leftSelector: #selector(didPressCancel),
+                    rightSelector: #selector(didPressSave),
+                    target: self)
         if billEntry != nil { fillInBillEntry() }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    private func presentEditBillSheet(billEntry entry: BillEntry) {
-        let editOption = UIAlertController(title: nil, message: nil,
-                                           preferredStyle: .actionSheet)
-        editOption.title = nil
-        editOption.message = LocalizedStrings.kEditConfirm
-
-        let cancel = action.makeActionWithTitle(title: LocalizedStrings.kCancel,
-                                                style: .cancel) { (_) in
-            editOption.dismiss(animated: true, completion: nil)
-        }
-
-        let thisBillOnly = action.makeActionWithTitle(title: LocalizedStrings.kThisBill,
-                                                      style: .destructive) { [unowned self] (_) in
-            self.delegate?.edit(billEntry: self.billEntry!, amount: self.amountRow.value!, name: self.nameRow.value!,
-                                post: self.postRow.value!, pre: self.preRow.value!, repeatSchedule: self.repeatRow.value!,
-                                startDate: self.dueDateRow.value!, category: self.categoryRow.value!)
-            self.dismiss(animated: true, completion: nil)
-        }
-        let allBills = action.makeActionWithTitle(title: LocalizedStrings.kAllBills,
-                                                  style: .destructive) { [unowned self] (_) in
-            assert(self.billEntry?.bill?.active == true)
-            self.delegate?.edit(bill: self.billEntry!.bill!, amount: self.amountRow.value!, name: self.nameRow.value!,
-                                post: self.postRow.value!, pre: self.preRow.value!, repeatSchedule: self.repeatRow.value!,
-                                startDate: self.dueDateRow.value!, category: self.categoryRow.value!)
-            self.dismiss(animated: true, completion: nil)
-        }
-
-        editOption.addAction(cancel)
-        editOption.addAction(thisBillOnly)
-        editOption.addAction(allBills)
-
-        alert = editOption
-        present(editOption, animated: true, completion: nil)
     }
     
     private func fillInBillEntry() {

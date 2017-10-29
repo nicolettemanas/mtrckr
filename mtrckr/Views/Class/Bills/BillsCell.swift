@@ -51,6 +51,16 @@ class BillsCell: SwipeTableViewCell {
         billDueDate.text = "| Due: " + entry.dueDate.format(with: DateFormatter.Style.medium)
     }
     
+    func setValue(bill: Bill, currency: String) {
+        billIcon.image = UIImage(named: bill.category!.icon) ?? nil
+        billAmount.text = NumberFormatter.currencyStr(withCurrency: currency, amount: bill.amount)
+        billName.text = bill.name
+        billIconView.backgroundColor = UIColor(bill.category!.color)
+        billIcon.tintColor = .white
+        billDueDate.isHidden = true
+        payButton.isHidden = true
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

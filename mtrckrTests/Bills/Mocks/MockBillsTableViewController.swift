@@ -27,7 +27,7 @@ class MockBillsTableViewController: NewBillViewControllerDelegate, PayBillViewCo
     var didPayAccount: Account?
     var didPayDate: Date?
 
-    func saveNewBill(amount: Double, name: String, post: String, pre: String, repeatSchedule: String,
+    func saveNewBill(amount: Double, name: String, post: String, pre: String, repeat rSched: String,
                      startDate: Date, category: mtrckr.Category) {
         
         didSave = true
@@ -35,7 +35,7 @@ class MockBillsTableViewController: NewBillViewControllerDelegate, PayBillViewCo
         self.name = name
         self.post = post
         self.pre = pre
-        self.repeatSchedule = repeatSchedule
+        self.repeatSchedule = rSched
         self.startDate = startDate
         self.category = category
     }

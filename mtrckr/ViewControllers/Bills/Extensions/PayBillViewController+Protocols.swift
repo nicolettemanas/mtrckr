@@ -14,7 +14,7 @@ protocol PayBillViewControllerProtocol {
 }
 
 extension PayBillViewController: PayBillViewControllerProtocol {
-    @IBAction func payBill(sender: UIBarButtonItem?) {
+    @objc func didPressPayBill() {
         guard form.validate().isEmpty else { return }
         payBill(amount  : payRow.value!,
                 date    : dateRow.value!,
@@ -22,7 +22,7 @@ extension PayBillViewController: PayBillViewControllerProtocol {
         dismiss()
     }
     
-    @IBAction func cancel(sender: UIBarButtonItem?) {
+    @objc func didPressCancel() {
         dismiss()
     }
     

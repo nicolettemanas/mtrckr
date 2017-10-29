@@ -25,9 +25,9 @@ class EmptyTransactionsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyData
         style.lineBreakMode = .byWordWrapping
         style.alignment = .center
         let attr = [
-            NSAttributedStringKey.font              : UIFont.systemFont(ofSize: 15),
-            NSAttributedStringKey.foregroundColor   : MTColors.placeholderText,
-            NSAttributedStringKey.paragraphStyle    : style]
+            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
+            NSAttributedStringKey.foregroundColor: MTColors.placeholderText,
+            NSAttributedStringKey.paragraphStyle: style]
         
         return NSAttributedString(string: str, attributes: attr)
     }

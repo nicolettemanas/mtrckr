@@ -91,7 +91,6 @@ class Bill: Object {
         }
     }
     
-    
     /// Sets the property active to false
     ///
     /// - Parameter realm: The realm to save the updated `Bill` to
@@ -164,6 +163,20 @@ class Bill: Object {
         } catch let error as NSError {
             fatalError(error.localizedDescription)
         }
+    }
+    
+    /// Returns the list of paid or skipped `BillEntries`
+    ///
+    /// - Parameter realm: The realm to fetch the entries from
+    /// - Returns: The list of `BillEntries` fetched
+    func history(in realm: Realm) -> Results<BillEntry> {
+        let entries = BillEntry.all(in: realm, for: self)
+            .filter("status == %@ || status == %@",
+                    BillEntryStatus.paid.rawValue,
+                    BillEntryStatus.skipped.rawValue)
+            .sorted(byKeyPath: "dueDate", ascending: false)
+        
+        return entries
     }
 
     /// Fetches the `Bill` with the given parameters

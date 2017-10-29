@@ -10,15 +10,16 @@ import RealmSwift
 import DateToolsSwift
 
 protocol BillsInteractorProtocol {
+    func delete(bill: Bill)
     func saveBill(bill: Bill)
     func delete(billEntry: BillEntry)
-    func delete(bill: Bill)
-    func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date)
     func skip(entry: BillEntry, date: Date)
+    func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date)
     func update(entry: BillEntry, amount: Double, name: String?, preDue: BillDueReminder,
-                         postDue: BillDueReminder, category: Category?, dueDate: Date)
+                postDue: BillDueReminder, category: Category?, dueDate: Date)
     func update(bill: Bill, amount: Double, name: String, post: BillDueReminder,
-                preDue: BillDueReminder, category: Category, startDate: Date, repeatSched: BillRepeatSchedule)
+                preDue: BillDueReminder, category: Category, startDate: Date,
+                repeatSched: BillRepeatSchedule)
 }
 
 /// Class responsible for `Bill` and `BillEntry` modification methods
@@ -80,7 +81,7 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
     }
     
     func update(entry: BillEntry, amount: Double, name: String?,
-                preDue: BillDueReminder, postDue : BillDueReminder,
+                preDue: BillDueReminder, postDue: BillDueReminder,
                 category: Category?, dueDate: Date) {
         
         entry.update(amount             : amount,

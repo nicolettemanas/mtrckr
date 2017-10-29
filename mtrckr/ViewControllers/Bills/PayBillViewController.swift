@@ -9,11 +9,12 @@ import UIKit
 import Eureka
 
 class PayBillViewController: MTFormViewController {
-    var entry: BillEntry?
+    static let nName = "PayBillViewController"
     
+    var entry: BillEntry?
     weak var delegate: PayBillViewControllerDelegate?
     
-    struct LocalizedStrings {
+    private struct LocalizedStrings {
         static let pay     = NSLocalizedString("Pay amount", comment: "Label for 'Pay' indicating the amount to pay")
         static let accnt   = NSLocalizedString("Using Account", comment: "Label for 'Using account' indicating w/c account to use")
         static let myAcc   = NSLocalizedString("My Accounts", comment: "Title for list of accounts")
@@ -21,7 +22,7 @@ class PayBillViewController: MTFormViewController {
         static let datePd  = NSLocalizedString("Date Paid", comment: "Title for Date of payment field")
     }
     
-    struct FormTags {
+    private struct FormTags {
         static let pay     = "kPayTag"
         static let account = "kAccountTag"
         static let date    = "kDateTag"
@@ -33,22 +34,22 @@ class PayBillViewController: MTFormViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        assert(entry != nil)
     }
     
-    static func initWith(billEntry: BillEntry) -> PayBillViewController {
-        let sboard = UIStoryboard(name: "Bills", bundle: Bundle.main)
-        
-        guard let vc: PayBillViewController = sboard.instantiateViewController(
-            withIdentifier: "PayBillViewController") as? PayBillViewController
-            else { fatalError("Cannot convert to PayBillViewController") }
-        
-        vc.entry     = billEntry
-        return vc
+    init(billEntry: BillEntry, delegate del: PayBillViewControllerDelegate) {
+        entry = billEntry
+        delegate = del
+        super.init(nibName: PayBillViewController.nName, bundle: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupForm()
+        setupNavBar(title           : "Pay Bill",
+                    leftSelector	: #selector(didPressCancel),
+                    rightSelector   : #selector(didPressPayBill),
+                    target          : self)
     }
 
     private func setupForm() {

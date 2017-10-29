@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,17 +19,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1D2-ct-mTF">
-                        <rect key="frame" x="60" y="36.5" width="35.5" height="18"/>
+                        <rect key="frame" x="68" y="33.5" width="35.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pea-DR-6Nq">
-                        <rect key="frame" x="292" y="14.5" width="75" height="35.5"/>
+                        <rect key="frame" x="275" y="14.5" width="80" height="35.5"/>
                         <color key="backgroundColor" red="0.0" green="0.65490196079999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="DxQ-dP-e4E"/>
-                            <constraint firstAttribute="width" constant="75" id="PU0-ar-NmG"/>
+                            <constraint firstAttribute="width" constant="80" id="PU0-ar-NmG"/>
                             <constraint firstAttribute="height" constant="35" id="aHz-II-DAk"/>
                         </constraints>
                         <state key="normal" title="Pay Bill">
@@ -40,19 +40,19 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postpaid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOO-Jx-eMs">
-                        <rect key="frame" x="60" y="13.5" width="224" height="18"/>
+                        <rect key="frame" x="68" y="13.5" width="199" height="18"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tYX-Vc-PCU">
-                        <rect key="frame" x="10" y="12.5" width="40" height="40"/>
+                        <rect key="frame" x="20" y="12.5" width="40" height="40"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1uA-sf-Oyl">
-                                <rect key="frame" x="10" y="9.5" width="20" height="20"/>
+                                <rect key="frame" x="12.5" y="12" width="15" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="IH4-Vd-h9x"/>
-                                    <constraint firstAttribute="height" constant="20" id="vdd-cQ-v9n"/>
+                                    <constraint firstAttribute="width" constant="15" id="IH4-Vd-h9x"/>
+                                    <constraint firstAttribute="height" constant="15" id="vdd-cQ-v9n"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -65,24 +65,24 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4B-wv-xid">
-                        <rect key="frame" x="100.5" y="37.5" width="30.5" height="17"/>
+                        <rect key="frame" x="108.5" y="34.5" width="30.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Pea-DR-6Nq" secondAttribute="trailing" constant="8" id="G6e-KR-AO0"/>
+                    <constraint firstAttribute="trailing" secondItem="Pea-DR-6Nq" secondAttribute="trailing" constant="20" symbolic="YES" id="G6e-KR-AO0"/>
                     <constraint firstItem="tYX-Vc-PCU" firstAttribute="centerY" secondItem="bB9-Tz-c7G" secondAttribute="centerY" id="GA7-2I-rPY"/>
-                    <constraint firstItem="tYX-Vc-PCU" firstAttribute="leading" secondItem="bB9-Tz-c7G" secondAttribute="leading" constant="10" id="KcE-EM-3IH"/>
-                    <constraint firstItem="1D2-ct-mTF" firstAttribute="top" secondItem="sOO-Jx-eMs" secondAttribute="bottom" constant="5" id="PAq-oS-e6b"/>
+                    <constraint firstItem="tYX-Vc-PCU" firstAttribute="leading" secondItem="bB9-Tz-c7G" secondAttribute="leading" constant="20" symbolic="YES" id="KcE-EM-3IH"/>
+                    <constraint firstItem="1D2-ct-mTF" firstAttribute="top" secondItem="sOO-Jx-eMs" secondAttribute="bottom" constant="2" id="PAq-oS-e6b"/>
                     <constraint firstItem="Y4B-wv-xid" firstAttribute="centerY" secondItem="1D2-ct-mTF" secondAttribute="centerY" id="SdR-YV-HP8"/>
                     <constraint firstItem="Pea-DR-6Nq" firstAttribute="leading" secondItem="sOO-Jx-eMs" secondAttribute="trailing" constant="8" id="Tfz-N7-nXV"/>
                     <constraint firstItem="Pea-DR-6Nq" firstAttribute="centerY" secondItem="bB9-Tz-c7G" secondAttribute="centerY" id="fG1-uO-rID"/>
                     <constraint firstItem="1D2-ct-mTF" firstAttribute="height" secondItem="sOO-Jx-eMs" secondAttribute="height" id="ixp-4A-7WH"/>
                     <constraint firstItem="sOO-Jx-eMs" firstAttribute="centerY" secondItem="bB9-Tz-c7G" secondAttribute="centerY" constant="-10" id="k3C-Fn-p9U"/>
                     <constraint firstItem="1D2-ct-mTF" firstAttribute="leading" secondItem="sOO-Jx-eMs" secondAttribute="leading" id="lEs-ew-ekV"/>
-                    <constraint firstItem="sOO-Jx-eMs" firstAttribute="leading" secondItem="tYX-Vc-PCU" secondAttribute="trailing" constant="10" id="wKe-rD-Tg9"/>
+                    <constraint firstItem="sOO-Jx-eMs" firstAttribute="leading" secondItem="tYX-Vc-PCU" secondAttribute="trailing" constant="8" symbolic="YES" id="wKe-rD-Tg9"/>
                     <constraint firstItem="Y4B-wv-xid" firstAttribute="leading" secondItem="1D2-ct-mTF" secondAttribute="trailing" constant="5" id="yQl-NX-arP"/>
                 </constraints>
             </tableViewCellContentView>

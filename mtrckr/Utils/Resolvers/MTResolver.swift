@@ -28,18 +28,20 @@ class MTResolver {
         registerAccounts()
         registerBills()
     }
-    
-    private func registerTransactions() {
+}
+
+extension MTResolver {
+    func registerTransactions() {
         container.register(TransactionsTableViewController.self) { (
             resolver,
             dataSource: TransactionsListDataSourceProtocol) in
             
             TransactionsTableViewController
                 .initWith(dataSource    : dataSource,
-                 newTransPresenter      : resolver.resolve(NewTransactionPresenter.self),
-                 deleteTransPresenter   : resolver.resolve(DeleteTransactionSheetPresenter.self),
-                 transactionsPresenter  : resolver.resolve(TransactionsPresenter.self),
-                 emptyDataSource        : resolver.resolve(EmptyTransactionsDataSource.self))
+                          newTransPresenter      : resolver.resolve(NewTransactionPresenter.self),
+                          deleteTransPresenter   : resolver.resolve(DeleteTransactionSheetPresenter.self),
+                          transactionsPresenter  : resolver.resolve(TransactionsPresenter.self),
+                          emptyDataSource        : resolver.resolve(EmptyTransactionsDataSource.self))
         }
         
         container.register(TransactionsInteractor.self) { [unowned self] _ in
@@ -78,19 +80,21 @@ class MTResolver {
         container.register(DeleteTransactionSheetPresenter.self) { _ in DeleteTransactionSheetPresenter() }
         container.register(EmptyTransactionsDataSource.self) { _ in EmptyTransactionsDataSource() }
     }
-    
-    private func registerAccounts() {
+}
+
+extension MTResolver {
+    func registerAccounts() {
         container.register(AccountsTableViewController.self) { (
             resolver,
             dataSource: TransactionsListDataSourceProtocol) in
             
             AccountsTableViewController
                 .initWith(presenter             : resolver.resolve(AccountsPresenter.self),
-                         emptyDataSource        : EmptyAccountsDataSource(),
-                         transactionsDataSource : dataSource,
-                         newAccountPresenter    : NewAccountPresenter(),
-                         deleteSheetPresenter   : DeleteSheetPresenter(),
-                         transactionsPresenter  : AccountTransactionsPresenter())
+                          emptyDataSource        : EmptyAccountsDataSource(),
+                          transactionsDataSource : dataSource,
+                          newAccountPresenter    : NewAccountPresenter(),
+                          deleteSheetPresenter   : DeleteSheetPresenter(),
+                          transactionsPresenter  : AccountTransactionsPresenter())
             
         }
         
@@ -107,8 +111,10 @@ class MTResolver {
         container.register(DeleteSheetPresenter.self) { _ in DeleteSheetPresenter() }
         container.register(AccountTransactionsPresenter.self) { _ in AccountTransactionsPresenter() }
     }
-    
-    private func registerBills() {
+}
+
+extension MTResolver {
+    func registerBills() {
         container.register(BillsTableViewController.self) { resolver in
             BillsTableViewController
                 .initWith(dataSource            : resolver.resolve(BillsDataSource.self)!,
@@ -117,8 +123,8 @@ class MTResolver {
                           deleteBillPresenter   : resolver.resolve(DeleteBillPresenter.self)!,
                           presenter             : resolver.resolve(BillsPresenter.self)!)
             
-        }.initCompleted { (_, vc) in
-            vc.dataSource?.delegate = vc
+            }.initCompleted { (_, vc) in
+                vc.dataSource?.delegate = vc
         }
         
         container.register(PayBillViewController.self) { (
@@ -126,9 +132,7 @@ class MTResolver {
             entry: BillEntry,
             delegate: PayBillViewControllerDelegate) in
             
-            let vc = PayBillViewController
-                .initWith(billEntry: entry)
-            vc.delegate = delegate
+            let vc = PayBillViewController(billEntry: entry, delegate: delegate)
             return vc
         }
         
@@ -137,9 +141,24 @@ class MTResolver {
             delegate: NewBillViewControllerDelegate,
             entry: BillEntry?) in
             
-            let vc = NewBillViewController.initWith(delegate: delegate)
-            vc.billEntry = entry
+            let vc = NewBillViewController(entry: entry, delegate: delegate)
             return vc
+        }
+        
+        container.register(BillHistoryViewController.self) { (
+            resolver,
+            bill: Bill) in
+            
+            let vc = BillHistoryViewController(bill         : bill,
+                                               dataSource   : resolver.resolve(BillHistoryDataSourceProtocol.self,
+                                                                               argument: bill)!)
+            return vc
+        }
+        
+        container.register(BillHistoryDataSourceProtocol.self) { (
+            _,
+            bill: Bill) in
+            return BillHistoryDataSource(bill: bill)
         }
         
         container.register(BillsDataSource.self) { _ in BillsDataSource(with: RealmAuthConfig()) }

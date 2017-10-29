@@ -22,8 +22,8 @@ class MockBillsPresenter: BillsPresenter {
     var didDeleteEntry: BillEntry?
     var deleteType: ModifyBillType?
     
-    var didShowHistory = false
-    var didShowHistoryOf: BillEntry?
+//    var didShowHistory = false
+//    var didShowHistoryOf: BillEntry?
     
     var didPayBill = false
     var didPayBillEntry: BillEntry?
@@ -53,7 +53,7 @@ class MockBillsPresenter: BillsPresenter {
     var didSkipEntry: BillEntry?
     
     override func createBill(amount: Double, name: String, post: String, pre: String,
-                             repeatSchedule: String, startDate: Date, category: mtrckr.Category) {
+                             repeat repeatSchedule: String, startDate: Date, category: mtrckr.Category) {
         didCreate = true
         didCreateAmount = amount
         didCreateName = name
@@ -84,7 +84,7 @@ class MockBillsPresenter: BillsPresenter {
     }
     
     override func editBillAndEntries(bill: Bill, amount: Double, name: String, post: String, pre: String,
-                                     repeatSchedule: String, startDate: Date, category: mtrckr.Category) {
+                                     repeat repeatSchedule: String, startDate: Date, category: mtrckr.Category) {
         didEdit = true
         didEditBill = bill
         
@@ -95,11 +95,6 @@ class MockBillsPresenter: BillsPresenter {
         didEditBillStartDate = startDate
         didEditBillCategory = category
         didEditBillRepeatSchedule = repeatSchedule
-    }
-    
-    override func showHistory(of entry: BillEntry) {
-        didShowHistory = true
-        didShowHistoryOf = entry
     }
     
     override func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date) {

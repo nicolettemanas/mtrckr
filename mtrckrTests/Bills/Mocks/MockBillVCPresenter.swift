@@ -12,6 +12,9 @@ class MockBillVCPresenter: BillVCPresenter {
     var didPresent = false
     var didReceiveId: String?
     
+    var didShowHistory = false
+    var didShowHistoryOf: Bill?
+    
     override func presentNewBill(presenter: UIViewController & NewBillViewControllerDelegate,
                                  billEntry: BillEntry?) {
         didPresent = true
@@ -23,4 +26,10 @@ class MockBillVCPresenter: BillVCPresenter {
         didPresent = true
         didReceiveId = entry.id
     }
+    
+    override func presentHistory(ofBill bill: Bill, presenter: UIViewController) {
+        didShowHistory = true
+        didShowHistoryOf = bill
+    }
+    
 }

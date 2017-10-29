@@ -24,9 +24,15 @@ extension BillsTableViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath,
                    for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        
         var options = SwipeTableOptions()
         options.expansionStyle = .none
         options.transitionStyle = .border
+        
+        if orientation == .left {
+            options.expansionStyle = SwipeExpansionStyle.destructive(automaticallyDelete: false)
+        }
+        
         return options
     }
     
@@ -38,10 +44,10 @@ extension BillsTableViewController: SwipeTableViewCellDelegate {
         
         edit.accessibilityLabel = "Edit"
         edit.image = #imageLiteral(resourceName: "edit").resizableImage(withCapInsets:
-            UIEdgeInsets(top: 10,
-                         left: 10,
-                         bottom: 10,
-                         right: 10))
+            UIEdgeInsets(top    : 10,
+                         left   : 10,
+                         bottom : 10,
+                         right  : 10))
         edit.backgroundColor = MTColors.mainBlue
         edit.textColor = .white
         
@@ -56,10 +62,10 @@ extension BillsTableViewController: SwipeTableViewCellDelegate {
         
         delete.accessibilityLabel = "Delete"
         delete.image = #imageLiteral(resourceName: "trash").resizableImage(withCapInsets:
-            UIEdgeInsets(top: 10,
-                         left: 10,
-                         bottom: 10,
-                         right: 10))
+            UIEdgeInsets(top    : 10,
+                         left   : 10,
+                         bottom : 10,
+                         right  : 10))
         delete.backgroundColor = MTColors.mainRed
         delete.textColor = .white
         
