@@ -275,7 +275,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
         var titles: [String] = []
         if var minDate: Date = transactions?.min(ofProperty: "transactionDate") {
             minDate = minDate.start(of: .month)
-            let maxDate = Date()
+            let maxDate: Date = transactions?.max(ofProperty: "transactionDate") ?? Date()
             
             var startDate = maxDate.start(of: .month)
             var endDate = maxDate.end(of: .month)
@@ -290,8 +290,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
                 let month = startDate.format(with: "MMM", timeZone: TimeZone.current)
                 titles.append("\(month) \(startDate.year)")
                 
-                startDate = startDate.subtract(TimeChunk(seconds: 0, minutes: 0, hours: 0,
-                                                  days: 0, weeks: 0, months: 1, years: 0))
+                startDate = startDate.subtract(1.months)
                 endDate = startDate.end(of: .month)
             }
         }

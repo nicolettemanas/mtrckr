@@ -73,7 +73,7 @@ class TransactionsListDataSourceTests: QuickSpec {
                 let accountType2 = fakeModels.accountType(id: 101)
                 
                 date1 = Date().start(of: .day)
-                date2 = date1.add(2.days)
+                date2 = date1.add(1.months)
                 date3 = date1.add(2.hours)
                 
                 accountType1.save(toRealm: dataSource!.realmContainer!.userRealm!)
@@ -135,19 +135,24 @@ class TransactionsListDataSourceTests: QuickSpec {
                 it("displays transactions (sorted latest first) that belongs to the given account", closure: {
                     let numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
                                                                numberOfRowsInSection: 0)
-                    expect(numOfRows) == 2
+                    expect(numOfRows) == 1
                     
                     let rows = dataSource?.groupedTransactions[trans1.transactionDate.format(with: "MMM")]
                     
-                    expect(trans2) == rows!![0]
-                    expect(trans1) == rows!![1]
+                    expect(rows!!.count) == 1
+                    
+                    expect(rows!![0]) == trans1
                 })
                 
                 it("sections table by month", closure: {
                     let numOfSections = dataSource?.numberOfSections(in: mockTableViewController!.tableView)
-                    let numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
+                    var numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
                                                           numberOfRowsInSection: 1)
-                    expect(numOfSections) == 2
+                    expect(numOfSections) == 3
+                    expect(numOfRows) == 1
+                    
+                    numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
+                                                      numberOfRowsInSection: 2)
                     expect(numOfRows) == 2
 
                     let rows = dataSource?.groupedTransactions[trans5.transactionDate.format(with: "MMM")]
