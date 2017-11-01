@@ -159,6 +159,7 @@ class BillEntry: Object {
     func unpay(inRealm realm: Realm) {
         assert(self.bill?.active == true)
         let entry = BillEntry(dueDate: self.dueDate, for: self.bill!)
+        self.transaction?.delete(in: realm)
         self.delete(in: realm)
         entry.save(toRealm: realm)
     }

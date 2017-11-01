@@ -10,6 +10,7 @@ import RealmSwift
 
 protocol BillsPresenterProtocol {
     func skip(entry: BillEntry)
+    func unpay(entry: BillEntry)
     func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date)
     func deleteBillEntry(entry: BillEntry, deleteType: ModifyBillType)
     func createBill(amount: Double, name: String, post: String, pre: String,
@@ -98,5 +99,9 @@ class BillsPresenter: BillsPresenterProtocol {
     
     func skip(entry: BillEntry) {
         interactor?.skip(entry: entry, date: Date())
+    }
+    
+    func unpay(entry: BillEntry) {
+        interactor?.unpay(entry: entry)
     }
 }

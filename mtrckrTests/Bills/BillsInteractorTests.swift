@@ -259,6 +259,70 @@ class BillsInteractorTests: QuickSpec {
                 })
             })
             
+            context("asked to unpay an entry", {
+                var bill: Bill!
+                var entry1: BillEntry!
+                var entry2: BillEntry!
+                var entry1DueDate: Date!
+                var entry2DueDate: Date!
+                var transactionid: String?
+                
+                beforeEach {
+                    bill = fakeModels.bill()
+                    bill.startDate = Date().subtract(2.months)
+                    
+                    interactor.saveBill(bill: bill)
+                    let entries = BillEntry.all(in: realm, for: bill)
+                    entry1 = entries[0]
+                    entry2 = entries[1]
+                    
+                    entry1DueDate = entry1.dueDate
+                    entry2DueDate = entry2.dueDate
+                    
+                    interactor.skip(entry: entry1, date: Date())
+                    interactor.payEntry(entry   : entry2,
+                                        amount  : 100,
+                                        account : fakeModels.account(),
+                                        date    : Date())
+                    expect(entry2.transaction).toNot(beNil())
+                    transactionid = entry2.transaction!.id
+                }
+                
+                context("unpay a skipped entry", {
+                    beforeEach {
+                        interactor.unpay(entry: entry1)
+                    }
+                    
+                    it("markes the entry as unpaid", closure: {
+                        let entries = BillEntry.all(in: realm, for: bill)
+                        let unpaid = entries[0]
+                        expect(unpaid).toNot(beNil())
+                        expect(unpaid.transaction).to(beNil())
+                        expect(unpaid.dueDate) == entry1DueDate
+                        expect(unpaid.status) == BillEntryStatus.unpaid.rawValue
+                    })
+                })
+                
+                context("unpay a paid entry", {
+                    beforeEach {
+                        interactor.unpay(entry: entry2)
+                    }
+                    it("marks the entry as unpaid and deletes associated transaction", closure: {
+                        let entries = BillEntry.all(in: realm, for: bill)
+                        let unpaid = entries[1]
+                        expect(unpaid).toNot(beNil())
+                        expect(unpaid.status) == BillEntryStatus.unpaid.rawValue
+                        expect(unpaid.transaction).to(beNil())
+                        expect(unpaid.dueDate) == entry2DueDate
+                        
+                        let transaction = Transaction.with(key: transactionid!, inRealm: realm)
+                        expect(transaction).to(beNil())
+                        expect(transaction?.billEntry).to(beNil())
+                        
+                    })
+                })
+            })
+            
             context("asked to delete a bill", {
                 context("delete all unpaid bills", {
                     var bill: Bill!

@@ -74,5 +74,41 @@ class StubMTResolvers: MTResolver {
                                                    name     : "stub",
                                                    argument : "MockBillsPresenter")!)
         }
+        
+        container.register(BillsPresenter.self, name: "mock") { (
+            resolver,
+            identifier: String) in
+            MockBillsPresenter
+                .init(interactor: resolver.resolve(BillsInteractor.self,
+                                                   name     : "stub",
+                                                   argument : identifier)!)
+        }
+        
+        container.register(BillHistoryViewController.self, name: "testable") { (
+            resolver,
+            bill: Bill,
+            identifier: String) in
+            let vc = resolver.resolve(BillHistoryViewController.self, argument: bill)!
+            
+            let dataSource = resolver.resolve(BillHistoryDataSource.self, arguments: bill, identifier)
+            vc.dataSource = dataSource
+            vc.presenter = resolver.resolve(BillsPresenter.self, name: "mock", argument: identifier)
+            return vc
+            }.initCompleted { (_, vc) in
+                vc.dataSource?.cellDelegate = vc
+        }
+        
+        container.register(BillHistoryDataSource.self) { (
+            resolver,
+            bill: Bill,
+            identifier: String) in
+            
+            let dataSource = resolver.resolve(BillHistoryDataSourceProtocol.self, argument: bill)
+                as! BillHistoryDataSource
+            dataSource.realmContainer = MockRealmContainer(memoryIdentifier: identifier)
+            dataSource.realmContainer?.setDefaultRealm(to: .offline)
+            
+            return dataSource
+        }
     }
 }

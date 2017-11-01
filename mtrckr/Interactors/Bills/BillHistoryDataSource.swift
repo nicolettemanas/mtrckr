@@ -7,30 +7,42 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 protocol BillHistoryDataSourceProtocol: UITableViewDelegate, UITableViewDataSource {
-    
+    var history: Results<BillEntry>? { get }
+    var cellDelegate: (SwipeTableViewCellDelegate & BillHistoryDataSourceDelegate)? { get set }
+    func refreshHistory()
+}
+
+protocol BillHistoryDataSourceDelegate: class {
+    func didUpdate(changes: RealmCollectionChange<Results<BillEntry>>)
+    func toggleFooter(show: Bool)
 }
 
 class BillHistoryDataSource: RealmHolder, BillHistoryDataSourceProtocol {
-    
     static let historyLbl = NSLocalizedString("history.label",
                                               tableName: nil,
                                               bundle: Bundle.main,
                                               value: "Payment History",
                                               comment: "Title of the label showing the payment history of a bill")
     private var bill: Bill
-    private var history: Results<BillEntry>?
+    private var notifToken: NotificationToken?
+    private(set) var history: Results<BillEntry>?
+    weak var cellDelegate: (SwipeTableViewCellDelegate & BillHistoryDataSourceDelegate)?
     
     init(bill billSource: Bill) {
         bill = billSource
         super.init(with: RealmAuthConfig())
-        
-        getHistory()
     }
     
-    private func getHistory() {
+    func refreshHistory() {
+        assert(cellDelegate != nil)
         history = bill.history(in: realmContainer!.userRealm!)
+        notifToken = history?.addNotificationBlock({ [unowned self] (changes) in
+            self.cellDelegate?.didUpdate(changes: changes)
+            self.cellDelegate?.toggleFooter(show: self.history?.count ?? 0 == 0)
+        })
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -75,6 +87,7 @@ class BillHistoryDataSource: RealmHolder, BillHistoryDataSourceProtocol {
         
         let row = his[indexPath.row]
         cell.setValue(entry: row, currency: realmContainer!.currency())
+        cell.delegate = cellDelegate
         return cell
     }
     

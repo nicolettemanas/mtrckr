@@ -97,6 +97,19 @@ class BillsPresenterTests: QuickSpec {
                 })
             })
             
+            context("unpaying an entry", { 
+                let bill = fakeModels.bill()
+                let entry = fakeModels.billEntry(for: bill, date: Date())
+                
+                beforeEach {
+                    presenter.unpay(entry: entry)
+                }
+                
+                it("passes entry to unpay to interactor", closure: {
+                    expect(mockInteractor?.entryToUnpay) == entry
+                })
+            })
+            
             context("deleting a bill entry", {
                 context("delete only current bill", {
                     it("asks interactor to delete current bill", closure: {

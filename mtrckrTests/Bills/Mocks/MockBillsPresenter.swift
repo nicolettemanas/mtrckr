@@ -51,6 +51,7 @@ class MockBillsPresenter: BillsPresenter {
     var didEditBillCategory: mtrckr.Category?
     
     var didSkipEntry: BillEntry?
+    var didUnpayEntry: BillEntry?
     
     override func createBill(amount: Double, name: String, post: String, pre: String,
                              repeat repeatSchedule: String, startDate: Date, category: mtrckr.Category) {
@@ -107,5 +108,9 @@ class MockBillsPresenter: BillsPresenter {
     
     override func skip(entry: BillEntry) {
         didSkipEntry = entry
+    }
+    
+    override func unpay(entry: BillEntry) {
+        didUnpayEntry = entry
     }
 }

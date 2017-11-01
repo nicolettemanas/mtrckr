@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class BillsHistoryCell: UITableViewCell {
+class BillsHistoryCell: SwipeTableViewCell {
     
     @IBOutlet weak var due: UILabel!
     @IBOutlet weak var datePaid: UILabel!

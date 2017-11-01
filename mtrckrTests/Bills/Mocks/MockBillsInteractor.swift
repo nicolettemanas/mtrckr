@@ -31,6 +31,7 @@ class MockBillsInteractor: BillsInteractor {
     var payDate: Date?
     
     var entryToSkip: BillEntry?
+    var entryToUnpay: BillEntry?
     
     override func saveBill(bill: Bill) {
         createdBill = bill
@@ -75,5 +76,9 @@ class MockBillsInteractor: BillsInteractor {
     
     override func skip(entry: BillEntry, date: Date) {
         entryToSkip = entry
+    }
+    
+    override func unpay(entry: BillEntry) {
+        entryToUnpay = entry
     }
 }

@@ -14,6 +14,7 @@ protocol BillsInteractorProtocol {
     func saveBill(bill: Bill)
     func delete(billEntry: BillEntry)
     func skip(entry: BillEntry, date: Date)
+    func unpay(entry: BillEntry)
     func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date)
     func update(entry: BillEntry, amount: Double, name: String?, preDue: BillDueReminder,
                 postDue: BillDueReminder, category: Category?, dueDate: Date)
@@ -62,6 +63,10 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
     ///   - date: Date modified
     func skip(entry: BillEntry, date: Date) {
         entry.skip(inRealm: self.realmContainer!.userRealm!)
+    }
+    
+    func unpay(entry: BillEntry) {
+        entry.unpay(inRealm: realmContainer!.userRealm!)
     }
     
     /// Marks an entry as paid and generates associated `Transaction`

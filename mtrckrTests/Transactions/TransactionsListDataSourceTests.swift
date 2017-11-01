@@ -140,7 +140,6 @@ class TransactionsListDataSourceTests: QuickSpec {
                     let rows = dataSource?.groupedTransactions[trans1.transactionDate.format(with: "MMM")]
                     
                     expect(rows!!.count) == 1
-                    
                     expect(rows!![0]) == trans1
                 })
                 

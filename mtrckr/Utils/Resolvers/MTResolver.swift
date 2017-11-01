@@ -145,20 +145,23 @@ extension MTResolver {
             return vc
         }
         
+        container.register(BillHistoryDataSourceProtocol.self) { (
+            _,
+            bill: Bill) in
+            return BillHistoryDataSource(bill: bill)
+        }
+        
         container.register(BillHistoryViewController.self) { (
             resolver,
             bill: Bill) in
             
             let vc = BillHistoryViewController(bill         : bill,
                                                dataSource   : resolver.resolve(BillHistoryDataSourceProtocol.self,
-                                                                               argument: bill)!)
+                                                                               argument: bill)!,
+                                               presenter    : resolver.resolve(BillsPresenter.self)!)
             return vc
-        }
-        
-        container.register(BillHistoryDataSourceProtocol.self) { (
-            _,
-            bill: Bill) in
-            return BillHistoryDataSource(bill: bill)
+            }.initCompleted { (_, vc) in
+                vc.dataSource?.cellDelegate = vc
         }
         
         container.register(BillsDataSource.self) { _ in BillsDataSource(with: RealmAuthConfig()) }
