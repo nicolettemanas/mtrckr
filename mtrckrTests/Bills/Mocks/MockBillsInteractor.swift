@@ -10,27 +10,75 @@ import UIKit
 
 class MockBillsInteractor: BillsInteractor {
     
-    var didDeleteBill: BillEntry?
-    var deleteType: ModifyBillType?
+    var didDeleteBillEntry: BillEntry?
+    var didDeleteBill: Bill?
     
-    var newEntry: BillEntry?
     var createdBill: Bill?
     var updatedBill: Bill?
+    var billToUpdate: Bill?
+    
+    var updatedAmount: Double?
+    var updatedName: String?
+    var updatedPre: BillDueReminder?
+    var updatedPost: BillDueReminder?
+    var updatedCat: mtrckr.Category?
+    var updatedDate: Date?
+    var updatedRepeat: BillRepeatSchedule?
+    
+    var entryToPay: BillEntry?
+    var payAccount: Account?
+    var payAmount: Double = 0
+    var payDate: Date?
+    
+    var entryToSkip: BillEntry?
+    var entryToUnpay: BillEntry?
     
     override func saveBill(bill: Bill) {
         createdBill = bill
     }
     
-    override func deleteBill(bill: BillEntry, type: ModifyBillType) {
+    override func delete(bill: Bill) {
         didDeleteBill = bill
-        deleteType = type
     }
     
-    override func updateBillEntry(entry: BillEntry, toEntry: BillEntry) {
-        newEntry = entry
+    override func delete(billEntry: BillEntry) {
+        didDeleteBillEntry = billEntry
     }
     
-    override func update(oldBill: Bill, toBill newBill: Bill) {
-        updatedBill = newBill
+    override func update(entry: BillEntry, amount: Double, name: String?, preDue preDueReminder: BillDueReminder,
+                         postDue postDueReminder: BillDueReminder, category: mtrckr.Category?, dueDate: Date) {
+        updatedAmount = amount
+        updatedName = name
+        updatedPre = preDueReminder
+        updatedPost = postDueReminder
+        updatedCat = category
+        updatedDate = dueDate
+    }
+    
+    override func update(bill: Bill, amount: Double, name: String, post: BillDueReminder,
+                         preDue: BillDueReminder, category: mtrckr.Category, startDate: Date, repeatSched: BillRepeatSchedule) {
+        billToUpdate = bill
+        updatedAmount = amount
+        updatedName = name
+        updatedPre = preDue
+        updatedPost = post
+        updatedCat = category
+        updatedDate = startDate
+        updatedRepeat = repeatSched
+    }
+    
+    override func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date) {
+        entryToPay = entry
+        payAmount = amount
+        payAccount = account
+        payDate = date
+    }
+    
+    override func skip(entry: BillEntry, date: Date) {
+        entryToSkip = entry
+    }
+    
+    override func unpay(entry: BillEntry) {
+        entryToUnpay = entry
     }
 }

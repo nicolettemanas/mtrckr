@@ -29,8 +29,14 @@ class MainTabbarViewController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        var offset: CGFloat = 0
+        
+        if #available(iOS 11.0, *) {
+            offset = view.safeAreaInsets.bottom
+        }
+        
         addBtn.frame = CGRect(x: tabBar.center.x - 32,
-                              y: view.bounds.height - 74,
+                              y: view.bounds.height - 74 - offset,
                               width: 64,
                               height: 64)
         addBtn.layer.cornerRadius = 32
@@ -38,10 +44,10 @@ class MainTabbarViewController: UITabBarController {
         addBtn.layer.borderColor = MTColors.lightBg.cgColor
         tabBar.shadowImage = UIImage.colorForNavBar(color: MTColors.lightBg)
         tabBar.backgroundImage = UIImage.colorForNavBar(color: .white)
-        tabBar.tintColor = .white
+        tabBar.tintColor = MTColors.mainBlue
     }
     
-    func addBtnPressed() {
+    @objc func addBtnPressed() {
         newTransactionPresenter?.presentNewTransactionVC(with: nil,
                                                          presentingVC: self,
                                                          delegate: self)
@@ -50,15 +56,24 @@ class MainTabbarViewController: UITabBarController {
 
 extension MainTabbarViewController: NewTransactionViewControllerDelegate {
     func update(transaction: Transaction, withValues name: String, amount: Double,
-                type: TransactionType, date: Date, category: Category?, from sourceAcc: Account,
-                to destAccount: Account) {
+                type: TransactionType, date: Date, category: Category?,
+                from sourceAcc: Account, to destAccount: Account) {
+        
         fatalError("Tabbar shouldn't receive udpdate transaction")
     }
     
     func shouldSaveTransaction(with name: String, amount: Double, type: TransactionType,
-                               date: Date, category: Category?, from sourceAcc: Account, to destAccount: Account) {
-        transactionsPresenter?.createTransaction(with: name, amount: amount, type: type, date: date,
-                                                 category: category, from: sourceAcc, to: destAccount)
+                               date: Date, category: Category?, from sourceAcc: Account,
+                               to destAccount: Account) {
+        
+        transactionsPresenter?
+            .createTransaction(with     : name,
+                               amount   : amount,
+                               type     : type,
+                               date     : date,
+                               category : category,
+                               from     : sourceAcc,
+                               to       : destAccount)
     }
 }
 

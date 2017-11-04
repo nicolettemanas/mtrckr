@@ -173,7 +173,7 @@ class NewTransactionViewController: MTFormViewController {
             <<< AccountsSelectorRow(fromTag) { [unowned self] in
                 let ruleMustNotMatch = RuleClosure<Account> { rowValue in
                     return (rowValue == self.toRow?.value) ?
-                        ValidationError(msg: "Must source account and destination account must not be the same") : nil
+                        ValidationError(msg: "Source account and destination account must not be the same") : nil
                 }
 
                 $0.tag = self.fromTag
@@ -189,7 +189,7 @@ class NewTransactionViewController: MTFormViewController {
             <<< AccountsSelectorRow(toTag) { [unowned self] in
                 let ruleMustNotMatch = RuleClosure<Account> { rowValue in
                     return (rowValue == self.fromRow?.value) ?
-                        ValidationError(msg: "Must source account and destination account must not be the same") : nil
+                        ValidationError(msg: "Source account and destination account must not be the same") : nil
                 }
                 $0.tag = self.toTag
                 $0.hidden = Condition.function([self.typeTag], { (_) -> Bool in

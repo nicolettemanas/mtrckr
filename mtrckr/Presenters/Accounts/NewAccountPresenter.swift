@@ -38,7 +38,7 @@ class NewAccountPresenter: NewAccountPresenterProtocol {
 
 protocol DeleteSheetPresenterProtocol {
     weak var alert: UIAlertController? { get }
-    var action: UIAlertAction.Type { get set }
+    var action: MTAlertAction.Type { get set }
     
     func displayDeleteSheet(toDelete indexPath: IndexPath, presentingVC: AccountsTableViewController)
 }
@@ -47,7 +47,7 @@ protocol DeleteSheetPresenterProtocol {
 class DeleteSheetPresenter: DeleteSheetPresenterProtocol {
     
     /// :nodoc:
-    var action: UIAlertAction.Type = UIAlertAction.self
+    var action: MTAlertAction.Type = MTAlertAction.self
     
     /// The `UIAlertController` displayed
     weak var alert: UIAlertController?
@@ -86,9 +86,14 @@ class DeleteSheetPresenter: DeleteSheetPresenterProtocol {
 }
 
 // source: http://swiftandpainless.com/correction-on-testing-uialertcontroller/
-extension UIAlertAction {
-    /// :nodoc:
-    class func makeActionWithTitle(title: String?, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Void)?) -> UIAlertAction {
+class MTAlertAction: UIAlertAction {
+    class func makeActionWithTitle(title: String?, style: UIAlertActionStyle,
+                                   handler: ((UIAlertAction) -> Void)?) -> UIAlertAction {
         return UIAlertAction(title: title, style: style, handler: handler)
     }
 }
+
+//extension UIAlertAction {
+//    /// :nodoc:
+//
+//}

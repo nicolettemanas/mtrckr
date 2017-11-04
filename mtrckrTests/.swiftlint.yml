@@ -20,3 +20,4 @@ disabled_rules:
  - file_length
  - trailing_whitespace
  - force_cast
+ - closure_parameter_position

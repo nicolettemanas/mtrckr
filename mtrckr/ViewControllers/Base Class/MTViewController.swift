@@ -48,6 +48,22 @@ class MTViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Methods
+    func setupNavBar(title navTitle: String, leftSelector: Selector, rightSelector: Selector, target: Any?) {
+        title = navTitle
+        let left = UIBarButtonItem(image    : UIImage(named: "x-tab"),
+                                   style    : .plain,
+                                   target   : target,
+                                   action   : leftSelector)
+        let right = UIBarButtonItem(image   : UIImage(named: "check-tab"),
+                                    style   : .plain,
+                                    target  : target,
+                                    action  : rightSelector)
+        
+        left.tintColor = MTColors.mainRed
+        right.tintColor = MTColors.mainBlue
+        navigationItem.leftBarButtonItem = left
+        navigationItem.rightBarButtonItem = right
+    }
     
     /// Shows and animates the loading view
     ///
@@ -80,7 +96,7 @@ class MTViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification) {
         if self.scrollView != nil {
             var userInfo = notification.userInfo!
             guard let keyboardFrameValue: NSValue = userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue
@@ -97,7 +113,7 @@ class MTViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         if self.scrollView != nil {
             let contentInset: UIEdgeInsets = UIEdgeInsets.zero
             self.scrollView!.contentInset = contentInset

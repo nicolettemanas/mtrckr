@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +17,7 @@
             <objects>
                 <navigationController storyboardIdentifier="NewTransactionNavigationController" id="Dcq-i2-hFy" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="egg-GY-7GC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -31,14 +32,11 @@
         <scene sceneID="0Yp-yE-6li">
             <objects>
                 <viewController id="nNJ-T9-8nY" customClass="NewTransactionViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="U8P-nY-Mu9"/>
-                        <viewControllerLayoutGuide type="bottom" id="Kf1-cy-r2e"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gEN-vk-d4y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="DZF-Bq-amR"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Transaction" id="0AC-Cj-dTW">
                         <barButtonItem key="leftBarButtonItem" image="x-tab" id="09y-fZ-31z">
@@ -93,7 +91,7 @@
             <objects>
                 <navigationController id="C7V-tX-kjK" customClass="AccountsFilterNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="HCY-jW-B7G">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
@@ -109,14 +107,11 @@
         <scene sceneID="cZl-dH-Bou">
             <objects>
                 <viewController storyboardIdentifier="AccountsFilterViewController" id="i2b-17-OoY" customClass="AccountsFilterViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="E9Z-Xp-ifT"/>
-                        <viewControllerLayoutGuide type="bottom" id="gmb-gj-o9q"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MDQ-CL-Z6P">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="WaP-cI-1AR"/>
                     </view>
                     <navigationItem key="navigationItem" id="vQx-ja-zug">
                         <barButtonItem key="leftBarButtonItem" image="select-tab" id="wu5-Xz-Eto">
@@ -142,20 +137,16 @@
         <scene sceneID="4fr-BC-icp">
             <objects>
                 <viewController storyboardIdentifier="CalendarViewController" id="Jnj-LF-7nH" customClass="CalendarViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XHs-af-mAQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="FW1-QI-7oP"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EBz-hp-5UZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iye-0e-TYw">
-                                <rect key="frame" x="0.0" y="-28" width="320" height="346"/>
+                                <rect key="frame" x="0.0" y="-28" width="320" height="297"/>
                                 <color key="backgroundColor" red="0.0" green="0.65490196079999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p4Z-Os-I9g">
-                                <rect key="frame" x="0.0" y="40" width="320" height="278"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="229"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Tfr-Zn-a6f">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="10"/>
@@ -206,7 +197,7 @@
                                         <edgeInsets key="layoutMargins" top="5" left="0.0" bottom="5" right="0.0"/>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QZc-i8-6Dc" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="268"/>
+                                        <rect key="frame" x="0.0" y="10" width="320" height="219"/>
                                         <color key="backgroundColor" red="0.0" green="0.65490196079999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="j8I-63-W61">
                                             <size key="itemSize" width="49" height="46"/>
@@ -306,16 +297,16 @@
                                 </constraints>
                             </stackView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQA-3D-nek">
-                                <rect key="frame" x="0.0" y="318" width="320" height="250"/>
+                                <rect key="frame" x="0.0" y="269" width="320" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="ZgL-oV-me5"/>
                                 </constraints>
                             </containerView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrv-mn-QUB">
-                                <rect key="frame" x="283" y="27" width="25" height="25"/>
+                                <rect key="frame" x="265" y="27" width="43" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="EPy-vP-Cyd"/>
-                                    <constraint firstAttribute="width" constant="25" id="zji-Gj-EL5"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="43" id="zji-Gj-EL5"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="options"/>
@@ -324,7 +315,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zw-OV-S25">
-                                <rect key="frame" x="15" y="30" width="258" height="0.0"/>
+                                <rect key="frame" x="15" y="30" width="240" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -332,25 +323,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7zw-OV-S25" firstAttribute="top" secondItem="XHs-af-mAQ" secondAttribute="bottom" constant="10" id="3yf-2j-a8Y"/>
-                            <constraint firstItem="nrv-mn-QUB" firstAttribute="topMargin" secondItem="XHs-af-mAQ" secondAttribute="bottom" constant="15" id="9hF-H9-D3c"/>
-                            <constraint firstItem="7zw-OV-S25" firstAttribute="leading" secondItem="EBz-hp-5UZ" secondAttribute="leading" constant="15" id="BGO-J9-699"/>
-                            <constraint firstAttribute="trailing" secondItem="nrv-mn-QUB" secondAttribute="trailing" constant="12" id="Jf9-ii-Qvy"/>
-                            <constraint firstAttribute="trailing" secondItem="p4Z-Os-I9g" secondAttribute="trailing" id="PY3-jS-Ob4"/>
+                            <constraint firstItem="7zw-OV-S25" firstAttribute="top" secondItem="ex0-TA-xUv" secondAttribute="top" constant="10" id="3yf-2j-a8Y"/>
+                            <constraint firstItem="nrv-mn-QUB" firstAttribute="topMargin" secondItem="ex0-TA-xUv" secondAttribute="top" constant="15" id="9hF-H9-D3c"/>
+                            <constraint firstItem="7zw-OV-S25" firstAttribute="leading" secondItem="ex0-TA-xUv" secondAttribute="leading" constant="15" id="BGO-J9-699"/>
+                            <constraint firstItem="ex0-TA-xUv" firstAttribute="trailing" secondItem="nrv-mn-QUB" secondAttribute="trailing" constant="12" id="Jf9-ii-Qvy"/>
+                            <constraint firstItem="ex0-TA-xUv" firstAttribute="trailing" secondItem="p4Z-Os-I9g" secondAttribute="trailing" id="PY3-jS-Ob4"/>
                             <constraint firstItem="iye-0e-TYw" firstAttribute="width" secondItem="EBz-hp-5UZ" secondAttribute="width" id="R9l-Bg-93k"/>
                             <constraint firstItem="p4Z-Os-I9g" firstAttribute="top" secondItem="7zw-OV-S25" secondAttribute="bottom" constant="10" id="UVe-zR-UpS"/>
                             <constraint firstItem="iye-0e-TYw" firstAttribute="topMargin" secondItem="EBz-hp-5UZ" secondAttribute="top" id="akq-rr-3Ru"/>
                             <constraint firstItem="eQA-3D-nek" firstAttribute="centerX" secondItem="p4Z-Os-I9g" secondAttribute="centerX" id="gae-1a-dry"/>
                             <constraint firstItem="eQA-3D-nek" firstAttribute="width" secondItem="p4Z-Os-I9g" secondAttribute="width" id="iJP-co-cCz"/>
                             <constraint firstItem="eQA-3D-nek" firstAttribute="top" secondItem="p4Z-Os-I9g" secondAttribute="bottom" id="jne-2q-jmr"/>
-                            <constraint firstItem="FW1-QI-7oP" firstAttribute="top" secondItem="eQA-3D-nek" secondAttribute="bottom" id="n5U-cL-Uoi"/>
+                            <constraint firstItem="ex0-TA-xUv" firstAttribute="bottom" secondItem="eQA-3D-nek" secondAttribute="bottom" id="n5U-cL-Uoi"/>
                             <constraint firstItem="nrv-mn-QUB" firstAttribute="leading" secondItem="7zw-OV-S25" secondAttribute="trailing" constant="10" id="qkb-d2-A79"/>
-                            <constraint firstItem="iye-0e-TYw" firstAttribute="centerX" secondItem="EBz-hp-5UZ" secondAttribute="centerX" id="qmO-eD-jLO"/>
+                            <constraint firstItem="iye-0e-TYw" firstAttribute="centerX" secondItem="ex0-TA-xUv" secondAttribute="centerX" id="qmO-eD-jLO"/>
                             <constraint firstItem="iye-0e-TYw" firstAttribute="bottom" secondItem="p4Z-Os-I9g" secondAttribute="bottom" id="rmP-Zd-iFc"/>
-                            <constraint firstItem="p4Z-Os-I9g" firstAttribute="leading" secondItem="EBz-hp-5UZ" secondAttribute="leading" id="ugv-O2-YNf"/>
+                            <constraint firstItem="p4Z-Os-I9g" firstAttribute="leading" secondItem="ex0-TA-xUv" secondAttribute="leading" id="ugv-O2-YNf"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="ex0-TA-xUv"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="calendar-dark" selectedImage="calendar-dark" id="Aph-G0-Msb"/>
+                    <tabBarItem key="tabBarItem" title="" image="calendar-bar" id="Aph-G0-Msb">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="calendar" destination="QZc-i8-6Dc" id="aHH-ki-Y5f"/>
@@ -364,10 +358,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar-dark" width="25" height="25"/>
-        <image name="check-tab" width="20" height="20"/>
-        <image name="options" width="80" height="80"/>
-        <image name="select-tab" width="30" height="30"/>
+        <image name="calendar-bar" width="25" height="25"/>
+        <image name="check-tab" width="20" height="15"/>
+        <image name="options" width="43" height="20"/>
+        <image name="select-tab" width="25" height="25"/>
         <image name="x-tab" width="15" height="15"/>
     </resources>
 </document>

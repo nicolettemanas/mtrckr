@@ -18,7 +18,7 @@ protocol AccountsTableViewControllerProtocol {
 class AccountsTableViewController: MTTableViewController, AccountsTableViewControllerProtocol, UserObserver {
     
     // MARK: - Properties
-    
+    // TODO: Implement Dwifft
     var accounts: Results<Account>?
     var currency: String?
     var notifToken: NotificationToken?
@@ -60,7 +60,7 @@ class AccountsTableViewController: MTTableViewController, AccountsTableViewContr
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let resolver = ViewControllerResolvers()
+        let resolver = MTResolver()
         self.presenter = resolver.container.resolve(AccountsPresenter.self)
         self.emptyDatasource = resolver.container.resolve(EmptyAccountsDataSource.self)
         self.newAccountPresenter = resolver.container.resolve(NewAccountPresenter.self)
@@ -180,7 +180,7 @@ extension AccountsTableViewController: NewAccountViewControllerDelegate {
     
     private func showError(msg: String) {
         let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
-        let ok = UIAlertAction(title: NSLocalizedString("Ok", comment: "'Ok' action of an alert"),
+        let ok = MTAlertAction(title: NSLocalizedString("Ok", comment: "'Ok' action of an alert"),
                                style: .default,
                                handler: nil)
         alert.addAction(ok)

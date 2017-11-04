@@ -37,8 +37,24 @@ class MTTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func setupNavBar(title navTitle: String, leftSelector: Selector, rightSelector: Selector, target: Any?) {
+        title = navTitle
+        let left = UIBarButtonItem(image    : UIImage(named: "x-tab"),
+                                   style    : .plain,
+                                   target   : target,
+                                   action   : leftSelector)
+        let right = UIBarButtonItem(image   : UIImage(named: "check-tab"),
+                                    style   : .plain,
+                                    target  : target,
+                                    action  : rightSelector)
+        
+        left.tintColor = MTColors.mainRed
+        right.tintColor = MTColors.mainBlue
+        navigationItem.leftBarButtonItem = left
+        navigationItem.rightBarButtonItem = right
+    }
+    
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0

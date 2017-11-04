@@ -14,17 +14,20 @@ class BillsPresenterTests: QuickSpec {
     override func spec() {
         
         var presenter: BillsPresenterProtocol!
-        var resolver: ViewControllerResolvers!
-        var stubResolver: StubViewControllerResolvers!
+        var resolver: MTResolver!
+        var stubResolver: StubMTResolvers!
         var mockInteractor: MockBillsInteractor?
         let fakeModels = FakeModels()
         
         beforeEach {
-            resolver = ViewControllerResolvers()
-            stubResolver = StubViewControllerResolvers()
+            resolver = MTResolver()
+            stubResolver = StubMTResolvers()
             
-            presenter = resolver.container.resolve(BillsPresenter.self)
-            mockInteractor = stubResolver.container.resolve(BillsInteractor.self, name: "mock") as? MockBillsInteractor
+            presenter = resolver.container
+                .resolve(BillsPresenter.self)
+            mockInteractor = stubResolver.container
+                .resolve(BillsInteractor.self, name: "mock") as? MockBillsInteractor
+            
             presenter.interactor = mockInteractor
         }
         
@@ -41,9 +44,14 @@ class BillsPresenterTests: QuickSpec {
                 let category = fakeModels.category()
                 
                 beforeEach {
-                    presenter.createBill(amount: 120.0, name: "Create new bill", post: BillDueReminder.onDate.rawValue,
-                                         pre: BillDueReminder.oneDay.rawValue, repeatSchedule: BillRepeatSchedule.never.rawValue,
-                                         startDate: date, category: category)
+                    presenter
+                        .createBill(amount      : 120.0,
+                                    name        : "Create new bill",
+                                    post        : BillDueReminder.onDate.rawValue,
+                                    pre         : BillDueReminder.oneDay.rawValue,
+                                    repeat      : BillRepeatSchedule.never.rawValue,
+                                    startDate   : date,
+                                    category    : category)
                 }
                 it("passes consolidated Bill to interactor", closure: {
                     expect(mockInteractor?.createdBill?.amount) == 120
@@ -56,20 +64,64 @@ class BillsPresenterTests: QuickSpec {
                 })
             })
             
+            context("paying a bill", {
+                let date = Date()
+                let account = fakeModels.account()
+                let bill = fakeModels.bill()
+                let entry = fakeModels.billEntry(for: bill, date: date)
+                
+                beforeEach {
+                    presenter
+                        .payEntry(entry     : entry,
+                                  amount    : 1000,
+                                  account   : account,
+                                  date      : date)
+                }
+
+                it("passes billEntry to pay to interactor", closure: {
+                    expect(mockInteractor?.entryToPay) == entry
+                    expect(mockInteractor?.payAccount) == account
+                    expect(mockInteractor?.payAmount) == 1000
+                    expect(mockInteractor?.payDate) == date
+                })
+            })
+            
+            context("skipping an entry", {
+                let bill = fakeModels.bill()
+                let entry = fakeModels.billEntry(for: bill, date: Date())
+                beforeEach {
+                    presenter.skip(entry: entry)
+                }
+                it("passes entry to skip to interactor", closure: {
+                    expect(mockInteractor?.entryToSkip) == entry
+                })
+            })
+            
+            context("unpaying an entry", { 
+                let bill = fakeModels.bill()
+                let entry = fakeModels.billEntry(for: bill, date: Date())
+                
+                beforeEach {
+                    presenter.unpay(entry: entry)
+                }
+                
+                it("passes entry to unpay to interactor", closure: {
+                    expect(mockInteractor?.entryToUnpay) == entry
+                })
+            })
+            
             context("deleting a bill entry", {
                 context("delete only current bill", {
                     it("asks interactor to delete current bill", closure: {
                         presenter.deleteBillEntry(entry: billEntry, deleteType: ModifyBillType.currentBill)
-                        expect(mockInteractor?.didDeleteBill) == billEntry
-                        expect(mockInteractor?.deleteType) == .currentBill
+                        expect(mockInteractor?.didDeleteBillEntry) == billEntry
                     })
                 })
 
-                context("delete all proceeding bills", {
-                    it("asks interactor to delete proceeding bills", closure: {
+                context("delete all unpaid bills", {
+                    it("asks interactor to delete unpaid bills", closure: {
                         presenter.deleteBillEntry(entry: billEntry, deleteType: ModifyBillType.allBills)
-                        expect(mockInteractor?.didDeleteBill) == billEntry
-                        expect(mockInteractor?.deleteType) == .allBills
+                        expect(mockInteractor?.didDeleteBill) == billEntry.bill
                     })
                 })
             })
@@ -82,37 +134,47 @@ class BillsPresenterTests: QuickSpec {
                         let date = Date().add(2.days)
                         let entryToUpdate = fakeModels.billEntry(for: bill, date: Date())
                         
-                        presenter.editBillEntry(billEntry: entryToUpdate, amount: 999, name: "New Bill Name",
-                                                post: BillDueReminder.threeDays.rawValue, pre: BillDueReminder.twoDays.rawValue,
-                                                startDate: date, category: cat)
+                        presenter
+                            .editBillEntry(billEntry    : entryToUpdate,
+                                           amount       : 999,
+                                           name         : "New Bill Name",
+                                           post         : BillDueReminder.threeDays.rawValue,
+                                           pre          : BillDueReminder.twoDays.rawValue,
+                                           startDate    : date,
+                                           category     : cat)
 
-                        expect(mockInteractor?.newEntry?.amount) == 999
-                        expect(mockInteractor?.newEntry?.dueDate) == date.start(of: .day)
-                        expect(mockInteractor?.newEntry?.customName) == "New Bill Name"
-                        expect(mockInteractor?.newEntry?.customPostDueReminder) == BillDueReminder.threeDays.rawValue
-                        expect(mockInteractor?.newEntry?.customPreDueReminder) == BillDueReminder.twoDays.rawValue
-                        expect(mockInteractor?.newEntry?.customCategory) == cat
+                        expect(mockInteractor?.updatedAmount) == 999
+                        expect(mockInteractor?.updatedDate) == date
+                        expect(mockInteractor?.updatedName) == "New Bill Name"
+                        expect(mockInteractor?.updatedPost) == BillDueReminder.threeDays
+                        expect(mockInteractor?.updatedPre) == BillDueReminder.twoDays
+                        expect(mockInteractor?.updatedCat) == cat
                     })
                 })
-                context("update all proceeding bill entries", {
+                context("update all unpaid bill entries", {
                     it("passes consolidated values to interactor", closure: {
                         let bill = fakeModels.bill()
                         let cat = fakeModels.category()
                         let date = Date().add(2.days)
-                        let proceedingDAte = Date()
                         
-                        presenter.editBillAndEntries(bill: bill, amount: 999, name: "New Bill Name",
-                                                     post: BillDueReminder.threeDays.rawValue, pre: BillDueReminder.twoDays.rawValue,
-                                                     repeatSchedule: BillRepeatSchedule.never.rawValue,
-                                                     startDate: date, category: cat, proceedingDate: proceedingDAte)
+                        presenter
+                            .editBillAndEntries(bill        : bill,
+                                                amount      : 999,
+                                                name        : "New Bill Name",
+                                                post        : BillDueReminder.threeDays.rawValue,
+                                                pre         : BillDueReminder.twoDays.rawValue,
+                                                repeat      : BillRepeatSchedule.never.rawValue,
+                                                startDate   : date,
+                                                category    : cat)
 
-                        expect(mockInteractor?.updatedBill?.amount) == 999
-                        expect(mockInteractor?.updatedBill?.startDate) == date
-                        expect(mockInteractor?.updatedBill?.name) == "New Bill Name"
-                        expect(mockInteractor?.updatedBill?.postDueReminder) == BillDueReminder.threeDays.rawValue
-                        expect(mockInteractor?.updatedBill?.preDueReminder) == BillDueReminder.twoDays.rawValue
-                        expect(mockInteractor?.updatedBill?.repeatSchedule) == BillRepeatSchedule.never.rawValue
-                        expect(mockInteractor?.updatedBill?.category) == cat
+                        expect(mockInteractor?.billToUpdate) == bill
+                        expect(mockInteractor?.updatedAmount) == 999
+                        expect(mockInteractor?.updatedDate) == date
+                        expect(mockInteractor?.updatedName) == "New Bill Name"
+                        expect(mockInteractor?.updatedPost) == BillDueReminder.threeDays
+                        expect(mockInteractor?.updatedPre) == BillDueReminder.twoDays
+                        expect(mockInteractor?.updatedRepeat) == BillRepeatSchedule.never
+                        expect(mockInteractor?.updatedCat) == cat
                     })
                 })
             })

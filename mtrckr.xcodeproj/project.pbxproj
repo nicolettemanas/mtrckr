@@ -18,20 +18,34 @@
 		CE03C2361EC3672F009A6AB0 /* MTDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE03C2351EC3672F009A6AB0 /* MTDetailsTableViewCell.xib */; };
 		CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */; };
 		CE0A4A2D1F02A8D500FCF581 /* AccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A4A2C1F02A8D500FCF581 /* AccountsTableViewController.swift */; };
+		CE0FDF481FA9A3D700321918 /* BillHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0FDF471FA9A3D700321918 /* BillHeaderView.xib */; };
+		CE0FDF4A1FA9A59500321918 /* BillHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0FDF491FA9A59500321918 /* BillHeaderView.swift */; };
 		CE13068B1F677BC500046451 /* MTFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13068A1F677BC500046451 /* MTFormViewController.swift */; };
 		CE130B481EE12F68007C6979 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE130B471EE12F68007C6979 /* RegistrationViewController.swift */; };
+		CE1531C41FA6F5010081892E /* BillHistoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1531C31FA6F5010081892E /* BillHistoryViewControllerTests.swift */; };
+		CE1531C61FA6F9480081892E /* BillsHistoryDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1531C51FA6F9480081892E /* BillsHistoryDataSourceTests.swift */; };
+		CE1531C81FA72E4E0081892E /* BillHistoryViewController+SwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1531C71FA72E4E0081892E /* BillHistoryViewController+SwipeTableViewCell.swift */; };
+		CE1C97AB1FA9A7A1001FB5B8 /* BillFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C97AA1FA9A7A1001FB5B8 /* BillFooterView.swift */; };
 		CE1DD4EB1F39C6D9005EFEDB /* TransactionsListDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1DD4EA1F39C6D9005EFEDB /* TransactionsListDataSourceTests.swift */; };
-		CE1F19461F4B227200468914 /* NewBillPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F19451F4B227200468914 /* NewBillPresenterProtocol.swift */; };
-		CE1F19491F4B22CE00468914 /* MockNewBillPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F19481F4B22CE00468914 /* MockNewBillPresenter.swift */; };
+		CE1F19461F4B227200468914 /* BillVCPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F19451F4B227200468914 /* BillVCPresenter.swift */; };
+		CE1F19491F4B22CE00468914 /* MockBillVCPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F19481F4B22CE00468914 /* MockBillVCPresenter.swift */; };
 		CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */; };
 		CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F31051E9B2AAB0022CA57 /* Transaction.swift */; };
 		CE1F50BD1F30260200C9521B /* TransactionsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F50BC1F30260200C9521B /* TransactionsInteractorTests.swift */; };
 		CE1F947C1F39A1560025C731 /* StubTransactionsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F947B1F39A1560025C731 /* StubTransactionsListDataSource.swift */; };
+		CE23CF501FA9970C00476142 /* BillFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE23CF4F1FA9970C00476142 /* BillFooterView.xib */; };
 		CE248BA51F0E42E500A5453A /* TransactionsChartCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE248BA41F0E42E500A5453A /* TransactionsChartCollectionViewCell.xib */; };
 		CE248BA71F0E449000A5453A /* TransactionsChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE248BA61F0E449000A5453A /* TransactionsChartCollectionViewCell.swift */; };
 		CE24C0471F470760008E780F /* BillsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE24C0461F470760008E780F /* BillsCell.xib */; };
 		CE24C04A1F470E98008E780F /* BillsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE24C0491F470E98008E780F /* BillsCell.swift */; };
 		CE2775BB1F1E00E10014251F /* EmptyTransactionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2775BA1F1E00E10014251F /* EmptyTransactionsDataSource.swift */; };
+		CE2A674F1F908D4400F9C00E /* BillsTableViewController+NewBillDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A674E1F908D4400F9C00E /* BillsTableViewController+NewBillDelegates.swift */; };
+		CE2A67511F9090DA00F9C00E /* BillsTableViewController+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A67501F9090DA00F9C00E /* BillsTableViewController+Protocols.swift */; };
+		CE2A67531F90911500F9C00E /* BillsTableViewController+DataSourceDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A67521F90911500F9C00E /* BillsTableViewController+DataSourceDelegates.swift */; };
+		CE2A67551F90913000F9C00E /* BillsTableViewController+PresenterDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A67541F90913000F9C00E /* BillsTableViewController+PresenterDelegates.swift */; };
+		CE2A67571F9094F300F9C00E /* NewBillViewController+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A67561F9094F300F9C00E /* NewBillViewController+Protocols.swift */; };
+		CE2B3ABE1FA02474004C43B5 /* PayBillViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2B3ABD1FA02474004C43B5 /* PayBillViewController.xib */; };
+		CE2B3AC01FA031B9004C43B5 /* NewBillViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2B3ABF1FA031B9004C43B5 /* NewBillViewController.xib */; };
 		CE2C7DFB1EE567A2002AB5DC /* RealmLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C7DFA1EE567A2002AB5DC /* RealmLoginInteractor.swift */; };
 		CE2C7DFD1EE56B61002AB5DC /* RealmLogoutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C7DFC1EE56B61002AB5DC /* RealmLogoutInteractor.swift */; };
 		CE33EEB91F03498D0047CBF0 /* AccountsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33EEB81F03498D0047CBF0 /* AccountsPresenter.swift */; };
@@ -43,10 +57,6 @@
 		CE3A89BF1E97ED8900EBE809 /* BillEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */; };
 		CE3CDAFC1F0638AC00D4A054 /* ColorsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CDAFB1F0638AC00D4A054 /* ColorsCollectionDataSource.swift */; };
 		CE3CDAFE1F06406800D4A054 /* AccountsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CDAFD1F06406800D4A054 /* AccountsInteractor.swift */; };
-		CE43954F1EE92BCB00C05E4A /* SFText-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954B1EE92BCB00C05E4A /* SFText-Light.otf */; };
-		CE4395501EE92BCB00C05E4A /* SFText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954C1EE92BCB00C05E4A /* SFText-Regular.otf */; };
-		CE4395511EE92BCB00C05E4A /* SFText-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954D1EE92BCB00C05E4A /* SFText-RegularItalic.otf */; };
-		CE4395521EE92BCB00C05E4A /* SFText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE43954E1EE92BCB00C05E4A /* SFText-Semibold.otf */; };
 		CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395531EE93C3C00C05E4A /* MTColors.swift */; };
 		CE4395561EE93E7700C05E4A /* MTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4395551EE93E7700C05E4A /* MTNavigationController.swift */; };
 		CE43EE491F1DBAF6001B394B /* TransactionsCalendarDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43EE481F1DBAF6001B394B /* TransactionsCalendarDataSource.swift */; };
@@ -55,6 +65,8 @@
 		CE44F4131EFB84EC00E035C7 /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F4121EFB84EC00E035C7 /* LoginViewControllerTests.swift */; };
 		CE44F4151EFB876A00E035C7 /* MockPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44F4141EFB876A00E035C7 /* MockPresenterOutput.swift */; };
 		CE4D35C11F065415008146AF /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D35C01F065415008146AF /* AccountTableViewCell.swift */; };
+		CE4FB0001F9F3D6700F560C3 /* BillHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4FAFFF1F9F3D6700F560C3 /* BillHistoryCell.xib */; };
+		CE4FB0021FA01B2C00F560C3 /* BillHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4FB0011FA01B2C00F560C3 /* BillHistoryViewController.xib */; };
 		CE4FC07B1F0C8DA10016437D /* MockTransactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FC07A1F0C8DA10016437D /* MockTransactionsPresenter.swift */; };
 		CE4FC07E1F0C8E340016437D /* AccountTransactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FC07D1F0C8E340016437D /* AccountTransactionsPresenter.swift */; };
 		CE4FC0811F0C8FF40016437D /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FC0801F0C8FF40016437D /* TransactionsTableViewController.swift */; };
@@ -75,8 +87,8 @@
 		CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */; };
 		CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */; };
 		CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE652FFE1E95E54400E5DBA6 /* User.swift */; };
-		CE67C2E01F3C4F1600116D88 /* ViewControllerResolvers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67C2DF1F3C4F1600116D88 /* ViewControllerResolvers.swift */; };
-		CE67C2E21F3C596F00116D88 /* StubViewControllerResolvers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67C2E11F3C596F00116D88 /* StubViewControllerResolvers.swift */; };
+		CE67C2E01F3C4F1600116D88 /* MTResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67C2DF1F3C4F1600116D88 /* MTResolver.swift */; };
+		CE67C2E21F3C596F00116D88 /* StubMTResolvers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67C2E11F3C596F00116D88 /* StubMTResolvers.swift */; };
 		CE7208A61F0DD45300A062B5 /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7208A51F0DD45300A062B5 /* TransactionTableViewCell.xib */; };
 		CE76C99E1F022E6000877C0E /* AccountsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76C99D1F022E6000877C0E /* AccountsTableViewControllerTests.swift */; };
 		CE7A56451F45A853002A91FD /* BillsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A56441F45A853002A91FD /* BillsInteractor.swift */; };
@@ -86,8 +98,12 @@
 		CE7A66E81F3749F100B14A22 /* TransactionTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A66E71F3749F100B14A22 /* TransactionTableViewControllerTests.swift */; };
 		CE7C2F711F42CEB100E96108 /* BillsDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7C2F701F42CEB100E96108 /* BillsDataSourceTests.swift */; };
 		CE811DFE1F17524300D96918 /* NewTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE811DFD1F17524300D96918 /* NewTransactionPresenter.swift */; };
+		CE8A2B331FA1D72000F5E878 /* BillsHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8A2B321FA1D72000F5E878 /* BillsHistoryCell.swift */; };
 		CE943E301F4BC6FF001CE100 /* DeleteBillPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE943E2F1F4BC6FF001CE100 /* DeleteBillPresenter.swift */; };
 		CE943E321F4BC7B1001CE100 /* MockDeleteBillPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE943E311F4BC7B1001CE100 /* MockDeleteBillPresenter.swift */; };
+		CE94D5ED1F9D7CFA0089496D /* BillsDataSource+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5EC1F9D7CF90089496D /* BillsDataSource+TableView.swift */; };
+		CE94D5EF1F9D85630089496D /* BillHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5EE1F9D85630089496D /* BillHistoryViewController.swift */; };
+		CE94D5F11F9D87800089496D /* BillHistoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94D5F01F9D87800089496D /* BillHistoryDataSource.swift */; };
 		CE95CA961F3D887B008DAAAD /* AccountTransactionsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CA951F3D887B008DAAAD /* AccountTransactionsPresenterTests.swift */; };
 		CE987AF21F064E8C0048C5A1 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE987AF11F064E8C0048C5A1 /* AccountTableViewCell.xib */; };
 		CE9AEF5C1F29F5DA00EDD54B /* Date+Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEF5B1F29F5DA00EDD54B /* Date+Converter.swift */; };
@@ -118,7 +134,7 @@
 		CEBC0BAF1F04F4730080DBC9 /* ColorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEBC0BAE1F04F4730080DBC9 /* ColorCollectionViewCell.xib */; };
 		CEBC0BB11F04F56C0080DBC9 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBC0BB01F04F56C0080DBC9 /* ColorCollectionViewCell.swift */; };
 		CEC079AB1F7D082A009A1D78 /* EmptyBillsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079AA1F7D082A009A1D78 /* EmptyBillsDataSource.swift */; };
-		CEC079AD1F7D0B49009A1D78 /* BillsTableViewController++SwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079AC1F7D0B49009A1D78 /* BillsTableViewController++SwipeTableViewCell.swift */; };
+		CEC079AD1F7D0B49009A1D78 /* BillsTableViewController+SwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079AC1F7D0B49009A1D78 /* BillsTableViewController+SwipeTableViewCell.swift */; };
 		CEC0988E1F0F8AF500D5E7B0 /* TransactionsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0988D1F0F8AF500D5E7B0 /* TransactionsListDataSource.swift */; };
 		CEC098901F10F40B00D5E7B0 /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0988F1F10F40B00D5E7B0 /* NewTransactionViewController.swift */; };
 		CEC8694F1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC8694E1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib */; };
@@ -126,6 +142,7 @@
 		CEC869541F42CD1400A2FCAA /* BillsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC869531F42CD1400A2FCAA /* BillsTableViewControllerTests.swift */; };
 		CEC869571F42CD5400A2FCAA /* BillsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC869561F42CD5400A2FCAA /* BillsTableViewController.swift */; };
 		CEC8695A1F42CD9800A2FCAA /* BillsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC869591F42CD9800A2FCAA /* BillsDataSource.swift */; };
+		CED51ACF1F93A30B0064D55C /* PayBillViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED51ACE1F93A30B0064D55C /* PayBillViewControllerTests.swift */; };
 		CED88E431EE90EEE00D147B9 /* UIFont+AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED88E421EE90EEE00D147B9 /* UIFont+AppFont.swift */; };
 		CEEC83741F178BB50009626C /* AccountsSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC83731F178BB50009626C /* AccountsSelectionViewController.swift */; };
 		CEEE21D71F0E372800442E9F /* TransactionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE21D61F0E372800442E9F /* TransactionsInteractor.swift */; };
@@ -166,6 +183,8 @@
 		CEFECF4D1F111EE6001F7E59 /* CategoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFECF4C1F111EE6001F7E59 /* CategoryCollectionCell.xib */; };
 		CEFECF4F1F11202A001F7E59 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFECF4E1F11202A001F7E59 /* CategoryCollectionCell.swift */; };
 		CEFF80731F03BC3100FF65EC /* NewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF80721F03BC3100FF65EC /* NewAccountViewController.swift */; };
+		CEFFA19B1F92183C00F337C9 /* PayBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFFA19A1F92183C00F337C9 /* PayBillViewController.swift */; };
+		CEFFA19D1F921F4900F337C9 /* PayBillViewController+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFFA19C1F921F4900F337C9 /* PayBillViewController+Protocols.swift */; };
 		F0AFE4DB9F9686E90E30B44B /* Pods_mtrckr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D471B1511513CA1AB286D1E0 /* Pods_mtrckr.framework */; };
 /* End PBXBuildFile section */
 
@@ -193,20 +212,34 @@
 		CE03C2351EC3672F009A6AB0 /* MTDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MTDetailsTableViewCell.xib; path = Views/XIBs/MTDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		CE0783941ED3D6470007AD15 /* EncryptionInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptionInteractor.swift; path = Interactors/Encryption/EncryptionInteractor.swift; sourceTree = "<group>"; };
 		CE0A4A2C1F02A8D500FCF581 /* AccountsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountsTableViewController.swift; path = ViewControllers/Tabs/AccountsTableViewController.swift; sourceTree = "<group>"; };
+		CE0FDF471FA9A3D700321918 /* BillHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BillHeaderView.xib; path = Views/XIBs/Bills/BillHeaderView.xib; sourceTree = "<group>"; };
+		CE0FDF491FA9A59500321918 /* BillHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillHeaderView.swift; path = Views/Class/Bills/BillHeaderView.swift; sourceTree = "<group>"; };
 		CE13068A1F677BC500046451 /* MTFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MTFormViewController.swift; path = "ViewControllers/Base Class/MTFormViewController.swift"; sourceTree = "<group>"; };
 		CE130B471EE12F68007C6979 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = ViewControllers/Authentication/RegistrationViewController.swift; sourceTree = "<group>"; };
+		CE1531C31FA6F5010081892E /* BillHistoryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillHistoryViewControllerTests.swift; sourceTree = "<group>"; };
+		CE1531C51FA6F9480081892E /* BillsHistoryDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsHistoryDataSourceTests.swift; sourceTree = "<group>"; };
+		CE1531C71FA72E4E0081892E /* BillHistoryViewController+SwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BillHistoryViewController+SwipeTableViewCell.swift"; path = "ViewControllers/Bills/Extensions/BillHistoryViewController+SwipeTableViewCell.swift"; sourceTree = "<group>"; };
+		CE1C97AA1FA9A7A1001FB5B8 /* BillFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillFooterView.swift; path = Views/Class/Bills/BillFooterView.swift; sourceTree = "<group>"; };
 		CE1DD4EA1F39C6D9005EFEDB /* TransactionsListDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsListDataSourceTests.swift; sourceTree = "<group>"; };
-		CE1F19451F4B227200468914 /* NewBillPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewBillPresenterProtocol.swift; path = Presenters/Bills/NewBillPresenterProtocol.swift; sourceTree = "<group>"; };
-		CE1F19481F4B22CE00468914 /* MockNewBillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNewBillPresenter.swift; sourceTree = "<group>"; };
+		CE1F19451F4B227200468914 /* BillVCPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillVCPresenter.swift; path = Presenters/Bills/BillVCPresenter.swift; sourceTree = "<group>"; };
+		CE1F19481F4B22CE00468914 /* MockBillVCPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBillVCPresenter.swift; sourceTree = "<group>"; };
 		CE1F31031E9B25BC0022CA57 /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TransactionTests.swift; path = TransactionTests/TransactionTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE1F31051E9B2AAB0022CA57 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transaction.swift; path = Models/Transaction.swift; sourceTree = "<group>"; };
 		CE1F50BC1F30260200C9521B /* TransactionsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsInteractorTests.swift; sourceTree = "<group>"; };
 		CE1F947B1F39A1560025C731 /* StubTransactionsListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubTransactionsListDataSource.swift; sourceTree = "<group>"; };
+		CE23CF4F1FA9970C00476142 /* BillFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BillFooterView.xib; path = Views/XIBs/Bills/BillFooterView.xib; sourceTree = "<group>"; };
 		CE248BA41F0E42E500A5453A /* TransactionsChartCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionsChartCollectionViewCell.xib; path = Views/XIBs/Transactions/TransactionsChartCollectionViewCell.xib; sourceTree = "<group>"; };
 		CE248BA61F0E449000A5453A /* TransactionsChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionsChartCollectionViewCell.swift; path = Views/Class/Transactions/TransactionsChartCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE24C0461F470760008E780F /* BillsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BillsCell.xib; path = Views/XIBs/Bills/BillsCell.xib; sourceTree = "<group>"; };
 		CE24C0491F470E98008E780F /* BillsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillsCell.swift; path = Views/Class/Bills/BillsCell.swift; sourceTree = "<group>"; };
 		CE2775BA1F1E00E10014251F /* EmptyTransactionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyTransactionsDataSource.swift; path = Interactors/Transactions/EmptyTransactionsDataSource.swift; sourceTree = "<group>"; };
+		CE2A674E1F908D4400F9C00E /* BillsTableViewController+NewBillDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BillsTableViewController+NewBillDelegates.swift"; path = "ViewControllers/Bills/Extensions/BillsTableViewController+NewBillDelegates.swift"; sourceTree = "<group>"; };
+		CE2A67501F9090DA00F9C00E /* BillsTableViewController+Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BillsTableViewController+Protocols.swift"; path = "ViewControllers/Bills/Extensions/BillsTableViewController+Protocols.swift"; sourceTree = "<group>"; };
+		CE2A67521F90911500F9C00E /* BillsTableViewController+DataSourceDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BillsTableViewController+DataSourceDelegates.swift"; path = "ViewControllers/Bills/Extensions/BillsTableViewController+DataSourceDelegates.swift"; sourceTree = "<group>"; };
+		CE2A67541F90913000F9C00E /* BillsTableViewController+PresenterDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BillsTableViewController+PresenterDelegates.swift"; path = "ViewControllers/Bills/Extensions/BillsTableViewController+PresenterDelegates.swift"; sourceTree = "<group>"; };
+		CE2A67561F9094F300F9C00E /* NewBillViewController+Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NewBillViewController+Protocols.swift"; path = "ViewControllers/Bills/Extensions/NewBillViewController+Protocols.swift"; sourceTree = "<group>"; };
+		CE2B3ABD1FA02474004C43B5 /* PayBillViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PayBillViewController.xib; path = Views/XIBs/Bills/PayBillViewController.xib; sourceTree = "<group>"; };
+		CE2B3ABF1FA031B9004C43B5 /* NewBillViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewBillViewController.xib; path = Views/XIBs/Bills/NewBillViewController.xib; sourceTree = "<group>"; };
 		CE2C7DFA1EE567A2002AB5DC /* RealmLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmLoginInteractor.swift; path = Interactors/Authentication/RealmLoginInteractor.swift; sourceTree = "<group>"; };
 		CE2C7DFC1EE56B61002AB5DC /* RealmLogoutInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmLogoutInteractor.swift; path = Interactors/Authentication/RealmLogoutInteractor.swift; sourceTree = "<group>"; };
 		CE33EEB81F03498D0047CBF0 /* AccountsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountsPresenter.swift; path = Presenters/Accounts/AccountsPresenter.swift; sourceTree = "<group>"; };
@@ -218,10 +251,6 @@
 		CE3A89BE1E97ED8900EBE809 /* BillEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BillEntryTests.swift; path = BillTests/BillEntryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE3CDAFB1F0638AC00D4A054 /* ColorsCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorsCollectionDataSource.swift; path = Interactors/Accounts/ColorsCollectionDataSource.swift; sourceTree = "<group>"; };
 		CE3CDAFD1F06406800D4A054 /* AccountsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountsInteractor.swift; path = Interactors/Accounts/AccountsInteractor.swift; sourceTree = "<group>"; };
-		CE43954B1EE92BCB00C05E4A /* SFText-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Light.otf"; path = "Sources/Fonts/SFText-Light.otf"; sourceTree = "<group>"; };
-		CE43954C1EE92BCB00C05E4A /* SFText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Regular.otf"; path = "Sources/Fonts/SFText-Regular.otf"; sourceTree = "<group>"; };
-		CE43954D1EE92BCB00C05E4A /* SFText-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-RegularItalic.otf"; path = "Sources/Fonts/SFText-RegularItalic.otf"; sourceTree = "<group>"; };
-		CE43954E1EE92BCB00C05E4A /* SFText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFText-Semibold.otf"; path = "Sources/Fonts/SFText-Semibold.otf"; sourceTree = "<group>"; };
 		CE4395531EE93C3C00C05E4A /* MTColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTColors.swift; path = Configs/MTColors.swift; sourceTree = "<group>"; };
 		CE4395551EE93E7700C05E4A /* MTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTNavigationController.swift; path = "ViewControllers/Base Class/MTNavigationController.swift"; sourceTree = "<group>"; };
 		CE43EE481F1DBAF6001B394B /* TransactionsCalendarDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionsCalendarDataSource.swift; path = Interactors/Transactions/TransactionsCalendarDataSource.swift; sourceTree = "<group>"; };
@@ -230,6 +259,8 @@
 		CE44F4121EFB84EC00E035C7 /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewControllerTests.swift; path = Authentication/LoginViewControllerTests.swift; sourceTree = "<group>"; };
 		CE44F4141EFB876A00E035C7 /* MockPresenterOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockPresenterOutput.swift; path = Authentication/MockPresenterOutput.swift; sourceTree = "<group>"; };
 		CE4D35C01F065415008146AF /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountTableViewCell.swift; path = Views/XIBs/Accounts/AccountTableViewCell.swift; sourceTree = "<group>"; };
+		CE4FAFFF1F9F3D6700F560C3 /* BillHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BillHistoryCell.xib; path = Views/XIBs/Bills/BillHistoryCell.xib; sourceTree = "<group>"; };
+		CE4FB0011FA01B2C00F560C3 /* BillHistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BillHistoryViewController.xib; path = Views/XIBs/Bills/BillHistoryViewController.xib; sourceTree = "<group>"; };
 		CE4FC07A1F0C8DA10016437D /* MockTransactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTransactionsPresenter.swift; sourceTree = "<group>"; };
 		CE4FC07D1F0C8E340016437D /* AccountTransactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountTransactionsPresenter.swift; path = Presenters/Transactions/AccountTransactionsPresenter.swift; sourceTree = "<group>"; };
 		CE4FC0801F0C8FF40016437D /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionsTableViewController.swift; path = ViewControllers/Transactions/TransactionsTableViewController.swift; sourceTree = "<group>"; };
@@ -250,8 +281,8 @@
 		CE652FF91E95D93500E5DBA6 /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CategoryTests.swift; path = CategoryTests/CategoryTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFC1E95E2B900E5DBA6 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AccountTests.swift; path = AccountTests/AccountTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE652FFE1E95E54400E5DBA6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
-		CE67C2DF1F3C4F1600116D88 /* ViewControllerResolvers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerResolvers.swift; path = Utils/Resolvers/ViewControllerResolvers.swift; sourceTree = "<group>"; };
-		CE67C2E11F3C596F00116D88 /* StubViewControllerResolvers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubViewControllerResolvers.swift; sourceTree = "<group>"; };
+		CE67C2DF1F3C4F1600116D88 /* MTResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MTResolver.swift; path = Utils/Resolvers/MTResolver.swift; sourceTree = "<group>"; };
+		CE67C2E11F3C596F00116D88 /* StubMTResolvers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubMTResolvers.swift; sourceTree = "<group>"; };
 		CE7208A51F0DD45300A062B5 /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionTableViewCell.xib; path = Views/XIBs/Transactions/TransactionTableViewCell.xib; sourceTree = "<group>"; };
 		CE76C99D1F022E6000877C0E /* AccountsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTableViewControllerTests.swift; sourceTree = "<group>"; };
 		CE7A56441F45A853002A91FD /* BillsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillsInteractor.swift; path = Interactors/Bills/BillsInteractor.swift; sourceTree = "<group>"; };
@@ -261,8 +292,12 @@
 		CE7A66E71F3749F100B14A22 /* TransactionTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewControllerTests.swift; sourceTree = "<group>"; };
 		CE7C2F701F42CEB100E96108 /* BillsDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDataSourceTests.swift; sourceTree = "<group>"; };
 		CE811DFD1F17524300D96918 /* NewTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewTransactionPresenter.swift; path = Presenters/Transactions/NewTransactionPresenter.swift; sourceTree = "<group>"; };
+		CE8A2B321FA1D72000F5E878 /* BillsHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillsHistoryCell.swift; path = Views/Class/Bills/BillsHistoryCell.swift; sourceTree = "<group>"; };
 		CE943E2F1F4BC6FF001CE100 /* DeleteBillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeleteBillPresenter.swift; path = Presenters/Bills/DeleteBillPresenter.swift; sourceTree = "<group>"; };
 		CE943E311F4BC7B1001CE100 /* MockDeleteBillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeleteBillPresenter.swift; sourceTree = "<group>"; };
+		CE94D5EC1F9D7CF90089496D /* BillsDataSource+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BillsDataSource+TableView.swift"; path = "Interactors/Bills/BillsDataSource+TableView.swift"; sourceTree = "<group>"; };
+		CE94D5EE1F9D85630089496D /* BillHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillHistoryViewController.swift; path = ViewControllers/Bills/BillHistoryViewController.swift; sourceTree = "<group>"; };
+		CE94D5F01F9D87800089496D /* BillHistoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillHistoryDataSource.swift; path = Interactors/Bills/BillHistoryDataSource.swift; sourceTree = "<group>"; };
 		CE95CA951F3D887B008DAAAD /* AccountTransactionsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountTransactionsPresenterTests.swift; path = mtrckrTests/Accounts/AccountTransactionsPresenterTests.swift; sourceTree = SOURCE_ROOT; };
 		CE987AF11F064E8C0048C5A1 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountTableViewCell.xib; path = Views/XIBs/Accounts/AccountTableViewCell.xib; sourceTree = "<group>"; };
 		CE9AEF5B1F29F5DA00EDD54B /* Date+Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+Converter.swift"; path = "Utils/Date+Converter.swift"; sourceTree = "<group>"; };
@@ -293,7 +328,7 @@
 		CEBC0BAE1F04F4730080DBC9 /* ColorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ColorCollectionViewCell.xib; path = Views/XIBs/Accounts/ColorCollectionViewCell.xib; sourceTree = "<group>"; };
 		CEBC0BB01F04F56C0080DBC9 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorCollectionViewCell.swift; path = Views/Class/Accounts/ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEC079AA1F7D082A009A1D78 /* EmptyBillsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyBillsDataSource.swift; path = Interactors/Bills/EmptyBillsDataSource.swift; sourceTree = "<group>"; };
-		CEC079AC1F7D0B49009A1D78 /* BillsTableViewController++SwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BillsTableViewController++SwipeTableViewCell.swift"; path = "ViewControllers/Bills/BillsTableViewController++SwipeTableViewCell.swift"; sourceTree = "<group>"; };
+		CEC079AC1F7D0B49009A1D78 /* BillsTableViewController+SwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BillsTableViewController+SwipeTableViewCell.swift"; path = "ViewControllers/Bills/BillsTableViewController+SwipeTableViewCell.swift"; sourceTree = "<group>"; };
 		CEC0988D1F0F8AF500D5E7B0 /* TransactionsListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionsListDataSource.swift; path = Interactors/Transactions/TransactionsListDataSource.swift; sourceTree = "<group>"; };
 		CEC0988F1F10F40B00D5E7B0 /* NewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewTransactionViewController.swift; path = ViewControllers/Transactions/NewTransactionViewController.swift; sourceTree = "<group>"; };
 		CEC8694E1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountsFilterHeaderView.xib; path = Views/XIBs/Accounts/AccountsFilterHeaderView.xib; sourceTree = "<group>"; };
@@ -301,6 +336,7 @@
 		CEC869531F42CD1400A2FCAA /* BillsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsTableViewControllerTests.swift; sourceTree = "<group>"; };
 		CEC869561F42CD5400A2FCAA /* BillsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillsTableViewController.swift; path = ViewControllers/Bills/BillsTableViewController.swift; sourceTree = "<group>"; };
 		CEC869591F42CD9800A2FCAA /* BillsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillsDataSource.swift; path = Interactors/Bills/BillsDataSource.swift; sourceTree = "<group>"; };
+		CED51ACE1F93A30B0064D55C /* PayBillViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PayBillViewControllerTests.swift; path = mtrckrTests/Bills/PayBillViewControllerTests.swift; sourceTree = SOURCE_ROOT; };
 		CED88E421EE90EEE00D147B9 /* UIFont+AppFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIFont+AppFont.swift"; path = "Sources/Extensions/UIFont+AppFont.swift"; sourceTree = "<group>"; };
 		CEEC83731F178BB50009626C /* AccountsSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountsSelectionViewController.swift; path = ViewControllers/Accounts/AccountsSelectionViewController.swift; sourceTree = "<group>"; };
 		CEEE21D61F0E372800442E9F /* TransactionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionsInteractor.swift; path = Interactors/Transactions/TransactionsInteractor.swift; sourceTree = "<group>"; };
@@ -347,6 +383,8 @@
 		CEFECF4C1F111EE6001F7E59 /* CategoryCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CategoryCollectionCell.xib; path = Views/XIBs/CategoryCollectionCell.xib; sourceTree = "<group>"; };
 		CEFECF4E1F11202A001F7E59 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryCollectionCell.swift; path = "Views/Class/Base Classes/CategoryCollectionCell.swift"; sourceTree = "<group>"; };
 		CEFF80721F03BC3100FF65EC /* NewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewAccountViewController.swift; path = ViewControllers/Accounts/NewAccountViewController.swift; sourceTree = "<group>"; };
+		CEFFA19A1F92183C00F337C9 /* PayBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PayBillViewController.swift; path = ViewControllers/Bills/PayBillViewController.swift; sourceTree = "<group>"; };
+		CEFFA19C1F921F4900F337C9 /* PayBillViewController+Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PayBillViewController+Protocols.swift"; path = "ViewControllers/Bills/Extensions/PayBillViewController+Protocols.swift"; sourceTree = "<group>"; };
 		D471B1511513CA1AB286D1E0 /* Pods_mtrckr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mtrckr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC8AC50703F81BF568E86F58 /* Pods-mtrckr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mtrckr.release.xcconfig"; path = "Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr.release.xcconfig"; sourceTree = "<group>"; };
 		E3D12754D195FAC6D0B9EE06 /* Pods-Tests-mtrckrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -495,7 +533,7 @@
 		CE1F19441F4B225700468914 /* Bills */ = {
 			isa = PBXGroup;
 			children = (
-				CE1F19451F4B227200468914 /* NewBillPresenterProtocol.swift */,
+				CE1F19451F4B227200468914 /* BillVCPresenter.swift */,
 				CE943E2F1F4BC6FF001CE100 /* DeleteBillPresenter.swift */,
 				CEEFD1211F4D8FD000477BF8 /* BillsPresenter.swift */,
 			);
@@ -505,7 +543,7 @@
 		CE1F19471F4B22BE00468914 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				CE1F19481F4B22CE00468914 /* MockNewBillPresenter.swift */,
+				CE1F19481F4B22CE00468914 /* MockBillVCPresenter.swift */,
 				CE943E311F4BC7B1001CE100 /* MockDeleteBillPresenter.swift */,
 				CEEFD1231F4D90B300477BF8 /* MockBillsPresenter.swift */,
 				CE9E67411F4FF3E0008A7804 /* MockBillsInteractor.swift */,
@@ -534,6 +572,12 @@
 			isa = PBXGroup;
 			children = (
 				CE24C0461F470760008E780F /* BillsCell.xib */,
+				CE4FAFFF1F9F3D6700F560C3 /* BillHistoryCell.xib */,
+				CE4FB0011FA01B2C00F560C3 /* BillHistoryViewController.xib */,
+				CE2B3ABD1FA02474004C43B5 /* PayBillViewController.xib */,
+				CE2B3ABF1FA031B9004C43B5 /* NewBillViewController.xib */,
+				CE23CF4F1FA9970C00476142 /* BillFooterView.xib */,
+				CE0FDF471FA9A3D700321918 /* BillHeaderView.xib */,
 			);
 			name = Bills;
 			sourceTree = "<group>";
@@ -542,8 +586,26 @@
 			isa = PBXGroup;
 			children = (
 				CE24C0491F470E98008E780F /* BillsCell.swift */,
+				CE8A2B321FA1D72000F5E878 /* BillsHistoryCell.swift */,
+				CE0FDF491FA9A59500321918 /* BillHeaderView.swift */,
+				CE1C97AA1FA9A7A1001FB5B8 /* BillFooterView.swift */,
 			);
 			name = Bills;
+			sourceTree = "<group>";
+		};
+		CE2A674D1F908D1300F9C00E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEC079AC1F7D0B49009A1D78 /* BillsTableViewController+SwipeTableViewCell.swift */,
+				CE2A674E1F908D4400F9C00E /* BillsTableViewController+NewBillDelegates.swift */,
+				CE2A67501F9090DA00F9C00E /* BillsTableViewController+Protocols.swift */,
+				CE2A67521F90911500F9C00E /* BillsTableViewController+DataSourceDelegates.swift */,
+				CE2A67541F90913000F9C00E /* BillsTableViewController+PresenterDelegates.swift */,
+				CE2A67561F9094F300F9C00E /* NewBillViewController+Protocols.swift */,
+				CEFFA19C1F921F4900F337C9 /* PayBillViewController+Protocols.swift */,
+				CE1531C71FA72E4E0081892E /* BillHistoryViewController+SwipeTableViewCell.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		CE33EEB71F0349570047CBF0 /* Accounts */ = {
@@ -620,7 +682,7 @@
 		CE5395FD1F45C9E600493E13 /* CommonStubs */ = {
 			isa = PBXGroup;
 			children = (
-				CE67C2E11F3C596F00116D88 /* StubViewControllerResolvers.swift */,
+				CE67C2E11F3C596F00116D88 /* StubMTResolvers.swift */,
 				CE5395FE1F45CA0900493E13 /* StubRealm.swift */,
 			);
 			path = CommonStubs;
@@ -709,7 +771,7 @@
 		CE67C2DE1F3C4EF300116D88 /* ViewControllerResolvers */ = {
 			isa = PBXGroup;
 			children = (
-				CE67C2DF1F3C4F1600116D88 /* ViewControllerResolvers.swift */,
+				CE67C2DF1F3C4F1600116D88 /* MTResolver.swift */,
 			);
 			name = ViewControllerResolvers;
 			sourceTree = "<group>";
@@ -746,6 +808,7 @@
 		CEA4A0B51F432AB90096E5EB /* Stub */ = {
 			isa = PBXGroup;
 			children = (
+				CED51ACE1F93A30B0064D55C /* PayBillViewControllerTests.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -767,7 +830,6 @@
 				CEF044AF1EDDD46500486EAC /* InitialRealmGenerator.swift */,
 				CE3A3F2E1F0A419C0079D38F /* UserObserver.swift */,
 				CE5BD7611F0E24C900CCFD11 /* MTNumberFormatter.swift */,
-				CE9AEF5B1F29F5DA00EDD54B /* Date+Converter.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -837,6 +899,8 @@
 				CEA4A0B51F432AB90096E5EB /* Stub */,
 				CEC869531F42CD1400A2FCAA /* BillsTableViewControllerTests.swift */,
 				CE7C2F701F42CEB100E96108 /* BillsDataSourceTests.swift */,
+				CE1531C31FA6F5010081892E /* BillHistoryViewControllerTests.swift */,
+				CE1531C51FA6F9480081892E /* BillsHistoryDataSourceTests.swift */,
 				CE5395FB1F45ABB600493E13 /* BillsInteractorTests.swift */,
 				CE9E673F1F4FF1F7008A7804 /* BillsPresenterTests.swift */,
 				CEEEC1C51F5E9C050015D2A5 /* NewBillViewControllerTests.swift */,
@@ -847,9 +911,11 @@
 		CEC869551F42CD3F00A2FCAA /* Bills */ = {
 			isa = PBXGroup;
 			children = (
+				CE2A674D1F908D1300F9C00E /* Extensions */,
 				CEC869561F42CD5400A2FCAA /* BillsTableViewController.swift */,
 				CEEEC1C71F5E9F1A0015D2A5 /* NewBillViewController.swift */,
-				CEC079AC1F7D0B49009A1D78 /* BillsTableViewController++SwipeTableViewCell.swift */,
+				CEFFA19A1F92183C00F337C9 /* PayBillViewController.swift */,
+				CE94D5EE1F9D85630089496D /* BillHistoryViewController.swift */,
 			);
 			name = Bills;
 			sourceTree = "<group>";
@@ -858,8 +924,10 @@
 			isa = PBXGroup;
 			children = (
 				CEC869591F42CD9800A2FCAA /* BillsDataSource.swift */,
+				CE94D5EC1F9D7CF90089496D /* BillsDataSource+TableView.swift */,
 				CE7A56441F45A853002A91FD /* BillsInteractor.swift */,
 				CEC079AA1F7D082A009A1D78 /* EmptyBillsDataSource.swift */,
+				CE94D5F01F9D87800089496D /* BillHistoryDataSource.swift */,
 			);
 			name = Bills;
 			sourceTree = "<group>";
@@ -868,6 +936,7 @@
 			isa = PBXGroup;
 			children = (
 				CED88E421EE90EEE00D147B9 /* UIFont+AppFont.swift */,
+				CE9AEF5B1F29F5DA00EDD54B /* Date+Converter.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -875,10 +944,6 @@
 		CED88E441EE910D400D147B9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				CE43954B1EE92BCB00C05E4A /* SFText-Light.otf */,
-				CE43954C1EE92BCB00C05E4A /* SFText-Regular.otf */,
-				CE43954D1EE92BCB00C05E4A /* SFText-RegularItalic.otf */,
-				CE43954E1EE92BCB00C05E4A /* SFText-Semibold.otf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -1157,6 +1222,7 @@
 					CEFB229A1E94FC2100867CDA = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = DXH96DDY7G;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					CEFB22AE1E94FC2100867CDA = {
@@ -1192,26 +1258,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7208A61F0DD45300A062B5 /* TransactionTableViewCell.xib in Resources */,
-				CE4395501EE92BCB00C05E4A /* SFText-Regular.otf in Resources */,
-				CE4395511EE92BCB00C05E4A /* SFText-RegularItalic.otf in Resources */,
 				CEBC0BAF1F04F4730080DBC9 /* ColorCollectionViewCell.xib in Resources */,
 				CEF044BC1EDF0A9F00486EAC /* Settings.storyboard in Resources */,
+				CE2B3AC01FA031B9004C43B5 /* NewBillViewController.xib in Resources */,
 				CE03C2361EC3672F009A6AB0 /* MTDetailsTableViewCell.xib in Resources */,
-				CE4395521EE92BCB00C05E4A /* SFText-Semibold.otf in Resources */,
 				CEFECF4B1F111D03001F7E59 /* CategoryCell.xib in Resources */,
 				CE62B7451F03E8960064A159 /* AccountTypeCollectionViewCell.xib in Resources */,
 				CEF044B31EDEABC400486EAC /* Currency.json in Resources */,
 				CE248BA51F0E42E500A5453A /* TransactionsChartCollectionViewCell.xib in Resources */,
+				CE23CF501FA9970C00476142 /* BillFooterView.xib in Resources */,
 				CEF044C61EDFEF4100486EAC /* Bills.storyboard in Resources */,
 				CEF044BE1EDFEA3100486EAC /* Main.storyboard in Resources */,
 				CEFB22A91E94FC2100867CDA /* LaunchScreen.storyboard in Resources */,
 				CEF044B91EDEADE800486EAC /* Category.json in Resources */,
 				CE24C0471F470760008E780F /* BillsCell.xib in Resources */,
 				CEC8694F1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib in Resources */,
+				CE2B3ABE1FA02474004C43B5 /* PayBillViewController.xib in Resources */,
 				CEF044C81EDFEF4B00486EAC /* Summary.storyboard in Resources */,
+				CE0FDF481FA9A3D700321918 /* BillHeaderView.xib in Resources */,
 				CEF044C21EDFEE6C00486EAC /* Today.storyboard in Resources */,
-				CE43954F1EE92BCB00C05E4A /* SFText-Light.otf in Resources */,
 				CEFB22A61E94FC2100867CDA /* Assets.xcassets in Resources */,
+				CE4FB0021FA01B2C00F560C3 /* BillHistoryViewController.xib in Resources */,
+				CE4FB0001F9F3D6700F560C3 /* BillHistoryCell.xib in Resources */,
 				CEF044B51EDEACD700486EAC /* AccountType.json in Resources */,
 				CE987AF21F064E8C0048C5A1 /* AccountTableViewCell.xib in Resources */,
 				CEFECF4D1F111EE6001F7E59 /* CategoryCollectionCell.xib in Resources */,
@@ -1352,23 +1420,28 @@
 				CEFB22C51E94FD8B00867CDA /* Currency.swift in Sources */,
 				CEC098901F10F40B00D5E7B0 /* NewTransactionViewController.swift in Sources */,
 				CEEE21D71F0E372800442E9F /* TransactionsInteractor.swift in Sources */,
+				CE2A67571F9094F300F9C00E /* NewBillViewController+Protocols.swift in Sources */,
 				CE33EEB91F03498D0047CBF0 /* AccountsPresenter.swift in Sources */,
-				CEC079AD1F7D0B49009A1D78 /* BillsTableViewController++SwipeTableViewCell.swift in Sources */,
+				CEC079AD1F7D0B49009A1D78 /* BillsTableViewController+SwipeTableViewCell.swift in Sources */,
 				CEEFD1221F4D8FD000477BF8 /* BillsPresenter.swift in Sources */,
+				CE94D5EF1F9D85630089496D /* BillHistoryViewController.swift in Sources */,
 				CEFB22A11E94FC2100867CDA /* ViewController.swift in Sources */,
 				CEFB22C71E94FD8B00867CDA /* Category.swift in Sources */,
 				CE43EE491F1DBAF6001B394B /* TransactionsCalendarDataSource.swift in Sources */,
 				CE610A5C1F4147B000DCECE2 /* AccountsFilterViewController.swift in Sources */,
 				CE3A3F2F1F0A419C0079D38F /* UserObserver.swift in Sources */,
+				CE2A67551F90913000F9C00E /* BillsTableViewController+PresenterDelegates.swift in Sources */,
 				CE03C22F1EC365F3009A6AB0 /* MTTextInputTableViewCell.swift in Sources */,
 				CE3CDAFC1F0638AC00D4A054 /* ColorsCollectionDataSource.swift in Sources */,
-				CE1F19461F4B227200468914 /* NewBillPresenterProtocol.swift in Sources */,
+				CE1F19461F4B227200468914 /* BillVCPresenter.swift in Sources */,
 				CE5BD7621F0E24C900CCFD11 /* MTNumberFormatter.swift in Sources */,
 				CE4395561EE93E7700C05E4A /* MTNavigationController.swift in Sources */,
 				CE943E301F4BC6FF001CE100 /* DeleteBillPresenter.swift in Sources */,
 				CE03C2341EC36711009A6AB0 /* MTTableViewCell.swift in Sources */,
+				CE94D5ED1F9D7CFA0089496D /* BillsDataSource+TableView.swift in Sources */,
 				CEF044E11EE0214F00486EAC /* MTViewController.swift in Sources */,
 				CE1F31061E9B2AAB0022CA57 /* Transaction.swift in Sources */,
+				CE94D5F11F9D87800089496D /* BillHistoryDataSource.swift in Sources */,
 				CEFB22C41E94FD8B00867CDA /* AccountType.swift in Sources */,
 				CEA6ABC41F27476A006F15B0 /* CustomCalendarCell.swift in Sources */,
 				CEB0D1E41F0B71F40044A433 /* NewAccountPresenter.swift in Sources */,
@@ -1379,18 +1452,23 @@
 				CE4FC0811F0C8FF40016437D /* TransactionsTableViewController.swift in Sources */,
 				CE4D35C11F065415008146AF /* AccountTableViewCell.swift in Sources */,
 				CEBC0BB11F04F56C0080DBC9 /* ColorCollectionViewCell.swift in Sources */,
+				CE0FDF4A1FA9A59500321918 /* BillHeaderView.swift in Sources */,
 				CE4FC07E1F0C8E340016437D /* AccountTransactionsPresenter.swift in Sources */,
 				CE811DFE1F17524300D96918 /* NewTransactionPresenter.swift in Sources */,
+				CE2A67511F9090DA00F9C00E /* BillsTableViewController+Protocols.swift in Sources */,
 				CE4FC0831F0CB8090016437D /* TransactionsPresenter.swift in Sources */,
 				CEF044CC1EDFF44000486EAC /* MTSettingsTableViewCell.swift in Sources */,
 				CE652FFF1E95E54400E5DBA6 /* User.swift in Sources */,
+				CEFFA19B1F92183C00F337C9 /* PayBillViewController.swift in Sources */,
 				CE62B7481F03E9EC0064A159 /* AccountTypeCollectionViewCell.swift in Sources */,
 				CE03C22B1EC3652A009A6AB0 /* MTButton.swift in Sources */,
 				CE2775BB1F1E00E10014251F /* EmptyTransactionsDataSource.swift in Sources */,
 				CEF044DA1EE020FE00486EAC /* SettingsTableViewController.swift in Sources */,
 				CE03C2321EC36686009A6AB0 /* MTFormModalView.swift in Sources */,
 				CEFF80731F03BC3100FF65EC /* NewAccountViewController.swift in Sources */,
+				CE8A2B331FA1D72000F5E878 /* BillsHistoryCell.swift in Sources */,
 				CEFB229F1E94FC2100867CDA /* AppDelegate.swift in Sources */,
+				CE1C97AB1FA9A7A1001FB5B8 /* BillFooterView.swift in Sources */,
 				CEB0D1E21F0B71A00044A433 /* AccountsTableViewController+SwipeTableViewCell.swift in Sources */,
 				CEFB22C91E94FD9F00867CDA /* Account.swift in Sources */,
 				CE3CDAFE1F06406800D4A054 /* AccountsInteractor.swift in Sources */,
@@ -1398,10 +1476,12 @@
 				CEC8695A1F42CD9800A2FCAA /* BillsDataSource.swift in Sources */,
 				CEEC83741F178BB50009626C /* AccountsSelectionViewController.swift in Sources */,
 				CEB403C21EF3647F0013CB3C /* SettingsPresenter.swift in Sources */,
+				CE1531C81FA72E4E0081892E /* BillHistoryViewController+SwipeTableViewCell.swift in Sources */,
 				CE7A56451F45A853002A91FD /* BillsInteractor.swift in Sources */,
 				CEEEC1C81F5E9F1A0015D2A5 /* NewBillViewController.swift in Sources */,
 				CEFECF4F1F11202A001F7E59 /* CategoryCollectionCell.swift in Sources */,
 				CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */,
+				CE2A674F1F908D4400F9C00E /* BillsTableViewController+NewBillDelegates.swift in Sources */,
 				CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */,
 				CEA6ABC61F274B61006F15B0 /* CalendarViewController.swift in Sources */,
 				CEC869511F42B30000A2FCAA /* AccountsFilterHeaderView.swift in Sources */,
@@ -1415,9 +1495,11 @@
 				CE03C22D1EC36539009A6AB0 /* MTView.swift in Sources */,
 				CEA05C121EE0DFCC0091414F /* MTTextField.swift in Sources */,
 				CEB1A8DE1ECEEC74000F786B /* RealmAuthConfig.swift in Sources */,
+				CE2A67531F90911500F9C00E /* BillsTableViewController+DataSourceDelegates.swift in Sources */,
 				CE24C04A1F470E98008E780F /* BillsCell.swift in Sources */,
-				CE67C2E01F3C4F1600116D88 /* ViewControllerResolvers.swift in Sources */,
+				CE67C2E01F3C4F1600116D88 /* MTResolver.swift in Sources */,
 				CEC869571F42CD5400A2FCAA /* BillsTableViewController.swift in Sources */,
+				CEFFA19D1F921F4900F337C9 /* PayBillViewController+Protocols.swift in Sources */,
 				CE9E73CE1F28864F00883E17 /* MainTabbarViewController.swift in Sources */,
 				CEC0988E1F0F8AF500D5E7B0 /* TransactionsListDataSource.swift in Sources */,
 				CEFECF481F111C9B001F7E59 /* CategoryCell.swift in Sources */,
@@ -1430,7 +1512,7 @@
 			files = (
 				CEB403BB1EF298C00013CB3C /* MockLoginInteractor.swift in Sources */,
 				CEB403B71EF291950013CB3C /* MockEncrypter.swift in Sources */,
-				CE67C2E21F3C596F00116D88 /* StubViewControllerResolvers.swift in Sources */,
+				CE67C2E21F3C596F00116D88 /* StubMTResolvers.swift in Sources */,
 				CE44F4151EFB876A00E035C7 /* MockPresenterOutput.swift in Sources */,
 				CE1DD4EB1F39C6D9005EFEDB /* TransactionsListDataSourceTests.swift in Sources */,
 				CE5395FC1F45ABB600493E13 /* BillsInteractorTests.swift in Sources */,
@@ -1440,6 +1522,7 @@
 				CE5A249A1F29CF14002E6DFE /* MockTransactionsInteractor.swift in Sources */,
 				CEC869541F42CD1400A2FCAA /* BillsTableViewControllerTests.swift in Sources */,
 				CE76C99E1F022E6000877C0E /* AccountsTableViewControllerTests.swift in Sources */,
+				CE1531C41FA6F5010081892E /* BillHistoryViewControllerTests.swift in Sources */,
 				CEB403B91EF296D00013CB3C /* TestableRegInteractor.swift in Sources */,
 				CE7A66E11F3716E000B14A22 /* MockNewTransactionPresenter.swift in Sources */,
 				CE1F947C1F39A1560025C731 /* StubTransactionsListDataSource.swift in Sources */,
@@ -1447,6 +1530,7 @@
 				CE4FC0851F0CB83F0016437D /* AccountsPresenterTests.swift in Sources */,
 				CE943E321F4BC7B1001CE100 /* MockDeleteBillPresenter.swift in Sources */,
 				CE5A249C1F29DB6F002E6DFE /* MockAccountTransactionsPresenter.swift in Sources */,
+				CED51ACF1F93A30B0064D55C /* PayBillViewControllerTests.swift in Sources */,
 				CE33EEBC1F0350320047CBF0 /* MockAccountsPresenter.swift in Sources */,
 				CEB403BD1EF29E4B0013CB3C /* RealmAuthPresenterTests.swift in Sources */,
 				CE3A89B81E96797A00EBE809 /* UserTests.swift in Sources */,
@@ -1457,6 +1541,7 @@
 				CE1F31041E9B25BC0022CA57 /* TransactionTests.swift in Sources */,
 				CE4FC07B1F0C8DA10016437D /* MockTransactionsPresenter.swift in Sources */,
 				CE7C2F711F42CEB100E96108 /* BillsDataSourceTests.swift in Sources */,
+				CE1531C61FA6F9480081892E /* BillsHistoryDataSourceTests.swift in Sources */,
 				CE44F4111EFA743C00E035C7 /* TestableLoginInteractor.swift in Sources */,
 				CE9E67421F4FF3E0008A7804 /* MockBillsInteractor.swift in Sources */,
 				CEEEC1C61F5E9C050015D2A5 /* NewBillViewControllerTests.swift in Sources */,
@@ -1471,7 +1556,7 @@
 				CEB0D1EC1F0BA1AF0044A433 /* MockAccountsInteractor.swift in Sources */,
 				CE3A89BB1E967F0800EBE809 /* BillTests.swift in Sources */,
 				CE5395FF1F45CA0900493E13 /* StubRealm.swift in Sources */,
-				CE1F19491F4B22CE00468914 /* MockNewBillPresenter.swift in Sources */,
+				CE1F19491F4B22CE00468914 /* MockBillVCPresenter.swift in Sources */,
 				CE652FFA1E95D93500E5DBA6 /* CategoryTests.swift in Sources */,
 				CE652FFD1E95E2B900E5DBA6 /* AccountTests.swift in Sources */,
 				CEEFD1241F4D90B300477BF8 /* MockBillsPresenter.swift in Sources */,
@@ -1633,7 +1718,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)-$(BUILD_CONFIG_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1652,7 +1738,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

@@ -20,7 +20,6 @@ class AccountTableViewCell: SwipeTableViewCell {
         super.awakeFromNib()
         typeView.layer.masksToBounds = true
         typeView.layer.cornerRadius = 10
-        typeImageView.tintColor = .white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,9 +28,17 @@ class AccountTableViewCell: SwipeTableViewCell {
     
     func setValues(ofAccount acc: Account, withCurrency currency: String) {
         nameLabel.text = acc.name
-        typeView.backgroundColor = UIColor(acc.color)
+        
+        typeView.backgroundColor = .white
+        typeView.layer.borderColor = UIColor(acc.color).cgColor
+        typeView.layer.borderWidth = 1
+        
+        typeImageView.tintColor = UIColor(acc.color)
         typeImageView.image = UIImage(named: acc.type!.icon)
+        
         typeLabel.text = acc.type!.name
+        typeLabel.textColor = UIColor(acc.color)
+        
         amountLabel.text = NumberFormatter.currencyStr(withCurrency: currency,
                                                        amount: acc.currentAmount)
     }

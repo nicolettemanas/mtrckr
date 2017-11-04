@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RcO-Nt-8c8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RcO-Nt-8c8">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -37,7 +38,7 @@
         <scene sceneID="IdJ-wx-PDK">
             <objects>
                 <viewControllerPlaceholder storyboardName="Accounts" referencedIdentifier="AccountsNavigationController" id="I48-bK-8Xs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="account-dark" selectedImage="account-dark" id="DEj-1P-yxv"/>
+                    <tabBarItem key="tabBarItem" title="" image="wallet-bar" selectedImage="wallet" id="DEj-1P-yxv"/>
                     <navigationItem key="navigationItem" id="yl6-0h-xaz"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l5w-W3-bWL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -48,7 +49,7 @@
         <scene sceneID="sGP-3F-ulN">
             <objects>
                 <viewControllerPlaceholder storyboardName="Bills" referencedIdentifier="BillsNavigationController" id="pU8-bq-ycy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="bill-dark" selectedImage="bill-dark" id="qdx-Y3-Qfl"/>
+                    <tabBarItem key="tabBarItem" title="" image="bill-bar" selectedImage="bill" id="qdx-Y3-Qfl"/>
                     <navigationItem key="navigationItem" id="Bnm-E5-Q0l"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bpJ-WK-sm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -70,14 +71,11 @@
         <scene sceneID="Ae0-Er-wDg">
             <objects>
                 <viewController id="778-0I-qqP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yEl-4F-2c3"/>
-                        <viewControllerLayoutGuide type="bottom" id="F9j-VS-Xje"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" id="mtn-of-LE4">
+                    <view key="view" contentMode="scaleToFill" id="mtn-of-LE4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="pUJ-Ht-eHk"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="0mG-tJ-AVq"/>
                 </viewController>
@@ -89,7 +87,7 @@
         <scene sceneID="tVw-vd-YSb">
             <objects>
                 <viewControllerPlaceholder storyboardName="Settings" referencedIdentifier="SettingsNavigationController" id="Dsl-sI-G6I" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="settings-dark" selectedImage="settings-dark" id="XTZ-gT-lLx"/>
+                    <tabBarItem key="tabBarItem" title="" image="settings-bar" selectedImage="settings" id="XTZ-gT-lLx"/>
                     <navigationItem key="navigationItem" id="cRq-wg-izz"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJz-MO-4OW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -100,7 +98,7 @@
         <scene sceneID="Ry1-tT-ERm">
             <objects>
                 <viewControllerPlaceholder storyboardName="Today" referencedIdentifier="CalendarViewController" id="ch3-9Z-a7k" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="calendar-dark" selectedImage="calendar-dark" id="kWc-U5-aR7"/>
+                    <tabBarItem key="tabBarItem" title="" image="calendar-bar" selectedImage="calendar" id="kWc-U5-aR7"/>
                     <navigationItem key="navigationItem" id="0uu-BY-Qoc"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUl-XG-2Bi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -109,10 +107,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="account-dark" width="25" height="25"/>
-        <image name="bill-dark" width="37" height="37"/>
-        <image name="calendar-dark" width="25" height="25"/>
+        <image name="bill" width="60" height="60"/>
+        <image name="bill-bar" width="25" height="25"/>
+        <image name="calendar" width="25" height="25"/>
+        <image name="calendar-bar" width="25" height="25"/>
         <image name="report-dark" width="25" height="25"/>
-        <image name="settings-dark" width="25" height="25"/>
+        <image name="settings" width="25" height="25"/>
+        <image name="settings-bar" width="25" height="25"/>
+        <image name="wallet" width="25" height="29"/>
+        <image name="wallet-bar" width="25" height="29"/>
     </resources>
 </document>

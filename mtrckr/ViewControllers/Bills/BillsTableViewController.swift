@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 enum ModifyBillType: String {
     case allBills, currentBill
@@ -16,43 +17,49 @@ protocol BillsTableViewControllerProtocol {
     var dataSource: BillsDataSourceProtocol? { get set }
     
     func editBillEntry(atIndex: IndexPath)
-    func createBillbtnPressed(sender: UIBarButtonItem?)
     func deleteBillEntry(atIndex: IndexPath)
+    func skipBillEntry(atIndex: IndexPath)
+    func createBillbtnPressed(sender: UIBarButtonItem?)
 }
 
-class BillsTableViewController: MTTableViewController, BillsTableViewControllerProtocol, NewBillViewControllerDelegate {
+class BillsTableViewController: MTTableViewController {
     
     var dataSource: BillsDataSourceProtocol?
     var emptyDataSource: EmptyBillsDataSource?
-    var newBillPresenter: NewBillPresenterProtocol?
+    var billVCPresenter: BillVCPresenterProtocol?
     var deleteBillPresenter: DeleteBillPresenterProtocol?
     var presenter: BillsPresenterProtocol?
+    weak var billsTableView: UITableView?
+    
+    var editingIndexPath: IndexPath?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let resolver = ViewControllerResolvers()
+        let resolver = MTResolver()
         emptyDataSource = resolver.container.resolve(EmptyBillsDataSource.self)
-        dataSource = resolver.container.resolve(BillsDataSource.self)
-        dataSource?.delegate = self
-        newBillPresenter = resolver.container.resolve(NewBillPresenter.self)
+        billVCPresenter = resolver.container.resolve(BillVCPresenter.self)
         deleteBillPresenter = resolver.container.resolve(DeleteBillPresenter.self)
         presenter = resolver.container.resolve(BillsPresenter.self)
+        dataSource = resolver.container.resolve(BillsDataSource.self)
+        dataSource?.delegate = self
     }
     
     static func initWith(dataSource: BillsDataSourceProtocol,
                          emptyDataSource: EmptyBillsDataSource?,
-                         newBillPresenter: NewBillPresenterProtocol,
+                         newBillPresenter: BillVCPresenterProtocol,
                          deleteBillPresenter: DeleteBillPresenterProtocol,
                          presenter: BillsPresenterProtocol)
         -> BillsTableViewController {
             
         let storyboard = UIStoryboard(name: "Bills", bundle: Bundle.main)
-        guard let vc: BillsTableViewController = storyboard.instantiateViewController(withIdentifier: "BillsTableViewController")
+        guard let vc: BillsTableViewController = storyboard
+            .instantiateViewController(withIdentifier: "BillsTableViewController")
             as? BillsTableViewController else { fatalError("Cannot convert to BillsTableViewController") }
+            
         vc.dataSource = dataSource
         vc.dataSource?.delegate = vc
         vc.emptyDataSource = emptyDataSource
-        vc.newBillPresenter = newBillPresenter
+        vc.billVCPresenter = newBillPresenter
         vc.deleteBillPresenter = deleteBillPresenter
         vc.presenter = presenter
         return vc
@@ -65,92 +72,7 @@ class BillsTableViewController: MTTableViewController, BillsTableViewControllerP
         tableView.emptyDataSetSource = emptyDataSource
         tableView.register(UINib(nibName: "BillsCell", bundle: Bundle.main),
                            forCellReuseIdentifier: "BillsCell")
+        billsTableView = tableView
         dataSource?.refresh()
-    }
-    
-    // MARK: - Bill modification
-    @IBAction func createBillbtnPressed(sender: UIBarButtonItem?) {
-        self.newBillPresenter?.presentNewBill(presenter: self, billEntry: nil)
-    }
-    
-    func editBillEntry(atIndex index: IndexPath) {
-        self.newBillPresenter?.presentNewBill(presenter: self, billEntry: dataSource?.entry(at: index))
-    }
-    
-    func deleteBillEntry(atIndex index: IndexPath) {
-        guard let entry = dataSource?.entry(at: index) else { return }
-        self.deleteBillPresenter?.presentDeleteSheet(presentingVC: self, forBillEntry: entry)
-    }
-    
-    // MARK: NewBillViewControllerDelegate
-    func saveNewBill(amount: Double, name: String, post: String, pre: String,
-                     repeatSchedule: String, startDate: Date, category: Category) {
-        presenter?.createBill(amount: amount, name: name, post: post, pre: pre, repeatSchedule: repeatSchedule,
-                              startDate: startDate, category: category)
-    }
-    
-    func edit(billEntry: BillEntry, amount: Double, name: String, post: String,
-              pre: String, repeatSchedule: String, startDate: Date, category: Category) {
-        presenter?.editBillEntry(billEntry: billEntry, amount: amount, name: name,
-                                 post: post, pre: pre, startDate: startDate, category: category)
-    }
-    
-    func edit(bill: Bill, amount: Double, name: String, post: String, pre: String,
-              repeatSchedule: String, startDate: Date, category: Category, proceedingDate: Date) {
-        presenter?.editBillAndEntries(bill: bill, amount: amount, name: name, post: post, pre: pre,
-                                      repeatSchedule: repeatSchedule, startDate: startDate, category: category,
-                                      proceedingDate: proceedingDate)
-    }
-}
-
-extension BillsTableViewController: BillsDataSourceDelegate {
-    func didUpdateBills(withChanges changes: RealmCollectionChange<Results<Bill>>) {
-        print("UPDATED: Bills")
-    }
-    
-    func didSelect(entry: BillEntry) {
-        presenter?.showHistory(of: entry)
-    }
-    
-    func didPressPayBill(entry: BillEntry) {
-        presenter?.payEntry(entry: entry)
-    }
-    
-    func didUpdateOverdues(withChanges changes: RealmCollectionChange<Results<BillEntry>>, inserting: Bool) {
-        print("UPDATED: Overdue BillEntries")
-        guard let index = dataSource?.index(ofSection: BillSections.overdue.rawValue) else { return }
-        tableView.applyChanges(forSection: index, changes: changes, inserting: inserting)
-    }
-    
-    func didUpdateSevenDays(withChanges changes: RealmCollectionChange<Results<BillEntry>>, inserting: Bool) {
-        print("UPDATED: 7 Days BillEntries")
-        guard let index = dataSource?.index(ofSection: BillSections.sevenDays.rawValue) else { return }
-        tableView.applyChanges(forSection: index, changes: changes, inserting: inserting)
-    }
-    
-    func didUpdateThirtyDays(withChanges changes: RealmCollectionChange<Results<BillEntry>>, inserting: Bool) {
-        print("UPDATED: 30 Days BillEntries")
-        guard let index = dataSource?.index(ofSection: BillSections.thirtyDays.rawValue) else { return }
-        tableView.applyChanges(forSection: index, changes: changes, inserting: inserting)
-    }
-}
-
-extension BillsTableViewController: DeleteBillPresenterDelegate {
-    func proceedDeleteEntry(entry: BillEntry, type: ModifyBillType) {
-        presenter?.deleteBillEntry(entry: entry, deleteType: type)
-    }
-    
-    func cancelDeleteEntry(entry: BillEntry) {
-        
-    }
-}
-
-extension BillsTableViewController: NewBillPresenterDelegate {
-    func proceedEditEntry(atIndex indexPath: IndexPath) {
-        
-    }
-    
-    func proceedEditProceedingEntries(ofBillAtIndexPath index: IndexPath, fromDate date: Date) {
-        
     }
 }

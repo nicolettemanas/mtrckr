@@ -22,11 +22,14 @@ class MockBillsPresenter: BillsPresenter {
     var didDeleteEntry: BillEntry?
     var deleteType: ModifyBillType?
     
-    var didShowHistory = false
-    var didShowHistoryOf: BillEntry?
+//    var didShowHistory = false
+//    var didShowHistoryOf: BillEntry?
     
     var didPayBill = false
     var didPayBillEntry: BillEntry?
+    var didPayAccount: Account?
+    var didPayAmount: Double = 0
+    var didPayDate: Date?
     
     var didEdit = false
     var didEditEntry: BillEntry?
@@ -46,10 +49,12 @@ class MockBillsPresenter: BillsPresenter {
     var didEditBillRepeatSchedule: String?
     var didEditBillStartDate: Date?
     var didEditBillCategory: mtrckr.Category?
-    var didEditBillProceedingDate: Date?
+    
+    var didSkipEntry: BillEntry?
+    var didUnpayEntry: BillEntry?
     
     override func createBill(amount: Double, name: String, post: String, pre: String,
-                             repeatSchedule: String, startDate: Date, category: mtrckr.Category) {
+                             repeat repeatSchedule: String, startDate: Date, category: mtrckr.Category) {
         didCreate = true
         didCreateAmount = amount
         didCreateName = name
@@ -80,7 +85,7 @@ class MockBillsPresenter: BillsPresenter {
     }
     
     override func editBillAndEntries(bill: Bill, amount: Double, name: String, post: String, pre: String,
-                                     repeatSchedule: String, startDate: Date, category: mtrckr.Category, proceedingDate: Date) {
+                                     repeat repeatSchedule: String, startDate: Date, category: mtrckr.Category) {
         didEdit = true
         didEditBill = bill
         
@@ -91,16 +96,21 @@ class MockBillsPresenter: BillsPresenter {
         didEditBillStartDate = startDate
         didEditBillCategory = category
         didEditBillRepeatSchedule = repeatSchedule
-        didEditBillProceedingDate = proceedingDate
     }
     
-    override func showHistory(of entry: BillEntry) {
-        didShowHistory = true
-        didShowHistoryOf = entry
-    }
-    
-    override func payEntry(entry: BillEntry) {
+    override func payEntry(entry: BillEntry, amount: Double, account: Account, date: Date) {
         didPayBill = true
         didPayBillEntry = entry
+        didPayDate = date
+        didPayAmount = amount
+        didPayAccount = account
+    }
+    
+    override func skip(entry: BillEntry) {
+        didSkipEntry = entry
+    }
+    
+    override func unpay(entry: BillEntry) {
+        didUnpayEntry = entry
     }
 }

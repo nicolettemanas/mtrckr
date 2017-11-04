@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -86,10 +87,6 @@
         <scene sceneID="Edh-g6-Rp3">
             <objects>
                 <viewController storyboardIdentifier="RegistrationViewController" id="ByD-YI-qRZ" customClass="RegistrationViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HjW-qj-u70"/>
-                        <viewControllerLayoutGuide type="bottom" id="J5T-9P-jzl"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hBl-RI-E9D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -257,13 +254,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="jIn-NU-dzu" secondAttribute="trailing" id="0aB-hg-UiH"/>
+                            <constraint firstItem="Ujw-ty-83b" firstAttribute="trailing" secondItem="jIn-NU-dzu" secondAttribute="trailing" id="0aB-hg-UiH"/>
                             <constraint firstItem="jIn-NU-dzu" firstAttribute="top" secondItem="hBl-RI-E9D" secondAttribute="top" id="5qt-kA-Vz4"/>
                             <constraint firstItem="0Xo-8S-JYj" firstAttribute="width" secondItem="hBl-RI-E9D" secondAttribute="width" id="J7f-uk-f5G"/>
                             <constraint firstItem="0Xo-8S-JYj" firstAttribute="height" secondItem="hBl-RI-E9D" secondAttribute="height" id="WDv-lf-oH5"/>
-                            <constraint firstItem="J5T-9P-jzl" firstAttribute="top" secondItem="jIn-NU-dzu" secondAttribute="bottom" id="mNu-Zo-EPG"/>
-                            <constraint firstItem="jIn-NU-dzu" firstAttribute="leading" secondItem="hBl-RI-E9D" secondAttribute="leading" id="yps-PM-niD"/>
+                            <constraint firstItem="Ujw-ty-83b" firstAttribute="bottom" secondItem="jIn-NU-dzu" secondAttribute="bottom" id="mNu-Zo-EPG"/>
+                            <constraint firstItem="jIn-NU-dzu" firstAttribute="leading" secondItem="Ujw-ty-83b" secondAttribute="leading" id="yps-PM-niD"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ujw-ty-83b"/>
                     </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
@@ -283,12 +281,12 @@
         <scene sceneID="Qbb-w7-N5N">
             <objects>
                 <navigationController storyboardIdentifier="SettingsNavigationController" title="Settings" id="ep4-Zp-Llu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="settings-dark" id="qyQ-ez-i1P">
+                    <tabBarItem key="tabBarItem" title="" image="settings-bar" id="qyQ-ez-i1P">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="lCy-5f-We3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -307,10 +305,6 @@
         <scene sceneID="aDS-5J-AbC">
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" id="h3a-hK-zbv" customClass="LoginViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="OCd-vp-vy5"/>
-                        <viewControllerLayoutGuide type="bottom" id="Y0m-gA-XgK"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dcc-5S-1ly">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -455,13 +449,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="QS7-Rq-XbI" firstAttribute="leading" secondItem="dcc-5S-1ly" secondAttribute="leading" id="7RW-40-CBS"/>
-                            <constraint firstAttribute="trailing" secondItem="QS7-Rq-XbI" secondAttribute="trailing" id="Aqt-sD-KOz"/>
+                            <constraint firstItem="QS7-Rq-XbI" firstAttribute="leading" secondItem="Viy-mh-Wf9" secondAttribute="leading" id="7RW-40-CBS"/>
+                            <constraint firstItem="Viy-mh-Wf9" firstAttribute="trailing" secondItem="QS7-Rq-XbI" secondAttribute="trailing" id="Aqt-sD-KOz"/>
                             <constraint firstItem="pny-Oy-Otr" firstAttribute="height" secondItem="dcc-5S-1ly" secondAttribute="height" id="O1a-Oa-w1f"/>
                             <constraint firstItem="QS7-Rq-XbI" firstAttribute="top" secondItem="dcc-5S-1ly" secondAttribute="top" id="RAB-6r-mg7"/>
-                            <constraint firstItem="Y0m-gA-XgK" firstAttribute="top" secondItem="QS7-Rq-XbI" secondAttribute="bottom" id="gko-Oy-VWs"/>
+                            <constraint firstItem="Viy-mh-Wf9" firstAttribute="bottom" secondItem="QS7-Rq-XbI" secondAttribute="bottom" id="gko-Oy-VWs"/>
                             <constraint firstItem="pny-Oy-Otr" firstAttribute="width" secondItem="dcc-5S-1ly" secondAttribute="width" id="upx-n1-ZLh"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Viy-mh-Wf9"/>
                     </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
@@ -481,6 +476,6 @@
         <image name="email" width="36" height="36"/>
         <image name="pw1" width="36" height="36"/>
         <image name="pw2" width="36" height="36"/>
-        <image name="settings-dark" width="25" height="25"/>
+        <image name="settings-bar" width="25" height="25"/>
     </resources>
 </document>

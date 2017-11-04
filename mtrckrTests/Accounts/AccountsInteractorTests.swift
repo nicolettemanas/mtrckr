@@ -15,7 +15,6 @@ import RealmSwift
 class AccountsInteractorTests: QuickSpec {
     
     var accountsInteractor: AccountsInteractor?
-    
     var identifier = "AccountsInteractorTests"
     
     override func spec() {
@@ -41,15 +40,16 @@ class AccountsInteractorTests: QuickSpec {
                 
                 dateOpened = Date()
                 cashAccountType = AccountType(typeId: 1, name: "My Cash", icon: "cash.jpg")
-                account = Account(value: ["id": "accnt1",
-                                          "name": "My Cash",
-                                          "type": cashAccountType,
-                                          "initialAmount": 10.0,
-                                          "currentAmount": 20.0,
-                                          "totalExpenses": 100.0,
-                                          "totalIncome": 30.0,
-                                          "color": "#AAAAAA",
-                                          "dateOpened": dateOpened ])
+                account = Account(value:
+                     ["id": "accnt1",
+                      "name": "My Cash",
+                      "type": cashAccountType,
+                      "initialAmount": 10.0,
+                      "currentAmount": 20.0,
+                      "totalExpenses": 100.0,
+                      "totalIncome": 30.0,
+                      "color": "#AAAAAA",
+                      "dateOpened": dateOpened ])
             }
             
             context("when asked to create an account", {
@@ -58,15 +58,16 @@ class AccountsInteractorTests: QuickSpec {
                         let r = self.accountsInteractor?.realmContainer?.userRealm
                         for i in 0..<20 {
                             account?.save(toRealm: r!)
-                            account = Account(value: ["id": "accnt-\(i)",
-                                                      "name": "My Cash",
-                                                      "type": cashAccountType,
-                                                      "initialAmount": 10.0,
-                                                      "currentAmount": 20.0,
-                                                      "totalExpenses": 100.0,
-                                                      "totalIncome": 30.0,
-                                                      "color": "#AAAAAA",
-                                                      "dateOpened": dateOpened ])
+                            account = Account(value:
+                                ["id": "accnt-\(i)",
+                                  "name": "My Cash",
+                                  "type": cashAccountType,
+                                  "initialAmount": 10.0,
+                                  "currentAmount": 20.0,
+                                  "totalExpenses": 100.0,
+                                  "totalIncome": 30.0,
+                                  "color": "#AAAAAA",
+                                  "dateOpened": dateOpened ])
                         }
                     }
                     
@@ -92,15 +93,17 @@ class AccountsInteractorTests: QuickSpec {
                         var newAccount: Account?
                         beforeEach {
                             try? self.accountsInteractor?.createAccount(account: account!)
-                            newAccount = Account(value: ["id": "accnt1",
-                                                         "name": "My Cashuuu",
-                                                         "type": cashAccountType,
-                                                         "initialAmount": 10.0,
-                                                         "currentAmount": 20.0,
-                                                         "totalExpenses": 100.0,
-                                                         "totalIncome": 30.0,
-                                                         "color": "#AAAAAA",
-                                                         "dateOpened": dateOpened ])
+                            newAccount = Account(value:
+                                ["id": "accnt1",
+                                 "name": "My Cashuuu",
+                                 "type": cashAccountType,
+                                 "initialAmount": 10.0,
+                                 "currentAmount": 20.0,
+                                 "totalExpenses": 100.0,
+                                 "totalIncome": 30.0,
+                                 "color": "#AAAAAA",
+                                 "dateOpened": dateOpened ])
+                            
                             newAccount?.name = "new name"
                             newAccount?.dateOpened = Date()
                             newAccount?.initialAmount = 0.23
@@ -125,18 +128,21 @@ class AccountsInteractorTests: QuickSpec {
                 beforeEach {
                     account!.save(toRealm: realm!)
                     self.accountsInteractor?.deleteAccount(account: account!)
-                    account = Account(value: ["id": "accnt1",
-                                              "name": "My Cash",
-                                              "type": cashAccountType,
-                                              "initialAmount": 10.0,
-                                              "currentAmount": 20.0,
-                                              "totalExpenses": 100.0,
-                                              "totalIncome": 30.0,
-                                              "color": "#AAAAAA",
-                                              "dateOpened": dateOpened ])
+                    account = Account(value:
+                         ["id": "accnt1",
+                          "name": "My Cash",
+                          "type": cashAccountType,
+                          "initialAmount": 10.0,
+                          "currentAmount": 20.0,
+                          "totalExpenses": 100.0,
+                          "totalIncome": 30.0,
+                          "color": "#AAAAAA",
+                          "dateOpened": dateOpened ])
                 }
-                itBehavesLike("account cannot be found in database") { ["account": account!,
-                                                                "realm": realm!] }
+                itBehavesLike("account cannot be found in database") {
+                    ["account": account!,
+                     "realm": realm!]
+                }
             })
             
             context("when asked to retrieve used currency", {

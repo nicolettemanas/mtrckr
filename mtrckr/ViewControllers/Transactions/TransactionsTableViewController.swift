@@ -66,7 +66,7 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let resolver = ViewControllerResolvers()
+        let resolver = MTResolver()
         self.newTransPresenter = resolver.container.resolve(NewTransactionPresenter.self)
         self.deleteTransactionSheetPresenter = resolver.container.resolve(DeleteTransactionSheetPresenter.self)
         self.emptytransactionDataSource = resolver.container.resolve(EmptyTransactionsDataSource.self)

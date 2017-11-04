@@ -178,11 +178,11 @@ class SettingsTableViewController: MTTableViewController, AuthViewControllerDele
                                             "Transactions saved when logged out will not be synced to your account.",
                                              preferredStyle: .actionSheet)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        let cancelAction = MTAlertAction(title: "Cancel", style: .cancel) { _ in
             logoutOptions.dismiss(animated: true, completion: nil)
         }
         
-        let logoutAction = UIAlertAction(title: "Log out", style: .destructive) { _ in
+        let logoutAction = MTAlertAction(title: "Log out", style: .destructive) { _ in
             self.performLogout()
         }
         

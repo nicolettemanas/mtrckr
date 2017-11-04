@@ -23,36 +23,39 @@ enum BillEntryStatus: String {
 class BillEntry: Object {
 
     /// The unique identifier of the `BillEntry`
-    dynamic var id: String = ""
+    @objc dynamic var id: String = ""
     
     /// The amount of the to-be `Transaction` of the `BillEntry`.
     /// This may differ from the amount of the `Bill`
-    dynamic var amount: Double = 0.0
+    @objc dynamic var amount: Double = 0.0
     
     /// The date of the payment of the `BillEntry`. The value is `nil`
     /// when the `BillEntry` is unpaid.
-    dynamic var datePaid: Date?
+    @objc dynamic var datePaid: Date?
     
     /// The due date of the `BillEntry`
-    dynamic var dueDate: Date = Date()
+    @objc dynamic var dueDate: Date = Date()
     
     /// The status of the `BillEntry` in raw value. See `BillEntryStatus`
-    dynamic var status: String = ""
+    @objc dynamic var status: String = ""
     
     /// The `Bill` where the `BillEntry` is from
-    dynamic var bill: Bill?
+    @objc dynamic var bill: Bill?
     
     /// The custom name to be saved when converted to a `Transaction`
-    dynamic var customName: String?
+    @objc dynamic var customName: String?
     
     /// Reminder custom option after the due date in raw value. See `BillDueReminder`
-    dynamic var customPostDueReminder: String?
+    @objc dynamic var customPostDueReminder: String?
     
     /// Reminder custom option before the due date in raw value. See `BillDueReminder`
-    dynamic var customPreDueReminder: String?
+    @objc dynamic var customPreDueReminder: String?
     
     /// The custom `Category` to be saved when converted to a `Transaction`
-    dynamic var customCategory: Category?
+    @objc dynamic var customCategory: Category?
+    
+    /// The transaction generated when an entry is paid
+    @objc dynamic var transaction: Transaction?
 
     override static func primaryKey() -> String? {
         return "id"
@@ -119,31 +122,30 @@ class BillEntry: Object {
         }
     }
     
-    func update(amount: Double, dueDate: Date, inRealm realm: Realm) {
-        guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
-        
-        do {
-            try realm.write {
-                self.amount = amount
-                self.dueDate = dueDate.start(of: .day)
-                realm.add(self, update: true)
-            }
-        } catch let error as NSError {
-            fatalError(error.localizedDescription)
-        }
-    }
-    
-    func updateCustom(amount: Double, name: String, preDueReminder: String, postDueReminder: String,
-                      category: Category, inRealm realm: Realm) {
+    /// Updates the properties of the `BillEntry` to the values given.
+    /// Updates are stored in customed properties to be used if non-nil instead of
+    /// corresponding `Bill` properties
+    ///
+    /// - Parameters:
+    ///   - amount: The new amount of the `BillEntry`
+    ///   - name: The new name of the `BillEntry`
+    ///   - preDueReminder: The customized pre due reminder of the `BillEntry`
+    ///   - postDueReminder: The customized post due reminder of the `BillEntry`
+    ///   - category: The customized `Category` of the `BillEntry`
+    ///   - dueDate: The new due date of the `BillEntry`
+    ///   - realm: The `Realm` to save the updated `BillEntry` to
+    func update(amount: Double, name: String?, preDueReminder: BillDueReminder?, postDueReminder: BillDueReminder?,
+                category: Category?, dueDate: Date, inRealm realm: Realm) {
         guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
         
         do {
             try realm.write {
                 self.amount = amount
                 self.customName = name
-                self.customPreDueReminder = preDueReminder
-                self.customPostDueReminder = postDueReminder
+                self.customPreDueReminder = preDueReminder?.rawValue
+                self.customPostDueReminder = postDueReminder?.rawValue
                 self.customCategory = category
+                self.dueDate = dueDate
                 realm.add(self, update: true)
             }
         } catch let error as NSError {
@@ -155,7 +157,9 @@ class BillEntry: Object {
     ///
     /// - Parameter realm: The `Realm` to save the updated `BillEntry` to
     func unpay(inRealm realm: Realm) {
+        assert(self.bill?.active == true)
         let entry = BillEntry(dueDate: self.dueDate, for: self.bill!)
+        self.transaction?.delete(in: realm)
         self.delete(in: realm)
         entry.save(toRealm: realm)
     }
@@ -184,16 +188,21 @@ class BillEntry: Object {
     ///   - account: The `Account` where the `Transaction` is from
     ///   - datePaid: The date of payment of the `BillEntry`
     ///   - realm: The `Realm` where the `Transaction` and `BillEntry` will be saved
-    func pay(amount: Double, description: String, fromAccount account: Account, datePaid: Date, inRealm realm: Realm) {
+    func pay(amount: Double, description: String, fromAccount account: Account,
+             datePaid: Date, inRealm realm: Realm) {
+        
         guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
-        self.generateTransaction(amount: amount, description: description,
-                                 account: account, datePaid: datePaid, inRealm: realm)
-
+        let trans = generateTransaction(amount      : amount,
+                                        description : description,
+                                        account     : account,
+                                        datePaid    : datePaid,
+                                        inRealm     : realm)
         do {
             try realm.write {
                 self.amount = amount
                 self.datePaid = datePaid
                 self.status = BillEntryStatus.paid.rawValue
+                self.transaction = trans
                 realm.add(self, update: true)
             }
         } catch let error as NSError {
@@ -201,6 +210,13 @@ class BillEntry: Object {
         }
     }
 
+    func transaction(in realm: Realm) -> Transaction? {
+        assert(status != BillEntryStatus.unpaid.rawValue)
+        if status == BillEntryStatus.skipped.rawValue { return nil }
+        return realm.objects(Transaction.self)
+            .filter("billEntry.id == %@", id).first
+    }
+    
     /// Deletes the `BillEntry` from the given `Realm`
     ///
     /// - Parameter realm: The `Realm` to delete the `BillEntry` from
@@ -251,16 +267,24 @@ class BillEntry: Object {
     static func allUnpaid(in realm: Realm) -> Results<BillEntry> {
         return realm.objects(BillEntry.self)
             .filter("status == %@", BillEntryStatus.unpaid.rawValue)
-            .sorted(byKeyPath: "dueDate", ascending: false)
+            .sorted(byKeyPath: "dueDate")
     }
 
     /// :nodoc:
     private func generateTransaction(amount: Double, description: String,
-                                     account: Account, datePaid: Date, inRealm realm: Realm) {
-        let transaction = Transaction(type: .expense, name: self.bill!.name, image: nil,
-                                      description: description, amount: amount, category: self.bill?.category,
-                                      from: account, to: account, date: datePaid)
-        transaction.billEntry = self
-        transaction.save(toRealm: realm)
+                                     account: Account, datePaid: Date, inRealm realm: Realm) -> Transaction {
+        
+        assert(self.bill?.active == true)
+        let trans = Transaction(type          : .expense,
+                                name          : self.bill!.name,
+                                image         : nil,
+                                description   : description,
+                                amount        : amount,
+                                category      : self.bill?.category,
+                                from          : account,
+                                to            : account,
+                                date          : datePaid)
+        trans.billEntry = self
+        return trans
     }
 }

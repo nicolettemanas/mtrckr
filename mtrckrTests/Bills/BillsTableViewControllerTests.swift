@@ -14,7 +14,7 @@ import RealmSwift
 class BillsTableViewControllerTests: QuickSpec {
     override func spec() {
         var billsViewController: BillsTableViewController!
-        var mockNewBillPresenter: MockNewBillPresenter?
+        var mockBillVCPresenter: MockBillVCPresenter?
         var mockDeleteBillPresenter: MockDeleteBillPresenter?
         var billInteractor: BillsInteractorProtocol?
         var mockPresenter: MockBillsPresenter?
@@ -24,21 +24,26 @@ class BillsTableViewControllerTests: QuickSpec {
         let identifier = "BillsTableViewControllerTests"
 
         beforeEach {
-            let resolvers = ViewControllerResolvers()
-            let mockResolvers = StubViewControllerResolvers()
+            let resolvers = MTResolver()
+            let mockResolvers = StubMTResolvers()
 
-            mockNewBillPresenter = mockResolvers.container.resolve(NewBillPresenter.self, name: "mock") as? MockNewBillPresenter
-            mockDeleteBillPresenter = mockResolvers.container.resolve(DeleteBillPresenter.self, name: "mock") as? MockDeleteBillPresenter
-            billInteractor = mockResolvers.container.resolve(BillsInteractor.self, name: "stub", argument: identifier)
-            mockPresenter = mockResolvers.container.resolve(BillsPresenter.self, name: "mock") as? MockBillsPresenter
-
-            billsViewController = resolvers.container.resolve(BillsTableViewController.self)
-            billsViewController.newBillPresenter = mockNewBillPresenter
+            mockBillVCPresenter = mockResolvers.container
+                .resolve(BillVCPresenter.self, name: "mock") as? MockBillVCPresenter
+            mockDeleteBillPresenter = mockResolvers.container
+                .resolve(DeleteBillPresenter.self, name: "mock") as? MockDeleteBillPresenter
+            billInteractor = mockResolvers.container
+                .resolve(BillsInteractor.self, name: "stub", argument: identifier)
+            mockPresenter = mockResolvers.container
+                .resolve(BillsPresenter.self, name: "mock") as? MockBillsPresenter
+            billsViewController = resolvers.container
+                .resolve(BillsTableViewController.self)
+            billsViewController.dataSource = mockResolvers.container
+                .resolve(BillsDataSource.self, name: "mock", argument: identifier)
+            
+            billsViewController.billVCPresenter = mockBillVCPresenter
             billsViewController.deleteBillPresenter = mockDeleteBillPresenter
-            billsViewController.dataSource = mockResolvers.container.resolve(BillsDataSource.self, name: "mock", argument: identifier)
             billsViewController.dataSource?.delegate = billsViewController
             billsViewController.presenter = mockPresenter
-            expect(billsViewController.view).toNot(beNil())
 
             realm = (billInteractor as! BillsInteractor).realmContainer!.userRealm!
             try! realm.write {
@@ -52,23 +57,28 @@ class BillsTableViewControllerTests: QuickSpec {
                 billInteractor?.saveBill(bill: fakeModels.bill())
                 billInteractor?.saveBill(bill: fakeModels.bill())
 
-                billsViewController.dataSource?.refresh()
+                expect(billsViewController.view).toNot(beNil())
             }
 
             context("Taps + button to create a bill", {
                 it("Presents new bill form") {
                     billsViewController.createBillbtnPressed(sender: nil)
-                    expect(mockNewBillPresenter?.didPresent) == true
-                    expect(mockNewBillPresenter?.didReceiveId).to(beNil())
+                    expect(mockBillVCPresenter?.didPresent) == true
+                    expect(mockBillVCPresenter?.didReceiveId).to(beNil())
                 }
 
                 context("receives new values", {
                     it("pass values to presenter", closure: {
                         let date = Date()
                         let cat = fakeModels.category()
-                        billsViewController.saveNewBill(amount: 100, name: "New Bill", post: BillDueReminder.never.rawValue,
-                                                        pre: BillDueReminder.onDate.rawValue, repeatSchedule: BillRepeatSchedule.weekly.rawValue,
-                                                        startDate: date, category: cat)
+                        billsViewController
+                            .saveNewBill(amount         : 100,
+                                         name           : "New Bill",
+                                         post            : BillDueReminder.never.rawValue,
+                                         pre            : BillDueReminder.onDate.rawValue,
+                                         repeat : BillRepeatSchedule.weekly.rawValue,
+                                         startDate      : date, category: cat)
+                        
                         expect(mockPresenter?.didCreate) == true
                         expect(mockPresenter?.didCreateAmount) == 100
                         expect(mockPresenter?.didCreateName) == "New Bill"
@@ -89,8 +99,8 @@ class BillsTableViewControllerTests: QuickSpec {
                 it("presents edit form", closure: {
                     let index = IndexPath(row: 0, section: 0)
                     billsViewController.editBillEntry(atIndex: index)
-                    expect(mockNewBillPresenter?.didPresent) == true
-                    expect(mockNewBillPresenter?.didReceiveId) == billsViewController.dataSource?.entry(at: index)?.id
+                    expect(mockBillVCPresenter?.didPresent) == true
+                    expect(mockBillVCPresenter?.didReceiveId) == billsViewController.dataSource?.entry(at: index)?.id
                 })
 
                 context("receives edited values/confirm to edit", {
@@ -101,9 +111,15 @@ class BillsTableViewControllerTests: QuickSpec {
                         let cat = fakeModels.category()
 
                         beforeEach {
-                            billsViewController.edit(billEntry: entryToEdit, amount: 99.0, name: "New Entry Name",
-                                                     post: BillDueReminder.never.rawValue, pre: BillDueReminder.onDate.rawValue,
-                                                     repeatSchedule: BillRepeatSchedule.weekly.rawValue, startDate: date, category: cat)
+                            billsViewController
+                                .edit(billEntry         : entryToEdit,
+                                      amount            : 99.0,
+                                      name              : "New Entry Name",
+                                      post              : BillDueReminder.never.rawValue,
+                                      pre               : BillDueReminder.onDate.rawValue,
+                                      repeatSchedule    : BillRepeatSchedule.weekly.rawValue,
+                                      startDate         : date,
+                                      category          : cat)
                         }
 
                         it("passes values to edit to presenter", closure: {
@@ -118,16 +134,20 @@ class BillsTableViewControllerTests: QuickSpec {
                         })
                     })
 
-                    context("for edit all proceeding bills", {
+                    context("for edit all unpaid bills", {
                         let date = Date().subtract(1.days)
-                        let proceedingDate = Date()
                         let bill = fakeModels.bill()
                         let cat = fakeModels.category()
                         beforeEach {
-                            billsViewController.edit(bill: bill, amount: 99.0, name: "New Bill",
-                                                     post: BillDueReminder.never.rawValue, pre: BillDueReminder.onDate.rawValue,
-                                                     repeatSchedule: BillRepeatSchedule.weekly.rawValue, startDate: date,
-                                                     category: cat, proceedingDate: proceedingDate)
+                            billsViewController
+                                .edit(bill	            : bill,
+                                      amount            : 99.0,
+                                      name              : "New Bill",
+                                      post	            : BillDueReminder.never.rawValue,
+                                      pre               : BillDueReminder.onDate.rawValue,
+                                      repeatSchedule    : BillRepeatSchedule.weekly.rawValue,
+                                      startDate	        : date,
+                                      category	        : cat)
                         }
 
                         it("passes values to edit to presenter", closure: {
@@ -140,7 +160,6 @@ class BillsTableViewControllerTests: QuickSpec {
                             expect(mockPresenter?.didEditBillRepeatSchedule) == BillRepeatSchedule.weekly.rawValue
                             expect(mockPresenter?.didEditBillStartDate) == date
                             expect(mockPresenter?.didEditBillCategory) == cat
-                            expect(mockPresenter?.didEditBillProceedingDate) == proceedingDate
                         })
                     })
                 })
@@ -148,6 +167,7 @@ class BillsTableViewControllerTests: QuickSpec {
 
             context("chooses to delete the first BillEntry displayed", {
                 let indexToDelete = IndexPath(row: 0, section: 0)
+                
                 beforeEach {
                     billsViewController.deleteBillEntry(atIndex: indexToDelete)
                 }
@@ -178,8 +198,8 @@ class BillsTableViewControllerTests: QuickSpec {
                         })
                     })
 
-                    context("delete all proceeding entries", {
-                        it("tells presenter to delete all proceeding bills", closure: {
+                    context("delete all unpaid entries", {
+                        it("tells presenter to delete all unpaid bills", closure: {
                             let controller: UIAlertController = billsViewController!.deleteBillPresenter!.alert!
                             let deleteAction = controller.actions[2] as! MockAlertAction
                             deleteAction.mockHandler!(deleteAction)
@@ -199,10 +219,12 @@ class BillsTableViewControllerTests: QuickSpec {
             context("user taps a bill entry", {
                 it("presents its payment history", closure: {
                     let index = IndexPath(row: 0, section: 0)
-                    billsViewController.dataSource!.tableView!(billsViewController.tableView, didSelectRowAt: index)
+                    billsViewController.dataSource!
+                        .tableView!(billsViewController.tableView, didSelectRowAt: index)
+                    
                     let entry = billsViewController.dataSource?.entry(at: index)
-                    expect(mockPresenter?.didShowHistory) == true
-                    expect(mockPresenter?.didShowHistoryOf) == entry
+                    expect(mockBillVCPresenter?.didShowHistory) == true
+                    expect(mockBillVCPresenter?.didShowHistoryOf) == entry?.bill
                 })
             })
 
@@ -214,8 +236,44 @@ class BillsTableViewControllerTests: QuickSpec {
                                    cellForRowAt: index) as! BillsCell
                     cell.payButtonDidPress(sender: cell.payButton)
                     let entry = billsViewController.dataSource?.entry(at: index)
-                    expect(mockPresenter?.didPayBill) == true
+                    
+                    expect(mockBillVCPresenter?.didPresent) == true
+                    expect(mockBillVCPresenter?.didReceiveId) == entry?.id
+                })
+            })
+            
+            context("user confirms paying an entry", {
+                let date = Date()
+                let bill = fakeModels.bill()
+                let entry = fakeModels.billEntry(for: bill, date: date)
+                let account = fakeModels.account()
+                
+                beforeEach {
+                    billsViewController
+                        .proceedPayment(ofBill   : entry,
+                                        amount   : 120,
+                                        account  : account,
+                                        date     : date)
+                }
+                
+                it("passes values to presenter", closure: {
                     expect(mockPresenter?.didPayBillEntry) == entry
+                    expect(mockPresenter?.didPayAccount) == account
+                    expect(mockPresenter?.didPayAmount) == 120
+                    expect(mockPresenter?.didPayDate) == date
+                })
+            })
+            
+            context("user skips a bill entry", {
+                let firstIndex = IndexPath(row: 0, section: 0)
+                var entry: BillEntry!
+                beforeEach {
+                    billsViewController.skipBillEntry(atIndex: firstIndex)
+                    entry = billsViewController.dataSource?.entry(at: firstIndex)
+                }
+                
+                it("tells presenter to skip entry", closure: {
+                    expect(mockPresenter?.didSkipEntry) == entry
                 })
             })
         }

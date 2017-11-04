@@ -30,16 +30,19 @@ class TransactionsListDataSourceTests: QuickSpec {
                 realm.deleteAll()
             }
             
-            dataSource = TransactionsListDataSource(authConfig: RealmAuthConfig(),
-                                                    filterBy: .byAccount,
-                                                    date: nil, accounts: [])
+            dataSource = TransactionsListDataSource(authConfig  : RealmAuthConfig(),
+                                                    filterBy    : .byAccount,
+                                                    date        : nil,
+                                                    accounts    : [])
+            
             dataSource?.realmContainer = MockRealmContainer(memoryIdentifier: identifier)
             dataSource?.realmContainer?.setDefaultRealm(to: .offline)
             
-            let resolver = StubViewControllerResolvers()
-            mockTableViewController = resolver.container.resolve(TransactionsTableViewController.self,
-                                                                 name: "stub",
-                                                                 argument: TransactionsFilter.byAccount)
+            let resolver = StubMTResolvers()
+            mockTableViewController = resolver.container
+                .resolve(TransactionsTableViewController.self,
+                         name       : "stub",
+                         argument   : TransactionsFilter.byAccount)
             dataSource?.delegate = mockTableViewController
             mockTableViewController?.transactionsDataSource = dataSource
             
@@ -69,8 +72,8 @@ class TransactionsListDataSourceTests: QuickSpec {
                 let accountType1 = fakeModels.accountType(id: 100)
                 let accountType2 = fakeModels.accountType(id: 101)
                 
-                date1 = Date(dateString: "09-11-2017 1:00PM", format: "MM-dd-yyyy hh:mmaa")
-                date2 = date1.add(2.days)
+                date1 = Date().start(of: .day)
+                date2 = date1.add(1.months)
                 date3 = date1.add(2.hours)
                 
                 accountType1.save(toRealm: dataSource!.realmContainer!.userRealm!)
@@ -132,23 +135,28 @@ class TransactionsListDataSourceTests: QuickSpec {
                 it("displays transactions (sorted latest first) that belongs to the given account", closure: {
                     let numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
                                                                numberOfRowsInSection: 0)
-                    expect(numOfRows) == 2
+                    expect(numOfRows) == 1
                     
                     let rows = dataSource?.groupedTransactions[trans1.transactionDate.format(with: "MMM")]
                     
-                    expect(trans2) == rows!![0]
-                    expect(trans1) == rows!![1]
+                    expect(rows!!.count) == 1
+                    expect(rows!![0]) == trans1
                 })
                 
                 it("sections table by month", closure: {
                     let numOfSections = dataSource?.numberOfSections(in: mockTableViewController!.tableView)
-                    let numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
+                    var numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
                                                           numberOfRowsInSection: 1)
-                    expect(numOfSections) == 2
+                    expect(numOfSections) == 3
+                    expect(numOfRows) == 1
+                    
+                    numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
+                                                      numberOfRowsInSection: 2)
                     expect(numOfRows) == 2
-                    
+
                     let rows = dataSource?.groupedTransactions[trans5.transactionDate.format(with: "MMM")]
-                    
+
+                    expect(rows??.count) == 2
                     expect(trans5) == rows!![0]
                     expect(trans6) == rows!![1]
                 })
@@ -157,7 +165,6 @@ class TransactionsListDataSourceTests: QuickSpec {
             context("when filtered by date", {
                 it("displays transactions (sorted latest first) that was recorded at the given date", closure: {
                     dataSource?.dateFilter = date1
-                    dataSource?.filterBy = .byDate
                     dataSource?.reloadByDate(with: date1)
                     let numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
                                                           numberOfRowsInSection: 0)
@@ -165,7 +172,7 @@ class TransactionsListDataSourceTests: QuickSpec {
                     let t1 = dataSource?.transactions?[0]
                     let t2 = dataSource?.transactions?[1]
                     let t3 = dataSource?.transactions?[2]
-                    
+
                     expect(t1) == trans4
                     expect(t2) == trans3
                     expect(t3) == trans1
@@ -176,14 +183,13 @@ class TransactionsListDataSourceTests: QuickSpec {
                 it("displays transactions (sorted latest first) that was recorded at the given date and belongs to the given accounts", closure: {
                     dataSource?.dateFilter = date1
                     dataSource?.accountsFilter = [account1, account3]
-                    dataSource?.filterBy = .both
                     dataSource?.reloadBy(accounts: [account1, account3], date: date1)
                     let numOfRows = dataSource?.tableView(mockTableViewController!.tableView,
                                                           numberOfRowsInSection: 0)
                     expect(numOfRows).toEventually(equal(2))
                     let t1 = dataSource?.transactions?.first
                     let t2 = dataSource?.transactions?.last
-                    
+
                     expect(t1) == trans4
                     expect(t2) == trans1
                 })

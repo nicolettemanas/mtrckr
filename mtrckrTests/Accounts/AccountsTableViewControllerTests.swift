@@ -27,8 +27,8 @@ class AccountsTableViewControllerTests: QuickSpec {
     
     override func spec() {
         beforeEach {
-            let resolver = ViewControllerResolvers()
-            let transDataSource: TransactionsListDataSourceProtocol = StubViewControllerResolvers().container
+            let resolver = MTResolver()
+            let transDataSource: TransactionsListDataSourceProtocol = StubMTResolvers().container
                 .resolve(TransactionsListDataSource.self, name: "stub", argument: TransactionsFilter.byAccount)!
             self.accountsVC = resolver.container.resolve(AccountsTableViewController.self, argument: transDataSource)
             expect(self.accountsVC?.view).toNot(beNil())

@@ -16,16 +16,16 @@ class Currency: Object {
     // MARK: - Properties
 
     /// The unique identifier of the `Currency`
-    dynamic var id: String! = ""
+    @objc dynamic var id: String! = ""
     
     /// The iso code of the `Currency`
-    dynamic var isoCode: String! = ""
+    @objc dynamic var isoCode: String! = ""
     
     /// The symbol of the `Currency`
-    dynamic var symbol: String! = ""
+    @objc dynamic var symbol: String! = ""
     
     /// The state of the `Currency`
-    dynamic var state: String! = ""
+    @objc dynamic var state: String! = ""
 
     override static func primaryKey() -> String? {
         return "id"

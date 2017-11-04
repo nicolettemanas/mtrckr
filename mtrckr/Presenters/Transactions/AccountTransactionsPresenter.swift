@@ -20,7 +20,7 @@ class AccountTransactionsPresenter: AccountTransactionsPresenterProtocol {
     ///   - account: An array of `Accounts` where to fetch the `Transactions` from
     ///   - presentingVC: The presenting `ViewController`
     func presentTransactions(presentingVC: AccountsTableViewController, dataSource: TransactionsListDataSourceProtocol) {
-        guard let transVC = ViewControllerResolvers().container.resolve(TransactionsTableViewController.self, argument: dataSource) else {
+        guard let transVC = MTResolver().container.resolve(TransactionsTableViewController.self, argument: dataSource) else {
             fatalError("Cannot resolve transactionTableViewController")
         }
         

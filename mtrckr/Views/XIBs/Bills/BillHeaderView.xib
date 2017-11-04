@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="bua-OM-4mv" customClass="BillHeaderView" customModule="mtrckr" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lZh-88-e6d">
+                    <rect key="frame" x="14" y="10" width="40" height="40"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qTd-fb-f5d">
+                            <rect key="frame" x="12.5" y="12.5" width="15" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="15" id="vr6-1j-NzX"/>
+                                <constraint firstAttribute="height" constant="15" id="xa4-Yz-ODJ"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="3M2-Kl-6AG"/>
+                        <constraint firstAttribute="width" constant="40" id="CLE-aZ-pUO"/>
+                        <constraint firstItem="qTd-fb-f5d" firstAttribute="centerX" secondItem="lZh-88-e6d" secondAttribute="centerX" id="FxP-xw-FL2"/>
+                        <constraint firstItem="qTd-fb-f5d" firstAttribute="centerY" secondItem="lZh-88-e6d" secondAttribute="centerY" id="Zp8-Lj-N0u"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="P 500.39" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQd-31-fRG">
+                    <rect key="frame" x="314" y="20.5" width="75" height="20.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="tZu-MN-tpq">
+                    <rect key="frame" x="62" y="12" width="159.5" height="36"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIk-1i-LKf">
+                            <rect key="frame" x="0.0" y="0.0" width="69" height="18"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date: Nov 2, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC8-2z-KWl">
+                            <rect key="frame" x="0.0" y="18" width="159.5" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="lZh-88-e6d" firstAttribute="centerY" secondItem="INm-Yu-03G" secondAttribute="centerY" id="43u-Ke-WPC"/>
+                <constraint firstItem="tZu-MN-tpq" firstAttribute="centerY" secondItem="INm-Yu-03G" secondAttribute="centerY" id="GnE-rz-VrE"/>
+                <constraint firstItem="tZu-MN-tpq" firstAttribute="leading" secondItem="lZh-88-e6d" secondAttribute="trailing" constant="8" symbolic="YES" id="VVt-dc-APc"/>
+                <constraint firstItem="INm-Yu-03G" firstAttribute="trailing" secondItem="dQd-31-fRG" secondAttribute="trailing" constant="20" id="dt4-iF-FlH"/>
+                <constraint firstItem="dQd-31-fRG" firstAttribute="centerY" secondItem="INm-Yu-03G" secondAttribute="centerY" id="i1Q-4v-df7"/>
+                <constraint firstItem="lZh-88-e6d" firstAttribute="leading" secondItem="INm-Yu-03G" secondAttribute="leading" constant="14" id="wTf-wj-cSh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="INm-Yu-03G"/>
+            <connections>
+                <outlet property="amount" destination="dQd-31-fRG" id="s0J-hj-bIJ"/>
+                <outlet property="date" destination="WC8-2z-KWl" id="Xth-Sa-lwp"/>
+                <outlet property="img" destination="qTd-fb-f5d" id="byy-tP-AhX"/>
+                <outlet property="imgPadding" destination="lZh-88-e6d" id="m6t-3J-qKi"/>
+                <outlet property="name" destination="qIk-1i-LKf" id="7HV-ro-22g"/>
+            </connections>
+            <point key="canvasLocation" x="-255.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

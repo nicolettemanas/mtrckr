@@ -43,29 +43,32 @@ class Bill: Object {
 
     // MARK: - Properties
     /// The unique identifier of the `Bill`
-    dynamic var id: String = ""
+    @objc dynamic var id: String = ""
     
     /// The amount to be paid
-    dynamic var amount: Double = 0.0
+    @objc dynamic var amount: Double = 0.0
     
     /// The name of the `Bill`
-    dynamic var name: String = ""
+    @objc dynamic var name: String = ""
     
     /// Reminder option after the due date in raw value. See `BillDueReminder`
-    dynamic var postDueReminder: String = ""
+    @objc dynamic var postDueReminder: String = ""
     
     /// Reminder option before the due date in raw value. See `BillDueReminder`
-    dynamic var preDueReminder: String = ""
+    @objc dynamic var preDueReminder: String = ""
     
     /// The repeat option of the `Bill`. See `BillRepeatSchedule`
-    dynamic var repeatSchedule: String = ""
+    @objc dynamic var repeatSchedule: String = ""
     
     /// The date when the `Bill` starts
-    dynamic var startDate: Date = Date()
+    @objc dynamic var startDate: Date = Date()
     
     /// The `Category` of the `Bill`
-    dynamic var category: Category?
+    @objc dynamic var category: Category?
 
+    /// Indicates whether a `Bill` is still active or not
+    @objc dynamic var active: Bool = true
+    
     /// The entries under this `Bill`
     let entries = LinkingObjects(fromType: BillEntry.self, property: "bill")
 
@@ -82,6 +85,20 @@ class Bill: Object {
         do {
             try realm.write {
                 realm.add(self)
+            }
+        } catch let error as NSError {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    /// Sets the property active to false
+    ///
+    /// - Parameter realm: The realm to save the updated `Bill` to
+    func deactivate(inRealm realm: Realm) {
+        do {
+            try realm.write {
+                active = false
+                realm.add(self, update: true)
             }
         } catch let error as NSError {
             fatalError(error.localizedDescription)
@@ -147,6 +164,20 @@ class Bill: Object {
             fatalError(error.localizedDescription)
         }
     }
+    
+    /// Returns the list of paid or skipped `BillEntries`
+    ///
+    /// - Parameter realm: The realm to fetch the entries from
+    /// - Returns: The list of `BillEntries` fetched
+    func history(in realm: Realm) -> Results<BillEntry> {
+        let entries = BillEntry.all(in: realm, for: self)
+            .filter("status == %@ || status == %@",
+                    BillEntryStatus.paid.rawValue,
+                    BillEntryStatus.skipped.rawValue)
+            .sorted(byKeyPath: "dueDate", ascending: false)
+        
+        return entries
+    }
 
     /// Fetches the `Bill` with the given parameters
     ///
@@ -178,5 +209,4 @@ class Bill: Object {
         return realm.objects(Bill.self)
             .sorted(byKeyPath: "name")
     }
-
 }

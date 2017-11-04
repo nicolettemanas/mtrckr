@@ -11,7 +11,7 @@ import DZNEmptyDataSet
 class EmptyBillsDataSource: NSObject, DZNEmptyDataSetSource {
     
     struct LocalizableStrings {
-        static let emptyBillsTitle = NSLocalizedString("There are currently no saved bills.",
+        static let emptyBillsTitle = NSLocalizedString("You have no scheduled bills.",
                                                        comment: "The title shown when there are no bills registered.")
         static let emptyBillsBody = NSLocalizedString("Tap the '+' button to add one.",
                                                       comment: """
@@ -29,9 +29,9 @@ class EmptyBillsDataSource: NSObject, DZNEmptyDataSetSource {
         let style = NSMutableParagraphStyle()
         style.lineBreakMode = .byWordWrapping
         style.alignment = .center
-        let attr = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
-                    NSForegroundColorAttributeName: MTColors.placeholderText,
-                    NSParagraphStyleAttributeName: style]
+        let attr = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),
+                    NSAttributedStringKey.foregroundColor: MTColors.placeholderText,
+                    NSAttributedStringKey.paragraphStyle: style]
         return NSAttributedString(string: str, attributes: attr)
     }
     
@@ -40,14 +40,14 @@ class EmptyBillsDataSource: NSObject, DZNEmptyDataSetSource {
         let style = NSMutableParagraphStyle()
         style.lineBreakMode = .byWordWrapping
         style.alignment = .center
-        let attr = [NSFontAttributeName: UIFont.systemFont(ofSize: 16),
-                    NSForegroundColorAttributeName: MTColors.placeholderText,
-                    NSParagraphStyleAttributeName: style]
+        let attr = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16),
+                    NSAttributedStringKey.foregroundColor: MTColors.placeholderText,
+                    NSAttributedStringKey.paragraphStyle: style]
         return NSAttributedString(string: str, attributes: attr)
     }
     
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return #imageLiteral(resourceName: "atype-cash")
+        return #imageLiteral(resourceName: "bill")
     }
     
     func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {

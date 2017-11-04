@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,7 +44,7 @@
             <objects>
                 <navigationController storyboardIdentifier="NewAccountNavigationController" id="q1n-o7-vo4" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SSm-Ot-EbP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -58,10 +59,6 @@
         <scene sceneID="fun-uW-acO">
             <objects>
                 <viewController storyboardIdentifier="NewAccountViewController" id="5bP-TR-78k" customClass="NewAccountViewController" customModule="mtrckr" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yvu-Tx-2vj"/>
-                        <viewControllerLayoutGuide type="bottom" id="Gqe-ah-2oU"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LpF-FW-STa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -231,13 +228,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="gYr-hV-tHm" secondAttribute="trailing" id="8eg-CI-kip"/>
+                            <constraint firstItem="MhD-99-Uvq" firstAttribute="trailing" secondItem="gYr-hV-tHm" secondAttribute="trailing" id="8eg-CI-kip"/>
                             <constraint firstItem="IPI-Q2-eEX" firstAttribute="width" secondItem="LpF-FW-STa" secondAttribute="width" id="BzY-Jq-Tns"/>
                             <constraint firstItem="IPI-Q2-eEX" firstAttribute="height" secondItem="LpF-FW-STa" secondAttribute="height" id="hPy-qd-55o"/>
                             <constraint firstItem="gYr-hV-tHm" firstAttribute="top" secondItem="LpF-FW-STa" secondAttribute="top" id="pRd-Ye-5A4"/>
-                            <constraint firstItem="Gqe-ah-2oU" firstAttribute="top" secondItem="gYr-hV-tHm" secondAttribute="bottom" id="vTq-x8-4kJ"/>
-                            <constraint firstItem="gYr-hV-tHm" firstAttribute="leading" secondItem="LpF-FW-STa" secondAttribute="leading" id="xcL-bf-4Gf"/>
+                            <constraint firstItem="MhD-99-Uvq" firstAttribute="bottom" secondItem="gYr-hV-tHm" secondAttribute="bottom" id="vTq-x8-4kJ"/>
+                            <constraint firstItem="gYr-hV-tHm" firstAttribute="leading" secondItem="MhD-99-Uvq" secondAttribute="leading" id="xcL-bf-4Gf"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="MhD-99-Uvq"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Account" id="TGs-5W-Ea2">
                         <barButtonItem key="leftBarButtonItem" image="x-tab" id="2rW-up-GAE">
@@ -289,12 +287,12 @@
         <scene sceneID="Te1-cP-z1B">
             <objects>
                 <navigationController storyboardIdentifier="AccountsNavigationController" title="Accounts" id="Zni-BH-bNB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="account-dark" selectedImage="account-dark" id="NBh-nk-Ouz">
+                    <tabBarItem key="tabBarItem" title="" image="wallet-bar" id="NBh-nk-Ouz">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yea-Gm-aJS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.65490196079999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -308,9 +306,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="account-dark" width="25" height="25"/>
         <image name="add-tab" width="20" height="20"/>
-        <image name="check-tab" width="20" height="20"/>
+        <image name="check-tab" width="20" height="15"/>
+        <image name="wallet-bar" width="25" height="29"/>
         <image name="x-tab" width="15" height="15"/>
     </resources>
 </document>
