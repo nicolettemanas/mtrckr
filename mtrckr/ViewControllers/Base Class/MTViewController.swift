@@ -48,6 +48,14 @@ class MTViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Methods
+    
+    /// Pre-composed setup for the Navigation Bar. Adds left and right bar button items (x and check icons)
+    ///
+    /// - Parameters:
+    ///   - navTitle: The title to display in the Navigation Bar
+    ///   - leftSelector: The selector to invoke when left bar button item is tapped
+    ///   - rightSelector: The selector to invoke when right bar button item is tapped
+    ///   - target: The target of the selectors
     func setupNavBar(title navTitle: String, leftSelector: Selector, rightSelector: Selector, target: Any?) {
         title = navTitle
         let left = UIBarButtonItem(image    : UIImage(named: "x-tab"),

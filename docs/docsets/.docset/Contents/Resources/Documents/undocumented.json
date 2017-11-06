@@ -226,35 +226,35 @@
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Interactors/Transactions/TransactionsListDataSource.swift",
-      "line": 74,
+      "line": 73,
       "symbol": "TransactionsListDataSource.init(authConfig:delegate:filterBy:date:accounts:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Interactors/Transactions/TransactionsListDataSource.swift",
-      "line": 186,
+      "line": 185,
       "symbol": "TransactionsListDataSource.sum(of:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Interactors/Transactions/TransactionsListDataSource.swift",
-      "line": 199,
+      "line": 198,
       "symbol": "TransactionsListDataSource.setupTransactions()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Interactors/Transactions/TransactionsListDataSource.swift",
-      "line": 218,
+      "line": 217,
       "symbol": "TransactionsListDataSource.rowsForSection(section:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Interactors/Transactions/TransactionsListDataSource.swift",
-      "line": 225,
+      "line": 224,
       "symbol": "TransactionsListDataSource.generateTitles()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -537,20 +537,6 @@
       "line": 14,
       "symbol": "AppFontName",
       "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Utils/Date+Converter.swift",
-      "line": 11,
-      "symbol": "Date.toUTC()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/user/Documents/Money Tracker/iOS/MTrckr/mtrckr/mtrckr/Utils/Date+Converter.swift",
-      "line": 20,
-      "symbol": "Date.toLocal()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {

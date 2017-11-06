@@ -8,6 +8,7 @@
 import Foundation
 import SwipeCellKit
 
+/// :nodoc:
 protocol NewBillViewControllerDelegate: class {
     func saveNewBill(amount: Double, name: String, post: String, pre: String,
                      repeat: String, startDate: Date, category: Category)
@@ -17,6 +18,7 @@ protocol NewBillViewControllerDelegate: class {
               repeatSchedule: String, startDate: Date, category: Category)
 }
 
+/// :nodoc:
 protocol PayBillViewControllerDelegate: class {
     func proceedPayment(ofBill entry: BillEntry, amount: Double, account: Account, date: Date)
 }

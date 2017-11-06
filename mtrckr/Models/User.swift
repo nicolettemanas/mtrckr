@@ -105,6 +105,7 @@ class User: Object {
     func delete(in realm: Realm) {
         do {
             try realm.write {
+                // TODO: Why are these commented out?
 //                realm.delete(self.customCategories)
 //                realm.delete(self.bills)
 //                realm.delete(self.accounts)

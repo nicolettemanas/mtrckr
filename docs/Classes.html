@@ -13,7 +13,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (61% documented)</p>
+        <p><a href="index.html"> Docs</a> (56% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -51,10 +51,22 @@
                 <a href="Classes/BillEntry.html">BillEntry</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/BillVCPresenter.html">BillVCPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/BillsInteractor.html">BillsInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/BillsPresenter.html">BillsPresenter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Category.html">Category</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Currency.html">Currency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DeleteBillPresenter.html">DeleteBillPresenter</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/DeleteSheetPresenter.html">DeleteSheetPresenter</a>
@@ -70,6 +82,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/MTButton.html">MTButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/MTFormViewController.html">MTFormViewController</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/MTSyncUser.html">MTSyncUser</a>
@@ -166,6 +181,9 @@
                 <a href="Protocols/AuthConfig.html">AuthConfig</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/DeleteBillPresenterDelegate.html">DeleteBillPresenterDelegate</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/DeleteTransactionSheetPresenterDelegate.html">DeleteTransactionSheetPresenterDelegate</a>
               </li>
               <li class="nav-group-task">
@@ -241,6 +259,38 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">class</span> <span class="kt">RealmContainer</span><span class="p">:</span> <span class="kt">RealmContainerProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6mtrckr20MTFormViewControllerC"></a>
+                    <a name="//apple_ref/swift/Class/MTFormViewController" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6mtrckr20MTFormViewControllerC">MTFormViewController</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The base class for FormViewController which handles defailt row styles</p>
+
+                        <a href="Classes/MTFormViewController.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">class</span> <span class="kt">MTFormViewController</span><span class="p">:</span> <span class="kt">FormViewController</span></code></pre>
 
                         </div>
                       </div>
@@ -414,6 +464,38 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:6mtrckr14BillsPresenterC"></a>
+                    <a name="//apple_ref/swift/Class/BillsPresenter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6mtrckr14BillsPresenterC">BillsPresenter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Event handler for <code>BillsTableViewController</code></p>
+
+                        <a href="Classes/BillsPresenter.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">class</span> <span class="kt">BillsPresenter</span><span class="p">:</span> <span class="kt">BillsPresenterProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:6mtrckr8CategoryC"></a>
                     <a name="//apple_ref/swift/Class/Category" class="dashAnchor"></a>
                     <a class="token" href="#/s:6mtrckr8CategoryC">Category</a>
@@ -465,6 +547,70 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">class</span> <span class="kt">NotificationObserver</span><span class="p">:</span> <span class="kt"><a href="Protocols/ObserverProtocol.html">ObserverProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6mtrckr15BillVCPresenterC"></a>
+                    <a name="//apple_ref/swift/Class/BillVCPresenter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6mtrckr15BillVCPresenterC">BillVCPresenter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The event handler for presenting view controllers from <code>BillsTableViewController</code></p>
+
+                        <a href="Classes/BillVCPresenter.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">class</span> <span class="kt">BillVCPresenter</span><span class="p">:</span> <span class="kt">BillVCPresenterProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6mtrckr19DeleteBillPresenterC"></a>
+                    <a name="//apple_ref/swift/Class/DeleteBillPresenter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6mtrckr19DeleteBillPresenterC">DeleteBillPresenter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An event handler for <code>BillsTableViewController</code> regarding deleting <code>Bills</code> or <code>BillEntries</code></p>
+
+                        <a href="Classes/DeleteBillPresenter.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">class</span> <span class="kt">DeleteBillPresenter</span><span class="p">:</span> <span class="kt">DeleteBillPresenterProtocol</span></code></pre>
 
                         </div>
                       </div>
@@ -883,6 +1029,38 @@ prepared here.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/c:@M@mtrckr@objc(cs)TransactionsListDataSource"></a>
+                    <a name="//apple_ref/swift/Class/TransactionsListDataSource" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@mtrckr@objc(cs)TransactionsListDataSource">TransactionsListDataSource</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The datasource of <code>TransactionsTableViewController</code></p>
+
+                        <a href="Classes/TransactionsListDataSource.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">class</span> <span class="kt">TransactionsListDataSource</span><span class="p">:</span> <span class="kt"><a href="Classes/RealmHolder.html">RealmHolder</a></span><span class="p">,</span> <span class="kt">TransactionsListDataSourceProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:@M@mtrckr@objc(cs)MTButton"></a>
                     <a name="//apple_ref/swift/Class/MTButton" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@mtrckr@objc(cs)MTButton">MTButton</a>
@@ -998,6 +1176,38 @@ prepared here.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">class</span> <span class="kt">SettingsPresenter</span><span class="p">:</span> <span class="kt"><a href="Classes/RealmHolder.html">RealmHolder</a></span><span class="p">,</span> <span class="kt">SettingsPresenterProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@mtrckr@objc(cs)BillsInteractor"></a>
+                    <a name="//apple_ref/swift/Class/BillsInteractor" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@mtrckr@objc(cs)BillsInteractor">BillsInteractor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class responsible for <code><a href="Classes/Bill.html">Bill</a></code> and <code><a href="Classes/BillEntry.html">BillEntry</a></code> modification methods</p>
+
+                        <a href="Classes/BillsInteractor.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">class</span> <span class="kt">BillsInteractor</span><span class="p">:</span> <span class="kt"><a href="Classes/RealmHolder.html">RealmHolder</a></span><span class="p">,</span> <span class="kt">BillsInteractorProtocol</span></code></pre>
 
                         </div>
                       </div>
@@ -1167,42 +1377,10 @@ prepared here.</p>
                 </li>
               </ul>
             </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@mtrckr@objc(cs)TransactionsListDataSource"></a>
-                    <a name="//apple_ref/swift/Class/TransactionsListDataSource" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@mtrckr@objc(cs)TransactionsListDataSource">TransactionsListDataSource</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The datasource of <code>TransactionsTableViewController</code></p>
-
-                        <a href="Classes/TransactionsListDataSource.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">class</span> <span class="kt">TransactionsListDataSource</span><span class="p">:</span> <span class="kt"><a href="Classes/RealmHolder.html">RealmHolder</a></span><span class="p">,</span> <span class="kt">TransactionsListDataSourceProtocol</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-08-01)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-11-06)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

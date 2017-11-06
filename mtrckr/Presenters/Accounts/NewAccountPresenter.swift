@@ -58,21 +58,35 @@ class DeleteSheetPresenter: DeleteSheetPresenterProtocol {
     ///   - indexPath: The indexPath of the `Account` from the `UITableView`
     ///   - presentingVC: The presenting view controller
     func displayDeleteSheet(toDelete indexPath: IndexPath, presentingVC: AccountsTableViewController) {
-        let deleteConfirmation = UIAlertController(title: nil,
-                                                   message: NSLocalizedString("Are you sure you want to delete this account? " +
-                                                    "Deleting an account deletes all associated transactions. " +
-                                                    "This cannot be undone.", comment: "A warning that indicates the deletion of transactions under" +
-                                                    " the account to be deleted. Asks for user's confirmation."),
-                                                   preferredStyle: .actionSheet)
+        let deleteConfirmation =
+            UIAlertController(
+              title: nil,
+              message: NSLocalizedString(
+                """
+                Are you sure you want to delete this account?
+                Deleting an account deletes all associated transactions.
+                This cannot be undone.
+                """,
+                comment:
+                """
+                A warning that indicates the deletion of transactions under the account to be deleted.
+                Asks for user's confirmation.
+                """),
+              preferredStyle: .actionSheet)
         
-        let cancel = action.makeActionWithTitle(title: NSLocalizedString("Don't delete!", comment: "Spiel telling the user to not delete"),
-                                                       style: .cancel) { (_) in
+        let cancel = action
+            .makeActionWithTitle(title: NSLocalizedString("Don't delete!",
+                                                          comment: "Spiel telling the user to not delete"),
+                                 style: .cancel) { (_) in
+                                    
             deleteConfirmation.dismiss(animated: true, completion: nil)
         }
         
-        let delete = action.makeActionWithTitle(title: NSLocalizedString("Yes, please.",
-                                                                                comment: "Spiel telling the user to proceed deletion"),
-                                   style: .destructive) { (_) in
+        let delete = action
+            .makeActionWithTitle(title: NSLocalizedString("Yes, please.",
+                                                          comment: "Spiel telling the user to proceed deletion"),
+                                 style: .destructive) { (_) in
+                                    
             presentingVC.deleteAccount(atIndex: indexPath)
         }
         

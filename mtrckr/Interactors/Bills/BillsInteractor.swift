@@ -85,6 +85,16 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
                  inRealm       : realmContainer!.userRealm!)
     }
     
+    /// Updates and save the `BillEntry` with the given values
+    ///
+    /// - Parameters:
+    ///   - entry: The `BillEntry` to update
+    ///   - amount: The new amount of the `BillEntry`
+    ///   - name: The new name of the `BillEntry`
+    ///   - preDue: The new pre-reminder of the `BillEntry`
+    ///   - postDue: The new post-reminder of the `BillEntry`
+    ///   - category: The new `Category` of the `BillEntry`
+    ///   - dueDate: The new duedate of the `BillEntry`
     func update(entry: BillEntry, amount: Double, name: String?,
                 preDue: BillDueReminder, postDue: BillDueReminder,
                 category: Category?, dueDate: Date) {
@@ -98,6 +108,17 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
                      inRealm            : self.realmContainer!.userRealm!)
     }
     
+    /// Update and save a `Bill` and all its corresponding unpaid `BillEntries` with the given values
+    ///
+    /// - Parameters:
+    ///   - bill: The `Bill` to be updated
+    ///   - amount: The new amount of the `Bill`
+    ///   - name: The new name of the `Bill`
+    ///   - post: The new post-reminder of the `Bill`
+    ///   - preDue: The new pre-reminder of the `Bill`
+    ///   - category: The new `Category` of the `Bill`
+    ///   - startDate: The new start date of the `Bill`
+    ///   - repeatSched: The new repeat schedule of the `Bill`
     func update(bill: Bill, amount: Double, name: String, post: BillDueReminder,
                 preDue: BillDueReminder, category: Category, startDate: Date, repeatSched: BillRepeatSchedule) {
         

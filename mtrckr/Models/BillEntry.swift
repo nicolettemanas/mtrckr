@@ -54,7 +54,7 @@ class BillEntry: Object {
     /// The custom `Category` to be saved when converted to a `Transaction`
     @objc dynamic var customCategory: Category?
     
-    /// The transaction generated when an entry is paid
+    /// The `Transaction` generated when an entry is paid
     @objc dynamic var transaction: Transaction?
 
     override static func primaryKey() -> String? {
@@ -79,7 +79,6 @@ class BillEntry: Object {
     }
 
     // MARK: - CRUD
-    
     /// Saves the `BillEntry` to the given `Realm`
     ///
     /// - Parameter realm: The `Realm` to save the `BillEntry` to
@@ -87,16 +86,6 @@ class BillEntry: Object {
         do {
             try realm.write {
                 realm.add(self)
-            }
-        } catch let error as NSError {
-            fatalError(error.localizedDescription)
-        }
-    }
-    
-    func update(toEntry entry: BillEntry, inRealm realm: Realm) {
-        do {
-            try realm.write {
-                realm.add(entry, update: true)
             }
         } catch let error as NSError {
             fatalError(error.localizedDescription)
@@ -209,13 +198,6 @@ class BillEntry: Object {
             fatalError(error.localizedDescription)
         }
     }
-
-    func transaction(in realm: Realm) -> Transaction? {
-        assert(status != BillEntryStatus.unpaid.rawValue)
-        if status == BillEntryStatus.skipped.rawValue { return nil }
-        return realm.objects(Transaction.self)
-            .filter("billEntry.id == %@", id).first
-    }
     
     /// Deletes the `BillEntry` from the given `Realm`
     ///
@@ -250,13 +232,12 @@ class BillEntry: Object {
         return realm.objects(BillEntry.self).filter("bill.id == %@", bill.id).sorted(byKeyPath: "dueDate")
     }
     
-    static func allAfter(date: Date, in realm: Realm, for bill: Bill) -> Results<BillEntry> {
-        return realm.objects(BillEntry.self)
-            .filter("bill.id == %@", bill.id)
-            .filter("dueDate <= %@", date)
-            .sorted(byKeyPath: "dueDate", ascending: false)
-    }
-    
+    /// Returns all `BillEntries` of the given `Bill` that is of status `.unpaid`
+    ///
+    /// - Parameters:
+    ///   - realm: The `Realm` to fetch the `BillEntries` from
+    ///   - bills: The `Bill` to fetch the `BillEntries` from
+    /// - Returns: The unpaid `BillEntries` fetched
     static func allUnpaid(in realm: Realm, for bills: [Bill]) -> Results<BillEntry> {
         return realm.objects(BillEntry.self)
             .filter("bill in %@", bills)
@@ -264,6 +245,10 @@ class BillEntry: Object {
             .sorted(byKeyPath: "dueDate", ascending: true)
     }
     
+    /// Returns all `BillEntries` that is of status `.unpaid`
+    ///
+    /// - Parameter realm: The `Realm` to fetch the `BillEntries` from
+    /// - Returns: The unpaid `BillEntries` fetched
     static func allUnpaid(in realm: Realm) -> Results<BillEntry> {
         return realm.objects(BillEntry.self)
             .filter("status == %@", BillEntryStatus.unpaid.rawValue)

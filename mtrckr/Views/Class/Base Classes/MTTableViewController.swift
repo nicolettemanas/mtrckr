@@ -87,6 +87,14 @@ extension UITableView {
         }
     }
     
+    
+    /// Applies `.automatic` table row and section animations to the changes received in `RealmCollectionChange`.
+    /// Works for single notification blocks per table section
+    ///
+    /// - Parameters:
+    ///   - index: The section index to modify
+    ///   - changes: The `RealmCollectionChange` received
+    ///   - inserting: Whether or not to insert the new section index to the `UITableview`
     func applyChanges<T>(forSection index: Int, changes: RealmCollectionChange<T>, inserting: Bool) {
         switch changes {
         case .initial: reloadData()

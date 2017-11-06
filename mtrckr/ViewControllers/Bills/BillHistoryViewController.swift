@@ -11,6 +11,7 @@ import RealmSwift
 class BillHistoryViewController: MTTableViewController {
 
     static let nName = "BillHistoryViewController"
+    static let localizedTitle = NSLocalizedString("Bill History", comment: "The title of the view controller presented for viewing a Bill's history")
     
     var bill: Bill?
     var dataSource: BillHistoryDataSourceProtocol?
@@ -34,7 +35,7 @@ class BillHistoryViewController: MTTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Bill History"
+        title = BillHistoryViewController.localizedTitle
         tableView.dataSource = dataSource
         tableView.delegate = dataSource
         
