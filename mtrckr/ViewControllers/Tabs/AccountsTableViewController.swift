@@ -15,7 +15,7 @@ protocol AccountsTableViewControllerProtocol {
     var presenter: AccountsPresenterProtocol? { get set }
 }
 
-class AccountsTableViewController: MTTableViewController, AccountsTableViewControllerProtocol, UserObserver {
+class AccountsTableViewController: MTTableViewController, AccountsTableViewControllerProtocol, UserObserver, NewAccountViewControllerDelegate {
     
     // MARK: - Properties
     // TODO: Implement Dwifft
@@ -104,29 +104,7 @@ class AccountsTableViewController: MTTableViewController, AccountsTableViewContr
         newAccountPresenter?.presentNewAccountVC(with: nil, presentingVC: self, delegate: self)
     }
     
-    // MARK: - Accounts modification methods
-    func editAccount(atIndex indexPath: IndexPath) {
-        newAccountPresenter?.presentNewAccountVC(with: accounts![indexPath.row], presentingVC: self, delegate: self)
-    }
-    
-    func confirmDelete(atIndex indexPath: IndexPath) {
-        deleteSheetPresenter?.displayDeleteSheet(toDelete: indexPath, presentingVC: self)
-    }
-    
-    func deleteAccount(atIndex indexPath: IndexPath) {
-        presenter?.deleteAccount(account: accounts![indexPath.row])
-    }
-    
-    func setupResults() {
-        DispatchQueue.main.async {
-            self.accounts = self.presenter?.accounts()
-            self.notifToken = self.accounts?.addNotificationBlock(self.tableView.applyChanges)
-            self.tableView.reloadData()
-        }
-    }
-}
-
-extension AccountsTableViewController: NewAccountViewControllerDelegate {
+    // MARK: - NewAccountViewControllerDelegate
     func shouldCreateAccount(withId id: String?, name: String, type: AccountType,
                              initBalance: Double, dateOpened: Date,
                              color: UIColor) {
@@ -146,5 +124,27 @@ extension AccountsTableViewController: NewAccountViewControllerDelegate {
                                handler: nil)
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension AccountsTableViewController {
+    func editAccount(atIndex indexPath: IndexPath) {
+        newAccountPresenter?.presentNewAccountVC(with: accounts![indexPath.row], presentingVC: self, delegate: self)
+    }
+    
+    func confirmDelete(atIndex indexPath: IndexPath) {
+        deleteSheetPresenter?.displayDeleteSheet(toDelete: indexPath, presentingVC: self)
+    }
+    
+    func deleteAccount(atIndex indexPath: IndexPath) {
+        presenter?.deleteAccount(account: accounts![indexPath.row])
+    }
+    
+    func setupResults() {
+        DispatchQueue.main.async {
+            self.accounts = self.presenter?.accounts()
+            self.notifToken = self.accounts?.addNotificationBlock(self.tableView.applyChanges)
+            self.tableView.reloadData()
+        }
     }
 }

@@ -37,6 +37,16 @@ class StubMTResolvers: MTResolver {
                       accounts      : [Account]())
         }
         
+        container.register(NewAccountFormVC.self, name: "testable") {
+            (resolver,
+            account: Account?) in
+            let vc = NewAccountFormVC.init(account: account,
+                                           delegate: nil,
+                                           accntTypeDatasource:
+                resolver.resolve(AccountTypeCollectionDataSource.self, argument: nil as AccountType?)!)
+            return vc
+        }
+        
         container.register(BillsTableViewController.self, name: "stub") { (
             resolver,
             dataSource: BillsDataSourceProtocol)  in

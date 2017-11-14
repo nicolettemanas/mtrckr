@@ -28,7 +28,7 @@ class FakeModels {
                             "currentAmount": 0,
                             "totalExpenses": 0,
                             "totalIncome": 0,
-                            "color": "color",
+                            "color": "#FFFFFF",
                             "dateOpened": Date()
                 ])
         }
@@ -44,7 +44,7 @@ class FakeModels {
         }
         container.register(Category.self) { _ in
             mtrckr.Category(id: "CAT-\(NSUUID().uuidString)", type: .expense, name: "name",
-                            icon: "icon", color: "color")
+                            icon: "icon", color: "#FFFFFF")
         }
         
         container.register(mtrckr.Category.self) { _ in

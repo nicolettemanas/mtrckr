@@ -13,6 +13,7 @@ class MTResolver {
     let authConfig = RealmAuthConfig()
     
     init() {
+        // TODO: Move this somewhere else
         let filePath = RealmAuthConfig().offlineRealmFileName
         if !FileManager.default.fileExists(atPath: filePath) {
             InitialRealmGenerator.generateInitRealm { (_) in
@@ -86,7 +87,7 @@ extension MTResolver {
     func registerAccounts() {
         container.register(AccountsTableViewController.self) { (
             resolver,
-            dataSource: TransactionsListDataSourceProtocol) in
+            dataSource: TransactionsListDataSourceProtocol?) in
             
             AccountsTableViewController
                 .initWith(presenter             : resolver.resolve(AccountsPresenter.self),
@@ -98,12 +99,28 @@ extension MTResolver {
             
         }
         
+        container.register(NewAccountFormVC.self) {
+            (resolver,
+            account: Account?,
+            delegate: NewAccountViewControllerDelegate?) in
+            
+            return NewAccountFormVC(account: account, delegate: delegate,
+                                    accntTypeDatasource: resolver
+                                        .resolve(AccountTypeCollectionDataSource.self, argument: account?.type)!)
+        }
+        
         container.register(AccountsPresenter.self) { resolver in
             AccountsPresenter(interactor: resolver.resolve(AccountsInteractor.self)!)
         }
         
         container.register(AccountsInteractor.self) { [unowned self] _ in
             AccountsInteractor(with: self.authConfig)
+        }
+        
+        container.register(AccountTypeCollectionDataSource.self) {
+            (_,
+            accountType: AccountType?) in
+            AccountTypeCollectionDataSource(with: self.authConfig, value: accountType)
         }
         
         container.register(EmptyAccountsDataSource.self) { _ in EmptyAccountsDataSource() }

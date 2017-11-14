@@ -13,44 +13,34 @@ protocol AccountTypeCollectionDelegate: class {
     func didSelect(accountType: AccountType)
 }
 
-protocol TypeCollectionProtocol {
+protocol AccountTypeCollectionDataSourceProtocol {
     weak var delegate: AccountTypeCollectionDelegate? { get set }
-    func selectDefault()
-    func select(type: AccountType)
-    func indexPath(of type: AccountType) -> IndexPath?
+    var value: AccountType? { get }
 }
 
-class AccountTypeCollectionDataSource: RealmHolder, TypeCollectionProtocol,
-UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class AccountTypeCollectionDataSource: RealmHolder, AccountTypeCollectionDataSourceProtocol {
     
     var realm: Realm?
-    var notifToken: NotificationToken?
     var types: Results<AccountType>?
     
-    weak var collectionView: UICollectionView?
     weak var delegate: AccountTypeCollectionDelegate?
+    var value: AccountType?
     
-    init(with config: AuthConfig, collectionView cv: UICollectionView) {
+    private var selectedIndexPath: IndexPath?
+    
+    init(with config: AuthConfig, value aValue: AccountType?) {
         super.init(with: config)
-        collectionView = cv
         realm = realmContainer?.userRealm
         types = AccountType.all(in: realm!)
-        notifToken = realm!.addNotificationBlock({ [weak self] _, realm in
-            guard let strongSelf = self else { return }
-            strongSelf.types = AccountType.all(in: realm)
-            strongSelf.collectionView?.reloadData()
-        })
-        
-        collectionView?.register(UINib(nibName: "AccountTypeCollectionViewCell", bundle: Bundle.main),
-                                 forCellWithReuseIdentifier: "AccountTypeCollectionViewCell")
-        collectionView?.allowsMultipleSelection = false
+        value = aValue
     }
     
-    deinit {
-        notifToken?.stop()
+    func type(atIndex index: IndexPath) -> AccountType? {
+        return types?[index.row]
     }
-    
-    // MARK: - UICollectionViewDelegate and UICollectionViewDataSource methods
+}
+
+extension AccountTypeCollectionDataSource: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @available(iOS 6.0, *)
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.types?.count ?? 0
@@ -61,69 +51,48 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         guard let cell: AccountTypeCollectionViewCell = collectionView
             .dequeueReusableCell(withReuseIdentifier: "AccountTypeCollectionViewCell", for: indexPath)
             as? AccountTypeCollectionViewCell
-            else {
-                fatalError("Cannot initialize cell with identifier: AccountTypeCollectionViewCell")
-            }
+            else { fatalError("Cannot initialize cell with identifier: AccountTypeCollectionViewCell") }
         
         guard let type = types?[indexPath.row] else {
             fatalError("Cannot retrieve AccountType")
         }
-        cell.name.text = type.name
+        
         cell.icon.image = UIImage(named: type.icon)
+        guard let val = value else { return cell }
         
-        cell.contentView.layer.borderWidth = 0.5
-        cell.contentView.layer.borderColor = MTColors.mainText.cgColor
-        cell.contentView.layer.masksToBounds = true
-        cell.clipsToBounds = true
-        
-        if cell.isSelected == true {
+        if val.typeId == type.typeId {
             cell.didSelect()
-        } else {
-            cell.didDeselect()
+            selectedIndexPath = indexPath
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            delegate?.didSelect(accountType: types![indexPath.row])
         }
         
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 130, height: 40)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell: AccountTypeCollectionViewCell = collectionView.cellForItem(at: indexPath)
-            as? AccountTypeCollectionViewCell else {
-            return
-        }
+            as? AccountTypeCollectionViewCell else { return }
         
         cell.didSelect()
+        selectedIndexPath = indexPath
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         delegate?.didSelect(accountType: types![indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell: AccountTypeCollectionViewCell = collectionView.cellForItem(at: indexPath)
-            as? AccountTypeCollectionViewCell else {
-                return
-        }
+            as? AccountTypeCollectionViewCell else { return }
         cell.didDeselect()
+        guard let type = type(atIndex: indexPath) else { return }
+        delegate?.didSelect(accountType: type)
     }
     
-    // MARK: - TypeCollectionProtocol methods
-    func selectDefault() {
-        guard let cv = collectionView else { return }
-        cv.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
-        collectionView(cv, didSelectItemAt: IndexPath(row: 0, section: 0))
-    }
-    
-    func select(type: AccountType) {
-        guard let cv = collectionView else { return }
-        guard let index = indexPath(of: type) else { return }
-        cv.selectItem(at: index, animated: true, scrollPosition: .left)
-        collectionView(cv, didSelectItemAt: index)
-    }
-    
-    func indexPath(of type: AccountType) -> IndexPath? {
-        guard let t = types else { return nil }
-        return IndexPath(row: t.index(of: type)!, section: 0)
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        guard let aCell = cell as? AccountTypeCollectionViewCell else { return }
+        aCell.didDeselect()
+        if selectedIndexPath == indexPath { aCell.didSelect() }
     }
 }

@@ -15,25 +15,27 @@ protocol ColorsCollectionDelegate: class {
 
 protocol ColorCollectionProtocol {
     weak var delegate: ColorsCollectionDelegate? { get set }
-    func selectDefault()
-    func select(color: UIColor)
-    func indexPath(of color: UIColor) -> IndexPath?
+    var value: UIColor? { get }
 }
 
-class ColorsCollectionDataSource: RealmHolder, ColorCollectionProtocol, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ColorsCollectionDataSource: NSObject, ColorCollectionProtocol {
     
-    weak var collectionView: UICollectionView?
     weak var delegate: ColorsCollectionDelegate?
+    var value: UIColor?
     
-    init(with config: AuthConfig, collectionView cv: UICollectionView) {
-        super.init(with: config)
-        collectionView = cv
-        collectionView?.register(UINib(nibName: "ColorCollectionViewCell", bundle: Bundle.main),
-                                 forCellWithReuseIdentifier: "ColorCollectionViewCell")
-        collectionView?.allowsMultipleSelection = false
+    private var selectedIndexPath: IndexPath?
+    
+    init(value aValue: UIColor?) {
+        super.init()
+        value = aValue
+    }
+}
+
+extension ColorsCollectionDataSource: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
-    // MARK: - UICollectionViewDelegate and UICollectionViewDataSource methods
     @available(iOS 6.0, *)
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return MTColors.colors.count
@@ -44,17 +46,16 @@ class ColorsCollectionDataSource: RealmHolder, ColorCollectionProtocol, UICollec
         guard let cell: ColorCollectionViewCell = collectionView
             .dequeueReusableCell(withReuseIdentifier: "ColorCollectionViewCell", for: indexPath)
             as? ColorCollectionViewCell
-            else {
-                fatalError("Cannot initialize cell with identifier: ColorCollectionViewCell")
-        }
-        
-        if cell.isSelected == true {
-            cell.didSelect()
-        } else {
-            cell.didDeselect()
-        }
-        
+            else { fatalError("Cannot initialize cell with identifier: ColorCollectionViewCell") }
         cell.contentView.backgroundColor = MTColors.colors[indexPath.row]
+        
+        guard let val = value else { return cell }
+        if val == MTColors.colors[indexPath.row] {
+            cell.didSelect()
+            selectedIndexPath = indexPath
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            delegate?.didSelect(color: MTColors.colors[indexPath.row])
+        }
         return cell
     }
     
@@ -70,6 +71,8 @@ class ColorsCollectionDataSource: RealmHolder, ColorCollectionProtocol, UICollec
         }
         
         cell.didSelect()
+        selectedIndexPath = indexPath
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         delegate?.didSelect(color: MTColors.colors[indexPath.row])
     }
     
@@ -81,25 +84,12 @@ class ColorsCollectionDataSource: RealmHolder, ColorCollectionProtocol, UICollec
         cell.didDeselect()
     }
     
-    // MARK: - ColorCollectionProtocol
-    func selectDefault() {
-        guard let cv = collectionView else { return }
-        cv.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
-        collectionView(cv, didSelectItemAt: IndexPath(row: 0, section: 0))
-    }
-    
-    func select(color: UIColor) {
-        guard let cv = collectionView else { return }
-        guard let index = indexPath(of: color) else { return }
-        cv.selectItem(at: index, animated: true, scrollPosition: .left)
-        collectionView(cv, didSelectItemAt: index)
-    }
-    
-    func indexPath(of color: UIColor) -> IndexPath? {
-        if let c = MTColors.colors.index(of: color) {
-            return IndexPath(row: c, section: 0)
-        }
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
         
-        return IndexPath(row: 0, section: 0)
+        guard let aCell = cell as? ColorCollectionViewCell else { return }
+        aCell.didDeselect()
+        if selectedIndexPath == indexPath { aCell.didSelect() }
     }
 }

@@ -154,7 +154,7 @@ class UserTests: QuickSpec {
                 "currentAmount": 0.0,
                 "totalExpenses": 0.0,
                 "totalIncome": 0.0,
-                "color": "",
+                "color": "#FFFFFF",
                 "dateOpened": Date()])
 
             let bill = Bill(value: ["id": "bill\(i)",

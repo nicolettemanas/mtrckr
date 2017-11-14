@@ -9,7 +9,7 @@ import UIKit
 
 protocol NewAccountPresenterProtocol {
     func presentNewAccountVC(with account: Account?, presentingVC: UIViewController,
-                             delegate: NewAccountViewControllerDelegate)
+                             delegate: NewAccountViewControllerDelegate?)
 }
 
 /// An event handler of `Account` tableview controller regarding new `Account`s
@@ -22,16 +22,12 @@ class NewAccountPresenter: NewAccountPresenterProtocol {
     ///   - presentingVC: The presenting View Controller
     ///   - delegate: The delegate of the controller to be presented
     func presentNewAccountVC(with account: Account?, presentingVC: UIViewController,
-                             delegate: NewAccountViewControllerDelegate) {
-        let nav = UIStoryboard(name: "Accounts", bundle: Bundle.main)
-            .instantiateViewController(withIdentifier: "NewAccountNavigationController")
-        guard let vc = (nav as? UINavigationController)?.topViewController
-            as? NewAccountViewController else {
-                return
-        }
+                             delegate: NewAccountViewControllerDelegate?) {
         
-        vc.delegate = delegate
-        vc.account = account
+        let resolver = MTResolver()
+        guard let vc = resolver.container.resolve(NewAccountFormVC.self, arguments: account, delegate)
+            else { fatalError("NewAccountFormVC not registered") }
+        let nav = UINavigationController(rootViewController: vc)
         presentingVC.present(nav, animated: true, completion: nil)
     }
 }
@@ -106,8 +102,3 @@ class MTAlertAction: UIAlertAction {
         return UIAlertAction(title: title, style: style, handler: handler)
     }
 }
-
-//extension UIAlertAction {
-//    /// :nodoc:
-//
-//}

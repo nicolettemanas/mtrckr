@@ -12,6 +12,7 @@ class NewBillViewController: MTFormViewController {
     static let nName = "NewBillViewController"
     
     struct LocalizedStrings {
+        static let title        = NSLocalizedString("New Bill", comment: "Title of the page when creating a new bill")
         static let kEditConfirm = NSLocalizedString("Do you want to edit only this bill or all unpaid bills?",
                                             comment: "Asks whether user edit applies to current bill or all unpaid bills.")
         static let kCancel      = NSLocalizedString("Cancel", comment: "Spiel telling the user to cancel")
@@ -73,10 +74,10 @@ class NewBillViewController: MTFormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupForm()
-        setupNavBar(title: "New Bill",
-                    leftSelector: #selector(didPressCancel),
-                    rightSelector: #selector(didPressSave),
-                    target: self)
+        setupNavBar(title           : LocalizedStrings.title,
+                    leftSelector    : #selector(didPressCancel),
+                    rightSelector   : #selector(didPressSave),
+                    target          : self)
         if billEntry != nil { fillInBillEntry() }
     }
 

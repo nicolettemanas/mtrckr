@@ -233,7 +233,7 @@ class AccountTests: QuickSpec {
                             "currentAmount": 0.0,
                             "totalExpenses": 0.0,
                             "totalIncome": 0.0,
-                            "color": "",
+                            "color": "#FFFFFF",
                             "dateOpened": Date()])
             acc.save(toRealm: self.testRealm)
             Transaction(type: .expense, name: "trans \(i)", image: nil,

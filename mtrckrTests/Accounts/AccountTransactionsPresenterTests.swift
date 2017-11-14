@@ -26,7 +26,7 @@ class AccountTransactionsPresenterTests: QuickSpec {
                     dataSource = self.stubResolver.container.resolve(TransactionsListDataSource.self, name: "stub",
                                                                      argument: TransactionsFilter.byAccount)! as! StubTransactionsListDataSource
                     vc = self.stubResolver.container.resolve(AccountsTableViewController.self,
-                                                             argument: dataSource as TransactionsListDataSourceProtocol)
+                                                             argument: dataSource as? TransactionsListDataSourceProtocol)
                 }
                 
                 it("calls reloadByAccounts", closure: {

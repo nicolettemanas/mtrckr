@@ -56,6 +56,7 @@ class MTFormViewController: FormViewController {
             cell.titleLabel?.textColor = MTColors.mainText
             cell.textField.font = UIFont.mySystemFont(ofSize: 13)
             cell.textField.textColor = MTColors.subText
+            cell.selectionStyle = .none
             row.validationOptions = .validatesOnDemand
             row.add(rule: RuleRequired())
             row.cellUpdate({ (ce, ro) in
@@ -78,6 +79,7 @@ class MTFormViewController: FormViewController {
             cell.titleLabel?.textColor = MTColors.mainText
             cell.textField.font = UIFont.mySystemFont(ofSize: 13)
             cell.textField.textColor = MTColors.subText
+            cell.selectionStyle = .none
             row.validationOptions = .validatesOnDemand
             row.add(rule: RuleRequired())
             row.cellUpdate({ (ce, ro) in
@@ -89,11 +91,16 @@ class MTFormViewController: FormViewController {
                 }
             })
         }
+        
+        DecimalRow.defaultOnCellHighlightChanged = {cell, _ in
+            cell.textLabel?.textColor = MTColors.mainBlue
+        }
 
         DateRow.defaultCellSetup = { cell, row in
             cell.height = { 55 }
             cell.textLabel?.font = UIFont.myBoldSystemFont(ofSize: 14)
             cell.textLabel?.textColor = MTColors.mainText
+            cell.selectionStyle = .none
         }
 
         DateRow.defaultOnCellHighlightChanged = {cell, _ in
@@ -106,6 +113,7 @@ class MTFormViewController: FormViewController {
             cell.textLabel?.textColor = MTColors.mainText
             cell.textLabel?.font = UIFont.mySystemFont(ofSize: 13)
             cell.textLabel?.textColor = MTColors.subText
+            cell.selectionStyle = .none
             row.validationOptions = .validatesOnDemand
             row.add(rule: RuleRequired())
             row.cellUpdate({ (ce, ro) in
