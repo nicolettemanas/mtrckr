@@ -2,9 +2,9 @@ PODS:
   - DateToolsSwift (2.0.3)
   - Dwifft (0.7)
   - DZNEmptyDataSet (1.8.1)
-  - Eureka (3.0.0)
-  - Hero (0.3.6)
-  - JTAppleCalendar (7.0.5)
+  - Eureka (4.0.1)
+  - Hero (1.1.0)
+  - JTAppleCalendar (7.1.5)
   - Mockingjay (2.0.0):
     - Mockingjay/Core (= 2.0.0)
     - Mockingjay/XCTest (= 2.0.0)
@@ -13,65 +13,57 @@ PODS:
   - Mockingjay/XCTest (2.0.0):
     - Mockingjay/Core
   - Nimble (7.0.1)
-  - NVActivityIndicatorView (3.6.1)
+  - NVActivityIndicatorView (4.1.1):
+    - NVActivityIndicatorView/Presenter (= 4.1.1)
+  - NVActivityIndicatorView/Presenter (4.1.1)
   - Quick (1.1.0)
   - Realm (3.1.1):
     - Realm/Headers (= 3.1.1)
   - Realm/Headers (3.1.1)
   - RealmSwift (3.1.1):
     - Realm (= 3.1.1)
-  - SwiftLint (0.18.1)
-  - Swinject (2.1.1)
-  - SwipeCellKit (1.9.1)
+  - SwiftLint (0.25.0)
+  - Swinject (2.2.0)
+  - SwipeCellKit (2.0.1)
   - UIColor_Hex_Swift (3.0.2)
   - URITemplate (2.0.0)
 
 DEPENDENCIES:
   - DateToolsSwift (~> 2.0.3)
   - Dwifft
-  - DZNEmptyDataSet
-  - Eureka (from `https://github.com/xmartlabs/Eureka.git`, branch `feature/Xcode9-Swift3_2`)
-  - Hero (~> 0.3.6)
-  - JTAppleCalendar
+  - DZNEmptyDataSet (~> 1.8.1)
+  - Eureka (~> 4.0.0)
+  - Hero (~> 1.1.0)
+  - JTAppleCalendar (~> 7.1.5)
   - Mockingjay (~> 2.0.0)
   - Nimble (~> 7.0.1)
-  - NVActivityIndicatorView (~> 3.6.1)
+  - NVActivityIndicatorView (~> 4.1.1)
   - Quick (~> 1.1.0)
   - RealmSwift (~> 3.1.1)
-  - SwiftLint (~> 0.18.1)
-  - Swinject (~> 2.1.0)
-  - SwipeCellKit (~> 1.9.1)
+  - SwiftLint (~> 0.25.0)
+  - Swinject (~> 2.2.0)
+  - SwipeCellKit (~> 2.0.1)
   - UIColor_Hex_Swift (~> 3.0.2)
-
-EXTERNAL SOURCES:
-  Eureka:
-    :branch: feature/Xcode9-Swift3_2
-    :git: https://github.com/xmartlabs/Eureka.git
-
-CHECKOUT OPTIONS:
-  Eureka:
-    :commit: ca16432dde9b94b3b5335cd9287f1cc57ebbebc4
-    :git: https://github.com/xmartlabs/Eureka.git
 
 SPEC CHECKSUMS:
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   Dwifft: bb97bff975a5f5e62a7492dc29463e9be47dc121
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
-  Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
-  JTAppleCalendar: e01efccbf51cb6b3606f6cbcaa448befffed9582
+  Eureka: c8bd5cc07143b6f66268c208d28a246c99b41955
+  Hero: ce59e81c79390613d97b43da7179e2c5e1017e04
+  JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
-  NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
+  NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Realm: 42d1c38a5b1bbcc828b48a7ce702cb86fc68adf4
   RealmSwift: d31937ca6a6ee54acde64ec839523c0a3c04924b
-  SwiftLint: b467d08f5b25dc3b3cfed243d8e1b74b91714c67
-  Swinject: afea49fd95f392b41171669f165842879c48fad6
-  SwipeCellKit: e9ff953c820394a4e641cfb0118b6c959506aec2
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
+  Swinject: 4ca48bca7de5f398229a26abe1ac902b9f3ee541
+  SwipeCellKit: 76888d93d1843dc568fdf38fff21b15dbbcf6b28
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: 285976f38553abd01316ec81497262070ef298ef
+PODFILE CHECKSUM: 0160fbd0c8d3bf85a816e2e81bd4e89861447897
 
 COCOAPODS: 1.3.1

@@ -1,10 +1,10 @@
 # Podfile
 def commonPods
     pod 'DateToolsSwift', '~> 2.0.3'
-    pod 'Swinject', '~> 2.1.0'
+    pod 'Swinject', '~> 2.2.0'
     pod 'RealmSwift', '~> 3.1.1'
-    pod 'SwiftLint', '~> 0.18.1'
-    pod 'SwipeCellKit', '~> 1.9.1'
+    pod 'SwiftLint', '~> 0.25.0'
+    pod 'SwipeCellKit', '~> 2.0.1'
 end
 
 abstract_target 'Tests' do
@@ -19,12 +19,12 @@ abstract_target 'Tests' do
     
     target "mtrckr" do
         #    pod 'CryptoSwift', '~> 0.6.9'
-        pod 'Hero', '~> 0.3.6'
-        pod 'NVActivityIndicatorView', '~> 3.6.1'
+        pod 'Hero', '~> 1.1.0'
+        pod 'NVActivityIndicatorView', '~> 4.1.1'
         pod 'UIColor_Hex_Swift', '~> 3.0.2'
-        pod 'DZNEmptyDataSet'
-        pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git', :branch => 'feature/Xcode9-Swift3_2'
-        pod 'JTAppleCalendar'
+        pod 'DZNEmptyDataSet', '~> 1.8.1'
+        pod 'Eureka', '~> 4.0.0'
+        pod 'JTAppleCalendar', '~> 7.1.5'
         pod 'Dwifft'
     end
 
