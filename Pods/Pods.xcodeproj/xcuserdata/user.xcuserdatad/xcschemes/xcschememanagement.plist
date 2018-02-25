@@ -49,12 +49,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Tests-mtrckrTests.xcscheme</key>
+		<key>Pods-Tests-mtrckr.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-mtrckr.xcscheme</key>
+		<key>Pods-Tests-mtrckrTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

@@ -49,7 +49,7 @@ class BillsDataSource: RealmHolder, BillsDataSourceProtocol {
     weak var delegate: (BillsDataSourceDelegate & SwipeTableViewCellDelegate)?
     
     deinit {
-        notifToken?.stop()
+        notifToken?.invalidate()
     }
     
     override init(with config: AuthConfig) {
@@ -73,8 +73,10 @@ class BillsDataSource: RealmHolder, BillsDataSourceProtocol {
     
     private func refreshBillEntries() {
         self.billEntries = BillEntry.allUnpaid(in: self.realmContainer!.userRealm!)
-        self.notifToken = self.billEntries?.addNotificationBlock({ [unowned self] (_) in
-            self.sortEntries()
+        self.notifToken = self.billEntries?.observe({ [weak self] (_) in
+            if let strongSelf = self {
+                strongSelf.sortEntries()
+            }
         })
     }
     

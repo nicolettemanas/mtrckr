@@ -39,9 +39,11 @@ class BillHistoryDataSource: RealmHolder, BillHistoryDataSourceProtocol {
     func refreshHistory() {
         assert(cellDelegate != nil)
         history = bill.history(in: realmContainer!.userRealm!)
-        notifToken = history?.addNotificationBlock({ [unowned self] (changes) in
-            self.cellDelegate?.didUpdate(changes: changes)
-            self.cellDelegate?.toggleFooter(show: self.history?.count ?? 0 == 0)
+        notifToken = history?.observe({ [weak self] (changes) in
+            if let strongSelf = self {
+                strongSelf.cellDelegate?.didUpdate(changes: changes)
+                strongSelf.cellDelegate?.toggleFooter(show: strongSelf.history?.count ?? 0 == 0)
+            }
         })
     }
     

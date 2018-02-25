@@ -73,7 +73,7 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
     }
     
     deinit {
-        notifToken?.stop()
+        notifToken?.invalidate()
     }
     
     required init(authConfig: AuthConfig,
@@ -173,12 +173,14 @@ class TransactionsListDataSource: RealmHolder, TransactionsListDataSourceProtoco
                                                     inAccounts: self.accountsFilter)
         }
         
-        self.notifToken?.stop()
-        self.notifToken = self.transactions?.addNotificationBlock({ [unowned self] change in
-            if self.filterBy == TransactionsFilter.byAccount {
-                self.delegate?.didUpdateTransactions()
-            } else {
-                self.delegate?.didReceiveChanges(changes: change)
+        self.notifToken?.invalidate()
+        self.notifToken = self.transactions?.observe({ [weak self] change in
+            if let strongSelf = self {
+                if strongSelf.filterBy == TransactionsFilter.byAccount {
+                    strongSelf.delegate?.didUpdateTransactions()
+                } else {
+                    strongSelf.delegate?.didReceiveChanges(changes: change)
+                }
             }
         })
     }

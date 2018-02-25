@@ -42,8 +42,10 @@ class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourc
         let endDate = initialDate.add(3.months)
         self.transactions = Transaction.all(in: self.realmContainer!.userRealm!, between: startDate.start(of: .month),
                                             and: endDate.end(of: .month), inAccounts: accounts)
-        self.notificationToken = self.transactions?.addNotificationBlock({ [unowned self] collectionChange in
-            self.delegate?.didReceiveChanges(changes: collectionChange)
+        self.notificationToken = self.transactions?.observe({ [weak self] collectionChange in
+            if let strongSelf = self {
+                strongSelf.delegate?.didReceiveChanges(changes: collectionChange)
+            }
         })
     }
     

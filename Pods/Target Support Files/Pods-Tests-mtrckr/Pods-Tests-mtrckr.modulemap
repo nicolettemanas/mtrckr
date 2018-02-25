@@ -1,0 +1,6 @@
+framework module Pods_Tests_mtrckr {
+  umbrella header "Pods-Tests-mtrckr-umbrella.h"
+
+  export *
+  module * { export * }
+}

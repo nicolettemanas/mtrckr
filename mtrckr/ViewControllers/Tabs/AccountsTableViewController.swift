@@ -72,7 +72,7 @@ class AccountsTableViewController: MTTableViewController, AccountsTableViewContr
     
     // MARK: - Life cycle
     deinit {
-        self.notifToken?.stop()
+        self.notifToken?.invalidate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,7 +143,7 @@ extension AccountsTableViewController {
     func setupResults() {
         DispatchQueue.main.async {
             self.accounts = self.presenter?.accounts()
-            self.notifToken = self.accounts?.addNotificationBlock(self.tableView.applyChanges)
+            self.notifToken = self.accounts?.observe(self.tableView.applyChanges)
             self.tableView.reloadData()
         }
     }

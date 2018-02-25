@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B8DBDF76F6F3E52F4DEE9DA /* Pods_Tests_mtrckrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */; };
+		3307E93C93BBA85CAEE60371 /* Pods_Tests_mtrckrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D41BD3F545127F6CF8CF0F /* Pods_Tests_mtrckrTests.framework */; };
 		CE005F531ECAE4DC00536C1A /* RealmRegInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE005F521ECAE4DC00536C1A /* RealmRegInteractor.swift */; };
 		CE005F551ECAEBBD00536C1A /* RealmAuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */; };
 		CE03C22B1EC3652A009A6AB0 /* MTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03C22A1EC3652A009A6AB0 /* MTButton.swift */; };
@@ -194,7 +194,7 @@
 		CEFECF4F1F11202A001F7E59 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFECF4E1F11202A001F7E59 /* CategoryCollectionCell.swift */; };
 		CEFFA19B1F92183C00F337C9 /* PayBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFFA19A1F92183C00F337C9 /* PayBillViewController.swift */; };
 		CEFFA19D1F921F4900F337C9 /* PayBillViewController+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFFA19C1F921F4900F337C9 /* PayBillViewController+Protocols.swift */; };
-		F0AFE4DB9F9686E90E30B44B /* Pods_mtrckr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D471B1511513CA1AB286D1E0 /* Pods_mtrckr.framework */; };
+		DEC3FDEDCE61D9D3DD301C7F /* Pods_Tests_mtrckr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE14F389E06D39524568D31 /* Pods_Tests_mtrckr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,9 +208,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		64CD9E5AF4ED7260FCAB52DD /* Pods-Tests-mtrckrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_mtrckrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B482AB359D6C323EF27CB17C /* Pods-mtrckr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mtrckr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr.debug.xcconfig"; sourceTree = "<group>"; };
+		1E050ED95B6522569EA1E139 /* Pods-Tests-mtrckrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.release.xcconfig"; sourceTree = "<group>"; };
+		3EE14F389E06D39524568D31 /* Pods_Tests_mtrckr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_mtrckr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50D41BD3F545127F6CF8CF0F /* Pods_Tests_mtrckrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_mtrckrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCF069175652AD39D8EE255E /* Pods-Tests-mtrckrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE005F521ECAE4DC00536C1A /* RealmRegInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmRegInteractor.swift; path = Interactors/RealmSyncing/RealmRegInteractor.swift; sourceTree = "<group>"; };
 		CE005F541ECAEBBD00536C1A /* RealmAuthPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmAuthPresenter.swift; path = Presenters/RealmSyncing/RealmAuthPresenter.swift; sourceTree = "<group>"; };
 		CE03C22A1EC3652A009A6AB0 /* MTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MTButton.swift; path = Views/Class/MTButton.swift; sourceTree = "<group>"; };
@@ -403,9 +404,6 @@
 		CEFECF4E1F11202A001F7E59 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryCollectionCell.swift; path = "Views/Class/Base Classes/CategoryCollectionCell.swift"; sourceTree = "<group>"; };
 		CEFFA19A1F92183C00F337C9 /* PayBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PayBillViewController.swift; path = ViewControllers/Bills/PayBillViewController.swift; sourceTree = "<group>"; };
 		CEFFA19C1F921F4900F337C9 /* PayBillViewController+Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PayBillViewController+Protocols.swift"; path = "ViewControllers/Bills/Extensions/PayBillViewController+Protocols.swift"; sourceTree = "<group>"; };
-		D471B1511513CA1AB286D1E0 /* Pods_mtrckr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mtrckr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC8AC50703F81BF568E86F58 /* Pods-mtrckr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mtrckr.release.xcconfig"; path = "Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr.release.xcconfig"; sourceTree = "<group>"; };
-		E3D12754D195FAC6D0B9EE06 /* Pods-Tests-mtrckrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-mtrckrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,7 +411,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0AFE4DB9F9686E90E30B44B /* Pods_mtrckr.framework in Frameworks */,
+				DEC3FDEDCE61D9D3DD301C7F /* Pods_Tests_mtrckr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,29 +419,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B8DBDF76F6F3E52F4DEE9DA /* Pods_Tests_mtrckrTests.framework in Frameworks */,
+				3307E93C93BBA85CAEE60371 /* Pods_Tests_mtrckrTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E39DD52BFE18175AE606AE3 /* Pods */ = {
+		41E65C465E6B2193DD61BF39 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				64CD9E5AF4ED7260FCAB52DD /* Pods-Tests-mtrckrTests.debug.xcconfig */,
-				E3D12754D195FAC6D0B9EE06 /* Pods-Tests-mtrckrTests.release.xcconfig */,
-				B482AB359D6C323EF27CB17C /* Pods-mtrckr.debug.xcconfig */,
-				DC8AC50703F81BF568E86F58 /* Pods-mtrckr.release.xcconfig */,
+				CCF069175652AD39D8EE255E /* Pods-Tests-mtrckrTests.debug.xcconfig */,
+				1E050ED95B6522569EA1E139 /* Pods-Tests-mtrckrTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		BDF282DBB1A97C0D67DAB101 /* Frameworks */ = {
+		9FE6933D53EBD4210C1A8DE0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AAF2C828CF9C236308526E42 /* Pods_Tests_mtrckrTests.framework */,
-				D471B1511513CA1AB286D1E0 /* Pods_mtrckr.framework */,
+				3EE14F389E06D39524568D31 /* Pods_Tests_mtrckr.framework */,
+				50D41BD3F545127F6CF8CF0F /* Pods_Tests_mtrckrTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1081,8 +1077,8 @@
 				CEFB229D1E94FC2100867CDA /* mtrckr */,
 				CEFB22B21E94FC2100867CDA /* mtrckrTests */,
 				CEFB229C1E94FC2100867CDA /* Products */,
-				0E39DD52BFE18175AE606AE3 /* Pods */,
-				BDF282DBB1A97C0D67DAB101 /* Frameworks */,
+				41E65C465E6B2193DD61BF39 /* Pods */,
+				9FE6933D53EBD4210C1A8DE0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1199,13 +1195,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEFB22B81E94FC2100867CDA /* Build configuration list for PBXNativeTarget "mtrckr" */;
 			buildPhases = (
-				2D294E7A53A868288BE68BC5 /* [CP] Check Pods Manifest.lock */,
+				3C7AA03CEF63D44A10EB54C1 /* [CP] Check Pods Manifest.lock */,
 				CEFB22971E94FC2100867CDA /* Sources */,
 				CEFB22981E94FC2100867CDA /* Frameworks */,
 				CEFB22991E94FC2100867CDA /* Resources */,
-				CDF4CB801F3BAD398C24BE17 /* [CP] Embed Pods Frameworks */,
-				0071015CA709DC5D9DFB2181 /* [CP] Copy Pods Resources */,
 				CE1B84431E9C5B2B00A644EA /* SwiftLint */,
+				71C4C85E9A8033880FDF05CD /* [CP] Embed Pods Frameworks */,
+				1A567B72F96FE9548F83CD65 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1220,12 +1216,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEFB22BB1E94FC2100867CDA /* Build configuration list for PBXNativeTarget "mtrckrTests" */;
 			buildPhases = (
-				AED2D0600E2B0F37855B5CDF /* [CP] Check Pods Manifest.lock */,
+				03FFBB204B94D568AF2C3D54 /* [CP] Check Pods Manifest.lock */,
 				CEFB22AB1E94FC2100867CDA /* Sources */,
 				CEFB22AC1E94FC2100867CDA /* Frameworks */,
 				CEFB22AD1E94FC2100867CDA /* Resources */,
-				A839BFEA6D69A71D98708969 /* [CP] Embed Pods Frameworks */,
-				9F02FE75CC2A8DE97C691000 /* [CP] Copy Pods Resources */,
+				D8B2DC310F48FF9071C8C875 /* [CP] Embed Pods Frameworks */,
+				461E4B534BA8E39E5C338858 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1327,7 +1323,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0071015CA709DC5D9DFB2181 /* [CP] Copy Pods Resources */ = {
+		03FFBB204B94D568AF2C3D54 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tests-mtrckrTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1A567B72F96FE9548F83CD65 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1339,25 +1353,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-mtrckr/Pods-Tests-mtrckr-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2D294E7A53A868288BE68BC5 /* [CP] Check Pods Manifest.lock */ = {
+		3C7AA03CEF63D44A10EB54C1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tests-mtrckr-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9F02FE75CC2A8DE97C691000 /* [CP] Copy Pods Resources */ = {
+		461E4B534BA8E39E5C338858 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1372,49 +1389,44 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A839BFEA6D69A71D98708969 /* [CP] Embed Pods Frameworks */ = {
+		71C4C85E9A8033880FDF05CD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tests-mtrckr/Pods-Tests-mtrckr-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/Dwifft/Dwifft.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dwifft.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AED2D0600E2B0F37855B5CDF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		CDF4CB801F3BAD398C24BE17 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mtrckr/Pods-mtrckr-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-mtrckr/Pods-Tests-mtrckr-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CE1B84431E9C5B2B00A644EA /* SwiftLint */ = {
@@ -1430,6 +1442,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
+		D8B2DC310F48FF9071C8C875 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-mtrckrTests/Pods-Tests-mtrckrTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1680,6 +1726,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG TESTING";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1729,6 +1776,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1781,7 +1829,7 @@
 		};
 		CEFB22BC1E94FC2100867CDA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 64CD9E5AF4ED7260FCAB52DD /* Pods-Tests-mtrckrTests.debug.xcconfig */;
+			baseConfigurationReference = CCF069175652AD39D8EE255E /* Pods-Tests-mtrckrTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1798,14 +1846,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG TESTING=1";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mtrckr-dev.app/mtrckr-dev";
 			};
 			name = Debug;
 		};
 		CEFB22BD1E94FC2100867CDA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3D12754D195FAC6D0B9EE06 /* Pods-Tests-mtrckrTests.release.xcconfig */;
+			baseConfigurationReference = 1E050ED95B6522569EA1E139 /* Pods-Tests-mtrckrTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1817,7 +1865,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.mtrckrTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mtrckr-dev.app/mtrckr-dev";
 			};
 			name = Release;
