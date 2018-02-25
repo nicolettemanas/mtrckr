@@ -48,11 +48,11 @@ class NewTransactionViewController: MTFormViewController {
         return self.form.rowBy(tag: typeTag)
     }
     
-    private var fromRow: AccountsSelectorRow? {
+    private var fromRow: AccountRow? {
         return self.form.rowBy(tag: fromTag)
     }
     
-    private var toRow: AccountsSelectorRow? {
+    private var toRow: AccountRow? {
         return self.form.rowBy(tag: toTag)
     }
     
@@ -170,7 +170,7 @@ class NewTransactionViewController: MTFormViewController {
             self.catRow?.updateSelection(forType: row.value!)
         })
             
-            <<< AccountsSelectorRow(fromTag) { [unowned self] in
+            <<< AccountRow(fromTag) { [unowned self] in
                 let ruleMustNotMatch = RuleClosure<Account> { rowValue in
                     return (rowValue == self.toRow?.value) ?
                         ValidationError(msg: "Source account and destination account must not be the same") : nil
@@ -186,7 +186,7 @@ class NewTransactionViewController: MTFormViewController {
                 $0.validationOptions = .validatesOnDemand
                 }
             
-            <<< AccountsSelectorRow(toTag) { [unowned self] in
+            <<< AccountRow(toTag) { [unowned self] in
                 let ruleMustNotMatch = RuleClosure<Account> { rowValue in
                     return (rowValue == self.fromRow?.value) ?
                         ValidationError(msg: "Source account and destination account must not be the same") : nil

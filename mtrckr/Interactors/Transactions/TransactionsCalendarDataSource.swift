@@ -115,7 +115,19 @@ extension TransactionsCalendarDataSource: JTAppleCalendarViewDataSource {
 }
 
 extension TransactionsCalendarDataSource: JTAppleCalendarViewDelegate {
-    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+    func calendar(_ calendar: JTAppleCalendarView,
+                  willDisplay cell: JTAppleCell,
+                  forItemAt date: Date,
+                  cellState: CellState,
+                  indexPath: IndexPath) {
+        
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView,
+                  cellForItemAt date: Date,
+                  cellState: CellState,
+                  indexPath: IndexPath) -> JTAppleCell {
+        
         guard let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "customCalendarCell", for: indexPath)
             as? CustomCalendarCell else { fatalError("Cannot find cell with identifier customCalendarCell") }
         cell.dateLabel.text = cellState.text
@@ -147,7 +159,11 @@ extension TransactionsCalendarDataSource: JTAppleCalendarViewDelegate {
         return cell
     }
     
-    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+    func calendar(_ calendar: JTAppleCalendarView,
+                  didSelectDate date: Date,
+                  cell: JTAppleCell?,
+                  cellState: CellState) {
+        
         guard let validCell = cell as? CustomCalendarCell else { return }
         print("Didselect cell date \(date)")
         calendar.visibleDates({ [unowned self] datesInfo in
@@ -162,12 +178,18 @@ extension TransactionsCalendarDataSource: JTAppleCalendarViewDelegate {
         delegate?.didSelect(date: date)
     }
     
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+    func calendar(_ calendar: JTAppleCalendarView,
+                  didDeselectDate date: Date,
+                  cell: JTAppleCell?,
+                  cellState: CellState) {
+        
         guard let validCell = cell as? CustomCalendarCell else { return }
         validCell.configureCell(cellState: cellState)
     }
     
-    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+    func calendar(_ calendar: JTAppleCalendarView,
+                  didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+        
         let date = (visibleDates.monthDates[5].date)
         print("Did scroll to \(date)")
         setupTransactions(initialDate: date, accounts: [])

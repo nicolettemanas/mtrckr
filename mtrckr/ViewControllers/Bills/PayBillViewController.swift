@@ -29,7 +29,7 @@ class PayBillViewController: MTFormViewController {
     }
     
     var payRow: DecimalRow { return form.rowBy(tag: FormTags.pay)! }
-    var accountRow: AccountsSelectorRow { return form.rowBy(tag: FormTags.account)! }
+    var accountRow: AccountRow { return form.rowBy(tag: FormTags.account)! }
     var dateRow: DateRow { return form.rowBy(tag: FormTags.date)! }
     
     required init?(coder aDecoder: NSCoder) {
@@ -61,7 +61,7 @@ class PayBillViewController: MTFormViewController {
             row.add(rule: RuleRequired())
         }
         
-        <<< AccountsSelectorRow(FormTags.account) {
+        <<< AccountRow(FormTags.account) {
             $0.tag                  = FormTags.account
             $0.title                = LocalizedStrings.accnt
             $0.selectorTitle        = LocalizedStrings.myAcc
