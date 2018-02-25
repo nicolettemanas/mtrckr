@@ -12,7 +12,7 @@ import XCTest
 let swizzleTearDown: Void = {
   let tearDown = class_getInstanceMethod(XCTest.self, #selector(XCTest.tearDown))
   let mockingjayTearDown = class_getInstanceMethod(XCTest.self, #selector(XCTest.mockingjayTearDown))
-  method_exchangeImplementations(tearDown, mockingjayTearDown)
+  method_exchangeImplementations(tearDown!, mockingjayTearDown!)
 }()
 
 var AssociatedMockingjayRemoveStubOnTearDownHandle: UInt8 = 0
@@ -31,12 +31,12 @@ extension XCTest {
     }
   }
 
-  @discardableResult public func stub(_ matcher: @escaping Matcher, _ builder: @escaping Builder) -> Stub {
+  @discardableResult public func stub(_ matcher: @escaping Matcher, delay: TimeInterval? = nil, _ builder: @escaping Builder) -> Stub {
     if mockingjayRemoveStubOnTearDown {
       XCTest.mockingjaySwizzleTearDown()
     }
 
-    return MockingjayProtocol.addStub(matcher: matcher, builder: builder)
+    return MockingjayProtocol.addStub(matcher: matcher, delay: delay, builder: builder)
   }
 
   public func removeStub(_ stub:Stub) {
@@ -53,7 +53,7 @@ extension XCTest {
     _ = swizzleTearDown
   }
 
-  func mockingjayTearDown() {
+  @objc func mockingjayTearDown() {
     mockingjayTearDown()
 
     if mockingjayRemoveStubOnTearDown {
