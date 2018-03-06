@@ -10,7 +10,7 @@ import DZNEmptyDataSet
 
 class EmptyTransactionsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return MTColors.emptyDataSetBg
+        return Colors.emptyDataSetBg.color
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -26,7 +26,7 @@ class EmptyTransactionsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyData
         style.alignment = .center
         let attr = [
             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
-            NSAttributedStringKey.foregroundColor: MTColors.placeholderText,
+            NSAttributedStringKey.foregroundColor: Colors.placeholderText.color,
             NSAttributedStringKey.paragraphStyle: style]
 
         return NSAttributedString(string: str, attributes: attr)
@@ -37,6 +37,6 @@ class EmptyTransactionsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyData
     }
 
     func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return MTColors.placeholderText
+        return Colors.placeholderText.color
     }
 }

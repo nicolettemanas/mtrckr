@@ -1,0 +1,19 @@
+{
+    "mainBg": "#FFFFFF",
+    "barBg": "#FFFFFF",
+    "separatorColor": "#EEEEEE",
+    "emptyDataSetBg": "#EDEDF1",
+    
+    "mainText": "#34374B",
+    "subText": "#6C6F87",
+    "placeholderText": "#A3A5B7",
+    "lightBg": "#EEEEEE",
+
+    "mainBlue": "#00A7E1",
+    "mainRed": "#F45A5D",
+    "mainGreen": "#45CB85",
+    "mainOrange": "#F5AC72",
+    "subRed": "#F4E3E3",
+    "subOrange": "#F4CBA8",
+    "subBlue": "#CBF4FF"
+}

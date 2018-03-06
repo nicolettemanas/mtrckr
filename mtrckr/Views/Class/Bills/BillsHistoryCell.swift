@@ -37,9 +37,9 @@ class BillsHistoryCell: SwipeTableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        detail.textColor = MTColors.subText
-        datePaid.textColor = MTColors.subText
-        due.textColor = MTColors.mainText
+        detail.textColor = Colors.subText.color
+        datePaid.textColor = Colors.subText.color
+        due.textColor = Colors.mainText.color
 
         selectionStyle = .none
     }
@@ -56,12 +56,12 @@ class BillsHistoryCell: SwipeTableViewCell {
         switch entry.status {
         case BillEntryStatus.paid.rawValue:
             assert(entry.id == entry.transaction?.billEntry?.id)
-            amount.textColor = MTColors.mainGreen
+            amount.textColor = Colors.mainGreen.color
             detail.text = entry.transaction?.fromAccount?.name
             datePaid.text = String(format: BillsHistoryCell.paidFormat,
                                    entry.transaction!.transactionDate.format(with: DateFormatter.Style.medium))
         case BillEntryStatus.skipped.rawValue:
-            amount.textColor = MTColors.mainOrange
+            amount.textColor = Colors.mainOrange.color
             detail.text = BillsHistoryCell.skipped
         default: fatalError("Invalid bill status: \(entry.status)")
         }

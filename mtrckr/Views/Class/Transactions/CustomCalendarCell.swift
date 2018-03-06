@@ -21,7 +21,7 @@ class CustomCalendarCell: JTAppleCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.dateLabel.textColor = MTColors.mainText
+        self.dateLabel.textColor = Colors.mainText.color
     }
 
     func configureCell(cellState: CellState) {

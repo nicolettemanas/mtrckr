@@ -33,13 +33,13 @@ import RealmSwift
 //        pieChart.chartDescription = nil
 //        pieChart.holeRadiusPercent = 0.80
 //        pieChart.legend.enabled = false
-//        pieChart.backgroundColor = MTColors.lightBg
+//        pieChart.backgroundColor = Colors.lightBg
 //        pieChart.centerText = centerText
 //        pieChart.drawEntryLabelsEnabled = false
 //        pieChart.rotationEnabled = false
 //
 //        let dataSet = PieChartDataSet(values: dataEntries, label: "")
-//        dataSet.setColors(MTColors.colors, alpha: 1)
+//        dataSet.setColors(Colors.colors, alpha: 1)
 //
 //        let data = PieChartData(dataSet: dataSet)
 //

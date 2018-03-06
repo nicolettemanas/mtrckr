@@ -61,7 +61,7 @@ class BillHistoryDataSource: RealmHolder, BillHistoryDataSourceProtocol {
                 size: view.frame.size))
 
         view.addSubview(label)
-        view.backgroundColor = MTColors.lightBg
+        view.backgroundColor = Colors.lightBg.color
         let attributes = [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 12)]
         label.attributedText =
             NSAttributedString(string: BillHistoryDataSource.historyLbl,

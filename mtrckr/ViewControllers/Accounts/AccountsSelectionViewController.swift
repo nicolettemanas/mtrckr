@@ -61,7 +61,7 @@ final class AccountRow: OptionsRow<PushSelectorCell<Account>>, PresenterRowType,
         cellSetup { (cell, _) in
             cell.height = { 55 }
             cell.textLabel?.font = UIFont.myBoldSystemFont(ofSize: 14)
-            cell.textLabel?.textColor = MTColors.mainText
+            cell.textLabel?.textColor = Colors.mainText.color
         }
 
         cellUpdate { (cell, ro) in
@@ -72,8 +72,8 @@ final class AccountRow: OptionsRow<PushSelectorCell<Account>>, PresenterRowType,
 
         onRowValidationChanged { (cell, ro) in
             if !ro.isValid {
-                cell.textLabel?.textColor = MTColors.mainRed
-                cell.backgroundColor = MTColors.subRed
+                cell.textLabel?.textColor = Colors.mainRed.color
+                cell.backgroundColor = Colors.subRed.color
             } else {
                 cell.backgroundColor = .white
             }

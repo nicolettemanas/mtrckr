@@ -43,8 +43,8 @@ class MTFormViewController: FormViewController {
                                     target  : target,
                                     action  : rightSelector)
 
-        left.tintColor = MTColors.mainRed
-        right.tintColor = MTColors.mainBlue
+        left.tintColor = Colors.mainRed.color
+        right.tintColor = Colors.mainBlue.color
         navigationItem.leftBarButtonItem = left
         navigationItem.rightBarButtonItem = right
     }
@@ -53,16 +53,16 @@ class MTFormViewController: FormViewController {
         TextRow.defaultCellSetup = { cell, row in
             cell.height = { 55 }
             cell.titleLabel?.font = UIFont.myBoldSystemFont(ofSize: 14)
-            cell.titleLabel?.textColor = MTColors.mainText
+            cell.titleLabel?.textColor = Colors.mainText.color
             cell.textField.font = UIFont.mySystemFont(ofSize: 13)
-            cell.textField.textColor = MTColors.subText
+            cell.textField.textColor = Colors.subText.color
             cell.selectionStyle = .none
             row.validationOptions = .validatesOnDemand
             row.add(rule: RuleRequired())
             row.cellUpdate({ (ce, ro) in
                 if !ro.isValid {
-                    ce.titleLabel?.textColor = MTColors.mainRed
-                    ce.backgroundColor = MTColors.subRed
+                    ce.titleLabel?.textColor = Colors.mainRed.color
+                    ce.backgroundColor = Colors.subRed.color
                 } else {
                     ce.backgroundColor = .white
                 }
@@ -70,22 +70,22 @@ class MTFormViewController: FormViewController {
         }
 
         TextRow.defaultOnCellHighlightChanged = { cell, _ in
-            cell.titleLabel?.textColor = MTColors.mainBlue
+            cell.titleLabel?.textColor = Colors.mainBlue.color
         }
 
         DecimalRow.defaultCellSetup = { cell, row in
             cell.height = { 55 }
             cell.titleLabel?.font = UIFont.myBoldSystemFont(ofSize: 14)
-            cell.titleLabel?.textColor = MTColors.mainText
+            cell.titleLabel?.textColor = Colors.mainText.color
             cell.textField.font = UIFont.mySystemFont(ofSize: 13)
-            cell.textField.textColor = MTColors.subText
+            cell.textField.textColor = Colors.subText.color
             cell.selectionStyle = .none
             row.validationOptions = .validatesOnDemand
             row.add(rule: RuleRequired())
             row.cellUpdate({ (ce, ro) in
                 if !ro.isValid {
-                    ce.titleLabel?.textColor = MTColors.mainRed
-                    ce.backgroundColor = MTColors.subRed
+                    ce.titleLabel?.textColor = Colors.mainRed.color
+                    ce.backgroundColor = Colors.subRed.color
                 } else {
                     ce.backgroundColor = .white
                 }
@@ -93,33 +93,33 @@ class MTFormViewController: FormViewController {
         }
 
         DecimalRow.defaultOnCellHighlightChanged = {cell, _ in
-            cell.textLabel?.textColor = MTColors.mainBlue
+            cell.textLabel?.textColor = Colors.mainBlue.color
         }
 
         DateRow.defaultCellSetup = { cell, row in
             cell.height = { 55 }
             cell.textLabel?.font = UIFont.myBoldSystemFont(ofSize: 14)
-            cell.textLabel?.textColor = MTColors.mainText
+            cell.textLabel?.textColor = Colors.mainText.color
             cell.selectionStyle = .none
         }
 
         DateRow.defaultOnCellHighlightChanged = {cell, _ in
-            cell.textLabel?.textColor = MTColors.mainBlue
+            cell.textLabel?.textColor = Colors.mainBlue.color
         }
 
         PushRow<String>.defaultCellSetup = { cell, row in
             cell.height = { 55 }
             cell.textLabel?.font = UIFont.myBoldSystemFont(ofSize: 14)
-            cell.textLabel?.textColor = MTColors.mainText
+            cell.textLabel?.textColor = Colors.mainText.color
             cell.textLabel?.font = UIFont.mySystemFont(ofSize: 13)
-            cell.textLabel?.textColor = MTColors.subText
+            cell.textLabel?.textColor = Colors.subText.color
             cell.selectionStyle = .none
             row.validationOptions = .validatesOnDemand
             row.add(rule: RuleRequired())
             row.cellUpdate({ (ce, ro) in
                 if !ro.isValid {
-                    ce.textLabel?.textColor = MTColors.mainRed
-                    ce.backgroundColor = MTColors.subRed
+                    ce.textLabel?.textColor = Colors.mainRed.color
+                    ce.backgroundColor = Colors.subRed.color
                 } else {
                     ce.backgroundColor = .white
                 }

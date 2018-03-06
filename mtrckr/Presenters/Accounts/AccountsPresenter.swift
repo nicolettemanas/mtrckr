@@ -7,7 +7,6 @@
 
 import UIKit
 import RealmSwift
-import UIColor_Hex_Swift
 
 protocol AccountsPresenterProtocol {
     init(interactor: AccountsInteractorProtocol)

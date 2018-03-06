@@ -28,13 +28,13 @@ class MTTextField: UITextField {
 
     // MARK: - Properties
     /// UIColor value of the bottom border to be rendered
-    @IBInspectable var bottomBorderColor: UIColor = MTColors.mainBlue { didSet { updateBorder() }}
+    @IBInspectable var bottomBorderColor: UIColor = Colors.mainBlue.color { didSet { updateBorder() }}
 
     /// The UIImage icon to be displaued at the left view iof the text field
     @IBInspectable var icon: UIImage = MTTextField.getDefaultImage() { didSet { updateIcon() }}
 
     /// The masked color of the icon
-    @IBInspectable var iconColor: UIColor = MTColors.mainBg { didSet { updateIconColor() }}
+    @IBInspectable var iconColor: UIColor = Colors.mainBg.color { didSet { updateIconColor() }}
 
     private var leftIcon: UIImageView?
     private var warningIcon: UIImageView?
@@ -64,11 +64,11 @@ class MTTextField: UITextField {
     }
 
     private func setupUI() {
-        self.textColor = MTColors.mainText
+        self.textColor = Colors.mainText.color
         if let p = self.placeholder {
             self.attributedPlaceholder = NSAttributedString(string: p,
                                                             attributes: [NSAttributedStringKey.foregroundColor:
-                                                                MTColors.placeholderText])
+                                                                Colors.placeholderText.color])
         }
 
         let x = (textAlignment == .right) == true ? 35-20 : 0
@@ -76,7 +76,7 @@ class MTTextField: UITextField {
         let imageHolder = UIImageView(frame: CGRect(x: x, y: 2, width: 20, height: 20))
         imageHolder.contentMode = .scaleAspectFit
         imageHolder.image = UIImage(named: "warning")?.withRenderingMode(.alwaysTemplate)
-        imageHolder.tintColor = MTColors.mainRed
+        imageHolder.tintColor = Colors.mainRed.color
 
         containerView.addSubview(imageHolder)
         warningIcon = imageHolder
@@ -88,7 +88,7 @@ class MTTextField: UITextField {
                                               width: self.frame.size.width,
                                               height: 15))
         errorLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 15))
-        errorLabel?.textColor = MTColors.mainRed
+        errorLabel?.textColor = Colors.mainRed.color
         errorLabel?.font = UIFont.systemFont(ofSize: 12)
         errorContainer?.isHidden = true
         errorLabel?.textAlignment = textAlignment
@@ -196,7 +196,7 @@ class MTTextField: UITextField {
         let toolbar = UIToolbar()
         toolbar.barStyle = .default
         toolbar.isTranslucent = true
-        toolbar.tintColor = MTColors.mainBlue
+        toolbar.tintColor = Colors.mainBlue.color
         toolbar.sizeToFit()
 
         let doneBtn = UIBarButtonItem(image: UIImage(named: "check-tab"),
@@ -208,8 +208,8 @@ class MTTextField: UITextField {
                                         target: self,
                                         action: #selector(dismissInput))
 
-        doneBtn.tintColor = MTColors.mainBlue
-        cancelBtn.tintColor = MTColors.mainRed
+        doneBtn.tintColor = Colors.mainBlue.color
+        cancelBtn.tintColor = Colors.mainRed.color
 
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                           target: nil,

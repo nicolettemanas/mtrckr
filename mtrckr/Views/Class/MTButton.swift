@@ -16,7 +16,7 @@ class MTButton: UIButton {
     @IBInspectable var hasBorders: Bool = false { didSet { updateBorder() }}
 
     /// UIColor of the border to be rendered
-    @IBInspectable var borderColor: UIColor = MTColors.mainBlue { didSet { updateBorder() }}
+    @IBInspectable var borderColor: UIColor = Colors.mainBlue.color { didSet { updateBorder() }}
 
     override init(frame: CGRect) {
         super.init(frame: frame)

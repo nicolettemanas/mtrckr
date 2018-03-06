@@ -221,7 +221,7 @@ class NewTransactionViewController: MTFormViewController {
                 row.add(rule: RuleRequired())
                 row.cellUpdate({ (ce, ro) in
                     if !ro.isValid {
-                        ce.backgroundColor = MTColors.subRed
+                        ce.backgroundColor = Colors.subRed.color
                     } else {
                         ce.backgroundColor = .white
                     }

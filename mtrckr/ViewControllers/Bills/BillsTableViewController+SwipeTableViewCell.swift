@@ -48,7 +48,7 @@ extension BillsTableViewController: SwipeTableViewCellDelegate {
                          left   : 10,
                          bottom : 10,
                          right  : 10))
-        edit.backgroundColor = MTColors.mainBlue
+        edit.backgroundColor = Colors.mainBlue.color
         edit.textColor = .white
 
         return edit
@@ -66,7 +66,7 @@ extension BillsTableViewController: SwipeTableViewCellDelegate {
                          left   : 10,
                          bottom : 10,
                          right  : 10))
-        delete.backgroundColor = MTColors.mainRed
+        delete.backgroundColor = Colors.mainRed.color
         delete.textColor = .white
 
         return delete
@@ -80,7 +80,7 @@ extension BillsTableViewController: SwipeTableViewCellDelegate {
 
         skip.accessibilityLabel = "Skip"
         skip.image = #imageLiteral(resourceName: "skip")
-        skip.backgroundColor = MTColors.mainOrange
+        skip.backgroundColor = Colors.mainOrange.color
         skip.textColor = .white
 
         return skip

@@ -19,7 +19,7 @@ class MainTabbarViewController: UITabBarController {
         addBtn.frame = CGRect(x: 100, y: 0, width: 44, height: 44)
         addBtn.backgroundColor = .white
         addBtn.addTarget(self, action: #selector(addBtnPressed), for: .touchUpInside)
-        addBtn.imageView?.tintColor = MTColors.mainBlue
+        addBtn.imageView?.tintColor = Colors.mainBlue.color
         addBtn.setImage(#imageLiteral(resourceName: "add-tab"), for: .normal)
         self.view.addSubview(addBtn)
 
@@ -41,10 +41,10 @@ class MainTabbarViewController: UITabBarController {
                               height: 64)
         addBtn.layer.cornerRadius = 32
         addBtn.layer.borderWidth = 1
-        addBtn.layer.borderColor = MTColors.lightBg.cgColor
-        tabBar.shadowImage = UIImage.colorForNavBar(color: MTColors.lightBg)
+        addBtn.layer.borderColor = Colors.lightBg.color.cgColor
+        tabBar.shadowImage = UIImage.colorForNavBar(color: Colors.lightBg.color)
         tabBar.backgroundImage = UIImage.colorForNavBar(color: .white)
-        tabBar.tintColor = MTColors.mainBlue
+        tabBar.tintColor = Colors.mainBlue.color
     }
 
     @objc func addBtnPressed() {

@@ -136,7 +136,7 @@ class NewAccountFormVC: MTFormViewController {
             row.validationOptions = .validatesOnDemand
             row.add(rule: RuleRequired())
             row.cellUpdate({ (ce, ro) in
-                ce.backgroundColor = ro.isValid ? .white : MTColors.subRed
+                ce.backgroundColor = ro.isValid ? .white : Colors.subRed.color
             })
         })
 
@@ -160,7 +160,7 @@ class NewAccountFormVC: MTFormViewController {
             row.validationOptions = .validatesOnDemand
             row.add(rule: RuleRequired())
             row.cellUpdate({ (ce, ro) in
-                ce.backgroundColor = ro.isValid ? .white : MTColors.subRed
+                ce.backgroundColor = ro.isValid ? .white : Colors.subRed.color
             })
         })
     }

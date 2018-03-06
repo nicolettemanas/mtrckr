@@ -36,7 +36,7 @@ extension BillHistoryViewController: SwipeTableViewCellDelegate {
 
         unpay.accessibilityLabel = "Unpay"
         unpay.image = #imageLiteral(resourceName: "unpay")
-        unpay.backgroundColor = MTColors.mainOrange
+        unpay.backgroundColor = Colors.mainOrange.color
         unpay.textColor = .white
 
         return unpay

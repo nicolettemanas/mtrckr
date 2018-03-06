@@ -79,7 +79,7 @@ class LoginViewController: MTViewController, RealmAuthPresenterOutput {
             return
         }
 
-        showLoadingView(withColor: MTColors.mainOrange)
+        showLoadingView(withColor: Colors.mainOrange.color)
         presenter?.login(withEmail: emailTxtField.text!,
                          withPassword: passwordTxtField.text!,
                          loginSyncOption: option)

@@ -19,7 +19,7 @@ extension TransactionsTableViewController: SwipeTableViewCellDelegate {
 
             edit.accessibilityLabel = "Edit"
             edit.image = #imageLiteral(resourceName: "edit")
-            edit.backgroundColor = MTColors.mainBlue
+            edit.backgroundColor = Colors.mainBlue.color
             edit.textColor = .white
 
             let delete: SwipeAction = SwipeAction(style: .destructive, title: nil, handler: { [unowned self] _, _ in
@@ -28,7 +28,7 @@ extension TransactionsTableViewController: SwipeTableViewCellDelegate {
 
             delete.accessibilityLabel = "Delete"
             delete.image = #imageLiteral(resourceName: "trash")
-            delete.backgroundColor = MTColors.mainRed
+            delete.backgroundColor = Colors.mainRed.color
             delete.textColor = .white
 
             return [delete, edit]

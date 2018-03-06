@@ -94,6 +94,8 @@
 		CE6DAAFA1FB3F42F00B4E81A /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6DAAF91FB3F42F00B4E81A /* CategoryCell.xib */; };
 		CE6DAAFC1FB3F48200B4E81A /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6DAAFB1FB3F48200B4E81A /* ColorCell.xib */; };
 		CE7208A61F0DD45300A062B5 /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7208A51F0DD45300A062B5 /* TransactionTableViewCell.xib */; };
+		CE764DDF204E8CCC005192DF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE764DDD204E8CCC005192DF /* Colors.swift */; };
+		CE764DE0204E8CCC005192DF /* Colors.json in Resources */ = {isa = PBXBuildFile; fileRef = CE764DDE204E8CCC005192DF /* Colors.json */; };
 		CE76C99E1F022E6000877C0E /* AccountsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76C99D1F022E6000877C0E /* AccountsTableViewControllerTests.swift */; };
 		CE7A56451F45A853002A91FD /* BillsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A56441F45A853002A91FD /* BillsInteractor.swift */; };
 		CE7A66E11F3716E000B14A22 /* MockNewTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A66E01F3716E000B14A22 /* MockNewTransactionPresenter.swift */; };
@@ -298,6 +300,8 @@
 		CE6DAAF91FB3F42F00B4E81A /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CategoryCell.xib; path = Views/XIBs/CategoryCell.xib; sourceTree = "<group>"; };
 		CE6DAAFB1FB3F48200B4E81A /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ColorCell.xib; path = Views/XIBs/ColorCell.xib; sourceTree = "<group>"; };
 		CE7208A51F0DD45300A062B5 /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionTableViewCell.xib; path = Views/XIBs/Transactions/TransactionTableViewCell.xib; sourceTree = "<group>"; };
+		CE764DDD204E8CCC005192DF /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Resources/Colors.swift; sourceTree = "<group>"; };
+		CE764DDE204E8CCC005192DF /* Colors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Colors.json; path = Resources/Colors.json; sourceTree = "<group>"; };
 		CE76C99D1F022E6000877C0E /* AccountsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTableViewControllerTests.swift; sourceTree = "<group>"; };
 		CE7A56441F45A853002A91FD /* BillsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillsInteractor.swift; path = Interactors/Bills/BillsInteractor.swift; sourceTree = "<group>"; };
 		CE7A66E01F3716E000B14A22 /* MockNewTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNewTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -515,6 +519,7 @@
 		CE07838C1ED325120007AD15 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE764DDC204E8CC1005192DF /* Colors */,
 				CED88E441EE910D400D147B9 /* Fonts */,
 				CED88E411EE90EB700D147B9 /* Extensions */,
 				CEF044B11EDEAB8500486EAC /* initModelValues */,
@@ -801,6 +806,15 @@
 				CEC8694E1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib */,
 			);
 			name = Transactions;
+			sourceTree = "<group>";
+		};
+		CE764DDC204E8CC1005192DF /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				CE764DDE204E8CCC005192DF /* Colors.json */,
+				CE764DDD204E8CCC005192DF /* Colors.swift */,
+			);
+			name = Colors;
 			sourceTree = "<group>";
 		};
 		CE76C99C1F022E3200877C0E /* Accounts */ = {
@@ -1296,6 +1310,7 @@
 				CEFB22A91E94FC2100867CDA /* LaunchScreen.storyboard in Resources */,
 				CEF044B91EDEADE800486EAC /* Category.json in Resources */,
 				CE24C0471F470760008E780F /* BillsCell.xib in Resources */,
+				CE764DE0204E8CCC005192DF /* Colors.json in Resources */,
 				CEC8694F1F42B22E00A2FCAA /* AccountsFilterHeaderView.xib in Resources */,
 				CE2B3ABE1FA02474004C43B5 /* PayBillViewController.xib in Resources */,
 				CEF044C81EDFEF4B00486EAC /* Summary.storyboard in Resources */,
@@ -1567,6 +1582,7 @@
 				CE4395541EE93C3C00C05E4A /* MTColors.swift in Sources */,
 				CEA6ABC61F274B61006F15B0 /* CalendarViewController.swift in Sources */,
 				CEC869511F42B30000A2FCAA /* AccountsFilterHeaderView.swift in Sources */,
+				CE764DDF204E8CCC005192DF /* Colors.swift in Sources */,
 				CE0783951ED3D6470007AD15 /* EncryptionInteractor.swift in Sources */,
 				CEB0D1E01F0B567D0044A433 /* EmptyAccountsDataSource.swift in Sources */,
 				CEF044DC1EE0211500486EAC /* LoginViewController.swift in Sources */,

@@ -35,7 +35,7 @@ class RegistrationViewController: MTViewController, RealmAuthPresenterOutput {
     // MARK: LoginView actions
     @IBAction func createAccountBtnPressed(_ sender: MTButton?) {
         if isValid() {
-            showLoadingView(withColor: MTColors.mainBlue)
+            showLoadingView(withColor: Colors.mainBlue.color)
             presenter?.register(withEmail: regEmail.text!, withPassword: regPw.text!, withName: regEmail.text!)
         }
     }

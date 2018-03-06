@@ -65,11 +65,11 @@ extension BillsDataSource: UITableViewDelegate, UITableViewDataSource {
         }
 
         if headerStr == BillSections.overdue.rawValue {
-            view.backgroundColor = MTColors.subRed
+            view.backgroundColor = Colors.subRed.color
         } else if headerStr == BillSections.sevenDays.rawValue {
-            view.backgroundColor = MTColors.subBlue
+            view.backgroundColor = Colors.subBlue.color
         } else {
-            view.backgroundColor = MTColors.lightBg
+            view.backgroundColor = Colors.lightBg.color
         }
 
         let attributes = [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 12)]

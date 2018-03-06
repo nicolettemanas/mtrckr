@@ -35,9 +35,9 @@ class BillsCell: SwipeTableViewCell {
         billIcon.layer.masksToBounds = true
         payButton.layer.cornerRadius = 5
         payButton.layer.masksToBounds = true
-        billAmount.textColor = MTColors.subText
-        billDueDate.textColor = MTColors.subText
-        billName.textColor = MTColors.mainText
+        billAmount.textColor = Colors.subText.color
+        billDueDate.textColor = Colors.subText.color
+        billName.textColor = Colors.mainText.color
         billIconView.layer.cornerRadius = 10
     }
 

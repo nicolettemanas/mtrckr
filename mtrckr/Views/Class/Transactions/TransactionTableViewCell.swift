@@ -38,12 +38,12 @@ class TransactionTableViewCell: SwipeTableViewCell {
         var accountUsed: String? = transaction.fromAccount?.name
         if transaction.type == TransactionType.expense.rawValue {
             prefix = "-"
-            self.itemPrice.textColor = MTColors.mainRed
+            self.itemPrice.textColor = Colors.mainRed.color
         } else if transaction.type == TransactionType.income.rawValue {
             prefix = "+"
-            self.itemPrice.textColor = MTColors.mainGreen
+            self.itemPrice.textColor = Colors.mainGreen.color
         } else {
-            self.itemPrice.textColor = MTColors.subText
+            self.itemPrice.textColor = Colors.subText.color
             color = "#6A7FDBFF"
             imgIcon = "sync"
             accountUsed = "\(transaction.fromAccount!.name) > \(transaction.toAccount!.name)"

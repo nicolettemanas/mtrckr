@@ -21,7 +21,7 @@ class EmptyBillsDataSource: NSObject, DZNEmptyDataSetSource {
     }
 
     func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return MTColors.emptyDataSetBg
+        return Colors.emptyDataSetBg.color
     }
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -30,7 +30,7 @@ class EmptyBillsDataSource: NSObject, DZNEmptyDataSetSource {
         style.lineBreakMode = .byWordWrapping
         style.alignment = .center
         let attr = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),
-                    NSAttributedStringKey.foregroundColor: MTColors.placeholderText,
+                    NSAttributedStringKey.foregroundColor: Colors.placeholderText.color,
                     NSAttributedStringKey.paragraphStyle: style]
         return NSAttributedString(string: str, attributes: attr)
     }
@@ -41,7 +41,7 @@ class EmptyBillsDataSource: NSObject, DZNEmptyDataSetSource {
         style.lineBreakMode = .byWordWrapping
         style.alignment = .center
         let attr = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16),
-                    NSAttributedStringKey.foregroundColor: MTColors.placeholderText,
+                    NSAttributedStringKey.foregroundColor: Colors.placeholderText.color,
                     NSAttributedStringKey.paragraphStyle: style]
         return NSAttributedString(string: str, attributes: attr)
     }
@@ -51,6 +51,6 @@ class EmptyBillsDataSource: NSObject, DZNEmptyDataSetSource {
     }
 
     func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return MTColors.placeholderText
+        return Colors.placeholderText.color
     }
 }

@@ -28,7 +28,7 @@ class MTViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = MTColors.lightBg
+        view.backgroundColor = Colors.lightBg.color
         listenToKeyboard()
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -67,8 +67,8 @@ class MTViewController: UIViewController, UITextFieldDelegate {
                                     target  : target,
                                     action  : rightSelector)
 
-        left.tintColor = MTColors.mainRed
-        right.tintColor = MTColors.mainBlue
+        left.tintColor = Colors.mainRed.color
+        right.tintColor = Colors.mainBlue.color
         navigationItem.leftBarButtonItem = left
         navigationItem.rightBarButtonItem = right
     }

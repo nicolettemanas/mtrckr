@@ -25,17 +25,17 @@ class AccountTypeCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 10
         contentView.layer.borderWidth = 0.5
         contentView.layer.masksToBounds = true
-        contentView.layer.borderColor = MTColors.mainBlue.cgColor
+        contentView.layer.borderColor = Colors.mainBlue.color.cgColor
     }
 
     func didDeselect() {
         contentView.backgroundColor = .white
-        icon.tintColor = MTColors.mainBlue
-//        name.textColor = MTColors.mainBlue
+        icon.tintColor = Colors.mainBlue.color
+//        name.textColor = Colors.mainBlue
     }
 
     func didSelect() {
-        contentView.backgroundColor = MTColors.mainBlue
+        contentView.backgroundColor = Colors.mainBlue.color
         icon.tintColor = .white
 //        name.textColor = .white
     }

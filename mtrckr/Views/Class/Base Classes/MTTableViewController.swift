@@ -20,14 +20,14 @@ class MTTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = MTColors.lightBg
+        view.backgroundColor = Colors.lightBg.color
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "back-tab")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back-tab")
 
         tableView.separatorStyle = .singleLine
-        tableView.separatorColor = MTColors.separatorColor
+        tableView.separatorColor = Colors.separatorColor.color
         tableView.tableFooterView = UIView()
         tableView.allowsSelection = true
     }
@@ -48,8 +48,8 @@ class MTTableViewController: UITableViewController {
                                     target  : target,
                                     action  : rightSelector)
 
-        left.tintColor = MTColors.mainRed
-        right.tintColor = MTColors.mainBlue
+        left.tintColor = Colors.mainRed.color
+        right.tintColor = Colors.mainBlue.color
         navigationItem.leftBarButtonItem = left
         navigationItem.rightBarButtonItem = right
     }

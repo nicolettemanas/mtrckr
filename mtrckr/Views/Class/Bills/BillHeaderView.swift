@@ -27,7 +27,7 @@ class BillHeaderView: UITableViewHeaderFooterView {
         super.awakeFromNib()
         backgroundColor = .white
         contentView.backgroundColor = .white
-        amount.textColor = MTColors.mainBlue
+        amount.textColor = Colors.mainBlue.color
     }
 
     func setValue(bill: Bill, currency: String) {

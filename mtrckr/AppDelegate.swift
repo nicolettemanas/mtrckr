@@ -24,12 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         UIApplication.shared.statusBarStyle = .default
-        UINavigationBar.appearance().backgroundColor = MTColors.mainBg
-        UINavigationBar.appearance().tintColor = MTColors.mainText
+        UINavigationBar.appearance().backgroundColor = Colors.mainBg.color
+        UINavigationBar.appearance().tintColor = Colors.mainText.color
         UINavigationBar.appearance().isOpaque = true
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: MTColors.mainBlue]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: Colors.mainBlue.color]
         UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().barTintColor = MTColors.barBg
+        UINavigationBar.appearance().barTintColor = Colors.barBg.color
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 
