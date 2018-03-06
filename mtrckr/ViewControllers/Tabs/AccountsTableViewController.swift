@@ -65,14 +65,13 @@ class AccountsTableViewController: MTTableViewController {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let resolver = MTResolver()
-        self.presenter = resolver.container.resolve(AccountsPresenter.self)
-        self.emptyDatasource = resolver.container.resolve(EmptyAccountsDataSource.self)
-        self.newAccountPresenter = resolver.container.resolve(NewAccountPresenter.self)
-        self.deleteSheetPresenter = resolver.container.resolve(DeleteSheetPresenter.self)
-        self.transactionsPresenter = resolver.container.resolve(AccountTransactionsPresenter.self)
-        self.transactionsDataSource = resolver.container.resolve(TransactionsListDataSource.self,
-                                                                 arguments: TransactionsFilter.byAccount, [Account]())
+        self.presenter = MTResolver.shared.accounts.resolve(AccountsPresenter.self)
+        self.emptyDatasource = MTResolver.shared.accounts.resolve(EmptyAccountsDataSource.self)
+        self.newAccountPresenter = MTResolver.shared.accounts.resolve(NewAccountPresenter.self)
+        self.deleteSheetPresenter = MTResolver.shared.accounts.resolve(DeleteSheetPresenter.self)
+        self.transactionsPresenter = MTResolver.shared.accounts.resolve(AccountTransactionsPresenter.self)
+        self.transactionsDataSource = MTResolver.shared.accounts.resolve(TransactionsListDataSource.self,
+                                    arguments: TransactionsFilter.byAccount, [Account]())
     }
 
     // MARK: - Life cycle

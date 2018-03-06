@@ -30,7 +30,7 @@ class AccountTypeCell: Cell<AccountType>, CellType {
 
     override func setup() {
         super.setup()
-        dataSource = MTResolver().container.resolve(AccountTypeCollectionDataSource.self, argument: row.value)
+        dataSource = MTResolver.shared.accounts.resolve(AccountTypeCollectionDataSource.self, argument: row.value)
 //        dataSource?.value = row.value
         dataSource?.delegate = self
         collectionView.dataSource = dataSource

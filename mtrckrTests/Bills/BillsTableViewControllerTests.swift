@@ -24,20 +24,17 @@ class BillsTableViewControllerTests: QuickSpec {
         let identifier = "BillsTableViewControllerTests"
 
         beforeEach {
-            let resolvers = MTResolver()
-            let mockResolvers = StubMTResolvers()
-
-            mockBillVCPresenter = mockResolvers.container
+            mockBillVCPresenter = StubMTResolvers.shared.container
                 .resolve(BillVCPresenter.self, name: "mock") as? MockBillVCPresenter
-            mockDeleteBillPresenter = mockResolvers.container
+            mockDeleteBillPresenter = StubMTResolvers.shared.container
                 .resolve(DeleteBillPresenter.self, name: "mock") as? MockDeleteBillPresenter
-            billInteractor = mockResolvers.container
+            billInteractor = StubMTResolvers.shared.container
                 .resolve(BillsInteractor.self, name: "stub", argument: identifier)
-            mockPresenter = mockResolvers.container
+            mockPresenter = StubMTResolvers.shared.container
                 .resolve(BillsPresenter.self, name: "mock") as? MockBillsPresenter
-            billsViewController = resolvers.container
+            billsViewController = MTResolver.shared.bills
                 .resolve(BillsTableViewController.self)
-            billsViewController.dataSource = mockResolvers.container
+            billsViewController.dataSource = StubMTResolvers.shared.container
                 .resolve(BillsDataSource.self, name: "mock", argument: identifier)
             
             billsViewController.billVCPresenter = mockBillVCPresenter

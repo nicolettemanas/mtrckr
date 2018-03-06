@@ -20,12 +20,9 @@ class BillsPresenterTests: QuickSpec {
         let fakeModels = FakeModels()
         
         beforeEach {
-            resolver = MTResolver()
-            stubResolver = StubMTResolvers()
-            
-            presenter = resolver.container
+            presenter = MTResolver.shared.bills
                 .resolve(BillsPresenter.self)
-            mockInteractor = stubResolver.container
+            mockInteractor = StubMTResolvers.shared.container
                 .resolve(BillsInteractor.self, name: "mock") as? MockBillsInteractor
             
             presenter.interactor = mockInteractor

@@ -16,7 +16,6 @@ class BillHistoryViewControllerTests: QuickSpec {
         let identifier = "BillHistoryViewControllerTests"
         
         let fakeModels = FakeModels()
-        let stubResolver = StubMTResolvers()
         
         var historyViewController: BillHistoryViewController!
         var dataSource: BillHistoryDataSourceProtocol!
@@ -38,12 +37,12 @@ class BillHistoryViewControllerTests: QuickSpec {
         
         describe("BillHistoryViewControllerTests") {
             beforeEach {
-                mockInteractor = stubResolver.container.resolve(BillsInteractor.self,
+                mockInteractor = StubMTResolvers.shared.container.resolve(BillsInteractor.self,
                                                                 name: "stub",
                                                                 argument: identifier)
                 bill!.startDate = Date().subtract(2.months)
                 mockInteractor.saveBill(bill: bill!)
-                historyViewController = stubResolver
+                historyViewController = StubMTResolvers.shared
                     .container.resolve(BillHistoryViewController.self,
                                        name: "testable",
                                        arguments: bill!, identifier)

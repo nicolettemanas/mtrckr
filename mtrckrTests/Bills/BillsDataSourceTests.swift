@@ -33,8 +33,7 @@ class BillsDataSourceTests: QuickSpec {
             dataSource?.realmContainer = MockRealmContainer(memoryIdentifier: identifier)
             dataSource?.realmContainer?.setDefaultRealm(to: .offline)
 
-            let resolver = StubMTResolvers()
-            mockBillsTableViewController = resolver.container.resolve(BillsTableViewController.self, name: "stub",
+            mockBillsTableViewController = StubMTResolvers.shared.container.resolve(BillsTableViewController.self, name: "stub",
                                                                       argument: dataSource as BillsDataSourceProtocol)
             dataSource.delegate = mockBillsTableViewController
             interactor = BillsInteractor(with: RealmAuthConfig())

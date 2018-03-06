@@ -23,8 +23,7 @@ class BillVCPresenter: BillVCPresenterProtocol {
     ///   - presenter: The `ViewController` presenter that conforms to `NewBillViewControllerDelegate` protocol
     ///   - billEntry: The `BillEntry` associated. Non-nil if asked to edit a `BillEntry`
     func presentNewBill(presenter: UIViewController & NewBillViewControllerDelegate, billEntry: BillEntry?) {
-        let resolver = MTResolver()
-        guard let newBillVC = resolver.container
+        guard let newBillVC = MTResolver.shared.bills
             .resolve(NewBillViewController.self, arguments: presenter as NewBillViewControllerDelegate, billEntry)
         else { fatalError("Class not registered") }
 
@@ -38,8 +37,7 @@ class BillVCPresenter: BillVCPresenterProtocol {
     ///   - entry: The `BillEntry` to pay
     ///   - presenter: The `ViewController` presenter that conforms to `PayBillViewControllerDelegate`
     func presentPayment(ofBill entry: BillEntry, presenter: UIViewController & PayBillViewControllerDelegate) {
-        let resolver = MTResolver()
-        guard let payBillVC = resolver.container
+        guard let payBillVC = MTResolver.shared.bills
             .resolve(PayBillViewController.self, arguments: entry, presenter as PayBillViewControllerDelegate)
         else { fatalError("Class not registered") }
 
@@ -53,8 +51,7 @@ class BillVCPresenter: BillVCPresenterProtocol {
     ///   - entry: The `Bill` to view the pament history from
     ///   - presenter: The `ViewController` presenter
     func presentHistory(ofBill bill: Bill, presenter: UIViewController) {
-        let resolver = MTResolver()
-        guard let historyVC = resolver.container
+        guard let historyVC = MTResolver.shared.bills
             .resolve(BillHistoryViewController.self, argument: bill)
             else { fatalError("Class not registered") }
 

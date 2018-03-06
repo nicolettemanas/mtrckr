@@ -69,13 +69,12 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let resolver = MTResolver()
-        self.newTransPresenter = resolver.container.resolve(NewTransactionPresenter.self)
-        self.deleteTransactionSheetPresenter = resolver.container.resolve(DeleteTransactionSheetPresenter.self)
-        self.emptytransactionDataSource = resolver.container.resolve(EmptyTransactionsDataSource.self)
-        self.transactionsPresenter = resolver.container.resolve(TransactionsPresenter.self)
-        self.transactionsDataSource = resolver.container.resolve(TransactionsListDataSource.self,
-                                                                 arguments: TransactionsFilter.byDate, Date())
+        self.newTransPresenter = MTResolver.shared.transactions.resolve(NewTransactionPresenter.self)
+        self.deleteTransactionSheetPresenter = MTResolver.shared.transactions.resolve(DeleteTransactionSheetPresenter.self)
+        self.emptytransactionDataSource = MTResolver.shared.transactions.resolve(EmptyTransactionsDataSource.self)
+        self.transactionsPresenter = MTResolver.shared.transactions.resolve(TransactionsPresenter.self)
+        self.transactionsDataSource = MTResolver.shared.transactions.resolve(TransactionsListDataSource.self,
+                                    arguments: TransactionsFilter.byDate, Date())
     }
 
     // MARK: - Life cycle methods

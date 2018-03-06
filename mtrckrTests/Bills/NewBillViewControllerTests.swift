@@ -15,12 +15,11 @@ class NewBillViewControllerTests: QuickSpec {
         var newBillViewController: NewBillViewController?
         var billsViewController: (MockBillsTableViewController & NewBillViewControllerDelegate)?
 
-        let resolver = MTResolver()
         let fakeModels = FakeModels()
 
         beforeEach {
             billsViewController = MockBillsTableViewController()
-            newBillViewController = resolver.container
+            newBillViewController = MTResolver.shared.bills
                 .resolve(NewBillViewController.self,
                          arguments: billsViewController as! NewBillViewControllerDelegate,
                          nil as BillEntry?)

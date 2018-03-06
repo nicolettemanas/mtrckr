@@ -35,12 +35,11 @@ class BillsTableViewController: MTTableViewController {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let resolver = MTResolver()
-        emptyDataSource = resolver.container.resolve(EmptyBillsDataSource.self)
-        billVCPresenter = resolver.container.resolve(BillVCPresenter.self)
-        deleteBillPresenter = resolver.container.resolve(DeleteBillPresenter.self)
-        presenter = resolver.container.resolve(BillsPresenter.self)
-        dataSource = resolver.container.resolve(BillsDataSource.self)
+        emptyDataSource = MTResolver.shared.bills.resolve(EmptyBillsDataSource.self)
+        billVCPresenter = MTResolver.shared.bills.resolve(BillVCPresenter.self)
+        deleteBillPresenter = MTResolver.shared.bills.resolve(DeleteBillPresenter.self)
+        presenter = MTResolver.shared.bills.resolve(BillsPresenter.self)
+        dataSource = MTResolver.shared.bills.resolve(BillsDataSource.self)
         dataSource?.delegate = self
     }
 

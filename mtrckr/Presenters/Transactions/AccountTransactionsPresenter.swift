@@ -21,7 +21,7 @@ class AccountTransactionsPresenter: AccountTransactionsPresenterProtocol {
     ///   - presentingVC: The presenting `ViewController`
     func presentTransactions(presentingVC: AccountsTableViewController,
                              dataSource: TransactionsListDataSourceProtocol) {
-        guard let transVC = MTResolver().container
+        guard let transVC = MTResolver.shared.transactions
             .resolve(TransactionsTableViewController.self, argument: dataSource) else {
             fatalError("Cannot resolve transactionTableViewController")
         }

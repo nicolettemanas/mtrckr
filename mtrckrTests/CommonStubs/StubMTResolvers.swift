@@ -9,9 +9,10 @@ import UIKit
 import Swinject
 @testable import mtrckr
 
-class StubMTResolvers: MTResolver {
-    override init() {
-        super.init()
+class StubMTResolvers {
+    static let shared = StubMTResolvers()
+    let container = Container()
+    private init() {
         container.register(TransactionsTableViewController.self, name: "stub") { (
             resolver,
             filter: TransactionsFilter) in
@@ -20,10 +21,10 @@ class StubMTResolvers: MTResolver {
                 .initWith(dataSource: resolver.resolve(TransactionsListDataSource.self,
                                                        name: "stub",
                                                        argument: filter),
-                          newTransPresenter     : resolver.resolve(NewTransactionPresenter.self),
-                          deleteTransPresenter  : resolver.resolve(DeleteTransactionSheetPresenter.self),
-                          transactionsPresenter : resolver.resolve(TransactionsPresenter.self),
-                          emptyDataSource       : resolver.resolve(EmptyTransactionsDataSource.self))
+              newTransPresenter     : MTResolver.shared.transactions.resolve(NewTransactionPresenter.self),
+              deleteTransPresenter  : MTResolver.shared.transactions.resolve(DeleteTransactionSheetPresenter.self),
+              transactionsPresenter : MTResolver.shared.transactions.resolve(TransactionsPresenter.self),
+              emptyDataSource       : MTResolver.shared.transactions.resolve(EmptyTransactionsDataSource.self))
         }
         
         container.register(TransactionsListDataSource.self, name: "stub") { (
@@ -31,19 +32,20 @@ class StubMTResolvers: MTResolver {
             filter: TransactionsFilter) in
             
             StubTransactionsListDataSource
-                .init(authConfig    : self.authConfig,
+                .init(authConfig    : RealmAuthConfig(),
                       filterBy      : filter,
                       date          : nil,
                       accounts      : [Account]())
         }
         
         container.register(NewAccountFormVC.self, name: "testable") {
-            (resolver,
+            (_,
             account: Account?) in
             let vc = NewAccountFormVC.init(account: account,
                                            delegate: nil,
                                            accntTypeDatasource:
-                resolver.resolve(AccountTypeCollectionDataSource.self, argument: nil as AccountType?)!)
+                MTResolver.shared.accounts
+                    .resolve(AccountTypeCollectionDataSource.self, argument: nil as AccountType?)!)
             return vc
         }
         
@@ -76,7 +78,8 @@ class StubMTResolvers: MTResolver {
             return interactor
         }
         
-        container.register(BillsInteractor.self, name: "mock") { _ in MockBillsInteractor(with: RealmAuthConfig()) }
+        container.register(BillsInteractor.self, name: "mock") { _ in
+            MockBillsInteractor(with: RealmAuthConfig()) }
         container.register(DeleteBillPresenter.self, name: "mock") { _ in MockDeleteBillPresenter() }
         container.register(BillsPresenter.self, name: "mock") { resolver in
             MockBillsPresenter
@@ -98,9 +101,10 @@ class StubMTResolvers: MTResolver {
             resolver,
             bill: Bill,
             identifier: String) in
-            let vc = resolver.resolve(BillHistoryViewController.self, argument: bill)!
+            let vc = MTResolver.shared.bills.resolve(BillHistoryViewController.self, argument: bill)!
             
-            let dataSource = resolver.resolve(BillHistoryDataSource.self, arguments: bill, identifier)
+            let dataSource = MTResolver.shared.bills
+                .resolve(BillHistoryDataSource.self, arguments: bill, identifier)
             vc.dataSource = dataSource
             vc.presenter = resolver.resolve(BillsPresenter.self, name: "mock", argument: identifier)
             return vc
@@ -108,12 +112,13 @@ class StubMTResolvers: MTResolver {
                 vc.dataSource?.cellDelegate = vc
         }
         
-        container.register(BillHistoryDataSource.self) { (
-            resolver,
+        MTResolver.shared.bills.register(BillHistoryDataSource.self) { (
+            _,
             bill: Bill,
             identifier: String) in
             
-            let dataSource = resolver.resolve(BillHistoryDataSourceProtocol.self, argument: bill)
+            let dataSource = MTResolver.shared.bills
+                .resolve(BillHistoryDataSourceProtocol.self, argument: bill)
                 as! BillHistoryDataSource
             dataSource.realmContainer = MockRealmContainer(memoryIdentifier: identifier)
             dataSource.realmContainer?.setDefaultRealm(to: .offline)

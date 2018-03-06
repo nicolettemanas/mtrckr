@@ -24,8 +24,7 @@ class NewAccountPresenter: NewAccountPresenterProtocol {
     func presentNewAccountVC(with account: Account?, presentingVC: UIViewController,
                              delegate: NewAccountViewControllerDelegate?) {
 
-        let resolver = MTResolver()
-        guard let vc = resolver.container.resolve(NewAccountFormVC.self, arguments: account, delegate)
+        guard let vc = MTResolver.shared.accounts.resolve(NewAccountFormVC.self, arguments: account, delegate)
             else { fatalError("NewAccountFormVC not registered") }
         let nav = UINavigationController(rootViewController: vc)
         presentingVC.present(nav, animated: true, completion: nil)

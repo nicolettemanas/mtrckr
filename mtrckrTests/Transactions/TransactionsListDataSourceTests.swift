@@ -38,8 +38,7 @@ class TransactionsListDataSourceTests: QuickSpec {
             dataSource?.realmContainer = MockRealmContainer(memoryIdentifier: identifier)
             dataSource?.realmContainer?.setDefaultRealm(to: .offline)
             
-            let resolver = StubMTResolvers()
-            mockTableViewController = resolver.container
+            mockTableViewController = StubMTResolvers.shared.container
                 .resolve(TransactionsTableViewController.self,
                          name       : "stub",
                          argument   : TransactionsFilter.byAccount)

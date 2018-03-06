@@ -15,14 +15,13 @@ class NewAccountFormVCTests: QuickSpec {
         var newAccountVC: NewAccountFormVC?
         var mockAccountsVC: MockAccountsTableViewController?
         
-        let resolver = StubMTResolvers()
         let fakeModels = FakeModels()
-        
         var account: Account?
         
         beforeEach {
             mockAccountsVC = MockAccountsTableViewController()
-            newAccountVC = resolver.container.resolve(NewAccountFormVC.self, name: "testable", argument: account)!
+            newAccountVC = StubMTResolvers.shared.container
+                .resolve(NewAccountFormVC.self, name: "testable", argument: account)!
             newAccountVC?.delegate = mockAccountsVC
             expect(newAccountVC?.view).toNot(beNil())
             expect(mockAccountsVC).toNot(beNil())

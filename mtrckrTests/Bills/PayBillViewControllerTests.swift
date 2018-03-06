@@ -16,7 +16,6 @@ class PayBillViewControllerTests: QuickSpec {
         var payBillVC: PayBillViewController?
         var billsVC: MockBillsTableViewController?
         
-        let resolver = MTResolver()
         let fakeModels = FakeModels()
         
         let bill = fakeModels.bill()
@@ -24,7 +23,7 @@ class PayBillViewControllerTests: QuickSpec {
         
         beforeEach {
             billsVC = MockBillsTableViewController()
-            payBillVC = resolver.container
+            payBillVC = MTResolver.shared.bills
                 .resolve(PayBillViewController.self,
                          arguments: entryToPay,
                          billsVC as! PayBillViewControllerDelegate)

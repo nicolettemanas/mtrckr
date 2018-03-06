@@ -33,6 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 
+        let filePath = RealmAuthConfig().offlineRealmFileName
+        if !FileManager.default.fileExists(atPath: filePath) {
+            InitialRealmGenerator.generateInitRealm { (_) in
+                let holder = RealmContainer(withConfig: RealmAuthConfig())
+                _ = holder.userRealm
+            }
+        } else { }
+        
         return true
     }
 

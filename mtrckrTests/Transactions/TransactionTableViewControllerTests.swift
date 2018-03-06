@@ -47,7 +47,7 @@ class TransactionTableViewControllerTests: QuickSpec {
                 self.mockNewTransPresenter = MockNewTransactionPresenter()
                 self.mockDeleteTransactionSheetPresenter = MockDeleteTransactionSheetPresenter()
                 
-                self.transactionsTVC = StubMTResolvers().container
+                self.transactionsTVC = StubMTResolvers.shared.container
                     .resolve(TransactionsTableViewController.self,
                              name: "stub",
                              argument: TransactionsFilter.byDate)
