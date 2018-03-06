@@ -16,23 +16,23 @@ protocol CalendarViewControllerProtocol {
 }
 
 class CalendarViewController: MTViewController {
-    
+
     // MARK: - IBOutlets/IBActions
     @IBOutlet weak var calendar: JTAppleCalendarView!
     @IBOutlet weak var monthyearLabel: UILabel!
     @IBOutlet weak var transactionsTableContainer: UIView!
-    
+
     @IBAction func didPressFilter(sender: UIButton) {
         guard let dataSource = calendarDataSource else { fatalError("CalendarDataSource is nil") }
         filterPresenter?.presentSelection(accounts: dataSource.allAccounts(), presentingVC: self)
     }
-    
+
     var observer: ObserverProtocol?
     var transactionsTableVC: TransactionsTableViewControllerProtocol?
     var calendarDataSource: TransactionsCalendarDataSourceProtocol?
     var filterPresenter: AccountsFilterPresenterProtocol?
     var accounts = [Account]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCalendarView()
@@ -40,7 +40,7 @@ class CalendarViewController: MTViewController {
         setupObserver()
         setupCalendarDataSource()
     }
-    
+
     // MARK: - Setup methods
     func setupCalendarView() {
         calendar.minimumLineSpacing = 0
@@ -56,7 +56,7 @@ class CalendarViewController: MTViewController {
                           extraAddedOffset              : 0,
                           completionHandler             : nil)
     }
-    
+
     func setupTransactionsTable() {
         let resolver = MTResolver()
         let dataSource: TransactionsListDataSourceProtocol
@@ -69,7 +69,7 @@ class CalendarViewController: MTViewController {
             transVC.didMove(toParentViewController: self)
         }
     }
-    
+
     func setupCalendarDataSource() {
         calendarDataSource = TransactionsCalendarDataSource(calendar    : calendar,
                                                             delegate    : self,
@@ -78,14 +78,14 @@ class CalendarViewController: MTViewController {
         calendar.ibCalendarDelegate = calendarDataSource
         filterPresenter = AccountsFilterPresenter()
     }
-    
+
     func setupVisibleDates() {
         calendar.visibleDates { [unowned self] dates in
             guard let date = dates.monthDates.first?.date else { return }
             self.monthyearLabel.text = date.format(with: "MMMM yyyy")
         }
     }
-    
+
     func setupObserver() {
         observer = NotificationObserver()
         observer?.setDidChangeUserBlock {
@@ -100,12 +100,11 @@ extension CalendarViewController: TransactionsCalendarDataSourceDelegate {
     func didScrollto(dateSegmentWith visibleDates: DateSegmentInfo) {
         setupVisibleDates()
     }
-    
+
     func didReceiveChanges(changes: RealmCollectionChange<Results<Transaction>>) {
         switch changes {
         case .initial:
             calendar.reloadData()
-            break
         case .update(let updates, let deletions, _, _):
             var datesToReload: [Date] = []
             var startDates: [Date] = []
@@ -125,7 +124,7 @@ extension CalendarViewController: TransactionsCalendarDataSourceDelegate {
         case .error(let error): fatalError("\(error)")
         }
     }
-    
+
     func didSelect(date: Date) {
         transactionsTableVC?.reloadTableBy(date: date, accounts: accounts)
     }

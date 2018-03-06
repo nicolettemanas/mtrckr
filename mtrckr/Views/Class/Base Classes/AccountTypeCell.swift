@@ -14,20 +14,20 @@ final class AccountTypeRow: Row<AccountTypeCell>, RowType {
         super.init(tag: tag)
         cellProvider = CellProvider<AccountTypeCell>(nibName: "AccountTypeCell")
     }
-    
+
     override func customUpdateCell() {
         cell.selectionStyle = .none
     }
-    
+
     func updateSelection(forType type: TransactionType) {
-        
+
     }
 }
 
 class AccountTypeCell: Cell<AccountType>, CellType {
     @IBOutlet weak var collectionView: UICollectionView!
     var dataSource: AccountTypeCollectionDataSource?
-    
+
     override func setup() {
         super.setup()
         dataSource = MTResolver().container.resolve(AccountTypeCollectionDataSource.self, argument: row.value)

@@ -16,7 +16,7 @@ class TransactionTableViewCell: SwipeTableViewCell {
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var dateOfTransaction: UILabel!
     @IBOutlet weak var accountUsed: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         iconView.layer.masksToBounds = true
@@ -28,10 +28,10 @@ class TransactionTableViewCell: SwipeTableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func setValues(ofTransaction transaction: Transaction, withCurrency curr: String) {
         self.itemName.text = transaction.name
-        
+
         var prefix: String = ""
         var color: String? = transaction.category?.color
         var imgIcon: String? = transaction.category?.icon
@@ -48,7 +48,7 @@ class TransactionTableViewCell: SwipeTableViewCell {
             imgIcon = "sync"
             accountUsed = "\(transaction.fromAccount!.name) > \(transaction.toAccount!.name)"
         }
-        
+
         self.iconView.backgroundColor = UIColor(color!)
         self.icon.image = UIImage(named: imgIcon!)
         self.accountUsed.text = accountUsed

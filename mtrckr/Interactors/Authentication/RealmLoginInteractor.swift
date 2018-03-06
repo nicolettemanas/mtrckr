@@ -24,10 +24,10 @@ protocol RealmLoginInteractorProtocol {
 
 /// Class responsible for loggin in
 class RealmLoginInteractor: RealmHolder, RealmLoginInteractorProtocol {
-    
+
     /// The output delegate of the interactor
     var output: RealmLoginInteractorOutput?
-    
+
     // MARK: RealmAuthInteractorProtocol methods
 
     /// Receives the encrypted credentials, logs in user and performs
@@ -53,7 +53,7 @@ class RealmLoginInteractor: RealmHolder, RealmLoginInteractorProtocol {
             }
         }
     }
-    
+
     /// The implementation of the login process
     ///
     /// - Parameters:
@@ -66,7 +66,7 @@ class RealmLoginInteractor: RealmHolder, RealmLoginInteractorProtocol {
                    server: URL,
                    timeout: TimeInterval,
                    completion: @escaping (MTSyncUser?, Error?) -> Void) {
-        
+
         SyncUser.logIn(with: credentials, server: server, timeout: timeout) { (user, error) in
             if let syncUser = user {
                 let mt = MTSyncUser(syncUser: syncUser)

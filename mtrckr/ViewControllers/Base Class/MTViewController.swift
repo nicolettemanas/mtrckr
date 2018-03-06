@@ -13,24 +13,24 @@ import NVActivityIndicatorView
 class MTViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Properties
-    
+
     /// The view displayed when showLoadingView is called
     var loadingView: NVActivityIndicatorView?
-    
+
     var scrollView: UIScrollView? { didSet {
             scrollView?.keyboardDismissMode = .interactive
         }
     }
-    
+
     deinit {
         print("[VIEW CONTROLLER] Deallocating \(self)")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = MTColors.lightBg
         listenToKeyboard()
-        
+
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "back-tab")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back-tab")
@@ -40,15 +40,15 @@ class MTViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     // MARK: - UITextFieldDelegate methods
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
+
     // MARK: - Methods
-    
+
     /// Pre-composed setup for the Navigation Bar. Adds left and right bar button items (x and check icons)
     ///
     /// - Parameters:
@@ -66,13 +66,13 @@ class MTViewController: UIViewController, UITextFieldDelegate {
                                     style   : .plain,
                                     target  : target,
                                     action  : rightSelector)
-        
+
         left.tintColor = MTColors.mainRed
         right.tintColor = MTColors.mainBlue
         navigationItem.leftBarButtonItem = left
         navigationItem.rightBarButtonItem = right
     }
-    
+
     /// Shows and animates the loading view
     ///
     /// - Parameter color: UIColor of the loading view to be displayed
@@ -83,13 +83,13 @@ class MTViewController: UIViewController, UITextFieldDelegate {
         }
         loadingView?.startAnimating()
     }
-    
+
     /// Hides the loading view of the viewcontroller
     func hideLoadingView() {
         guard loadingView != nil else { return }
         loadingView?.stopAnimating()
     }
-    
+
     // MARK: - Keyboard & Scrollview methods
     private func listenToKeyboard() {
         if self.scrollView != nil {
@@ -103,7 +103,7 @@ class MTViewController: UIViewController, UITextFieldDelegate {
                                                    object: nil)
         }
     }
-    
+
     @objc func keyboardWillShow(notification: NSNotification) {
         if self.scrollView != nil {
             var userInfo = notification.userInfo!
@@ -111,10 +111,10 @@ class MTViewController: UIViewController, UITextFieldDelegate {
             else {
                 return
             }
-            
+
             var keyboardFrame: CGRect = keyboardFrameValue.cgRectValue
             keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-            
+
             var contentInset: UIEdgeInsets = self.scrollView!.contentInset
             contentInset.bottom = keyboardFrame.size.height
             self.scrollView?.contentInset = contentInset

@@ -11,7 +11,7 @@ import UIColor_Hex_Swift
 
 protocol AccountsPresenterProtocol {
     init(interactor: AccountsInteractorProtocol)
-    
+
     func accounts() -> Results<Account>?
     func currency() -> String
     func deleteAccount(account: Account)
@@ -22,33 +22,33 @@ protocol AccountsPresenterProtocol {
 
 /// The event handler for `Account`s Tableview controller
 class AccountsPresenter: AccountsPresenterProtocol {
-    
+
     /// The interactor responsible for `Account` modifications
     private var interactor: AccountsInteractorProtocol
-    
+
     // MARK: - Initializers
-    
+
     /// Creates an `AccountsPresenter` with the given interactor
     ///
     /// - Parameter ai: The interactor to use in `Account` modifications
     required init(interactor ai: AccountsInteractorProtocol) {
         interactor = ai
     }
-    
+
     /// Passes the `Account` to delete to the interactor
     ///
     /// - Parameter account: The `Account` to delete
     func deleteAccount(account: Account) {
         interactor.deleteAccount(account: account)
     }
-    
+
     /// Asks for the list of `Account`s from the interactor
     ///
     /// - Returns: The `Account`s retrieved
     func accounts() -> Results<Account>? {
         return interactor.accounts()
     }
-    
+
     /// Makes an untracked `Account` with the given values and passes it to
     /// the interactor to save or update
     ///
@@ -63,7 +63,7 @@ class AccountsPresenter: AccountsPresenterProtocol {
     func createAccount(withId id: String?, name: String, type: AccountType,
                        initBalance: Double, dateOpened: Date,
                        color: UIColor) throws {
-        
+
         let att: [String: Any] = ["id": id ?? "accnt-\(UUID().uuidString)",
                                     "name": name,
                                     "type": type,
@@ -76,7 +76,7 @@ class AccountsPresenter: AccountsPresenterProtocol {
         let acc: Account = Account(value: att)
         try interactor.createAccount(account: acc)
     }
-    
+
     /// Asks the interactor for the currency symbol used
     /// by the logged in user
     ///

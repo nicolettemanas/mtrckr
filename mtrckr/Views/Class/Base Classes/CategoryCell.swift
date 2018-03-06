@@ -28,11 +28,11 @@ final class CategoryRow: Row<CategoryCell>, RowType {
         super.init(tag: tag)
         cellProvider = CellProvider<CategoryCell>(nibName: "CategoryCell")
     }
-    
+
     func updateSelection(forType type: TransactionType) {
         cell?.updateSelection(forType: type)
     }
-    
+
     override func customUpdateCell() {
         cell.selectionStyle = .none
     }
@@ -40,9 +40,9 @@ final class CategoryRow: Row<CategoryCell>, RowType {
 
 class CategoryCell: Cell<Category>, CellType, CategoryDataSourceDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     var dataSource: CategoryDataSourceProtocol?
-    
+
     override func setup() {
         super.setup()
         dataSource = CategoryDataSource(with: RealmAuthConfig(), ofType: .expense, collectionView: collectionView)
@@ -55,20 +55,20 @@ class CategoryCell: Cell<Category>, CellType, CategoryDataSourceDelegate {
         collectionView.backgroundColor = .clear
         bringSubview(toFront: collectionView)
     }
-    
+
     override func update() {
         super.update()
     }
-    
+
     func selectItem(at indexPath: IndexPath) {
         dataSource?.selectItem(at: indexPath)
     }
-    
+
     func updateSelection(forType type: TransactionType) {
         dataSource?.updateSelection(forType: type)
         row.value = nil
     }
-    
+
     // MARK: - CategoryDataSourceDelegate methods
     func didSelect(category: Category) {
         row.value = category

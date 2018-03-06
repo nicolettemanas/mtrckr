@@ -130,8 +130,12 @@ class AccountTests: QuickSpec {
 
                         bankAccountType = AccountType(typeId: 2, name: "Bank Account", icon: "bank.jpg")
                         accountFromDatabase = self.testRealm.objects(Account.self).last
-                        accountFromDatabase!.update(name: "My Bank Account", type: bankAccountType, initialAmount: 100.0,
-                                                    color: "#CCCCCC", dateOpened: dateOpened, in: self.testRealm)
+                        accountFromDatabase!.update(name: "My Bank Account",
+                                                    type: bankAccountType,
+                                                    initialAmount: 100.0,
+                                                    color: "#CCCCCC",
+                                                    dateOpened: dateOpened,
+                                                    in: self.testRealm)
                     }
 
                     it("updates values if object already exists", closure: {
@@ -212,7 +216,11 @@ class AccountTests: QuickSpec {
                 })
 
                 it("deletes transactions under deleted account", closure: {
-                    let category = mtrckr.Category(id: "cat0", type: .expense, name: "Utilities", icon: "util.jpg", color: "")
+                    let category = mtrckr.Category(id: "cat0",
+                                                   type: .expense,
+                                                   name: "Utilities",
+                                                   icon: "util.jpg",
+                                                   color: "")
                     let transactions = Transaction.all(in: self.testRealm, underCategory: category)
                     expect(transactions.count) == 2
                     expect(transactions[0].name) == "trans 2"

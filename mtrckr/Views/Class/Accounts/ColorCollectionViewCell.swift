@@ -9,15 +9,15 @@ import UIKit
 
 class ColorCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var checkIcon: UIImageView!
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override func awakeFromNib() {
         clipsToBounds = true
         contentView.layer.cornerRadius = 10
@@ -25,11 +25,11 @@ class ColorCollectionViewCell: UICollectionViewCell {
         checkIcon.contentMode = .scaleAspectFit
         checkIcon.tintColor = .white
     }
-    
+
     func didSelect() {
         self.checkIcon.isHidden = false
     }
-    
+
     func didDeselect() {
         self.checkIcon.isHidden = true
     }

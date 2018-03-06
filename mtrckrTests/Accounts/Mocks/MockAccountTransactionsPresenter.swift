@@ -12,7 +12,8 @@ class MockAccountTransactionsPresenter: AccountTransactionsPresenter {
     var didPresent = false
     var didPresentId: String?
     
-    override func presentTransactions(presentingVC: AccountsTableViewController, dataSource: TransactionsListDataSourceProtocol) {
+    override func presentTransactions(presentingVC: AccountsTableViewController,
+                                      dataSource: TransactionsListDataSourceProtocol) {
         didPresent = true
         didPresentId = dataSource.accountsFilter.first?.id
     }

@@ -8,7 +8,7 @@
 import UIKit
 
 extension NumberFormatter {
-    
+
     /// Returns a string currency version of a given `Double`
     ///
     /// - Parameters:
@@ -21,7 +21,7 @@ extension NumberFormatter {
         formatter.currencySymbol = currency
         return formatter.string(from: NSNumber(value: amount))
     }
-    
+
     /// Returns a short string currency version of a given `Double`.
     /// Eg.: 1.2K, 34M, 23.3K
     ///
@@ -33,7 +33,9 @@ extension NumberFormatter {
         if abs(amount) >= 1000 {
             if abs(amount) >= 1000000 {
                 let dec = amount/1000000
-                if amount.truncatingRemainder(dividingBy: 1000000) == 0 { return String(format: "%@%.0fM", currency, dec) }
+                if amount.truncatingRemainder(dividingBy: 1000000) == 0 {
+                    return String(format: "%@%.0fM", currency, dec)
+                }
                 return String(format: "%@%.2fM", currency, dec)
             }
             let dec = amount/1000

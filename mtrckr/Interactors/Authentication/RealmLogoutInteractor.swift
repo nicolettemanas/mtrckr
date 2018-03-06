@@ -24,7 +24,7 @@ protocol RealmLogoutInteractorOutput {
 class RealmLogoutInteractor: RealmHolder, RealmLogoutInteractorProtocol {
     /// The output delegate of the interactor
     var output: RealmLogoutInteractorOutput?
-    
+
     /// Logs out the current user from the system and deletes
     /// all values in the offline realm
     func logout() {
@@ -35,16 +35,16 @@ class RealmLogoutInteractor: RealmHolder, RealmLogoutInteractorProtocol {
                 self.output?.didLogout()
                 return
             }
-            
+
             self.realmContainer?.setDefaultRealm(to: .offline)
             realm = self.realmContainer!.userRealm!
             try? realm.write {
                 realm.deleteAll()
             }
-            
+
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didChangeUser"), object: nil)
             self.output?.didLogout()
         }
     }
-    
+
 }

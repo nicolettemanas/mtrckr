@@ -16,7 +16,7 @@ class BillFooterView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .white

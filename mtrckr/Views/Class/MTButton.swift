@@ -10,22 +10,22 @@ import UIKit
 
 /// Base class for UIButtons
 class MTButton: UIButton {
-    
+
     // MARK: - Properties
     /// Boolean value indicating whether to render the button with borders
     @IBInspectable var hasBorders: Bool = false { didSet { updateBorder() }}
-    
+
     /// UIColor of the border to be rendered
     @IBInspectable var borderColor: UIColor = MTColors.mainBlue { didSet { updateBorder() }}
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     func updateBorder() {
         if hasBorders {
             self.layer.borderWidth = 1.0

@@ -15,30 +15,33 @@ extension AccountsTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return accounts?.count ?? 0
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell") as? AccountTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell")
+            as? AccountTableViewCell else {
             fatalError("Cannot initialize AccountTableViewCell")
         }
-        
+
         let a = accounts![indexPath.row]
         cell.setValues(ofAccount: a, withCurrency: currency!)
         cell.selectionStyle = .none
         cell.delegate = self
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCellEditingStyle,
+                            forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.deleteRows(at: [indexPath], with: .top)
             self.deleteAccount(atIndex: indexPath)
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let dataSource = self.transactionsDataSource,
             let accnts = self.accounts else { return }

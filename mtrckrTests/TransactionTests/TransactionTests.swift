@@ -54,8 +54,15 @@ class TransactionTests: QuickSpec {
             context("initialize with values dueDate and bill", {
 
                 beforeEach {
-                    transaction = Transaction(type: .expense, name: "Breakfast", image: nil, description: "Subway: Spicy Italian", amount: 99.0,
-                                              category: category, from: account, to: account, date: transDate)
+                    transaction = Transaction(type: .expense,
+                                              name: "Breakfast",
+                                              image: nil,
+                                              description: "Subway: Spicy Italian",
+                                              amount: 99.0,
+                                              category: category,
+                                              from: account,
+                                              to: account,
+                                              date: transDate)
                 }
 
                 it("initializes and assign properties correctly", closure: {
@@ -108,8 +115,15 @@ class TransactionTests: QuickSpec {
             describe("save()", {
                 describe("saving a transactions", {
                     beforeEach {
-                        transaction = Transaction(type: .expense, name: "Breakfast", image: nil, description: "Subway: Spicy Italian", amount: 99.0,
-                                                  category: category, from: account, to: account, date: transDate)
+                        transaction = Transaction(type: .expense,
+                                                  name: "Breakfast",
+                                                  image: nil,
+                                                  description: "Subway: Spicy Italian",
+                                                  amount: 99.0,
+                                                  category: category,
+                                                  from: account,
+                                                  to: account,
+                                                  date: transDate)
                         transaction.save(toRealm: self.testRealm)
                     }
                     itBehavesLike("transaction can be found in database") { ["transaction": transaction,
@@ -117,8 +131,15 @@ class TransactionTests: QuickSpec {
                 })
                 
                 it("should reflect under account", closure: {
-                    transaction = Transaction(type: .expense, name: "Breakfast", image: nil, description: "Subway: Spicy Italian", amount: 99.0,
-                                              category: category, from: account, to: account, date: transDate)
+                    transaction = Transaction(type: .expense,
+                                              name: "Breakfast",
+                                              image: nil,
+                                              description: "Subway: Spicy Italian",
+                                              amount: 99.0,
+                                              category: category,
+                                              from: account,
+                                              to: account,
+                                              date: transDate)
                     transaction.save(toRealm: self.testRealm)
                     let accountAffected = Account.with(key: "accnt1", inRealm: self.testRealm)
                     expect(accountAffected?.transactionsFromSelf.count) == 1
@@ -129,8 +150,15 @@ class TransactionTests: QuickSpec {
 
                 context("transaction is of type expense", {
                     it("should add to account's total expenses and subtract to current amount", closure: {
-                        transaction = Transaction(type: .expense, name: "Breakfast", image: nil, description: "Subway: Spicy Italian", amount: 99.0,
-                                                  category: category, from: account, to: account, date: transDate)
+                        transaction = Transaction(type: .expense,
+                                                  name: "Breakfast",
+                                                  image: nil,
+                                                  description: "Subway: Spicy Italian",
+                                                  amount: 99.0,
+                                                  category: category,
+                                                  from: account,
+                                                  to: account,
+                                                  date: transDate)
                         transaction.save(toRealm: self.testRealm)
                         let accountAffected = Account.with(key: "accnt1", inRealm: self.testRealm)
                         expect(accountAffected?.currentAmount) == -99
@@ -141,9 +169,20 @@ class TransactionTests: QuickSpec {
 
                 context("transaction is of type income", {
                     it("should add to account's total income and add to current amount", closure: {
-                        let newCategory = Category(id: "cat1", type: .income, name: "Income", icon: "income.jpg", color: "")
-                        transaction = Transaction(type: .income, name: "Salary", image: nil, description: "January Salary", amount: 10000,
-                                                  category: newCategory, from: account, to: account, date: transDate)
+                        let newCategory = Category(id: "cat1",
+                                                   type: .income,
+                                                   name: "Income",
+                                                   icon: "income.jpg",
+                                                   color: "")
+                        transaction = Transaction(type: .income,
+                                                  name: "Salary",
+                                                  image: nil,
+                                                  description: "January Salary",
+                                                  amount: 10000,
+                                                  category: newCategory,
+                                                  from: account,
+                                                  to: account,
+                                                  date: transDate)
                         transaction.save(toRealm: self.testRealm)
                         let accountAffected = Account.with(key: "accnt1", inRealm: self.testRealm)
                         expect(accountAffected?.currentAmount) == 10000
@@ -153,7 +192,8 @@ class TransactionTests: QuickSpec {
                 })
 
                 context("adding a transfer transaction", {
-                    it("should subtract from fromAccount's current amount and add to toAccount's current amount", closure: {
+                    it("should subtract from fromAccount's current amount and add to toAccount's current amount",
+                       closure: {
 
                         var toAccount = Account(value: ["id": "accnt2",
                                                   "name": "My Cash",
@@ -166,7 +206,11 @@ class TransactionTests: QuickSpec {
                                                   "dateOpened": Date()])
                         toAccount.save(toRealm: self.testRealm)
 
-                        transaction = Transaction(type: .transfer, name: "Allowance", image: nil, description: "Cash allowance", amount: 500,
+                        transaction = Transaction(type: .transfer,
+                                                  name: "Allowance",
+                                                  image: nil,
+                                                  description: "Cash allowance",
+                                                  amount: 500,
                                                   category: nil, from: account, to: toAccount, date: transDate)
                         transaction.save(toRealm: self.testRealm)
 
@@ -202,14 +246,24 @@ class TransactionTests: QuickSpec {
 
                 describe("updating existing transaction", {
                     it("updates values if object already exists", closure: {
-                        transactionSaved = Transaction(type: .expense, name: "Breakfast", image: nil,
-                                                       description: "Subway: Spicy Italian", amount: 99.0, category: category,
+                        transactionSaved = Transaction(type: .expense,
+                                                       name: "Breakfast",
+                                                       image: nil,
+                                                       description: "Subway: Spicy Italian",
+                                                       amount: 99.0, category: category,
                                                        from: account, to: account, date: transDate)
                         transactionSaved.save(toRealm: self.testRealm)
 
-                        transactionSaved.update(type: .income, name: "Bonus", image: "/picture.jpg",
-                                                description: "My Christmas Bonus", amount: 10000, category: newCategory,
-                                                from: newAccount, to: newAccount, date: transDate, inRealm: self.testRealm)
+                        transactionSaved.update(type: .income,
+                                                name: "Bonus",
+                                                image: "/picture.jpg",
+                                                description: "My Christmas Bonus",
+                                                amount: 10000,
+                                                category: newCategory,
+                                                from: newAccount,
+                                                to: newAccount,
+                                                date: transDate,
+                                                inRealm: self.testRealm)
 
                         let transactionUpdated = self.testRealm.objects(Transaction.self).last!
                         expect(transactionUpdated.type) == TransactionType.income.rawValue
@@ -225,15 +279,27 @@ class TransactionTests: QuickSpec {
 
                     describe("update: change of account", {
                         it("should reset previous account and update new account", closure: {
-                            transactionSaved = Transaction(type: .expense, name: "Breakfast", image: nil,
-                                                           description: "Subway: Spicy Italian", amount: 99.0, category: category,
-                                                           from: account, to: account, date: transDate)
+                            transactionSaved = Transaction(type: .expense,
+                                                           name: "Breakfast",
+                                                           image: nil,
+                                                           description: "Subway: Spicy Italian",
+                                                           amount: 99.0,
+                                                           category: category,
+                                                           from: account,
+                                                           to: account,
+                                                           date: transDate)
                             transactionSaved.save(toRealm: self.testRealm)
 
-                            transactionSaved.update(type: .expense, name: "Breakfast", image: nil,
-                                                    description: "Subway: Spicy Italian", amount: 99.0, category: category,
-                                                    from: newAccount, to: newAccount, date: transDate, inRealm: self.testRealm)
-
+                            transactionSaved.update(type: .expense,
+                                                    name: "Breakfast",
+                                                    image: nil,
+                                                    description: "Subway: Spicy Italian",
+                                                    amount: 99.0,
+                                                    category: category,
+                                                    from: newAccount,
+                                                    to: newAccount,
+                                                    date: transDate,
+                                                    inRealm: self.testRealm)
                             let prevAccnt = Account.with(key: "accnt1", inRealm: self.testRealm)
                             let newAccnt = Account.with(key: "accnt2", inRealm: self.testRealm)
 
@@ -249,16 +315,32 @@ class TransactionTests: QuickSpec {
 
                     describe("update: change of type", {
                         context("update is a change of type expense to income", {
-                            it("should update account's current amount, subtract to total expenses and add to total income", closure: {
-                                transactionSaved = Transaction(type: .expense, name: "Breakfast", image: nil, description: "Subway: Spicy Italian",
-                                                               amount: 99.0, category: category,
-                                                               from: account, to: account, date: transDate)
+                            it("""
+                                should update account's current amount,
+                                subtract to total expenses and add to total income
+                                """,
+                               closure: {
+                                transactionSaved = Transaction(type: .expense,
+                                                               name: "Breakfast",
+                                                               image: nil,
+                                                               description: "Subway: Spicy Italian",
+                                                               amount: 99.0,
+                                                               category: category,
+                                                               from: account,
+                                                               to: account,
+                                                               date: transDate)
                                 transactionSaved.save(toRealm: self.testRealm)
 
-                                transactionSaved.update(type: .income, name: "Salary", image: nil,
-                                                        description: "January Salary", amount: 10000, category: newCategory,
-                                                        from: account, to: account, date: transDate, inRealm: self.testRealm)
-
+                                transactionSaved.update(type: .income,
+                                                        name: "Salary",
+                                                        image: nil,
+                                                        description: "January Salary",
+                                                        amount: 10000,
+                                                        category: newCategory,
+                                                        from: account,
+                                                        to: account,
+                                                        date: transDate,
+                                                        inRealm: self.testRealm)
                                 let accountAffected = Account.with(key: account.id, inRealm: self.testRealm)
                                 expect(accountAffected?.currentAmount) == 10000
                                 expect(accountAffected?.totalIncome) == 10000
@@ -269,16 +351,32 @@ class TransactionTests: QuickSpec {
                         })
 
                         context("update is a change of type income to expense", {
-                            it("should update account's current amount, add to total expenses and subtract to total income", closure: {
-                                transactionSaved = Transaction(type: .income, name: "Salary", image: nil,
-                                                               description: "January Salary", amount: 10000, category: newCategory,
-                                                               from: account, to: account, date: transDate)
+                            it("""
+                                should update account's current amount,
+                                add to total expenses and subtract to total income
+                                """,
+                               closure: {
+                                transactionSaved = Transaction(type: .income,
+                                                               name: "Salary",
+                                                               image: nil,
+                                                               description: "January Salary",
+                                                               amount: 10000,
+                                                               category: newCategory,
+                                                               from: account,
+                                                               to: account,
+                                                               date: transDate)
                                 transactionSaved.save(toRealm: self.testRealm)
 
-                                transactionSaved.update(type: .expense, name: "Breakfast", image: nil,
-                                                        description: "Subway: Spicy Italian", amount: 99.0, category: category,
-                                                        from: account, to: account, date: transDate, inRealm: self.testRealm)
-
+                                transactionSaved.update(type: .expense,
+                                                        name: "Breakfast",
+                                                        image: nil,
+                                                        description: "Subway: Spicy Italian",
+                                                        amount: 99.0,
+                                                        category: category,
+                                                        from: account,
+                                                        to: account,
+                                                        date: transDate,
+                                                        inRealm: self.testRealm)
                                 let accountAffected = Account.with(key: account.id, inRealm: self.testRealm)
                                 expect(accountAffected?.currentAmount) == -99
                                 expect(accountAffected?.totalIncome) == 0
@@ -290,14 +388,27 @@ class TransactionTests: QuickSpec {
 
                         context("update is a change of type from income/expense to transfer", {
                             it("should update account's current ammount, add expense and reset income", closure: {
-                                transactionSaved = Transaction(type: .income, name: "Salary", image: nil,
-                                                               description: "January Salary", amount: 10000, category: newCategory,
-                                                               from: account, to: account, date: transDate)
+                                transactionSaved = Transaction(type: .income,
+                                                               name: "Salary",
+                                                               image: nil,
+                                                               description: "January Salary",
+                                                               amount: 10000,
+                                                               category: newCategory,
+                                                               from: account,
+                                                               to: account,
+                                                               date: transDate)
                                 transactionSaved.save(toRealm: self.testRealm)
 
-                                transactionSaved.update(type: .transfer, name: "Allowance", image: nil,
-                                                        description: "Cash allowance", amount: 500, category: nil,
-                                                        from: account, to: newAccount, date: transDate, inRealm: self.testRealm)
+                                transactionSaved.update(type: .transfer,
+                                                        name: "Allowance",
+                                                        image: nil,
+                                                        description: "Cash allowance",
+                                                        amount: 500,
+                                                        category: nil,
+                                                        from: account,
+                                                        to: newAccount,
+                                                        date: transDate,
+                                                        inRealm: self.testRealm)
 
                                 let fAccount = Account.with(key: account.id, inRealm: self.testRealm)
                                 expect(fAccount?.currentAmount) == -500
@@ -317,14 +428,27 @@ class TransactionTests: QuickSpec {
 
                         context("update is a change of type from transfer to income/expense", {
                             it("should update account's current ammount, reset expense and add to income", closure: {
-                                transactionSaved = Transaction(type: .transfer, name: "Allowance", image: nil,
-                                                               description: "Cash allowance", amount: 500, category: nil,
-                                                               from: account, to: newAccount, date: transDate)
+                                transactionSaved = Transaction(type: .transfer,
+                                                               name: "Allowance",
+                                                               image: nil,
+                                                               description: "Cash allowance",
+                                                               amount: 500,
+                                                               category: nil,
+                                                               from: account,
+                                                               to: newAccount,
+                                                               date: transDate)
                                 transactionSaved.save(toRealm: self.testRealm)
 
-                                transactionSaved.update(type: .income, name: "Salary", image: nil,
-                                                        description: "January Salary", amount: 10000,
-                                                        category: newCategory, from: account, to: account, date: transDate, inRealm: self.testRealm)
+                                transactionSaved.update(type: .income,
+                                                        name: "Salary",
+                                                        image: nil,
+                                                        description: "January Salary",
+                                                        amount: 10000,
+                                                        category: newCategory,
+                                                        from: account,
+                                                        to: account,
+                                                        date: transDate,
+                                                        inRealm: self.testRealm)
 
                                 let prevfAccount = Account.with(key: account.id, inRealm: self.testRealm)
                                 expect(prevfAccount?.currentAmount) == 10000
@@ -389,8 +513,11 @@ class TransactionTests: QuickSpec {
                                                  "color": "#AAAAAA",
                                                  "dateOpened": Date()])
 
-                    let incomeCategory = Category(id: "cat1", type: .income, name: "Salary", icon: "salary.jpg", color: "")
-
+                    let incomeCategory = Category(id: "cat1",
+                                                  type: .income,
+                                                  name: "Salary",
+                                                  icon: "salary.jpg",
+                                                  color: "")
                     expenseTransaction = Transaction(type: .expense, name: "Transaction", image: nil,
                                                      description: "Desc", amount: 100, category: category,
                                                      from: account, to: account, date: Date())
@@ -424,7 +551,11 @@ class TransactionTests: QuickSpec {
                 })
 
                 context("deleted transaction is an expense", {
-                    it("its amount should be re-added back to account's total amount and subtracted to account's total expenses", closure: {
+                    it("""
+                    its amount should be re-added back to account's total
+                    amount and subtracted to account's total expenses
+                    """,
+                       closure: {
                         let account1 = Account.with(key: "accnt1", inRealm: self.testRealm)
                         expect(account1?.currentAmount) == 0
                         expect(account1?.totalIncome) == 0
@@ -459,7 +590,11 @@ class TransactionTests: QuickSpec {
                 })
 
                 context("deleted transaction is an income", {
-                    it("its amount should be subtracted from account's total amount and subtracted to account's total income", closure: {
+                    it("""
+                        its amount should be subtracted from account's total amount
+                        and subtracted to account's total income
+                        """,
+                       closure: {
                         let account1 = Account.with(key: "accnt1", inRealm: self.testRealm)
                         expect(account1?.currentAmount) == 0
                         expect(account1?.totalIncome) == 0
@@ -468,7 +603,11 @@ class TransactionTests: QuickSpec {
                 })
 
                 context("deleted transaction is a transfer", {
-                    it("amount should be added to FROM ACCOUNT's total amount and subtracted to TO ACCOUNT's account's total amount", closure: {
+                    it("""
+                        amount should be added to FROM ACCOUNT's total amount
+                        and subtracted to TO ACCOUNT's account's total amount
+                        """,
+                       closure: {
                         let account1 = Account.with(key: "accnt1", inRealm: self.testRealm)
                         expect(account1?.currentAmount) == 0
                         expect(account1?.totalIncome) == 0

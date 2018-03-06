@@ -41,10 +41,8 @@ class MockRealmContainer: RealmContainer {
         switch option {
         case .offline:
             configuration = offlineRealmConfig()
-            break
         case .sync:
             configuration.inMemoryIdentifier = "\(inMemoryIdentifier)-sync"
-            break
         }
         Realm.Configuration.defaultConfiguration = configuration
     }

@@ -14,7 +14,7 @@ protocol NewAccountPresenterProtocol {
 
 /// An event handler of `Account` tableview controller regarding new `Account`s
 class NewAccountPresenter: NewAccountPresenterProtocol {
-    
+
     /// Presents the form for creating a new account or updating an existing one
     ///
     /// - Parameters:
@@ -23,7 +23,7 @@ class NewAccountPresenter: NewAccountPresenterProtocol {
     ///   - delegate: The delegate of the controller to be presented
     func presentNewAccountVC(with account: Account?, presentingVC: UIViewController,
                              delegate: NewAccountViewControllerDelegate?) {
-        
+
         let resolver = MTResolver()
         guard let vc = resolver.container.resolve(NewAccountFormVC.self, arguments: account, delegate)
             else { fatalError("NewAccountFormVC not registered") }
@@ -35,19 +35,19 @@ class NewAccountPresenter: NewAccountPresenterProtocol {
 protocol DeleteSheetPresenterProtocol {
     weak var alert: UIAlertController? { get }
     var action: MTAlertAction.Type { get set }
-    
+
     func displayDeleteSheet(toDelete indexPath: IndexPath, presentingVC: AccountsTableViewController)
 }
 
 /// An event handler of `Account` tableview controller regaring deleting `Account`s
 class DeleteSheetPresenter: DeleteSheetPresenterProtocol {
-    
+
     /// :nodoc:
     var action: MTAlertAction.Type = MTAlertAction.self
-    
+
     /// The `UIAlertController` displayed
     weak var alert: UIAlertController?
-    
+
     /// Displays a confirmation action sheet when asked to delete an `Account`
     ///
     /// - Parameters:
@@ -69,28 +69,28 @@ class DeleteSheetPresenter: DeleteSheetPresenterProtocol {
                 Asks for user's confirmation.
                 """),
               preferredStyle: .actionSheet)
-        
+
         let cancel = action
             .makeActionWithTitle(title: NSLocalizedString("Don't delete!",
                                                           comment: "Spiel telling the user to not delete"),
                                  style: .cancel) { (_) in
-                                    
+
             deleteConfirmation.dismiss(animated: true, completion: nil)
         }
-        
+
         let delete = action
             .makeActionWithTitle(title: NSLocalizedString("Yes, please.",
                                                           comment: "Spiel telling the user to proceed deletion"),
                                  style: .destructive) { (_) in
-                                    
+
             presentingVC.deleteAccount(atIndex: indexPath)
         }
-        
+
         deleteConfirmation.addAction(cancel)
         deleteConfirmation.addAction(delete)
-        
+
         alert = deleteConfirmation
-        
+
         presentingVC.present(deleteConfirmation, animated: true, completion: nil)
     }
 }

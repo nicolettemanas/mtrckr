@@ -28,17 +28,17 @@ class BillVCPresenter: BillVCPresenterProtocol {
             .instantiateViewController(withIdentifier: "NewBillNavigationVController") as? UINavigationController else {
             fatalError("Cannot find NewBillNavigationVController")
         }
-        
+
         guard let newBillVC = nav.topViewController as? NewBillViewController else {
             fatalError("Wrong root viewcontroller")
         }
-        
+
         newBillVC.delegate = presenter
         newBillVC.billEntry = billEntry
         (presenter as? UIViewController)?.present(nav, animated: true, completion: nil)
     }
-    
+
     func presentPayment(ofBill entry: BillEntry, presenter: PayBillPresenterDelegate) {
-        
+
     }
 }

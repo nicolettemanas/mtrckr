@@ -72,12 +72,12 @@ class BillsTableViewControllerTests: QuickSpec {
                         let date = Date()
                         let cat = fakeModels.category()
                         billsViewController
-                            .saveNewBill(amount         : 100,
-                                         name           : "New Bill",
-                                         post            : BillDueReminder.never.rawValue,
-                                         pre            : BillDueReminder.onDate.rawValue,
-                                         repeat : BillRepeatSchedule.weekly.rawValue,
-                                         startDate      : date, category: cat)
+                            .saveNewBill(amount: 100,
+                                         name: "New Bill",
+                                         post: BillDueReminder.never.rawValue,
+                                         pre: BillDueReminder.onDate.rawValue,
+                                         repeat: BillRepeatSchedule.weekly.rawValue,
+                                         startDate: date, category: cat)
                         
                         expect(mockPresenter?.didCreate) == true
                         expect(mockPresenter?.didCreateAmount) == 100
@@ -176,7 +176,8 @@ class BillsTableViewControllerTests: QuickSpec {
                     let controller: UIAlertController? = billsViewController!.deleteBillPresenter!.alert
                     expect(controller).toNot(beNil())
                     expect(mockDeleteBillPresenter!.didPresentDeleteSheet) == true
-                    expect(mockDeleteBillPresenter?.billEntryToDelete) == billsViewController.dataSource?.entry(at: indexToDelete)
+                    expect(mockDeleteBillPresenter?.billEntryToDelete) ==
+                        billsViewController.dataSource?.entry(at: indexToDelete)
                 })
 
                 context("user chooses to delete bill entry", {

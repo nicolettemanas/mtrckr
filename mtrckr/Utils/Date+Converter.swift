@@ -17,7 +17,7 @@ extension Date {
         let utcString = dateFormatter.string(from: self)
         return dateFormatter.date(from: utcString)!
     }
-    
+
     func toLocal() -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .medium

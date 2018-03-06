@@ -95,7 +95,11 @@ class CategoryTests: QuickSpec {
                     cat.save(toRealm: self.testRealm)
 
                     let catFromDatabase = self.testRealm.objects(Category.self).last
-                    let updatedCategory = Category(id: "cat1", type: .income, name: "Salary", icon: "salary.jpg", color: "color1")
+                    let updatedCategory = Category(id: "cat1",
+                                                   type: .income,
+                                                   name: "Salary",
+                                                   icon: "salary.jpg",
+                                                   color: "color1")
                     catFromDatabase?.update(to: updatedCategory, in: self.testRealm)
 
                     let categories = Category.all(in: self.testRealm)
@@ -186,13 +190,18 @@ class CategoryTests: QuickSpec {
                                                   "totalIncome": 30.0,
                                                   "color": "#AAAAAA",
                                                   "dateOpened": Date()])
-
                         bill.save(toRealm: self.testRealm)
                         cashAccountType.save(toRealm: self.testRealm)
                         account.save(toRealm: self.testRealm)
-                        let transaction = Transaction(type: .expense, name: "Breakfast", image: nil,
-                                                      description: "Subway: Spicy Italian", amount: 99.0, category: categoryToDelete,
-                                                      from: account, to: account, date: Date())
+                        let transaction = Transaction(type: .expense,
+                                                      name: "Breakfast",
+                                                      image: nil,
+                                                      description: "Subway: Spicy Italian",
+                                                      amount: 99.0,
+                                                      category: categoryToDelete,
+                                                      from: account,
+                                                      to: account,
+                                                      date: Date())
                         transaction.save(toRealm: self.testRealm)
                         categoryToDelete?.delete(in: self.testRealm)
                     }
@@ -234,20 +243,33 @@ class CategoryTests: QuickSpec {
 
     func createIncomes(n: Int) {
         for i in 10..<n+10 {
-            Category(id: "cat\(i)", type: .income, name: "cat \(i)", icon: "icon \(i)", color: "color\(i)").save(toRealm: self.testRealm)
+            Category(id: "cat\(i)",
+                type: .income,
+                name: "cat \(i)",
+                icon: "icon \(i)",
+                color: "color\(i)")
+                .save(toRealm: self.testRealm)
         }
     }
 
     func createExpenses(n: Int) {
         for i in 20..<n+20 {
-            Category(id: "cat\(i)", type: .expense, name: "cat \(i)", icon: "icon \(i)", color: "color\(i)").save(toRealm: self.testRealm)
+            Category(id: "cat\(i)",
+                type: .expense,
+                name: "cat \(i)",
+                icon: "icon \(i)",
+                color: "color\(i)")
+                .save(toRealm: self.testRealm)
         }
     }
 
     func createCustomCategories(n: Int, for user: User) -> [mtrckr.Category] {
         var cat: [mtrckr.Category] = []
         for i in 30..<n+30 {
-            let c = mtrckr.Category(type: .expense, name: "Custom category \(i)", icon: "custom\(i).jpg", color: "color\(i)")
+            let c = mtrckr.Category(type: .expense,
+                                    name: "Custom category \(i)",
+                icon: "custom\(i).jpg",
+                color: "color\(i)")
             c.save(toRealm: self.testRealm)
             cat.append(c)
         }

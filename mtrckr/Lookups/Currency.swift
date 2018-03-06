@@ -12,18 +12,18 @@ import Realm
 
 /// A Realm `Object` that represents a Currency
 class Currency: Object {
-    
+
     // MARK: - Properties
 
     /// The unique identifier of the `Currency`
     @objc dynamic var id: String! = ""
-    
+
     /// The iso code of the `Currency`
     @objc dynamic var isoCode: String! = ""
-    
+
     /// The symbol of the `Currency`
     @objc dynamic var symbol: String! = ""
-    
+
     /// The state of the `Currency`
     @objc dynamic var state: String! = ""
 
@@ -32,7 +32,7 @@ class Currency: Object {
     }
 
     // MARK: - Initializers
-    
+
     /// Creates a `Currency` with the given values
     ///
     /// - Parameters:
@@ -64,7 +64,7 @@ class Currency: Object {
     }
 
     // MARK: - CRUD
-    
+
     /// Saves the `Currency` to the given `Realm`
     ///
     /// - Parameter realm: The `Realm` to save the `Currency` to
@@ -119,7 +119,7 @@ class Currency: Object {
             .filter("isoCode == %@", isoCode)
             .first as Currency?
     }
-    
+
     /// Returns the `Currency` with the given id
     ///
     /// - Parameters:

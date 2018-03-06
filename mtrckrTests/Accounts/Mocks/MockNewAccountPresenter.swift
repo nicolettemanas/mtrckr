@@ -12,7 +12,9 @@ class MockNewAccountPresenter: NewAccountPresenter {
     var didCallPresent = false
     var didReceiveId = ""
     
-    override func presentNewAccountVC(with account: Account?, presentingVC: UIViewController, delegate: NewAccountViewControllerDelegate?) {
+    override func presentNewAccountVC(with account: Account?,
+                                      presentingVC: UIViewController,
+                                      delegate: NewAccountViewControllerDelegate?) {
         didCallPresent = true
         didReceiveId = account?.id ?? ""
     }

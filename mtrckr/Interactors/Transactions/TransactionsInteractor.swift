@@ -20,7 +20,7 @@ protocol TransactionsInteractorProtocol {
 
 /// Class responsible for handling modifications of `Transaction`
 class TransactionsInteractor: RealmHolder, TransactionsInteractorProtocol {
-    
+
     /// Retrieves a list of `Transactions` from a given date
     ///
     /// - Parameter date: The date filter
@@ -28,14 +28,14 @@ class TransactionsInteractor: RealmHolder, TransactionsInteractorProtocol {
     func transactions(from date: Date) -> Results<Transaction> {
         return Transaction.all(in: realmContainer!.userRealm!, onDate: date)
     }
-    
+
     /// Returns the currency used
     ///
     /// - Returns: Currency used by the logged in user
     func currency() -> String {
         return realmContainer?.currency() ?? "₱"
     }
-    
+
     /// Retrieves a list of `Transactions` from given `Accounts`
     ///
     /// - Parameter account: The `Accounts` filter
@@ -43,7 +43,7 @@ class TransactionsInteractor: RealmHolder, TransactionsInteractorProtocol {
     func transactions(fromAccount account: [Account]) -> Results<Transaction> {
         return Transaction.all(in: realmContainer!.userRealm!, fromAccount: account[0])
     }
-    
+
     /// Updates a `Transaction`
     ///
     /// - Parameter transaction: The new `Transaction`
@@ -57,14 +57,14 @@ class TransactionsInteractor: RealmHolder, TransactionsInteractorProtocol {
                                     comment: "Tells the user that something failed while updating and to try again.")
         }
     }
-    
+
     /// Deletes a `Transaction` from the `Realm`
     ///
     /// - Parameter transaction: The `Transaction` to be deleted
     func deleteTransaction(transaction: Transaction) {
         transaction.delete(in: realmContainer!.userRealm!)
     }
-    
+
     /// Saves a `Transaction` to the `Realm`
     ///
     /// - Parameter transaction: The `Transaction` to be saved

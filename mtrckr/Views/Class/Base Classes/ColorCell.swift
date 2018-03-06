@@ -13,22 +13,22 @@ final class ColorRow: Row<ColorCell>, RowType {
         super.init(tag: tag)
         cellProvider = CellProvider<ColorCell>(nibName: "ColorCell")
     }
-    
+
     func updateSelection(forType type: TransactionType) {
-        
+
     }
-    
+
     override func customUpdateCell() {
         cell.selectionStyle = .none
     }
-    
+
 }
 
 class ColorCell: Cell<UIColor>, CellType {
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     var dataSource: ColorsCollectionDataSource?
-    
+
     override func setup() {
         super.setup()
         dataSource = ColorsCollectionDataSource(value: row.value)

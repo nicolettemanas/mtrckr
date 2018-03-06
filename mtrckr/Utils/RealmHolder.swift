@@ -14,12 +14,12 @@ import RealmSwift
 class RealmHolder: NSObject {
     /// The container of the Realm methods
     var realmContainer: RealmContainerProtocol?
-    
+
     /// The getter of the configuration used by the realm container
     var config: AuthConfig? {
         return self.realmContainer?.config
     }
-    
+
     /// Initializes the with the given `AuthConfig` to be used when
     /// initializing the `realmContainer`
     ///
@@ -33,9 +33,9 @@ class RealmHolder: NSObject {
 protocol RealmContainerProtocol {
     var config: AuthConfig { get }
     var userRealm: Realm? { get }
-    
+
     init(withConfig configuration: AuthConfig)
-    
+
     func setDefaultRealm(to option: RealmOption)
     func syncRealm()
     func offlineRealmConfig() -> Realm.Configuration
@@ -53,12 +53,12 @@ enum RealmOption {
 
 /// `RealmContainer` is a class containing all methods necessary to interact with offline and online Realms
 class RealmContainer: RealmContainerProtocol {
-    
+
     // MARK: - Properties
-    
+
     /// The configuration of the realm to be used
     private(set) var config: AuthConfig
-    
+
     /// Returns the realm to be used.
     /// Returns a sync realm if a user is logged in the system, otherwise returns an offline realm
     var userRealm: Realm? {
@@ -66,7 +66,7 @@ class RealmContainer: RealmContainerProtocol {
         if SyncUser.current != nil {
             config = getConfig(of: .sync)
         }
-        
+
         if let realm = try? Realm(configuration: config) {
             if realm.configuration.syncConfiguration == nil &&
                 realm.objects(Currency.self).count < 1 {
@@ -74,10 +74,10 @@ class RealmContainer: RealmContainerProtocol {
             }
             return realm
         }
-        
+
         fatalError("Cannot initialize Realm with given configuration")
     }
-    
+
     // MARK: - Initializers
     /// Creates a RealmHolder that has the given configuration
     ///
@@ -85,7 +85,7 @@ class RealmContainer: RealmContainerProtocol {
     required init(withConfig configuration: AuthConfig) {
         self.config = configuration
     }
-    
+
     /// Returns the `Realm.Configuration` of the provided option
     ///
     /// - Parameter option: The `RealmOption` to get the configuration from
@@ -95,18 +95,16 @@ class RealmContainer: RealmContainerProtocol {
             switch option {
             case .offline:
                 configuration = offlineRealmConfig()
-                break
             case .sync:
                 assert(RLMSyncUser.current != nil)
                 configuration.syncConfiguration = SyncConfiguration(user: RLMSyncUser.current!,
                                                                     realmURL: config.userRealmPath)
-                break
             }
         return configuration
     }
-    
+
     // MARK: - Realm methods
-    
+
     /// Sets the default configuration of the Realm to be fetched.
     /// Realm URLs will be from the configuration provided
     /// upon initilization.
@@ -115,16 +113,14 @@ class RealmContainer: RealmContainerProtocol {
     func setDefaultRealm(to option: RealmOption) {
         var configuration = Realm.Configuration()
         switch option {
-            case .offline:
-                configuration = offlineRealmConfig()
-                break
-            case .sync:
-                assert(RLMSyncUser.current != nil)
-                configuration.syncConfiguration = SyncConfiguration(user: RLMSyncUser.current!,
-                                                                    realmURL: config.userRealmPath)
-                break
+        case .offline:
+            configuration = offlineRealmConfig()
+        case .sync:
+            assert(RLMSyncUser.current != nil)
+            configuration.syncConfiguration = SyncConfiguration(user: RLMSyncUser.current!,
+                                                                realmURL: config.userRealmPath)
         }
-        
+
         // TODO: Encrypt Realm in prod config
 //        guard let key = Bundle.main.object(forInfoDictionaryKey: "ENCRYPTION_KEY") as? String else {
 //            fatalError("Cannot read key")
@@ -132,7 +128,7 @@ class RealmContainer: RealmContainerProtocol {
 //        configuration.encryptionKey = Data(base64Encoded: key)
         Realm.Configuration.defaultConfiguration = configuration
     }
-    
+
     /// Migrates the offline realm values to the sync realm to be used.
     /// 
     /// Locations of these realms are all defined in the configuration used.
@@ -140,7 +136,7 @@ class RealmContainer: RealmContainerProtocol {
         guard let uRealm = self.userRealm else {
             fatalError("Sync realm is nil")
         }
-        
+
         let offlineRealm = readOfflineRealm()
         migrate(objects: config.objects, fromRealm: offlineRealm, toRealm: uRealm)
         print("[REALM] Synced offline realm to syncRealm...")
@@ -160,7 +156,7 @@ class RealmContainer: RealmContainerProtocol {
             fatalError("Cannot initialize offline user realm with error: \(error)")
         }
     }
-    
+
     /// Retrieves the Offline Realm specified in the configuration
     ///
     /// - Returns: The Realm read from the static offline configuration URL
@@ -171,13 +167,16 @@ class RealmContainer: RealmContainerProtocol {
             if offlineRealm.objects(Currency.self).count < 1 {
                 populateInitialValues(ofRealm: offlineRealm)
             }
-            print("[REALM] did read offline realm: \(String(describing: offlineRealm.configuration.fileURL?.lastPathComponent))")
+            print("""
+                    [REALM] did read offline realm:
+                    \(String(describing: offlineRealm.configuration.fileURL?.lastPathComponent))
+                """)
             return offlineRealm
         } catch let error as NSError {
             fatalError("Cannot initialize offline user realm with error: \(error)")
         }
     }
-    
+
     /// Returns the offline realm configuration built from the provided `AuthConfig`
     ///
     /// - Returns: The realm configuration
@@ -188,7 +187,7 @@ class RealmContainer: RealmContainerProtocol {
             .appendingPathComponent("initRealm/\(config.offlineRealmFileName).realm")
         return offlineConfig
     }
-    
+
     /// Returns the currency symbol used by the logged in user.
     /// Default value is ₱
     ///
@@ -197,10 +196,10 @@ class RealmContainer: RealmContainerProtocol {
         if let realm = userRealm {
             return User.all(in: realm).first?.currency?.symbol ?? "₱"
         }
-        
+
         return "₱"
     }
-    
+
     // MARK: - Migrating between realms
     /// :nodoc:
     private func migrate(objects: [String], fromRealm source: Realm, toRealm destination: Realm) {

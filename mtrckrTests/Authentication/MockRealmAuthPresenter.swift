@@ -22,7 +22,9 @@ class MockRealmAuthPresenter: RealmAuthPresenter {
         super.init(regInteractor: nil, loginInteractor: nil, logoutInteractor: nil, encrypter: nil, output: nil)
     }
     
-    override func login(withEmail email: String, withPassword password: String, loginSyncOption option: LoginSyncOption) {
+    override func login(withEmail email: String,
+                        withPassword password: String,
+                        loginSyncOption option: LoginSyncOption) {
         didLogin = true
     }
     

@@ -11,7 +11,7 @@ import UIKit
 protocol NewBillViewControllerProtocol {
     func didPressCancel()
     func didPressSave()
-    
+
     var delegate: NewBillViewControllerDelegate? { get set }
     var billEntry: BillEntry? { get set }
     var action: MTAlertAction.Type { get set }
@@ -19,7 +19,7 @@ protocol NewBillViewControllerProtocol {
 }
 
 extension NewBillViewController: NewBillViewControllerProtocol {
-    
+
     // MARK: Bill-related methods
     func saveBill() {
         delegate?.saveNewBill(amount    : amountRow.value!,
@@ -31,12 +31,12 @@ extension NewBillViewController: NewBillViewControllerProtocol {
                               category  : categoryRow.value!)
         dismiss(animated: true, completion: nil)
     }
-    
+
     // MARK: - Actions
     @objc func didPressCancel() {
         dismiss(animated: true, completion: nil)
     }
-    
+
     @objc func didPressSave() {
         guard form.validate().isEmpty else { return }
         guard let entry = billEntry else {
@@ -45,23 +45,23 @@ extension NewBillViewController: NewBillViewControllerProtocol {
         }
         presentEditBillSheet(billEntry: entry)
     }
-    
+
     func presentEditBillSheet(billEntry entry: BillEntry) {
         let editOption = UIAlertController(title: nil, message: nil,
                                            preferredStyle: .actionSheet)
         editOption.title = nil
         editOption.message = LocalizedStrings.kEditConfirm
-        
+
         let cancel = action
             .makeActionWithTitle(title: LocalizedStrings.kCancel,
                                  style: .cancel) { (_) in
                 editOption.dismiss(animated: true, completion: nil)
         }
-        
+
         let thisBillOnly = action
             .makeActionWithTitle(title: LocalizedStrings.kThisBill,
                                  style: .destructive) { [unowned self] (_) in
-                                    
+
                 self.delegate?.edit(billEntry       : self.billEntry!,
                                     amount          : self.amountRow.value!,
                                     name            : self.nameRow.value!,
@@ -70,7 +70,7 @@ extension NewBillViewController: NewBillViewControllerProtocol {
                                     repeatSchedule  : self.repeatRow.value!,
                                     startDate       : self.dueDateRow.value!,
                                     category        : self.categoryRow.value!)
-                                    
+
                 self.dismiss(animated: true, completion: nil)
         }
         let allBills = action
@@ -87,11 +87,11 @@ extension NewBillViewController: NewBillViewControllerProtocol {
                                     category: self.categoryRow.value!)
                 self.dismiss(animated: true, completion: nil)
         }
-        
+
         editOption.addAction(cancel)
         editOption.addAction(thisBillOnly)
         editOption.addAction(allBills)
-        
+
         alert = editOption
         present(editOption, animated: true, completion: nil)
     }

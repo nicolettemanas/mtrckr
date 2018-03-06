@@ -16,34 +16,34 @@ class Account: Object {
     // MARK: - Properties
     /// The unique identifier of the Account
     @objc dynamic var id: String = ""
-    
+
     /// The name of the account
     @objc dynamic var name: String = ""
-    
+
     /// The type of the account. See `AccountType`
     @objc dynamic var type: AccountType?
-    
+
     /// The initial amount of the account when created
     @objc dynamic var initialAmount: Double = 0.0
-    
+
     /// The current acmount in the account
     @objc dynamic var currentAmount: Double = 0.0
-    
+
     /// The overall total of exptenses transactions
     @objc dynamic var totalExpenses: Double = 0.0
-    
+
     /// The overall total of income transactions
     @objc dynamic var totalIncome: Double = 0.0
-    
+
     /// The preferred color of the account
     @objc dynamic var color: String = ""
-    
+
     /// The date the account opened
     @objc dynamic var dateOpened: Date = Date()
 
     /// Collection of transactions with the destination account is the instance account
     var transactionsToSelf = LinkingObjects(fromType: Transaction.self, property: "toAccount")
-    
+
     /// Collection of transactions with source account is the instance account
     var transactionsFromSelf = LinkingObjects(fromType: Transaction.self, property: "fromAccount")
 //    var budgetsAffected = LinkingObjects(fromType: Budget.self, property: "forAccounts")
@@ -140,7 +140,7 @@ class Account: Object {
     static func with(key: String, inRealm realm: Realm) -> Account? {
         return realm.object(ofType: Account.self, forPrimaryKey: key) as Account?
     }
-    
+
     /// Fetches all the account from the given realm
     ///
     /// - Parameter realm: The realm to fetch all the accounts from

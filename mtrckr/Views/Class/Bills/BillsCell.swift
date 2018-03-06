@@ -13,7 +13,7 @@ protocol BillsCellDelegate: class {
 }
 
 class BillsCell: SwipeTableViewCell {
-    
+
     weak var billsCellDelegate: BillsCellDelegate?
     weak var billEntry: BillEntry?
 
@@ -23,12 +23,12 @@ class BillsCell: SwipeTableViewCell {
     @IBOutlet weak var billIcon: UIImageView!
     @IBOutlet weak var billIconView: UIView!
     @IBOutlet weak var payButton: UIButton!
-    
+
     @IBAction func payButtonDidPress(sender: UIButton) {
         guard let entry = self.billEntry else { return }
         billsCellDelegate?.didPressPayBill(entry: entry)
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         billIcon.layer.cornerRadius = 5
@@ -50,7 +50,7 @@ class BillsCell: SwipeTableViewCell {
         billIcon.tintColor = .white
         billDueDate.text = "| Due: " + entry.dueDate.format(with: DateFormatter.Style.medium)
     }
-    
+
     func setValue(bill: Bill, currency: String) {
         billIcon.image = UIImage(named: bill.category!.icon) ?? nil
         billAmount.text = NumberFormatter.currencyStr(withCurrency: currency, amount: bill.amount)
@@ -60,7 +60,7 @@ class BillsCell: SwipeTableViewCell {
         billDueDate.isHidden = true
         payButton.isHidden = true
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

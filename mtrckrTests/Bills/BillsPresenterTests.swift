@@ -45,13 +45,13 @@ class BillsPresenterTests: QuickSpec {
                 
                 beforeEach {
                     presenter
-                        .createBill(amount      : 120.0,
-                                    name        : "Create new bill",
-                                    post        : BillDueReminder.onDate.rawValue,
-                                    pre         : BillDueReminder.oneDay.rawValue,
-                                    repeat      : BillRepeatSchedule.never.rawValue,
-                                    startDate   : date,
-                                    category    : category)
+                        .createBill(amount: 120.0,
+                                    name: "Create new bill",
+                                    post: BillDueReminder.onDate.rawValue,
+                                    pre: BillDueReminder.oneDay.rawValue,
+                                    repeat: BillRepeatSchedule.never.rawValue,
+                                    startDate: date,
+                                    category: category)
                 }
                 it("passes consolidated Bill to interactor", closure: {
                     expect(mockInteractor?.createdBill?.amount) == 120
@@ -72,10 +72,10 @@ class BillsPresenterTests: QuickSpec {
                 
                 beforeEach {
                     presenter
-                        .payEntry(entry     : entry,
-                                  amount    : 1000,
-                                  account   : account,
-                                  date      : date)
+                        .payEntry(entry: entry,
+                                  amount: 1000,
+                                  account: account,
+                                  date: date)
                 }
 
                 it("passes billEntry to pay to interactor", closure: {
@@ -135,13 +135,13 @@ class BillsPresenterTests: QuickSpec {
                         let entryToUpdate = fakeModels.billEntry(for: bill, date: Date())
                         
                         presenter
-                            .editBillEntry(billEntry    : entryToUpdate,
-                                           amount       : 999,
-                                           name         : "New Bill Name",
-                                           post         : BillDueReminder.threeDays.rawValue,
-                                           pre          : BillDueReminder.twoDays.rawValue,
-                                           startDate    : date,
-                                           category     : cat)
+                            .editBillEntry(billEntry: entryToUpdate,
+                                           amount: 999,
+                                           name: "New Bill Name",
+                                           post: BillDueReminder.threeDays.rawValue,
+                                           pre: BillDueReminder.twoDays.rawValue,
+                                           startDate: date,
+                                           category: cat)
 
                         expect(mockInteractor?.updatedAmount) == 999
                         expect(mockInteractor?.updatedDate) == date
@@ -158,14 +158,14 @@ class BillsPresenterTests: QuickSpec {
                         let date = Date().add(2.days)
                         
                         presenter
-                            .editBillAndEntries(bill        : bill,
-                                                amount      : 999,
-                                                name        : "New Bill Name",
-                                                post        : BillDueReminder.threeDays.rawValue,
-                                                pre         : BillDueReminder.twoDays.rawValue,
-                                                repeat      : BillRepeatSchedule.never.rawValue,
-                                                startDate   : date,
-                                                category    : cat)
+                            .editBillAndEntries(bill: bill,
+                                                amount: 999,
+                                                name: "New Bill Name",
+                                                post: BillDueReminder.threeDays.rawValue,
+                                                pre: BillDueReminder.twoDays.rawValue,
+                                                repeat: BillRepeatSchedule.never.rawValue,
+                                                startDate: date,
+                                                category: cat)
 
                         expect(mockInteractor?.billToUpdate) == bill
                         expect(mockInteractor?.updatedAmount) == 999

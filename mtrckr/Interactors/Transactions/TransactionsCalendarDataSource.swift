@@ -24,10 +24,10 @@ protocol TransactionsCalendarDataSourceProtocol: JTAppleCalendarViewDelegate, JT
 class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourceProtocol {
     weak var calendar: JTAppleCalendarView?
     weak var delegate: TransactionsCalendarDataSourceDelegate?
-    
+
     var transactions: Results<Transaction>?
     var transactionDict: [Date: (String, String)] = [:]
-    
+
     var notificationToken: NotificationToken?
 
     init(calendar cal: JTAppleCalendarView, delegate del: TransactionsCalendarDataSourceDelegate, initialMonth: Date) {
@@ -36,7 +36,7 @@ class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourc
         delegate = del
         setupTransactions(initialDate: initialMonth, accounts: [])
     }
-    
+
     func setupTransactions(initialDate: Date, accounts: [Account]) {
         let startDate = initialDate.subtract(3.months)
         let endDate = initialDate.add(3.months)
@@ -48,13 +48,14 @@ class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourc
             }
         })
     }
-    
+
     func reloadDates(dates: [Date]) {
         for date in dates {
             let safeTransactions = ThreadSafeReference(to: self.transactions!)
             DispatchQueue.global(qos: .background).async {
                 let resolvedTransactions: Results<Transaction>? = self.realmContainer!.userRealm!.resolve(safeTransactions)
-                let filteredTransactions: Results<Transaction>? = self.filter(transactions: resolvedTransactions, for: date)
+                let filteredTransactions: Results<Transaction>? =
+                    self.filter(transactions: resolvedTransactions, for: date)
                 let transSum = self.sum(of: filteredTransactions)
                 self.transactionDict[date.start(of: .day)] = transSum
                 DispatchQueue.main.async {
@@ -63,37 +64,37 @@ class TransactionsCalendarDataSource: RealmHolder, TransactionsCalendarDataSourc
             }
         }
     }
-    
+
     func reloadCalendar(with accounts: [Account], initialDate: Date) {
         self.transactionDict = [:]
         setupTransactions(initialDate: initialDate, accounts: accounts)
         self.calendar?.reloadData()
     }
-    
+
     func allAccounts() -> [Account] {
         return Array(Account.all(in: self.realmContainer!.userRealm!))
     }
-    
+
     func sum(of transactions: Results<Transaction>?) -> (String, String) {
         guard let trans = transactions else { return ("", "") }
-        
+
         var expenses: Double = 0
         var income: Double = 0
         let currency = realmContainer!.currency()
-        
+
         for tran in trans {
-            
+
             if tran.type == TransactionType.expense.rawValue {
                 expenses += tran.amount
             } else if tran.type == TransactionType.income.rawValue {
                 income += tran.amount
             }
         }
-        
+
         return (expenses > 0 ? (NumberFormatter.currencyKString(withCurrency: currency, amount: expenses) ?? "") : "",
                 income > 0 ? (NumberFormatter.currencyKString(withCurrency: currency, amount: income) ?? "") : "")
     }
-        
+
     func filter(transactions: Results<Transaction>?, for date: Date) -> Results<Transaction>? {
         return transactions?.filter("transactionDate >= %@ AND transactionDate <= %@",
                                      date.start(of: .day),
@@ -120,19 +121,19 @@ extension TransactionsCalendarDataSource: JTAppleCalendarViewDelegate {
                   forItemAt date: Date,
                   cellState: CellState,
                   indexPath: IndexPath) {
-        
+
     }
-    
+
     func calendar(_ calendar: JTAppleCalendarView,
                   cellForItemAt date: Date,
                   cellState: CellState,
                   indexPath: IndexPath) -> JTAppleCell {
-        
+
         guard let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "customCalendarCell", for: indexPath)
             as? CustomCalendarCell else { fatalError("Cannot find cell with identifier customCalendarCell") }
         cell.dateLabel.text = cellState.text
         cell.configureCell(cellState: cellState)
-        
+
         if let transSum = transactionDict[date] {
             cell.expensesLabel.text = transSum.0
             cell.incomeLabel.text = transSum.1
@@ -155,15 +156,15 @@ extension TransactionsCalendarDataSource: JTAppleCalendarViewDelegate {
                 }
             }
         }
-        
+
         return cell
     }
-    
+
     func calendar(_ calendar: JTAppleCalendarView,
                   didSelectDate date: Date,
                   cell: JTAppleCell?,
                   cellState: CellState) {
-        
+
         guard let validCell = cell as? CustomCalendarCell else { return }
         print("Didselect cell date \(date)")
         calendar.visibleDates({ [unowned self] datesInfo in
@@ -177,19 +178,19 @@ extension TransactionsCalendarDataSource: JTAppleCalendarViewDelegate {
         })
         delegate?.didSelect(date: date)
     }
-    
+
     func calendar(_ calendar: JTAppleCalendarView,
                   didDeselectDate date: Date,
                   cell: JTAppleCell?,
                   cellState: CellState) {
-        
+
         guard let validCell = cell as? CustomCalendarCell else { return }
         validCell.configureCell(cellState: cellState)
     }
-    
+
     func calendar(_ calendar: JTAppleCalendarView,
                   didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        
+
         let date = (visibleDates.monthDates[5].date)
         print("Did scroll to \(date)")
         setupTransactions(initialDate: date, accounts: [])

@@ -47,8 +47,10 @@ class TransactionTableViewControllerTests: QuickSpec {
                 self.mockNewTransPresenter = MockNewTransactionPresenter()
                 self.mockDeleteTransactionSheetPresenter = MockDeleteTransactionSheetPresenter()
                 
-                self.transactionsTVC = StubMTResolvers().container.resolve(TransactionsTableViewController.self, name: "stub",
-                                                                                       argument: TransactionsFilter.byDate)
+                self.transactionsTVC = StubMTResolvers().container
+                    .resolve(TransactionsTableViewController.self,
+                             name: "stub",
+                             argument: TransactionsFilter.byDate)
                 expect(self.transactionsTVC?.view).toNot(beNil())
                 self.transactionsTVC?.transactionsPresenter = self.mockPresenter
                 self.transactionsTVC?.deleteTransactionSheetPresenter = self.mockDeleteTransactionSheetPresenter
@@ -67,9 +69,10 @@ class TransactionTableViewControllerTests: QuickSpec {
                 
                 context("taps edit transaction", {
                     it("presents a viewcontroller to edit transaction", closure: {
-                        let actions = self.transactionsTVC?.tableView(self.transactionsTVC!.tableView,
-                                                                      editActionsForRowAt: IndexPath(item: 0, section: 0),
-                                                                      for: SwipeActionsOrientation.right)
+                        let actions = self.transactionsTVC?
+                            .tableView(self.transactionsTVC!.tableView,
+                                       editActionsForRowAt: IndexPath(item: 0, section: 0),
+                                       for: SwipeActionsOrientation.right)
                         let edit = actions?.last
                         edit?.handler?(edit!, IndexPath(item: 0, section: 0))
                         expect(self.mockNewTransPresenter?.didPresent) == true
@@ -78,9 +81,10 @@ class TransactionTableViewControllerTests: QuickSpec {
                 
                 context("taps delete transaction", {
                     it("tells the presenter to display sheet confirming whether to delete transaction", closure: {
-                        let actions = self.transactionsTVC?.tableView(self.transactionsTVC!.tableView,
-                                                                      editActionsForRowAt: IndexPath(item: 0, section: 0),
-                                                                      for: SwipeActionsOrientation.right)
+                        let actions = self.transactionsTVC?
+                            .tableView(self.transactionsTVC!.tableView,
+                                       editActionsForRowAt: IndexPath(item: 0, section: 0),
+                                       for: SwipeActionsOrientation.right)
                         let delete = actions?.first
                         delete?.handler?(delete!, IndexPath(item: 0, section: 0))
                         expect(self.mockDeleteTransactionSheetPresenter?.didPresentDeletSheet) == true

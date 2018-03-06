@@ -14,7 +14,7 @@ class MTFormViewController: FormViewController {
     deinit {
         print("[VIEW CONTROLLER] Deallocating \(self)")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDefaultRows()
@@ -24,7 +24,7 @@ class MTFormViewController: FormViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     /// Pre-composed setup for the Navigation Bar. Adds left and right bar button items (x and check icons)
     ///
     /// - Parameters:
@@ -42,13 +42,13 @@ class MTFormViewController: FormViewController {
                                     style   : .plain,
                                     target  : target,
                                     action  : rightSelector)
-        
+
         left.tintColor = MTColors.mainRed
         right.tintColor = MTColors.mainBlue
         navigationItem.leftBarButtonItem = left
         navigationItem.rightBarButtonItem = right
     }
-    
+
     private func setupDefaultRows() {
         TextRow.defaultCellSetup = { cell, row in
             cell.height = { 55 }
@@ -91,7 +91,7 @@ class MTFormViewController: FormViewController {
                 }
             })
         }
-        
+
         DecimalRow.defaultOnCellHighlightChanged = {cell, _ in
             cell.textLabel?.textColor = MTColors.mainBlue
         }
@@ -106,7 +106,7 @@ class MTFormViewController: FormViewController {
         DateRow.defaultOnCellHighlightChanged = {cell, _ in
             cell.textLabel?.textColor = MTColors.mainBlue
         }
-        
+
         PushRow<String>.defaultCellSetup = { cell, row in
             cell.height = { 55 }
             cell.textLabel?.font = UIFont.myBoldSystemFont(ofSize: 14)

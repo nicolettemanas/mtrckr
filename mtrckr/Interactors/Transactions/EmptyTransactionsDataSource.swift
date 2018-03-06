@@ -12,7 +12,7 @@ class EmptyTransactionsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyData
     func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return MTColors.emptyDataSetBg
     }
-    
+
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = NSLocalizedString(
             "No transactions recorded.\nTap '+' button to add one.",
@@ -20,7 +20,7 @@ class EmptyTransactionsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyData
             The description shown when there are no transactions saved.
             Instructs user how to add a Transaction.
             """)
-        
+
         let style = NSMutableParagraphStyle()
         style.lineBreakMode = .byWordWrapping
         style.alignment = .center
@@ -28,14 +28,14 @@ class EmptyTransactionsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyData
             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
             NSAttributedStringKey.foregroundColor: MTColors.placeholderText,
             NSAttributedStringKey.paragraphStyle: style]
-        
+
         return NSAttributedString(string: str, attributes: attr)
     }
-    
+
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         return #imageLiteral(resourceName: "tags")
     }
-    
+
     func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return MTColors.placeholderText
     }

@@ -15,10 +15,10 @@ class AccountType: Object {
 
     /// The unique identifier of the `AccountType`
     @objc dynamic var typeId: Int = 0
-    
+
     /// The name of the `AccountType`
     @objc dynamic var name: String = ""
-    
+
     /// The icon path url of the `AccountType`
     @objc dynamic var icon: String = ""
 //    let accounts = LinkingObjects(fromType: Account.self, property: "type")
@@ -26,7 +26,7 @@ class AccountType: Object {
     override static func primaryKey() -> String? {
         return "typeId"
     }
-    
+
     // MARK: - Initializers
 
     /// Creates an `AccountType`
@@ -58,7 +58,7 @@ class AccountType: Object {
     }
 
     // MARK: - CRUD
-    
+
     /// Saves the `AccountType` to the `Realm` given
     ///
     /// - Parameter realm: The `Realm` to save the `AccountType` to

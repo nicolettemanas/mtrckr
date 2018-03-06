@@ -15,7 +15,7 @@ enum ModifyBillType: String {
 
 protocol BillsTableViewControllerProtocol {
     var dataSource: BillsDataSourceProtocol? { get set }
-    
+
     func editBillEntry(atIndex: IndexPath)
     func deleteBillEntry(atIndex: IndexPath)
     func skipBillEntry(atIndex: IndexPath)
@@ -23,16 +23,16 @@ protocol BillsTableViewControllerProtocol {
 }
 
 class BillsTableViewController: MTTableViewController {
-    
+
     var dataSource: BillsDataSourceProtocol?
     var emptyDataSource: EmptyBillsDataSource?
     var billVCPresenter: BillVCPresenterProtocol?
     var deleteBillPresenter: DeleteBillPresenterProtocol?
     var presenter: BillsPresenterProtocol?
     weak var billsTableView: UITableView?
-    
+
     var editingIndexPath: IndexPath?
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         let resolver = MTResolver()
@@ -43,19 +43,19 @@ class BillsTableViewController: MTTableViewController {
         dataSource = resolver.container.resolve(BillsDataSource.self)
         dataSource?.delegate = self
     }
-    
+
     static func initWith(dataSource: BillsDataSourceProtocol,
                          emptyDataSource: EmptyBillsDataSource?,
                          newBillPresenter: BillVCPresenterProtocol,
                          deleteBillPresenter: DeleteBillPresenterProtocol,
                          presenter: BillsPresenterProtocol)
         -> BillsTableViewController {
-            
+
         let storyboard = UIStoryboard(name: "Bills", bundle: Bundle.main)
         guard let vc: BillsTableViewController = storyboard
             .instantiateViewController(withIdentifier: "BillsTableViewController")
             as? BillsTableViewController else { fatalError("Cannot convert to BillsTableViewController") }
-            
+
         vc.dataSource = dataSource
         vc.dataSource?.delegate = vc
         vc.emptyDataSource = emptyDataSource
@@ -64,7 +64,7 @@ class BillsTableViewController: MTTableViewController {
         vc.presenter = presenter
         return vc
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = dataSource

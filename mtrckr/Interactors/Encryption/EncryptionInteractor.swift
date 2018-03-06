@@ -16,7 +16,7 @@ protocol EncryptionInteractorProtocol {
 
 /// Class responsible for encryption
 class EncryptionInteractor: EncryptionInteractorProtocol {
-    
+
     /// Encrypts given string using Advanced Encryption Standard (AES)
     ///
     /// - Parameter str: The string to be encrypted

@@ -44,31 +44,31 @@ class Bill: Object {
     // MARK: - Properties
     /// The unique identifier of the `Bill`
     @objc dynamic var id: String = ""
-    
+
     /// The amount to be paid
     @objc dynamic var amount: Double = 0.0
-    
+
     /// The name of the `Bill`
     @objc dynamic var name: String = ""
-    
+
     /// Reminder option after the due date in raw value. See `BillDueReminder`
     @objc dynamic var postDueReminder: String = ""
-    
+
     /// Reminder option before the due date in raw value. See `BillDueReminder`
     @objc dynamic var preDueReminder: String = ""
-    
+
     /// The repeat option of the `Bill`. See `BillRepeatSchedule`
     @objc dynamic var repeatSchedule: String = ""
-    
+
     /// The date when the `Bill` starts
     @objc dynamic var startDate: Date = Date()
-    
+
     /// The `Category` of the `Bill`
     @objc dynamic var category: Category?
 
     /// Indicates whether a `Bill` is still active or not
     @objc dynamic var active: Bool = true
-    
+
     /// The entries under this `Bill`
     let entries = LinkingObjects(fromType: BillEntry.self, property: "bill")
 
@@ -77,7 +77,7 @@ class Bill: Object {
     }
 
     // MARK: - CRUD
-    
+
     /// Saves the `Bill` to the realm given
     ///
     /// - Parameter realm: The realm to save the Bill to
@@ -90,7 +90,7 @@ class Bill: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     /// Sets the property active to false
     ///
     /// - Parameter realm: The realm to save the updated `Bill` to
@@ -164,7 +164,7 @@ class Bill: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     /// Returns the list of paid or skipped `BillEntries`
     ///
     /// - Parameter realm: The realm to fetch the entries from
@@ -175,7 +175,7 @@ class Bill: Object {
                     BillEntryStatus.paid.rawValue,
                     BillEntryStatus.skipped.rawValue)
             .sorted(byKeyPath: "dueDate", ascending: false)
-        
+
         return entries
     }
 

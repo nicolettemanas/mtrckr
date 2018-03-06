@@ -26,7 +26,9 @@ class MockAlertAction: MTAlertAction {
         super.init()
     }
     
-    override class func makeActionWithTitle(title: String?, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Void)?) -> MockAlertAction {
+    override class func makeActionWithTitle(title: String?,
+                                            style: UIAlertActionStyle,
+                                            handler: ((UIAlertAction) -> Void)?) -> MockAlertAction {
         return MockAlertAction(title: title, style: style, handler: handler)
     }
 }

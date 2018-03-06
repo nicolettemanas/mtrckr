@@ -24,36 +24,36 @@ class BillEntry: Object {
 
     /// The unique identifier of the `BillEntry`
     @objc dynamic var id: String = ""
-    
+
     /// The amount of the to-be `Transaction` of the `BillEntry`.
     /// This may differ from the amount of the `Bill`
     @objc dynamic var amount: Double = 0.0
-    
+
     /// The date of the payment of the `BillEntry`. The value is `nil`
     /// when the `BillEntry` is unpaid.
     @objc dynamic var datePaid: Date?
-    
+
     /// The due date of the `BillEntry`
     @objc dynamic var dueDate: Date = Date()
-    
+
     /// The status of the `BillEntry` in raw value. See `BillEntryStatus`
     @objc dynamic var status: String = ""
-    
+
     /// The `Bill` where the `BillEntry` is from
     @objc dynamic var bill: Bill?
-    
+
     /// The custom name to be saved when converted to a `Transaction`
     @objc dynamic var customName: String?
-    
+
     /// Reminder custom option after the due date in raw value. See `BillDueReminder`
     @objc dynamic var customPostDueReminder: String?
-    
+
     /// Reminder custom option before the due date in raw value. See `BillDueReminder`
     @objc dynamic var customPreDueReminder: String?
-    
+
     /// The custom `Category` to be saved when converted to a `Transaction`
     @objc dynamic var customCategory: Category?
-    
+
     /// The `Transaction` generated when an entry is paid
     @objc dynamic var transaction: Transaction?
 
@@ -62,7 +62,7 @@ class BillEntry: Object {
     }
 
     // MARK: - Initializers
-    
+
     /// Creates a `BillEntry` wih the given due date and `Bill`
     ///
     /// - Parameters:
@@ -110,7 +110,7 @@ class BillEntry: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     /// Updates the properties of the `BillEntry` to the values given.
     /// Updates are stored in customed properties to be used if non-nil instead of
     /// corresponding `Bill` properties
@@ -126,7 +126,7 @@ class BillEntry: Object {
     func update(amount: Double, name: String?, preDueReminder: BillDueReminder?, postDueReminder: BillDueReminder?,
                 category: Category?, dueDate: Date, inRealm realm: Realm) {
         guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
-        
+
         do {
             try realm.write {
                 self.amount = amount
@@ -152,7 +152,7 @@ class BillEntry: Object {
         self.delete(in: realm)
         entry.save(toRealm: realm)
     }
-    
+
     /// Updates the status of `BillEntry` from *unpaid* to *skipped*
     ///
     /// - Parameter realm: The `Realm` to save the updated `BillEntry` to
@@ -179,7 +179,7 @@ class BillEntry: Object {
     ///   - realm: The `Realm` where the `Transaction` and `BillEntry` will be saved
     func pay(amount: Double, description: String, fromAccount account: Account,
              datePaid: Date, inRealm realm: Realm) {
-        
+
         guard (BillEntry.with(key: self.id, inRealm: realm) != nil) else { return }
         let trans = generateTransaction(amount      : amount,
                                         description : description,
@@ -198,7 +198,7 @@ class BillEntry: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     /// Deletes the `BillEntry` from the given `Realm`
     ///
     /// - Parameter realm: The `Realm` to delete the `BillEntry` from
@@ -231,7 +231,7 @@ class BillEntry: Object {
     static func all(in realm: Realm, for bill: Bill) -> Results<BillEntry> {
         return realm.objects(BillEntry.self).filter("bill.id == %@", bill.id).sorted(byKeyPath: "dueDate")
     }
-    
+
     /// Returns all `BillEntries` of the given `Bill` that is of status `.unpaid`
     ///
     /// - Parameters:
@@ -244,7 +244,7 @@ class BillEntry: Object {
             .filter("status == %@", BillEntryStatus.unpaid.rawValue)
             .sorted(byKeyPath: "dueDate", ascending: true)
     }
-    
+
     /// Returns all `BillEntries` that is of status `.unpaid`
     ///
     /// - Parameter realm: The `Realm` to fetch the `BillEntries` from
@@ -258,7 +258,7 @@ class BillEntry: Object {
     /// :nodoc:
     private func generateTransaction(amount: Double, description: String,
                                      account: Account, datePaid: Date, inRealm realm: Realm) -> Transaction {
-        
+
         assert(self.bill?.active == true)
         let trans = Transaction(type          : .expense,
                                 name          : self.bill!.name,

@@ -14,15 +14,15 @@ import Realm
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
     override init() {
         super.init()
         UIFont.overrideInitialize()
     }
-    
+
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+
         UIApplication.shared.statusBarStyle = .default
         UINavigationBar.appearance().backgroundColor = MTColors.mainBg
         UINavigationBar.appearance().tintColor = MTColors.mainText

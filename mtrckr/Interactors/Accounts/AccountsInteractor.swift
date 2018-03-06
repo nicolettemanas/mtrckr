@@ -25,7 +25,7 @@ protocol AccountsInteractorProtocol {
 
 /// Class responsible for `Account` modification methods
 class AccountsInteractor: RealmHolder, AccountsInteractorProtocol {
-    
+
     /// Checks if an `Account` already exists in the `Realm`. Creates if not, updates if existing.
     /// Throws an error if the existing number of `Account`s is 20.
     ///
@@ -39,11 +39,11 @@ class AccountsInteractor: RealmHolder, AccountsInteractorProtocol {
                 account.save(toRealm: realmContainer!.userRealm!)
             } else {
                 throw NSLocalizedString("Sorry. You cannot create more than 20 accounts.",
-                                        comment: "Tells the user that account creation failed due to the 20-account limit")
+                comment: "Tells the user that account creation failed due to the 20-account limit")
             }
         }
     }
-    
+
     /// Updates the old `Account` to the new one provided
     ///
     /// - Parameters:
@@ -52,21 +52,21 @@ class AccountsInteractor: RealmHolder, AccountsInteractorProtocol {
     func updateAccount(fromAccount old: Account, toAccount new: Account) {
         old.update(to: new, in: realmContainer!.userRealm!)
     }
-    
+
     /// Retrieves all `Account`s in the `Realm` sorted by name
     ///
     /// - Returns: All `Account`s fetched
     func accounts() -> Results<Account> {
         return Account.all(in: realmContainer!.userRealm!)
     }
-    
+
     /// Deletes the account specified
     ///
     /// - Parameter account: The `Account` to be deleted
     func deleteAccount(account: Account) {
         account.delete(in: realmContainer!.userRealm!)
     }
-    
+
     /// Retrieves the current currency symbol used by the user
     ///
     /// - Returns: The symbol of the currency being used. Default is `₱`

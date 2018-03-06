@@ -22,15 +22,15 @@ protocol TransactionsTableViewControllerProtocol: class {
     var deleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol? { get set }
     var transactionsPresenter: TransactionsPresenterProtocol? { get set }
     var emptytransactionDataSource: EmptyTransactionsDataSource? { get set }
-    
+
     func reloadTableBy(date: Date?, accounts: [Account])
 }
 
 class TransactionsTableViewController: MTTableViewController, TransactionsTableViewControllerProtocol {
-    
+
     private var currency: String?
     private var observer: ObserverProtocol?
-    
+
     // MARK: - TransactionsTableViewControllerProtocol properties
     var newTransPresenter: NewTransactionPresenterProtocol?
     var deleteTransactionSheetPresenter: DeleteTransactionSheetPresenterProtocol?
@@ -42,7 +42,7 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
             transactionsDataSource?.delegate = self
         }
     }
-    
+
     // MARK: - Static initializer for dependencies
     static func initWith(dataSource: TransactionsListDataSourceProtocol?,
                          newTransPresenter: NewTransactionPresenterProtocol?,
@@ -52,18 +52,21 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
         let storyboard = UIStoryboard(name: "Today", bundle: Bundle.main)
         guard let tvc = storyboard.instantiateViewController(withIdentifier: "TransactionsTableViewController")
             as? TransactionsTableViewController else {
-                fatalError("TransactionsTableViewController does not conform to protocol TransactionsTableViewControllerProtocol")
+                fatalError("""
+                            TransactionsTableViewController does not conform to
+                            protocol TransactionsTableViewControllerProtocol
+                            """)
         }
-        
+
         tvc.transactionsDataSource = dataSource
         tvc.newTransPresenter = newTransPresenter
         tvc.deleteTransactionSheetPresenter = deleteTransPresenter
         tvc.emptytransactionDataSource = emptyDataSource
         tvc.transactionsPresenter = transactionsPresenter
-        
+
         return tvc
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         let resolver = MTResolver()
@@ -74,29 +77,29 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
         self.transactionsDataSource = resolver.container.resolve(TransactionsListDataSource.self,
                                                                  arguments: TransactionsFilter.byDate, Date())
     }
-    
+
     // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTransactionsDatasource()
     }
-    
+
     // MARK: - Data methods
     func setupTransactionsDatasource() {
         currency = transactionsPresenter?.currency()
-        
+
         tableView.register(UINib(nibName: "TransactionTableViewCell", bundle: Bundle.main),
                            forCellReuseIdentifier: "TransactionTableViewCell")
         tableView.allowsSelection = false
-        
+
         tableView.delegate = transactionsDataSource
         tableView.dataSource = transactionsDataSource
-        
+
         transTableView = tableView
         tableView.emptyDataSetSource = emptytransactionDataSource
         tableView.emptyDataSetDelegate = emptytransactionDataSource
     }
-    
+
     func reloadTableBy(date: Date?, accounts: [Account]) {
         if date != nil {
             transactionsDataSource?.reloadBy(accounts: accounts, date: date!)
@@ -104,13 +107,13 @@ class TransactionsTableViewController: MTTableViewController, TransactionsTableV
             transactionsDataSource?.reloadByAccounts(with: accounts)
         }
     }
-    
+
     // MARK: - Swipe cell handler methods
     func editTransaction(atIndex index: IndexPath) {
         guard let trans = transactionsDataSource?.transaction(at: index) else { return }
         editTransaction(transaction: trans)
     }
-    
+
     func confirmDelete(atIndex index: IndexPath) {
         guard let trans = transactionsDataSource?.transaction(at: index) else { return }
         confirmDeletTransaction(transaction: trans)
@@ -122,7 +125,7 @@ extension TransactionsTableViewController: TransactionsTableCellProtocol {
         newTransPresenter?.presentNewTransactionVC(with: transaction, presentingVC: self,
                                                    delegate: self)
     }
-    
+
     func confirmDeletTransaction(transaction: Transaction) {
         deleteTransactionSheetPresenter?.displayDeleteSheet(toDelete: transaction,
                                                             presentingVC: self)
@@ -142,7 +145,8 @@ extension TransactionsTableViewController: NewTransactionViewControllerDelegate 
                                       date: date, category: category, from: sourceAcc, to: destAccount)
     }
 
-    func shouldSaveTransaction(with name: String, amount: Double, type: TransactionType, date: Date, category: Category?,
+    func shouldSaveTransaction(with name: String, amount: Double, type: TransactionType,
+                               date: Date, category: Category?,
                                from sourceAcc: Account, to destAccount: Account) {
         transactionsPresenter?.createTransaction(with: name, amount: amount, type: type, date: date,
                                                  category: category, from: sourceAcc, to: destAccount)
@@ -153,7 +157,7 @@ extension TransactionsTableViewController: TransactionsListDataSourceDelegate {
     func didUpdateTransactions() {
         tableView.reloadData()
     }
-    
+
     func didReceiveChanges(changes: RealmCollectionChange<Results<Transaction>>) {
         tableView.applyChanges(changes: changes)
     }

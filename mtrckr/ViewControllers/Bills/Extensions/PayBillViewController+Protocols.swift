@@ -21,11 +21,11 @@ extension PayBillViewController: PayBillViewControllerProtocol {
                 account : accountRow.value!)
         dismiss()
     }
-    
+
     @objc func didPressCancel() {
         dismiss()
     }
-    
+
     func payBill(amount: Double, date: Date, account: Account) {
         guard let payEntry = entry else { fatalError("Entry must not be nil") }
         delegate?
@@ -34,7 +34,7 @@ extension PayBillViewController: PayBillViewControllerProtocol {
                             account : account,
                             date    : date)
     }
-    
+
     func dismiss() {
         dismiss(animated: true, completion: nil)
     }

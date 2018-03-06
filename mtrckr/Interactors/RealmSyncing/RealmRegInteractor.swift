@@ -13,10 +13,10 @@ import RealmSwift
 /// Wrapper class for `RLMSyncUser` that holds the RLMSyncUser
 /// as nullable for testing purposes
 @objc class MTSyncUser: NSObject {
-    
+
     /// The `RLMSyncUser` assigned to the wrapper
     var syncUser: RLMSyncUser?
-    
+
     /// A unique string identifier for the instance
     /// Returns the original identity of `RLMSyncUser`, creates a new UUIDstring
     /// if `RLMSyncUser` is nil
@@ -27,7 +27,7 @@ import RealmSwift
             return UUID().uuidString
         }
     }
-    
+
     /// Returns the current `RLMSyncUser` wrapped in `MTSyncUser`
     /// Value may be nil when there is no logged in user
     static var current: MTSyncUser? {
@@ -37,14 +37,14 @@ import RealmSwift
             return nil
         }
     }
-    
+
     // MARK: - Initializers
-    
+
     /// Creates an `MTSyncUser` with nil values
     override init() {
         super.init()
     }
-    
+
     /// Creates an `MTSyncUser` with the given `RLMSyncUser`
     ///
     /// - Parameter syncUser: The SyncUser to be stored
@@ -67,7 +67,7 @@ protocol RealmRegInteractorProtocol {
 
 /// Class responsible for registration
 class RealmRegInteractor: RealmHolder, RealmRegInteractorProtocol {
-    
+
     /// The output delegate of the interactor
     var output: RealmRegInteractorOutput?
 
@@ -94,9 +94,9 @@ class RealmRegInteractor: RealmHolder, RealmRegInteractorProtocol {
             }
         }
     }
-    
+
     // MARK: - Registration
-    
+
     /// Saves user details to the syncRealm
     ///
     /// - Parameters:
@@ -107,14 +107,14 @@ class RealmRegInteractor: RealmHolder, RealmRegInteractorProtocol {
         DispatchQueue.main.async {
             guard let userRealm = self.realmContainer?.userRealm
             else { return }
-            
+
             let newUser = User(id: user.identity, name: name, email: email, image: "",
                                currency: Currency.with(isoCode: "PHP", inRealm: userRealm)!)
 
             newUser.save(toRealm: userRealm)
         }
     }
-    
+
     /// The implementation of the registration process
     ///
     /// - Parameters:
@@ -125,9 +125,9 @@ class RealmRegInteractor: RealmHolder, RealmRegInteractorProtocol {
     ///     and the error encountered if available
     func registerUser(withCredentials credentials: SyncCredentials, server: URL,
                       timeout: TimeInterval, completion:@escaping (_ user: MTSyncUser?, _ error: Error?) -> Void) {
-        
+
         SyncUser.logIn(with: credentials, server: server, timeout: config!.timeout) { (user, error) in
-            
+
             if let syncUser = user {
                 let mt = MTSyncUser(syncUser: syncUser)
                 completion(mt, error)

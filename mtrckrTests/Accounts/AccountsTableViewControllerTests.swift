@@ -108,7 +108,8 @@ class AccountsTableViewControllerTests: QuickSpec {
                     
                     it("Tells presenter to display transactions under selected account", closure: {
                         expect(self.mockAccountsTransactionsPresenter?.didPresent) == true
-                        expect(self.mockAccountsTransactionsPresenter?.didPresentId) == self.accountsVC?.accounts?.first?.id
+                        expect(self.mockAccountsTransactionsPresenter?.didPresentId) ==
+                            self.accountsVC?.accounts?.first?.id
                     })
                 })
                 

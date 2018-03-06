@@ -14,12 +14,12 @@ struct MTColors {
     static let barBg = UIColor("#FFFFFFFF")
     static let separatorColor = UIColor("#EEEEEEFF")
     static let emptyDataSetBg = UIColor("#EDEDF1FF")
-    
+
     static let mainText = UIColor("#34374BFF")
     static let subText = UIColor("#6C6F87FF")
     static let placeholderText = UIColor("#A3A5B7FF")
     static let lightBg = UIColor("#EEEEEEFF")
-    
+
     static let mainBlue = UIColor("#00A7E1FF")
     static let mainRed = UIColor("#F45A5DFF")
     static let mainGreen = UIColor("#45CB85FF")
@@ -27,7 +27,7 @@ struct MTColors {
     static let subRed = UIColor("#F4E3E3FF")
     static let subOrange = UIColor("#F4CBA8FF")
     static let subBlue = UIColor("#CBF4FFFF")
-    
+
     static let colors: [UIColor]
         = [UIColor("#F49A50FF"), // orange
             UIColor("#F47072FF"), // red orange

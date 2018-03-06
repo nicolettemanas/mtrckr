@@ -59,7 +59,10 @@ class CurrencyTests: QuickSpec {
                     currency.save(toRealm: self.testRealm)
 
                     let currencyFromDatabase = self.testRealm.objects(Currency.self).last
-                    let updatedCurrency = Currency(id: "Curr1", isoCode: "USD", symbol: "US $", state: "United States of America")
+                    let updatedCurrency = Currency(id: "Curr1",
+                                                   isoCode: "USD",
+                                                   symbol: "US $",
+                                                   state: "United States of America")
                     currencyFromDatabase?.update(to: updatedCurrency, in: self.testRealm)
 
                     let currencies = Currency.all(in: self.testRealm)

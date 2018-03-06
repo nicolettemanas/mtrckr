@@ -21,8 +21,10 @@ class TestableRegInteractor: RealmRegInteractor {
         realmContainer = MockRealmContainer(memoryIdentifier: inMemoryIdentifier)
     }
     
-    override func registerUser(withCredentials credentials: SyncCredentials, server: URL,
-                               timeout: TimeInterval, completion:@escaping (_ user: MTSyncUser?, _ error: Error?) -> Void) {
+    override func registerUser(withCredentials credentials: SyncCredentials,
+                               server: URL,
+                               timeout: TimeInterval,
+                               completion:@escaping (_ user: MTSyncUser?, _ error: Error?) -> Void) {
         didRegister = true
         completion(MTSyncUser(), nil)
     }

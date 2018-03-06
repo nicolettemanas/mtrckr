@@ -9,11 +9,11 @@ import UIKit
 import DZNEmptyDataSet
 
 class EmptyAccountsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    
+
     func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return MTColors.emptyDataSetBg
     }
-    
+
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str =  NSLocalizedString("Welcome to Money Tracker!",
                                      comment: "The title shown when there are no accounts registered.")
@@ -25,7 +25,7 @@ class EmptyAccountsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetD
                     NSAttributedStringKey.paragraphStyle: style]
         return NSAttributedString(string: str, attributes: attr)
     }
-    
+
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = NSLocalizedString("You are almost settled! Start tracking \n by tapping the '+' " +
                                     " button and \n adding a new account.",
@@ -39,13 +39,13 @@ class EmptyAccountsDataSource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetD
                     NSAttributedStringKey.paragraphStyle: style]
         return NSAttributedString(string: str, attributes: attr)
     }
-    
+
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         return #imageLiteral(resourceName: "coins")
     }
-    
+
     func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return MTColors.placeholderText
     }
-    
+
 }

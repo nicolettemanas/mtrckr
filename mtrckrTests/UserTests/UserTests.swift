@@ -66,7 +66,11 @@ class UserTests: QuickSpec {
                     user.save(toRealm: self.testRealm)
                     let newCurrency = Currency(id: "Curr1", isoCode: "USD", symbol: "$", state: "USA")
                     let userFromDatabase = self.testRealm.objects(User.self).last
-                    let updatedUser = User(id: "user0", name: "Jean Manas", email: "email1@sample.com", image: "/img.jpg", currency: newCurrency)
+                    let updatedUser = User(id: "user0",
+                                           name: "Jean Manas",
+                                           email: "email1@sample.com",
+                                           image: "/img.jpg",
+                                           currency: newCurrency)
 
                     userFromDatabase?.update(to: updatedUser, in: self.testRealm)
 

@@ -13,7 +13,7 @@ class MTSettingsTableViewCell: MTTableViewCell {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var detail: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

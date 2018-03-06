@@ -180,7 +180,11 @@ class TransactionsListDataSourceTests: QuickSpec {
             })
             
             context("when filtered by date and account", {
-                it("displays transactions (sorted latest first) that was recorded at the given date and belongs to the given accounts", closure: {
+                it("""
+                    displays transactions (sorted latest first) that was recorded at the given date
+                    and belongs to the given accounts
+                    """,
+                   closure: {
                     dataSource?.dateFilter = date1
                     dataSource?.accountsFilter = [account1, account3]
                     dataSource?.reloadBy(accounts: [account1, account3], date: date1)

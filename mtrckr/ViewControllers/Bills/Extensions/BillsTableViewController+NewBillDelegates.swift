@@ -35,14 +35,14 @@ extension BillsTableViewController: NewBillViewControllerDelegate {
                         startDate   : startDate,
                         category    : category)
     }
-    
+
     func edit(billEntry: BillEntry, amount: Double, name: String, post: String,
               pre: String, repeatSchedule: String, startDate: Date, category: Category) {
         if let cell = tableView.cellForRow(at: editingIndexPath!) as? SwipeTableViewCell {
             cell.hideSwipe(animated: true)
             editingIndexPath = nil
         }
-        
+
         presenter?
             .editBillEntry(billEntry    : billEntry,
                            amount       : amount,
@@ -52,15 +52,15 @@ extension BillsTableViewController: NewBillViewControllerDelegate {
                            startDate    : startDate,
                            category     : category)
     }
-    
+
     func edit(bill: Bill, amount: Double, name: String, post: String, pre: String,
               repeatSchedule: String, startDate: Date, category: Category) {
-        
+
         if let cell = tableView.cellForRow(at: editingIndexPath!) as? SwipeTableViewCell {
             cell.hideSwipe(animated: true)
             editingIndexPath = nil
         }
-        
+
         presenter?
             .editBillAndEntries(bill        : bill,
                                 amount      : amount,

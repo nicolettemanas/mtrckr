@@ -16,16 +16,16 @@ class User: Object {
     // MARK: - Properties
     /// The unique identifier of the `User`
     @objc dynamic var id: String = ""
-    
+
     /// The name of the `User`
     @objc dynamic var name: String = ""
-    
+
     /// The email of the `User`
     @objc dynamic var email: String = ""
-    
+
     /// The image of the `User`
     @objc dynamic var image: String = ""
-    
+
     /// The `Currency` currently used by the `User`
     @objc dynamic var currency: Currency?
 
@@ -68,7 +68,7 @@ class User: Object {
     }
 
     // MARK: CRUD
-    
+
     /// Saves the `User` to the fiven `Realm`
     ///
     /// - Parameter realm: The `Realm` to save the `User` to
@@ -115,7 +115,7 @@ class User: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     /// Fetch the `User` with the given ID
     ///
     /// - Parameters:

@@ -22,37 +22,37 @@ enum TransactionType: String {
 
 /// A Realm `Object` that represents a single `Transaction` record
 class Transaction: Object {
-    
+
     // MARK: - Properties
 
     /// The unique identifier of the `Transaction`
     @objc dynamic var id: String = ""
-    
+
     /// The type of the `Transaction` in raw value. See `TransactionType`.
     @objc dynamic var type: String = ""
-    
+
     /// The name or title of the `Transaction`
     @objc dynamic var name: String = ""
-    
+
     /// The image of the `Transaction`
     @objc dynamic var image: String?
-    
+
     /// The description details of the `Transaction`
     @objc dynamic var desc: String?
-    
+
     /// The cost or amount of the `Transaction`
     @objc dynamic var amount: Double = 0.0
-    
+
     /// The date of the `Transaction`
     @objc dynamic var transactionDate: Date = Date()
 
     /// The `Account` from where the `Transaction` is recorded
     @objc dynamic var fromAccount: Account?
-    
+
     /// The `Account` to where the `Transaction` is recorded. If the `Transaction` is of type `.expense`
     /// or `.income`, `toAccount` and `fromAccount` is of the same value.
     @objc dynamic var toAccount: Account?
-    
+
     /// The `Category` of the `Transaction`. See `Category`.
     @objc dynamic var category: Category?
 
@@ -73,9 +73,11 @@ class Transaction: Object {
     ///   - description: The description of the `Transaction` to be created
     ///   - amount: The amount or cost of the `Transaction` to be created
     ///   - category: The category of the `Transaction` to be created
-    ///   - fromAccount: The `Account` where the `Transaction` is recorded. If the `Transaction` is of type `.transfer`: The `Account`
+    ///   - fromAccount: The `Account` where the `Transaction` is recorded.
+    ///     If the `Transaction` is of type `.transfer`: The `Account`
     ///     where the amount is taken from.
-    ///   - toAccount: If the `Transaction` is of type `.expense` or `.income`: The `Account` where the `Transaction` is recorded
+    ///   - toAccount: If the `Transaction` is of type `.expense` or `.income`:
+    ///     The `Account` where the `Transaction` is recorded
     ///     If the `Transaction` is of type `.transfer`: The `Account` there the amount is transfered to.
     ///   - date: The date of the `Transaction` to be created
     init(type: TransactionType, name: String, image: String?, description: String?, amount: Double,
@@ -99,19 +101,19 @@ class Transaction: Object {
     required init(realm: RLMRealm, schema: RLMObjectSchema) {
         super.init(realm: realm, schema: schema)
     }
-    
+
     /// :nodoc:
     required init(value: Any, schema: RLMSchema) {
         super.init(value: value, schema: schema)
     }
-    
+
     /// :nodoc:
     required init() {
         super.init()
     }
 
     // MARK: - CRUD
-    
+
     /// Saves the `Transaction` to the given `Realm`
     ///
     /// - Parameter realm: The `Realm` to save the `Transaction` to
@@ -126,7 +128,7 @@ class Transaction: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     /// Updates the `Transaction` property values to the given values
     ///
     /// - Parameters:
@@ -161,7 +163,7 @@ class Transaction: Object {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     /// Updates the `Transaction` to the given `Transaction`
     ///
     /// - Parameters:
@@ -174,7 +176,7 @@ class Transaction: Object {
             try realm.write {
                 self.willDelete(inRealm: realm)
                 realm.delete(self)
-                
+
                 transaction.willSave()
                 realm.add(transaction)
             }
@@ -206,7 +208,7 @@ class Transaction: Object {
     static func with(key: String, inRealm realm: Realm) -> Transaction? {
         return realm.object(ofType: Transaction.self, forPrimaryKey: key) as Transaction?
     }
- 
+
     /// Returns all `Transaction`s from `Account` under given `Realm
     ///
     /// - Parameters:
@@ -218,7 +220,7 @@ class Transaction: Object {
             .filter("fromAccount.id == %@", account.id)
             .sorted(byKeyPath: "transactionDate", ascending: false)
     }
-    
+
     /// Returns all `Transactions` from the given `Accounts`
     ///
     /// - Parameters:
@@ -254,7 +256,7 @@ class Transaction: Object {
             .filter("billEntry.bill.id == %@", bill.id)
             .sorted(byKeyPath: "transactionDate", ascending: false)
     }
-    
+
     /// Returns all `Transactions` from the given date
     ///
     /// - Parameters:
@@ -266,7 +268,7 @@ class Transaction: Object {
             .filter("transactionDate >= %@ AND transactionDate =< %@", date.start(of: .day), date.end(of: .day))
             .sorted(byKeyPath: "transactionDate", ascending: false)
     }
-    
+
     /// Returns all `Transactions` from the given date period under the `Accounts` given
     ///
     /// - Parameters:
@@ -279,11 +281,13 @@ class Transaction: Object {
                     inAccounts accounts: [Account]) -> Results<Transaction> {
         if accounts.count == 0 {
             return realm.objects(Transaction.self)
-                .filter("transactionDate >= %@ AND transactionDate =< %@", startDate.start(of: .day), endDate.end(of: .day))
+                .filter("transactionDate >= %@ AND transactionDate =< %@",
+                        startDate.start(of: .day), endDate.end(of: .day))
                 .sorted(byKeyPath: "transactionDate", ascending: false)
         } else {
             return realm.objects(Transaction.self)
-                .filter("transactionDate >= %@ AND transactionDate =< %@", startDate.start(of: .day), endDate.end(of: .day))
+                .filter("transactionDate >= %@ AND transactionDate =< %@",
+                        startDate.start(of: .day), endDate.end(of: .day))
                 .filter("fromAccount in %@", accounts)
                 .sorted(byKeyPath: "transactionDate", ascending: false)
         }

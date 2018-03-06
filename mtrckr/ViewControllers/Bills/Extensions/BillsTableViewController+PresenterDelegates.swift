@@ -11,8 +11,8 @@ extension BillsTableViewController: DeleteBillPresenterDelegate {
     func proceedDeleteEntry(entry: BillEntry, type: ModifyBillType) {
         presenter?.deleteBillEntry(entry: entry, deleteType: type)
     }
-    
+
     func cancelDeleteEntry(entry: BillEntry) {
-        
+
     }
 }

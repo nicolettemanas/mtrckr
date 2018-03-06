@@ -25,7 +25,7 @@ protocol BillsInteractorProtocol {
 
 /// Class responsible for `Bill` and `BillEntry` modification methods
 class BillsInteractor: RealmHolder, BillsInteractorProtocol {
-    
+
     /// Deletes a `Bill` and corresponding unpaid `BillEntries`
     ///
     /// - Parameter bill: The `Bill` to be deleted
@@ -33,14 +33,14 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
         deleteAllUnpaid(for: bill)
         bill.deactivate(inRealm: realmContainer!.userRealm!)
     }
-    
+
     /// Deletes a single `BillEntry`
     ///
     /// - Parameter billEntry: The `BillEntry` to be deleted
     func delete(billEntry: BillEntry) {
         billEntry.delete(in: realmContainer!.userRealm!)
     }
-    
+
     /// Saves a bill and generates corresponding bill entries
     ///
     /// - Parameter bill: The `Bill` to save
@@ -48,14 +48,14 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
         guard let sched = BillRepeatSchedule(rawValue: bill.repeatSchedule) else {
             fatalError("Invalid repeat schedule '\(bill.repeatSchedule)'")
         }
-        
+
         createEntries(forBill       : bill,
                       startDate     : bill.startDate,
                       repeatSched   : sched)
-        
+
         bill.save(toRealm: self.realmContainer!.userRealm!)
     }
-    
+
     /// Marks the `BillEntry` as skipped
     ///
     /// - Parameters:
@@ -64,11 +64,11 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
     func skip(entry: BillEntry, date: Date) {
         entry.skip(inRealm: self.realmContainer!.userRealm!)
     }
-    
+
     func unpay(entry: BillEntry) {
         entry.unpay(inRealm: realmContainer!.userRealm!)
     }
-    
+
     /// Marks an entry as paid and generates associated `Transaction`
     ///
     /// - Parameters:
@@ -84,7 +84,7 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
                  datePaid      : date,
                  inRealm       : realmContainer!.userRealm!)
     }
-    
+
     /// Updates and save the `BillEntry` with the given values
     ///
     /// - Parameters:
@@ -98,7 +98,7 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
     func update(entry: BillEntry, amount: Double, name: String?,
                 preDue: BillDueReminder, postDue: BillDueReminder,
                 category: Category?, dueDate: Date) {
-        
+
         entry.update(amount             : amount,
                      name               : name,
                      preDueReminder     : preDue,
@@ -107,7 +107,7 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
                      dueDate            : dueDate,
                      inRealm            : self.realmContainer!.userRealm!)
     }
-    
+
     /// Update and save a `Bill` and all its corresponding unpaid `BillEntries` with the given values
     ///
     /// - Parameters:
@@ -121,7 +121,7 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
     ///   - repeatSched: The new repeat schedule of the `Bill`
     func update(bill: Bill, amount: Double, name: String, post: BillDueReminder,
                 preDue: BillDueReminder, category: Category, startDate: Date, repeatSched: BillRepeatSchedule) {
-        
+
         updateUnpaidEntries(ofBill          : bill,
                             amount          : amount,
                             name            : name,
@@ -130,7 +130,7 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
                             category        : category,
                             startDate       : startDate == bill.startDate ? nil: startDate,
                             repeatSchedule  : repeatSched)
-        
+
         bill.update(amount          : amount,
                     name            : name,
                     postDueReminder : post,
@@ -138,14 +138,14 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
                     category        : category,
                     in              : realmContainer!.userRealm!)
     }
-    
+
     // MARK: - Private methods
     private func updateUnpaidEntries(ofBill bill: Bill, amount: Double, name: String,
                                      post: BillDueReminder, pre: BillDueReminder, category: Category,
                                      startDate: Date?, repeatSchedule: BillRepeatSchedule) {
         assert(bill.active == true)
         deleteAllUnpaid(for: bill)
-        
+
         let latestPaid = latestPaidEntry(for: bill)
         var start: Date!
         if startDate == nil {
@@ -153,7 +153,7 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
                 start = lPaid.dueDate.add(timeChunk(of: lPaid.bill!.repeatSchedule))
             } else { start = bill.startDate }
         } else { start = startDate }
-        
+
         createEntries(forBill: bill, startDate: start, repeatSched: repeatSchedule)
         let unpaidEntries = BillEntry.allUnpaid(in: realmContainer!.userRealm!, for: [bill])
         for entry in unpaidEntries {
@@ -166,14 +166,14 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
                          inRealm            : realmContainer!.userRealm!)
         }
     }
-    
+
     private func deleteAllUnpaid(for bill: Bill) {
         let unpaidEntries = BillEntry.allUnpaid(in: realmContainer!.userRealm!, for: [bill])
         for entry in unpaidEntries {
             entry.delete(in: realmContainer!.userRealm!)
         }
     }
-    
+
     private func latestPaidEntry(for bill: Bill) -> BillEntry? {
         return BillEntry.all(in: realmContainer!.userRealm!, for: bill)
             .sorted(byKeyPath: "dueDate")
@@ -181,17 +181,17 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
                                 BillEntryStatus.paid.rawValue,
                                 BillEntryStatus.skipped.rawValue)).first
     }
-    
+
     private func createEntries(forBill bill: Bill, startDate: Date, repeatSched: BillRepeatSchedule) {
         assert(bill.active == true)
         var start = startDate
         var end = Date()
-        
+
         if end.isEarlier(than: start) {
             end = bill.startDate
             start = Date().isEarlier(than: end) ? bill.startDate : Date()
         }
-        
+
         let repeatTimeChunk = timeChunk(of: repeatSched.rawValue)
         while start.isEarlierThanOrEqual(to: end) {
             BillEntry(dueDate: start, for: bill)
@@ -200,14 +200,14 @@ class BillsInteractor: RealmHolder, BillsInteractorProtocol {
             if bill.repeatSchedule == BillRepeatSchedule.never.rawValue { break }
         }
     }
-    
+
     private func timeChunk(of repeatSchedule: String) -> TimeChunk {
         var repeatChunk = 0.days
         switch repeatSchedule {
-            case BillRepeatSchedule.yearly.rawValue: repeatChunk = 1.years
-            case BillRepeatSchedule.monthly.rawValue: repeatChunk = 1.months
-            case BillRepeatSchedule.weekly.rawValue: repeatChunk = 1.weeks
-            default: break
+        case BillRepeatSchedule.yearly.rawValue: repeatChunk = 1.years
+        case BillRepeatSchedule.monthly.rawValue: repeatChunk = 1.months
+        case BillRepeatSchedule.weekly.rawValue: repeatChunk = 1.weeks
+        default: break
         }
         return repeatChunk
     }

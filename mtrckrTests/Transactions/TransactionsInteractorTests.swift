@@ -86,13 +86,17 @@ class TransactionsInteractorTests: QuickSpec {
                         beforeEach {
                             try? interactor.editTransaction(transaction: updated)
                         }
-                        itBehavesLike("transaction can be found in database") { ["transaction": updated, "realm": realm!] }
+                        itBehavesLike("transaction can be found in database") {
+                            ["transaction": updated, "realm": realm!]
+                        }
                     })
                 })
                 
                 context("Transaction does not exist in realm", {
                     it("throws an exception", closure: {
-                        expect(expression: { try interactor.editTransaction(transaction: transaction) }).to(throwError())
+                        expect(expression: {
+                            try interactor.editTransaction(transaction: transaction)
+                        }).to(throwError())
                     })
                 })
             })

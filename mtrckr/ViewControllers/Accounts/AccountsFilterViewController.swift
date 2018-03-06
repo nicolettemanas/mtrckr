@@ -17,14 +17,14 @@ class AccountsFilterViewController: FormViewController {
     var section: SelectableSection<ListCheckRow<Account>>?
     var rows = [ListCheckRow<Account>]()
     weak var delegate: AccountsFilterViewControllerDelegate?
-    
+
     @IBAction func selectAll(sender: UIButton) {
         for row in rows {
             row.select()
             row.didSelect()
         }
     }
-    
+
     @IBAction func didPressDone(sender: UIButton) {
         if let selectedRows = section?.selectedRows() {
             var selectedAccounts = [Account]()
@@ -33,11 +33,12 @@ class AccountsFilterViewController: FormViewController {
             }
             delegate?.didSelectAccounts(accounts: selectedAccounts.count == accounts.count ? [] : selectedAccounts)
         }
-        
+
         dismiss(animated: true, completion: nil)
     }
 
-    static func create(with accounts: [Account], delegate: AccountsFilterViewControllerDelegate?) -> AccountsFilterViewController {
+    static func create(with accounts: [Account],
+                       delegate: AccountsFilterViewControllerDelegate?) -> AccountsFilterViewController {
         let storyboard = UIStoryboard(name: "Today", bundle: Bundle.main)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "AccountsFilterViewController")
             as? AccountsFilterViewController
@@ -48,14 +49,15 @@ class AccountsFilterViewController: FormViewController {
         vc.delegate = delegate
         return vc
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        section = SelectableSection<ListCheckRow<Account>>("Filter by accounts", selectionType: SelectionType.multipleSelection)
+        section = SelectableSection<ListCheckRow<Account>>("Filter by accounts",
+                                                           selectionType: SelectionType.multipleSelection)
         guard let sec = section else { fatalError("Cannot initialize SelectableSection") }
         form +++ sec
         for account in accounts {

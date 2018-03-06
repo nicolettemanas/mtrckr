@@ -149,7 +149,11 @@ class BillTests: QuickSpec {
                     beforeEach {
                         bill.save(toRealm: self.testRealm)
 
-                        anotherCategory = Category(id: "cat1", type: .expense, name: "Utilities2", icon: "util2.jpg", color: "")
+                        anotherCategory = Category(id: "cat1",
+                                                   type: .expense,
+                                                   name: "Utilities2",
+                                                   icon: "util2.jpg",
+                                                   color: "")
                         billFromDatabase = self.testRealm.objects(Bill.self).last
                         billFromDatabase!.update(amount: 2000, name: "Postpaid bill2", postDueReminder: .threeDays,
                                                  preDueReminder: .never, category: anotherCategory, in: self.testRealm)

@@ -1,6 +1,3 @@
-identifier_name:
-  min_length: 1
-
 type_body_length:
   - 300 # warning
   - 400 # error
@@ -21,3 +18,5 @@ disabled_rules:
  - trailing_whitespace
  - force_cast
  - closure_parameter_position
+ - identifier_name
+ - colon

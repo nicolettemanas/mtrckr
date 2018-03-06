@@ -23,26 +23,26 @@ class Category: Object {
 
     /// The unique identifier of the `Category`
     @objc dynamic var id: String = ""
-    
+
     /// The type of `Category` in raw value
     @objc dynamic var type: String = "expense"
-    
+
     /// The name of the `Category`
     @objc dynamic var name: String = ""
-    
+
     /// The icon url path of the `Category`
     @objc dynamic var icon: String = "decault.jpg"
-    
+
     /// A flag indicating whether a `Category` is a customed category or not
     @objc dynamic var isCustomized: Bool = false
-    
+
     /// The color of the `Category`
     @objc dynamic var color: String = ""
 
     /// The `Transaction`s listed under the `Category`
     let transactions = LinkingObjects(fromType: Transaction.self, property: "category")
 //    let budgetsAffected = LinkingObjects(fromType: Budget.self, property: "forCategories")
-    
+
     /// The `Bill`s listed under the `Category`
     let bills = LinkingObjects(fromType: Bill.self, property: "category")
 
@@ -51,7 +51,7 @@ class Category: Object {
     }
 
     // MARK: - Initializers
-    
+
     /// Creates a `Category` with the given values
     ///
     /// - Parameters:
@@ -102,7 +102,7 @@ class Category: Object {
     }
 
     // MARK: - CRUD
-    
+
     /// Saves the `Category` to the given `Realm`
     ///
     /// - Parameter realm: The `Realm` to save the `Category` to
@@ -158,7 +158,7 @@ class Category: Object {
     static func with(key: String, inRealm realm: Realm) -> Category? {
         return realm.object(ofType: Category.self, forPrimaryKey: key) as Category?
     }
-    
+
     /// Returns all `Categories` found in the given `Realm`
     ///
     /// - Parameters:

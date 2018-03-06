@@ -23,20 +23,20 @@ protocol TransactionsPresenterProtocol {
 }
 
 class TransactionsPresenter: TransactionsPresenterProtocol {
-    
+
     private var interactor: TransactionsInteractorProtocol
-    
+
     required init(with int: TransactionsInteractor) {
         interactor = int
     }
-    
+
     /// Returns the currency used by the user
     ///
     /// - Returns: The currency used the the user
     func currency() -> String {
         return interactor.currency()
     }
-    
+
     /// Event handler for retrieving a list of `Transactions` from a given date
     ///
     /// - Parameter date: The date to be filtered
@@ -44,7 +44,7 @@ class TransactionsPresenter: TransactionsPresenterProtocol {
     func transactions(from date: Date) -> Results<Transaction> {
         return interactor.transactions(from: date)
     }
-    
+
     /// Event handler for retrieving a list of `Transactions` from given `Accounts`
     ///
     /// - Parameter account: An array of `Accounts` to filter the `Transactions` from
@@ -52,7 +52,7 @@ class TransactionsPresenter: TransactionsPresenterProtocol {
     func transactions(fromAccounts account: [Account]) -> Results<Transaction> {
         return interactor.transactions(fromAccount: account)
     }
-    
+
     /// Event handler for modifying a given `Transaction`
     ///
     /// - Parameter transaction: The updated `Transaction`
@@ -60,14 +60,14 @@ class TransactionsPresenter: TransactionsPresenterProtocol {
 //    func editTransaction(transaction: Transaction) throws {
 //        try interactor.editTransaction(transaction: transaction)
 //    }
-    
+
     /// Event handler for deleting a `Transaction`
     ///
     /// - Parameter transaction: the `Transaction` to be deleted
     func deleteTransaction(transaction: Transaction) {
         interactor.deleteTransaction(transaction: transaction)
     }
-    
+
     /// Event handler for building a `Transaction` from the given values and tells the
     /// interactor to save it to the `Realm`
     ///
@@ -81,13 +81,13 @@ class TransactionsPresenter: TransactionsPresenterProtocol {
     ///   - destAccount: The destination `Account` of the `Transaction`
     func createTransaction(with name: String, amount: Double, type: TransactionType, date: Date,
                            category: Category?, from sourceAcc: Account, to destAccount: Account) {
-        
+
         let transaction = Transaction(type: type, name: name, image: nil, description: nil,
                                       amount: amount, category: category, from: sourceAcc,
                                       to: destAccount, date: date)
         interactor.saveTransaction(transaction: transaction)
     }
-    
+
     /// Event handler for updating a `Transaction`
     ///
     /// - Parameters:

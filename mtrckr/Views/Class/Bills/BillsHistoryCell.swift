@@ -9,12 +9,12 @@ import UIKit
 import SwipeCellKit
 
 class BillsHistoryCell: SwipeTableViewCell {
-    
+
     @IBOutlet weak var due: UILabel!
     @IBOutlet weak var datePaid: UILabel!
     @IBOutlet weak var amount: UILabel!
     @IBOutlet weak var detail: UILabel!
-    
+
     static let skipped = NSLocalizedString("bills.skipped",
                                            tableName    : nil,
                                            bundle       : Bundle.main,
@@ -30,11 +30,11 @@ class BillsHistoryCell: SwipeTableViewCell {
                                              bundle: Bundle.main,
                                              value: "Paid: %@",
                                              comment: "String format with label 'Paid:' followed by the value")
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         detail.textColor = MTColors.subText
@@ -52,7 +52,7 @@ class BillsHistoryCell: SwipeTableViewCell {
         assert(entry.status != BillEntryStatus.unpaid.rawValue)
         due.text = String(format: BillsHistoryCell.dueFormat,
                           entry.dueDate.format(with: DateFormatter.Style.medium))
-        
+
         switch entry.status {
         case BillEntryStatus.paid.rawValue:
             assert(entry.id == entry.transaction?.billEntry?.id)
@@ -65,10 +65,10 @@ class BillsHistoryCell: SwipeTableViewCell {
             detail.text = BillsHistoryCell.skipped
         default: fatalError("Invalid bill status: \(entry.status)")
         }
-        
+
         amount.text = NumberFormatter
             .currencyKString(withCurrency   : currency,
                              amount         : entry.amount)
     }
-    
+
 }

@@ -11,7 +11,7 @@ class CategoryCollectionCell: UICollectionViewCell {
     @IBOutlet weak var iconView: UIView!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var label: UILabel!
-    
+
     func setSelected(selected: Bool, category cat: Category) {
         if selected == true {
             iconView?.layer.borderWidth = 3

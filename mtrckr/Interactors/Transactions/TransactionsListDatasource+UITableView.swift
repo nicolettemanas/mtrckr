@@ -19,7 +19,7 @@ extension TransactionsListDataSource {
         }
         return nil
     }
-    
+
     /// :nodoc:
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if filterBy == .byDate || filterBy == .both {
@@ -27,21 +27,21 @@ extension TransactionsListDataSource {
         }
         return sectionTitles[section]
     }
-    
+
     /// :nodoc:
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if filterBy == .byDate || filterBy == .both {
             return transactions?.count ?? 0
         }
-        
+
         return rowsCountSection(section: section)
     }
-    
+
     /// :nodoc:
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65
     }
-    
+
     /// :nodoc:
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if filterBy == .byDate || filterBy == .both {
@@ -50,7 +50,7 @@ extension TransactionsListDataSource {
         }
         return 30
     }
-    
+
     /// :nodoc:
     func numberOfSections(in tableView: UITableView) -> Int {
         if filterBy == .byDate || filterBy == .both {
@@ -58,14 +58,14 @@ extension TransactionsListDataSource {
         }
         return sectionTitles.count
     }
-    
+
     /// :nodoc:
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell")
             as? TransactionTableViewCell else {
                 fatalError("Cannot initialize TransactionTableViewCell")
         }
-        
+
         var t = transactions![indexPath.row]
         if filterBy == .byAccount {
             guard let rows = rowsForSection(section: indexPath.section)

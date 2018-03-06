@@ -24,7 +24,9 @@ class RegistrationViewControllerTests: QuickSpec {
         
         describe("RegistrationViewController") {
             beforeEach {
-                self.regVC = self.storyboard?.instantiateViewController(withIdentifier: "RegistrationViewController") as? RegistrationViewController
+                self.regVC = self.storyboard?
+                    .instantiateViewController(withIdentifier: "RegistrationViewController")
+                    as? RegistrationViewController
                 self.mockPresenter = MockRealmAuthPresenter()
                 
                 self.regVC?.presenter = self.mockPresenter

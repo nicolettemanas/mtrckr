@@ -56,7 +56,8 @@ class MockBillsInteractor: BillsInteractor {
     }
     
     override func update(bill: Bill, amount: Double, name: String, post: BillDueReminder,
-                         preDue: BillDueReminder, category: mtrckr.Category, startDate: Date, repeatSched: BillRepeatSchedule) {
+                         preDue: BillDueReminder, category: mtrckr.Category,
+                         startDate: Date, repeatSched: BillRepeatSchedule) {
         billToUpdate = bill
         updatedAmount = amount
         updatedName = name
